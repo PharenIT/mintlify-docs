@@ -1,0 +1,241 @@
+---
+title: "Pharen Hub AI Agents: Chat, Agents, and App Builder"
+sidebarTitle: "AI Agents"
+description: "Build AI agents with custom skills, automate execution with handoffs, and create custom workflow apps — all inside the Pharen Hub AI layer."
+---
+
+The AI layer of Pharen Hub is where intelligence meets action. It's not a sidebar chatbot — it's a set of agents that share your workspace context, execute multi-step plans, hand work off to specialized peers, and power custom applications built with the App Builder. Every AI capability in Hub is connected to the same docs, lists, workflows, and channels your team uses daily, so the AI always has the context it needs to act — not just advise.
+
+## AI Chat
+
+Hub Chat is the conversational entry point to the AI layer. Open it from the left sidebar or press `Cmd+K` (Mac) / `Ctrl+K` (Windows/Linux).
+
+Chat is workspace-aware. When you ask a question or give an instruction, the AI can see your docs, lists, and workflow state — and act on them — without you pasting in any context manually.
+
+**What you can do in Chat:**
+
+- Ask questions about docs, list records, or workflow statuses
+- Instruct the AI to create, update, or move list records
+- Draft documents, emails, or workflow messages
+- Kick off a workflow or escalate a task to a named agent
+- Get an execution plan for a goal and step through it interactively
+
+<Tip>
+  Be specific about scope. "Summarize last week's support requests with status 'Resolved'" gets a more useful answer than "summarize support." Hub Chat uses your active workspace context, so field names and list names you use in the product work directly in your prompts.
+</Tip>
+
+---
+
+## AI Agents
+
+Agents are autonomous AI workers you configure once and run on demand or on a schedule. Where Chat is interactive, agents are task-oriented: you define what they do, what they can access, and what skills they have — then let them run.
+
+### Creating an Agent
+
+<Steps>
+  <Step title="Open Agents">
+    Navigate to **AI → Agents** in the left sidebar and click **+ New Agent**.
+  </Step>
+  <Step title="Name and describe the agent">
+    Give the agent a clear, role-based name (e.g., `support-triage`, `invoice-processor`, `doc-reviewer`). Write a brief description of its purpose — this is used by the handoff system when routing context between agents.
+  </Step>
+  <Step title="Define the agent's context">
+    Select which workspace objects the agent has access to: specific docs, lists, workflows, channels, and mail addresses. Limiting context to what's relevant keeps the agent focused and reduces noise.
+  </Step>
+  <Step title="Add skills">
+    Skills are capabilities beyond reading and writing workspace data. Add skills from the library or write custom code. See the Skills section below for details.
+  </Step>
+  <Step title="Set a trigger">
+    Agents can be triggered manually, by a workflow step, by an incoming email, by a new list record, or on a cron schedule. Configure the trigger under the **Trigger** tab.
+  </Step>
+  <Step title="Test and activate">
+    Use the **Run in Sandbox** button to test the agent against real workspace data without making live changes. When it behaves as expected, click **Activate**.
+  </Step>
+</Steps>
+
+### Custom Skills
+
+Skills extend what an agent can do beyond reading and writing Hub data. Each skill is a function the agent can call during its execution.
+
+**Built-in skills include:**
+
+- `ocr.extract` — Extract structured data from uploaded documents and images
+- `mail.send` — Send an email from a connected mail address
+- `webhook.post` — POST data to an external endpoint
+- `list.query` — Execute a filtered query against any list
+- `workflow.trigger` — Start a named workflow with a payload
+
+**Custom skills** are JavaScript functions you write directly in the skill editor:
+
+```javascript
+// Custom skill: look up vendor payment terms from an external API
+export async function getVendorTerms({ vendorId }) {
+  const response = await fetch(`https://api.yourcompany.com/vendors/${vendorId}/terms`);
+  const data = await response.json();
+  return {
+    paymentDays: data.net_days,
+    discountRate: data.early_discount_pct,
+  };
+}
+```
+
+The agent calls your function with the arguments it infers from context and incorporates the result into its reasoning. Skills can be shared across multiple agents.
+
+---
+
+## Opening the Workspace Programmatically
+
+You can configure the Hub workspace in code — useful for custom integrations, scripted agent runs, and embedding Hub capabilities into your own applications. The `pharen.openWorkspace` call assembles a named workspace context from the objects you specify:
+
+```javascript
+const hub = await pharen.openWorkspace({
+  docs: ['ops-playbook'],
+  builder: ['approval-app'],
+  workflows: ['review-loop'],
+  channels: ['launch-room'],
+  mail: ['support@'],
+  agents: ['support'],
+});
+```
+
+Each key accepts an array of workspace object names:
+
+| Key | What it loads |
+|---|---|
+| `docs` | Named docs, made available to agents and the App Builder as readable context |
+| `builder` | App Builder apps to mount in this workspace session |
+| `workflows` | Workflows that can be triggered from within this session |
+| `channels` | Channels the session can post to or read from |
+| `mail` | Connected mail addresses available for sending and receiving |
+| `agents` | Named agents that can be invoked or handed off to |
+
+Once opened, the workspace object exposes methods for all Hub operations:
+
+```javascript
+// Run an agent against the loaded context
+const result = await hub.agents.support.run({
+  task: 'Triage and categorize all open support requests created today',
+});
+
+// Trigger a workflow with a record payload
+await hub.workflows['review-loop'].trigger({
+  recordId: 'inv-00492',
+  priority: 'high',
+});
+
+// Post a message to a channel
+await hub.channels['launch-room'].post({
+  text: `Review complete. ${result.summary}`,
+});
+```
+
+<Note>
+  The `pharen` SDK is available as an npm package (`npm install @pharen/sdk`) and as a Python package (`pip install pharen`). Both expose the same `openWorkspace` interface.
+</Note>
+
+---
+
+## Execution Planning
+
+Execution planning turns high-level goals into prioritized, actionable next steps. When you give an agent (or the Chat interface) a goal rather than a specific task, Hub's planning system breaks it into a sequence of steps, estimates dependencies, and begins executing in order.
+
+**Example prompt:**
+
+> "Process all invoices in the Pending OCR status: extract their data, validate against our vendor list, flag any that exceed €10,000 for manual review, and move the rest to Pending Approval."
+
+The planner will produce steps like:
+
+1. Query the Invoice list for records with status `Pending OCR`
+2. For each record, call `ocr.extract` on the attached document
+3. Match the extracted vendor name against the Vendor list
+4. Flag records over €10,000 by setting their status to `Manual Review Required`
+5. Move all remaining records to `Pending Approval`
+6. Trigger the `review-loop` workflow for each approved batch
+
+You can review the plan before execution, edit individual steps, or approve it and let the agent run autonomously.
+
+---
+
+## Agent Handoffs
+
+Handoffs let you coordinate specialized agents. Instead of building one monolithic agent that does everything, you build focused agents for specific domains and let them pass context and ownership to each other as a task evolves.
+
+### How Handoffs Work
+
+When Agent A determines that the next phase of a task is better handled by Agent B, it initiates a handoff:
+
+1. Agent A packages its current context — what it learned, what it did, what's pending.
+2. Hub routes that context bundle to Agent B, which is configured for the next phase.
+3. Agent B picks up exactly where Agent A left off, with no loss of information.
+4. If Agent B needs to escalate back or hand off to a third specialist, it can do so.
+
+### Configuring Handoffs
+
+In an agent's configuration, open the **Handoffs** tab and define the conditions under which this agent should transfer to another:
+
+```javascript
+// In the agent skill or configuration
+export const handoffRules = [
+  {
+    condition: (context) => context.flaggedForLegal === true,
+    targetAgent: 'legal-review',
+    message: 'Invoice flagged for legal review due to unusual contract terms.',
+  },
+  {
+    condition: (context) => context.amount > 50000,
+    targetAgent: 'senior-approver',
+    message: 'High-value invoice requires senior approval.',
+  },
+];
+```
+
+<Tip>
+  Name your agents after their role, not their implementation. `legal-review` and `senior-approver` make handoff rules readable and make it easy to swap underlying models or logic without rewriting the routing.
+</Tip>
+
+---
+
+## App Builder
+
+The App Builder lets you create custom workflow applications inside Pharen Hub — without building and hosting a full web application. Apps are configured through a visual builder and can combine forms, list views, approval panels, and AI actions into a cohesive interface for a specific process.
+
+### What You Can Build
+
+<CardGroup cols={2}>
+  <Card title="Approval apps" icon="circle-check">
+    A tailored interface for reviewers: the relevant doc context, the structured record, and one-click approve/reject — all in one screen.
+  </Card>
+  <Card title="Data entry apps" icon="pen-to-square">
+    Custom forms that write directly to a List, with field validation, conditional logic, and AI pre-fill from uploaded documents.
+  </Card>
+  <Card title="Dashboard apps" icon="chart-bar">
+    Real-time views of list data, workflow statuses, and agent activity — configured for a specific team or stakeholder.
+  </Card>
+  <Card title="Process apps" icon="diagram-project">
+    Multi-step wizard interfaces that walk users through a process, triggering workflow steps at each stage.
+  </Card>
+</CardGroup>
+
+### Building an App
+
+<Steps>
+  <Step title="Open the App Builder">
+    Go to **AI → App Builder** and click **+ New App**.
+  </Step>
+  <Step title="Choose a template or start blank">
+    Templates for common use cases (Invoice Approval, Support Triage, Onboarding Checklist) give you a working starting point. Or start from a blank canvas.
+  </Step>
+  <Step title="Add screens and components">
+    Drag components onto the canvas: forms, list views, approval panels, text blocks, AI action buttons. Each component is connected to a workspace object (a list, a doc, a workflow, or an agent).
+  </Step>
+  <Step title="Configure logic">
+    Define what happens when a user submits a form, clicks a button, or completes a step. Actions include: write to list, trigger workflow, run agent, send mail, post to channel.
+  </Step>
+  <Step title="Publish and share">
+    Click **Publish**. Your app gets a URL within your workspace that you can share with teammates or embed in a Hub meeting agenda or doc.
+  </Step>
+</Steps>
+
+<Warning>
+  App Builder apps run inside your Pharen Hub workspace. They can only access workspace objects you explicitly connect to them. An app cannot read lists or docs that are not added to its data sources — this is by design for access control.
+</Warning>

@@ -1,0 +1,95 @@
+{
+  "projectType": "saas",
+  "projectName": "Pharen",
+  "projectDescription": "Pharen Hub is an AI-powered workspace that unifies docs, lists, channels, mail, and AI agents so teams can automate workflows and eliminate tool-switching.",
+  "theme": "luma",
+  "primaryColor": "#7c7c7c",
+  "lightColor": "#0b0b0b",
+  "darkColor": "#dcdcdc",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "workspace-setup"
+            ]
+          },
+          {
+            "group": "Pharen Hub",
+            "pages": [
+              "hub/overview",
+              "hub/docs-and-lists",
+              "hub/channels-and-mail",
+              "hub/ai-agents",
+              "hub/workflows",
+              "hub/mobile-app"
+            ]
+          },
+          {
+            "group": "Security & Administration",
+            "pages": [
+              "admin/roles-and-permissions",
+              "admin/budget-controls",
+              "admin/ai-model-policies",
+              "admin/two-factor-auth"
+            ]
+          },
+          {
+            "group": "Plans & Billing",
+            "pages": [
+              "billing/plans",
+              "billing/ai-credits",
+              "billing/faq"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference/introduction",
+              "api-reference/authentication"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "api-reference/pages/list",
+              "api-reference/pages/create",
+              "api-reference/pages/read",
+              "api-reference/pages/update",
+              "api-reference/pages/delete"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "AI agents with custom skills that work across the Hub",
+    "Unified workspace with docs, lists, channels, and mail",
+    "Workflow automation with approvals and audit trails",
+    "Granular roles, permissions, and enterprise security",
+    "Budget controls and AI model/provider policies",
+    "Video meetings and team chat built-in",
+    "Mobile app for approvals and decisions on the go",
+    "Lists with Kanban, calendar, and list views",
+    "Agent handoffs for coordinating specialized AI agents",
+    "REST API for programmatic access"
+  ],
+  "publicApiSurface": [
+    "GET /v1/new-page",
+    "POST /v1/new-page",
+    "GET /v1/new-page/{id}",
+    "PUT /v1/new-page/{id}",
+    "DELETE /v1/new-page/{id}"
+  ]
+}

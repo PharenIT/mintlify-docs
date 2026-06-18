@@ -1,0 +1,157 @@
+---
+title: "Configure Custom Roles and Permissions in Pharen Hub"
+sidebarTitle: "Roles & Permissions"
+description: "Configure custom roles, assign granular permissions per team and workspace area, and maintain an audit-ready access history in Pharen Hub."
+---
+
+Pharen Hub gives workspace administrators precise control over who can see and do what across your entire workspace. Instead of relying on broad access levels, you can define custom roles tailored to your team's structure — from read-only reviewers to full workspace managers — and assign those roles per team, project area, or responsibility. Every access change is logged automatically, so you're always audit-ready without extra work.
+
+## Roles Overview
+
+Roles in Pharen Hub are collections of permissions. Each member of your workspace is assigned one or more roles, and those roles determine what they can access and modify. Pharen Hub ships with a set of built-in roles to get you started, and you can create unlimited custom roles to match your organization's needs.
+
+<CardGroup cols={2}>
+  <Card title="Built-in Roles" icon="shield">
+    Pharen Hub includes **Owner**, **Admin**, **Member**, and **Viewer** roles out of the box. These cover common access patterns and cannot be deleted, though Admins can restrict what built-in roles can do in custom policy sets.
+  </Card>
+  <Card title="Custom Roles" icon="sliders">
+    Create roles like **Billing Manager**, **AI Reviewer**, or **Team Lead** with exactly the permissions each responsibility requires. Custom roles can be scoped globally or to specific workspace areas.
+  </Card>
+</CardGroup>
+
+## Built-in Permission Levels
+
+The table below shows what each built-in role can do across key workspace areas. Use this as a baseline when designing your custom roles.
+
+| Capability | Owner | Admin | Member | Viewer |
+|---|---|---|---|---|
+| Manage workspace settings | ✅ | ✅ | ❌ | ❌ |
+| Create and delete teams | ✅ | ✅ | ❌ | ❌ |
+| Invite and remove members | ✅ | ✅ | ❌ | ❌ |
+| Assign roles | ✅ | ✅ | ❌ | ❌ |
+| Configure AI model policies | ✅ | ✅ | ❌ | ❌ |
+| Set budget controls | ✅ | ✅ | ❌ | ❌ |
+| Create and edit content | ✅ | ✅ | ✅ | ❌ |
+| Use AI features | ✅ | ✅ | ✅ | ❌ |
+| View workspace content | ✅ | ✅ | ✅ | ✅ |
+| Export reports | ✅ | ✅ | ✅ | ❌ |
+
+<Note>
+  Only the workspace **Owner** can transfer ownership or permanently delete the workspace. Admins can perform all other administrative tasks.
+</Note>
+
+## Creating a Custom Role
+
+<Steps>
+  <Step title="Open the Roles settings page">
+    Navigate to **Workspace Settings → Security & Admin → Roles & Permissions**. You'll see a list of all existing roles — both built-in and any custom roles already created.
+  </Step>
+  <Step title="Create a new role">
+    Click **Create Role** in the top-right corner. Give your role a clear, descriptive name (for example, `Billing Manager` or `Content Reviewer`) and add an optional description so other admins understand its purpose.
+  </Step>
+  <Step title="Select permissions">
+    Work through the permissions checklist, organized by workspace area:
+    - **Workspace Administration** — settings, billing, integrations
+    - **Team Management** — create teams, manage membership
+    - **AI & Models** — configure model policies, view usage
+    - **Content & Projects** — create, edit, view, delete
+    - **Reports & Exports** — access analytics and audit logs
+
+    Toggle each permission on or off. Permissions are additive — a member with multiple roles gets the union of all permissions those roles grant.
+  </Step>
+  <Step title="Set the role scope">
+    Choose whether this role applies **globally** (across the entire workspace) or is **scoped to specific teams or areas**. A scoped role only takes effect within the teams or workspace areas you select.
+  </Step>
+  <Step title="Save and assign">
+    Click **Save Role**. The role is now available to assign to workspace members. You can assign it immediately or do so later from the Members page.
+  </Step>
+</Steps>
+
+## Assigning Roles to Members
+
+<Steps>
+  <Step title="Go to the Members page">
+    Navigate to **Workspace Settings → Members**. You'll see every member currently in your workspace along with their current roles.
+  </Step>
+  <Step title="Select a member">
+    Click the member's name or the **Manage** button next to their row to open their member profile.
+  </Step>
+  <Step title="Assign or change roles">
+    Under **Roles**, click **Add Role** and select from the list. You can assign multiple roles to a single member. To remove a role, click the **×** next to the role name.
+  </Step>
+  <Step title="Apply team-scoped roles">
+    If the member belongs to specific teams, you can assign roles that apply only within those teams. Switch to the **Team Memberships** tab in their profile, select a team, and set their role within it.
+  </Step>
+</Steps>
+
+<Tip>
+  When onboarding a new team at once, use **Bulk Assign** from the Members list. Select multiple members using the checkboxes, then choose **Assign Role** from the bulk actions menu to apply a role to all of them in one step.
+</Tip>
+
+## Managing Permissions Per Workspace Area
+
+Beyond role-level permissions, you can lock down individual workspace areas for more granular control. This is useful when certain projects or channels should be restricted to a specific team regardless of a member's global role.
+
+<Steps>
+  <Step title="Navigate to the workspace area">
+    Open the team, project, or channel you want to restrict. Click the **Settings** icon (⚙️) next to its name in the sidebar.
+  </Step>
+  <Step title="Open Access Controls">
+    Select **Access Controls** from the settings menu. By default, access inherits from the member's workspace role.
+  </Step>
+  <Step title="Override access for this area">
+    Toggle **Custom Access** on to override inherited permissions. You can then:
+    - Specify which roles can access this area
+    - Grant access to individual members directly
+    - Set a minimum role requirement (for example, require at least `Member` to view)
+  </Step>
+  <Step title="Save changes">
+    Click **Save**. Members who no longer meet the access requirements will be redirected away from the area immediately.
+  </Step>
+</Steps>
+
+## Reviewing Access History
+
+Pharen Hub automatically logs every access-related event in your workspace. You don't need to configure anything — the audit log is always on.
+
+<Steps>
+  <Step title="Open the Audit Log">
+    Go to **Workspace Settings → Security & Admin → Audit Log**.
+  </Step>
+  <Step title="Filter the log">
+    Use the filters at the top of the page to narrow down events by:
+    - **Date range** — select a preset (last 7 days, last 30 days) or a custom range
+    - **Event type** — role changes, member invitations, permission updates, sign-in events
+    - **Member** — filter by a specific user's activity
+    - **Workspace area** — see all changes within a particular team or project
+  </Step>
+  <Step title="Export for compliance">
+    Click **Export** to download the filtered log as a CSV file. Exported logs include the timestamp, actor (who made the change), target (who or what was affected), and the full details of the change.
+  </Step>
+</Steps>
+
+<Info>
+  Audit logs are retained for **12 months** on all paid plans. If your organization requires longer retention, contact Pharen Hub support to discuss extended log archiving options.
+</Info>
+
+## Common Role Patterns
+
+<Accordion title="Separating billing access from workspace administration">
+  By default, only Owners and Admins can view billing. If you want your finance team to manage invoices without giving them full Admin access, create a **Billing Manager** custom role with only the **Workspace Administration → Billing** permission enabled. Assign it to finance team members alongside their regular Member role.
+</Accordion>
+
+<Accordion title="Read-only access for external stakeholders">
+  When sharing progress with clients or external reviewers, create a **Stakeholder** role with Viewer-level permissions scoped to specific project areas. This prevents them from seeing other teams' work or modifying anything.
+</Accordion>
+
+<Accordion title="Elevated access for team leads">
+  Team leads often need to invite members and manage their team's settings without being full workspace Admins. Create a **Team Lead** role with permissions for team management (invite members, edit team settings) scoped to the specific teams they own.
+</Accordion>
+
+<Accordion title="Temporary elevated access">
+  If a member needs temporary elevated permissions — for example, during an audit or a project handover — assign the additional role, note the end date in the role description field of their member profile, and remove the role when the period ends. Pharen Hub logs both the assignment and the removal in the audit log.
+</Accordion>
+
+<Warning>
+  Removing a role from a member takes effect immediately. If you're removing access from someone who is currently active in the workspace, their session will reflect the new permissions on their next page load without requiring them to sign out.
+</Warning>

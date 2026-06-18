@@ -1,0 +1,132 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "almond",
+  "name": "Pharen",
+  "description": "Documentation for Pharen Hub — the AI workspace that unifies docs, lists, channels, mail, and agents so your team can automate workflows and move faster.",
+  "colors": {
+    "primary": "#7c7c7c",
+    "light": "#0b0b0b",
+    "dark": "#dcdcdc"
+  },
+  "favicon": "https://media.brand.dev/2eceb334-2b0b-48c5-9412-3ffca0b62690.jpg",
+  "icons": {
+    "library": "lucide"
+  },
+  "styling": {
+    "eyebrows": "breadcrumbs"
+  },
+  "contextual": {
+    "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
+  },
+  "logo": {
+    "light": "https://media.brand.dev/70fa3769-6705-48e9-8340-cef95a902e88.svg",
+    "dark": "https://media.brand.dev/de991512-f9de-434e-866d-6c978fec7b16.svg"
+  },
+  "navbar": {
+    "links": [],
+    "primary": {
+      "type": "button",
+      "label": "Go to Hub",
+      "href": "https://pharen.de/en/hub"
+    }
+  },
+  "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Home",
+          "icon": "house",
+          "href": "/"
+        },
+        {
+          "anchor": "Pharen.de",
+          "icon": "globe",
+          "href": "https://pharen.de/en"
+        },
+        {
+          "anchor": "Contact",
+          "icon": "life-buoy",
+          "href": "https://pharen.de/en/contact"
+        }
+      ]
+    },
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "icon": "rocket",
+            "expanded": true,
+            "pages": [
+              "introduction",
+              "quickstart",
+              "workspace-setup"
+            ]
+          },
+          {
+            "group": "Pharen Hub",
+            "icon": "layout-dashboard",
+            "pages": [
+              "hub/overview",
+              "hub/docs-and-lists",
+              "hub/channels-and-mail",
+              "hub/ai-agents",
+              "hub/workflows",
+              "hub/mobile-app"
+            ]
+          },
+          {
+            "group": "Security & Admin",
+            "icon": "shield",
+            "pages": [
+              "admin/roles-and-permissions",
+              "admin/budget-controls",
+              "admin/ai-model-policies",
+              "admin/two-factor-auth"
+            ]
+          },
+          {
+            "group": "Plans & Billing",
+            "icon": "credit-card",
+            "pages": [
+              "billing/plans",
+              "billing/ai-credits",
+              "billing/faq"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "icon": "book-open",
+            "expanded": true,
+            "pages": [
+              "api-reference/introduction",
+              "api-reference/authentication"
+            ]
+          },
+          {
+            "group": "Resources",
+            "icon": "layers",
+            "pages": [
+              "api-reference/pages/list",
+              "api-reference/pages/create",
+              "api-reference/pages/read",
+              "api-reference/pages/update",
+              "api-reference/pages/delete"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "linkedin": "https://linkedin.com/company/pharen"
+    }
+  }
+}

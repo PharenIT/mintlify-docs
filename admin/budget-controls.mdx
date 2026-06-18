@@ -1,0 +1,164 @@
+---
+title: "Configure Budget Controls for AI Usage in Pharen Hub"
+sidebarTitle: "Budget Controls"
+description: "Set spending limits, configure approval rules for AI usage, and monitor costs across teams and workspace areas before they become a problem."
+---
+
+AI usage in a collaborative workspace can scale quickly, and without guardrails, costs can drift far beyond what you planned. Pharen Hub's budget controls let you set hard limits and approval thresholds before usage begins — not after an unexpected invoice arrives. You can define limits at the workspace level, per team, or for specific AI-heavy processes, and configure approval rules that require sign-off before high-cost actions run.
+
+## How Budget Controls Work
+
+Pharen Hub tracks AI usage in real time and compares it against the limits you configure. When usage approaches or hits a threshold, Pharen Hub takes the action you defined — sending an alert, pausing usage, or routing a request through an approval flow. Budget controls are additive: a team-level limit stacks on top of the workspace-level limit, so the stricter limit always wins.
+
+<CardGroup cols={3}>
+  <Card title="Workspace Limits" icon="building">
+    A ceiling on total AI spending across your entire workspace. Useful for enforcing an organization-wide monthly budget.
+  </Card>
+  <Card title="Team Limits" icon="users">
+    Per-team spending caps that let different teams operate within their own allocated budgets independently of each other.
+  </Card>
+  <Card title="Process Limits" icon="gears">
+    Limits tied to specific AI-intensive processes or automations, so a single runaway workflow can't exhaust shared resources.
+  </Card>
+</CardGroup>
+
+## Setting a Workspace-Level Spending Limit
+
+<Steps>
+  <Step title="Open Budget Controls">
+    Go to **Workspace Settings → Security & Admin → Budget Controls**. The overview page shows your current spending for the billing period alongside any active limits.
+  </Step>
+  <Step title="Create a workspace limit">
+    Click **Add Limit → Workspace Limit**. Enter the maximum dollar amount you want to allow for the current billing period. Pharen Hub resets this counter automatically at the start of each new billing period.
+  </Step>
+  <Step title="Set alert thresholds">
+    Configure one or more alert thresholds — expressed as a percentage of the limit — at which Pharen Hub will notify admins. For example, set alerts at **75%** and **90%** so you have time to react before hitting the ceiling.
+  </Step>
+  <Step title="Choose the limit action">
+    Decide what happens when the workspace limit is reached:
+    - **Alert only** — notify admins but allow usage to continue
+    - **Pause AI features** — suspend all AI usage until an admin raises the limit or the billing period resets
+    - **Require approval** — route any additional AI requests through an approval flow
+  </Step>
+  <Step title="Save the limit">
+    Click **Save Limit**. The limit is active immediately and applies to all AI usage in the workspace from this point forward.
+  </Step>
+</Steps>
+
+<Note>
+  Workspace-level limits apply to all teams collectively. If your teams have widely different usage needs, consider setting individual team limits instead of (or in addition to) a workspace limit.
+</Note>
+
+## Setting a Team-Level Spending Limit
+
+<Steps>
+  <Step title="Navigate to team budget settings">
+    From **Budget Controls**, click **Add Limit → Team Limit**. Alternatively, go to **Workspace Settings → Teams**, select a team, and open the **Budget** tab within that team's settings.
+  </Step>
+  <Step title="Select the team">
+    Use the dropdown to choose which team this limit applies to. You can create separate limits for as many teams as needed.
+  </Step>
+  <Step title="Enter the limit amount">
+    Enter the maximum spend allowed for this team per billing period. This is an independent cap — the team will be subject to both this limit and the workspace-level limit if both are configured.
+  </Step>
+  <Step title="Configure notifications">
+    Choose who receives alerts when this team's usage approaches its limit:
+    - **Workspace Admins** — always notified
+    - **Team Admins** — add the team's own admins to the notification list so they can manage their own budget
+    - **Custom email** — send alerts to a budget owner, finance contact, or distribution list outside of Pharen Hub
+  </Step>
+  <Step title="Save and repeat as needed">
+    Save the team limit. Repeat this process for any other teams that need their own caps.
+  </Step>
+</Steps>
+
+<Tip>
+  Give team leads visibility into their own team's spending by navigating to **Team Settings → Budget** and enabling **Show spending dashboard to Team Admins**. They'll be able to monitor usage without needing full workspace Admin access.
+</Tip>
+
+## Configuring Approval Rules
+
+Approval rules add a human checkpoint before a high-cost AI action runs. This is especially useful for batch processing, large document analysis, or any automated workflow that could consume significant credits in a single run.
+
+<Steps>
+  <Step title="Open Approval Rules">
+    From **Budget Controls**, select the **Approval Rules** tab.
+  </Step>
+  <Step title="Create a new rule">
+    Click **New Approval Rule**. Each rule has three parts: a trigger, a scope, and an approver.
+  </Step>
+  <Step title="Define the trigger">
+    Set the condition that triggers the approval requirement. Options include:
+    - **Estimated cost threshold** — require approval when a single request is estimated to cost more than a set dollar amount
+    - **Usage milestone** — require approval when a team or user has consumed more than X% of their allocated budget
+    - **Specific action types** — require approval for certain action types, such as bulk document processing or large context requests
+  </Step>
+  <Step title="Set the scope">
+    Define whether this rule applies to the entire workspace, a specific team, or individual members. Narrower scopes let you apply stricter rules only where needed.
+  </Step>
+  <Step title="Assign approvers">
+    Choose who must approve requests that match this rule:
+    - A specific admin or manager
+    - Anyone with the Admin role
+    - A custom approval group you've defined
+    
+    You can also set a **fallback approver** in case the primary approver is unavailable.
+  </Step>
+  <Step title="Set an approval timeout">
+    Decide what happens if no one approves within your configured window (for example, 24 hours):
+    - **Deny automatically** — the request is cancelled
+    - **Escalate** — forward to a secondary approver
+    - **Allow automatically** — the request proceeds (use with caution)
+  </Step>
+  <Step title="Save the rule">
+    Click **Save Rule**. The rule is active immediately. Members who trigger it will see an in-app notification that their request is pending approval, and approvers will receive an alert to review it.
+  </Step>
+</Steps>
+
+<Warning>
+  If you set a very low approval threshold — for example, requiring approval for any request over $0.01 — frequent approval requests may slow down your team significantly. Start with higher thresholds and tune downward once you have a baseline understanding of normal usage.
+</Warning>
+
+## Monitoring Costs
+
+The **Spending Dashboard** gives you a real-time view of AI usage across your workspace. You don't need to wait for an invoice to understand where costs are going.
+
+<Steps>
+  <Step title="Open the Spending Dashboard">
+    Go to **Workspace Settings → Security & Admin → Budget Controls → Spending Dashboard**.
+  </Step>
+  <Step title="Review workspace-level spend">
+    The top section shows total spend for the current billing period, your configured limit, and the percentage consumed. A color-coded indicator turns yellow at 75% and red at 90% of any active limit.
+  </Step>
+  <Step title="Drill down by team">
+    Scroll to the **By Team** breakdown to see how much each team has spent in the current period, their individual limits (if set), and the percentage consumed. Click any team row to see a more detailed view of which members or processes drove that team's usage.
+  </Step>
+  <Step title="Review historical trends">
+    Switch to the **Trends** tab to see spending over the past 3, 6, or 12 months. Use this view to spot anomalies, forecast future budgets, and understand seasonal usage patterns.
+  </Step>
+  <Step title="Export spending data">
+    Click **Export** to download a CSV of spending data filtered by date range, team, or member. This is useful for internal chargebacks, budget reviews, or sharing data with your finance team.
+  </Step>
+</Steps>
+
+<Info>
+  Spending data in the dashboard reflects usage as of the previous hour. For real-time tracking of a specific operation in progress, check the activity feed within that team or project.
+</Info>
+
+## Budget Control Best Practices
+
+<Accordion title="Start with alerts before setting hard limits">
+  When first enabling budget controls, set alert thresholds at 75% and 90% of your expected spend but leave the limit action as **Alert only**. This gives you a billing period's worth of real usage data before you decide where to set hard limits, preventing you from accidentally blocking legitimate work.
+</Accordion>
+
+<Accordion title="Align team limits with allocated headcount budgets">
+  If your organization allocates AI spend per team or per seat, use team limits to enforce those allocations directly in Pharen Hub. Set the limit to match the team's quarterly or monthly allocation, and enable the Team Admin spending dashboard so leads manage their own budgets.
+</Accordion>
+
+<Accordion title="Use process limits for scheduled automations">
+  Automated workflows — like nightly document summaries or scheduled data processing — are a common source of unexpected costs. Assign a process-level limit to each scheduled automation so a misconfiguration can't exhaust the workspace budget overnight.
+</Accordion>
+
+<Accordion title="Review and adjust limits each billing period">
+  Budgets should reflect how your team actually works. At the start of each billing period, review the previous period's spending trends and adjust limits accordingly. What was sufficient three months ago may be too low as your team grows.
+</Accordion>

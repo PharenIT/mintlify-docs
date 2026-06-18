@@ -1,0 +1,166 @@
+---
+title: "PUT /v1/new-page/{id} — Update a Page in Pharen Hub"
+sidebarTitle: "Update Page"
+description: "Update the title or content of an existing Pharen Hub page by sending a PUT request to /v1/new-page/{id} with the fields you want to change."
+---
+
+The Update Page endpoint lets you modify an existing page in your workspace. Send a `PUT` request with any combination of the updatable fields — `title` and `content`. You only need to include the fields you want to change; any fields you omit retain their current values. The API returns the full updated page object on success.
+
+## Endpoint
+
+```bash
+PUT https://api.pharen.de/v1/new-page/{id}
+```
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  The unique identifier of the page you want to update. Retrieve this from the [List Pages](/api-reference/pages/list) or [Create Page](/api-reference/pages/create) endpoints.
+</ParamField>
+
+## Request Body
+
+<ParamField body="title" type="string">
+  The new title for the page. Must be between 1 and 255 characters. If omitted, the page's existing title is preserved.
+</ParamField>
+
+<ParamField body="content" type="string">
+  The new body content for the page. Accepts plain text or Markdown. If omitted, the page's existing content is preserved. Pass an empty string to explicitly clear the content body.
+</ParamField>
+
+<Info>
+  At least one of `title` or `content` must be present in the request body. Sending an empty JSON object `{}` returns a `422 Unprocessable Entity` error.
+</Info>
+
+## Request Example
+
+<CodeGroup>
+
+```bash curl
+curl https://api.pharen.de/v1/new-page/page_01hx9k2m3nqvw4e5r6t7y8u9p \
+  --request PUT \
+  --header "Authorization: Bearer YOUR_API_KEY" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "title": "Getting Started Guide (Updated)",
+    "content": "## Welcome to Pharen Hub\n\nThis updated guide reflects our new onboarding flow..."
+  }'
+```
+
+```javascript JavaScript (fetch)
+const pageId = "page_01hx9k2m3nqvw4e5r6t7y8u9p";
+
+const response = await fetch(`https://api.pharen.de/v1/new-page/${pageId}`, {
+  method: "PUT",
+  headers: {
+    "Authorization": `Bearer ${process.env.PHAREN_API_KEY}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    title: "Getting Started Guide (Updated)",
+    content: "## Welcome to Pharen Hub\n\nThis updated guide reflects our new onboarding flow...",
+  }),
+});
+
+if (!response.ok) {
+  const error = await response.json();
+  throw new Error(error.error.message);
+}
+
+const page = await response.json();
+console.log("Updated at:", page.updated_at);
+```
+
+```python Python (requests)
+import os
+import requests
+
+page_id = "page_01hx9k2m3nqvw4e5r6t7y8u9p"
+
+response = requests.put(
+    f"https://api.pharen.de/v1/new-page/{page_id}",
+    headers={
+        "Authorization": f"Bearer {os.environ['PHAREN_API_KEY']}",
+        "Content-Type": "application/json",
+    },
+    json={
+        "title": "Getting Started Guide (Updated)",
+        "content": "## Welcome to Pharen Hub\n\nThis updated guide reflects our new onboarding flow...",
+    },
+)
+response.raise_for_status()
+
+page = response.json()
+print(f"Updated at: {page['updated_at']}")
+```
+
+</CodeGroup>
+
+## Response
+
+A successful request returns a `200 OK` status and the full page object reflecting all changes.
+
+### Response Fields
+
+<ResponseField name="id" type="string">
+  The unique identifier for the page. Unchanged by the update.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+  The current title of the page after the update.
+</ResponseField>
+
+<ResponseField name="content" type="string">
+  The current body content of the page after the update.
+</ResponseField>
+
+<ResponseField name="created_at" type="string">
+  ISO 8601 timestamp recording when the page was originally created. Unchanged by the update.
+</ResponseField>
+
+<ResponseField name="updated_at" type="string">
+  ISO 8601 timestamp recording when this update was applied. This value changes with every successful update.
+</ResponseField>
+
+### Response Example
+
+```json
+{
+  "id": "page_01hx9k2m3nqvw4e5r6t7y8u9p",
+  "title": "Getting Started Guide (Updated)",
+  "content": "## Welcome to Pharen Hub\n\nThis updated guide reflects our new onboarding flow...",
+  "created_at": "2024-06-01T09:00:00Z",
+  "updated_at": "2024-06-15T16:05:30Z"
+}
+```
+
+## Error Responses
+
+**Page not found (`404`):**
+
+```json
+{
+  "error": {
+    "code": "not_found",
+    "message": "No page with ID 'page_01hx9k2m3nqvw4e5r6t7y8u9p' exists in this workspace."
+  }
+}
+```
+
+**Validation error (`422`):**
+
+```json
+{
+  "error": {
+    "code": "validation_error",
+    "message": "The request body must include at least one updatable field.",
+    "details": {
+      "fields": ["title", "content"]
+    }
+  }
+}
+```
+
+<Warning>
+  Update operations are destructive for the fields you provide. If you supply a `content` value, the existing content is fully replaced — there is no partial or delta update. If you only want to change the title, omit `content` from your request body entirely.
+</Warning>

@@ -1,0 +1,179 @@
+---
+title: "Pharen Hub Channels & Mail: Team Communication Layer"
+sidebarTitle: "Channels & Mail"
+description: "Connect your team with Hub channels, threaded chat, video meetings, and mail integration. Keep communication and workflows in one shared context."
+---
+
+Communication in Pharen Hub isn't a separate product you switch to — it's woven into the same workspace where your docs, lists, and workflows live. Channels give your team a persistent, organized place to talk. Video meetings let you collaborate in real time. Hub Meetings formalize agendas and track attendance. And mail integration brings email into your workflow automation, so approvals and notifications can flow in and out of your inbox without leaving the Hub.
+
+## Channels
+
+Channels are persistent chat rooms organized by topic, team, or project. Every channel is scoped to your workspace, so the context your team builds up over time stays searchable and accessible.
+
+### Creating a Channel
+
+<Steps>
+  <Step title="Open Channels">
+    Click **Channels** in the left sidebar. You'll see all channels you belong to.
+  </Step>
+  <Step title="Create a new channel">
+    Click **+ New Channel**. Give it a name (use lowercase with hyphens, e.g., `launch-room` or `support-escalations`) and an optional description.
+  </Step>
+  <Step title="Set visibility">
+    Choose **Public** (any workspace member can join) or **Private** (invite-only). Private channels are not visible in the channel directory to non-members.
+  </Step>
+  <Step title="Invite members">
+    Add teammates by name. They'll receive a notification and can start participating immediately.
+  </Step>
+</Steps>
+
+### Messaging and Threads
+
+<CardGroup cols={2}>
+  <Card title="Direct messages" icon="message">
+    Send a direct message to any workspace member by clicking their name or using the **+ New Message** button. DMs support the same formatting, reactions, and file sharing as channels.
+  </Card>
+  <Card title="Threaded replies" icon="comments">
+    Reply to any message in a thread to keep focused conversations from cluttering the main channel view. Threads are collapsible and show an unread indicator when they have new activity.
+  </Card>
+  <Card title="Emoji reactions" icon="face-smile">
+    React to any message with an emoji. Reactions are a lightweight way to acknowledge a message, express agreement, or vote on options without generating noise.
+  </Card>
+  <Card title="File sharing" icon="paperclip">
+    Drag and drop files directly into any channel or DM. Uploaded files are stored in the workspace and can be referenced by workflows and agents.
+  </Card>
+</CardGroup>
+
+### Mentions and Notifications
+
+Use `@name` to mention a specific teammate. Use `@channel` to notify everyone in the channel. Use `@here` to notify only members who are currently active.
+
+<Tip>
+  Keep `@channel` mentions for genuinely important announcements. For most updates, mention specific people or let workflows handle routing — this keeps notification fatigue low across the team.
+</Tip>
+
+### Channel Integrations
+
+Channels aren't just for people — workflows and agents can post to them automatically.
+
+- **Workflow notifications:** Configure a workflow step to post a message to a channel when a record reaches a certain status. For example, post to `#finance-team` when an invoice is approved.
+- **Agent updates:** An AI agent running a long task can post a summary to a channel when it completes, so the team stays informed without polling.
+- **Incoming webhooks:** Use the channel webhook URL to post messages from external systems. Configure this under **Channel Settings → Integrations**.
+
+---
+
+## Video Meetings
+
+Hub includes built-in video meetings with screen sharing, so you can jump into a real-time conversation without leaving your workspace.
+
+### Starting a Meeting
+
+<Tabs>
+  <Tab title="From a channel">
+    Open any channel and click the **video camera icon** in the top-right. This starts an instant meeting and posts a join link in the channel so other members can hop in.
+  </Tab>
+  <Tab title="From a direct message">
+    Open a DM and click **Start Video Call**. The recipient receives a notification and can join immediately.
+  </Tab>
+  <Tab title="From Hub Meetings">
+    Schedule a formal Hub Meeting (see below) and it will appear on participants' calendars with a join link generated automatically.
+  </Tab>
+</Tabs>
+
+### During a Meeting
+
+- **Screen sharing:** Click the screen icon in the meeting toolbar. You can share your full screen or a specific application window.
+- **Participant controls:** Mute/unmute, enable/disable video, and manage participants from the meeting toolbar.
+- **Meeting notes:** Open the side panel to take collaborative notes that are saved automatically as a Doc in your workspace when the meeting ends.
+
+---
+
+## Hub Meetings
+
+Hub Meetings are scheduled, structured meetings with formal agendas, RSVPs, and a built-in record in your workspace.
+
+### Scheduling a Hub Meeting
+
+<Steps>
+  <Step title="Open Meetings">
+    Click **Meetings** in the left sidebar, then click **+ New Meeting**.
+  </Step>
+  <Step title="Set the details">
+    Add a title, date, time, duration, and an optional location or video call link (generated automatically if you select **Hub Video**).
+  </Step>
+  <Step title="Build the agenda">
+    Add agenda items with titles and time allocations. Agenda items can be linked to specific docs or list records — so reviewers can access source material directly from the meeting view.
+  </Step>
+  <Step title="Invite participants">
+    Add attendees by name or email. Each invited person receives an RSVP notification and can respond with **Accept**, **Decline**, or **Maybe**.
+  </Step>
+  <Step title="Send the invite">
+    Click **Send Invites**. Attendees receive a notification in Hub and, if configured, a calendar invitation to their external calendar.
+  </Step>
+</Steps>
+
+### During and After the Meeting
+
+The meeting view shows the live agenda, attendee list, and a shared notes panel. After the meeting:
+
+- Notes are saved as a Doc automatically.
+- Action items noted during the meeting can be converted to List records with one click.
+- The meeting record — including the agenda, attendance, and notes — is stored in your workspace permanently.
+
+<Note>
+  Hub Meetings are distinct from instant video calls. Use instant calls for quick, unplanned conversations. Use Hub Meetings for recurring syncs, reviews, and any meeting where an agenda and attendance record matter.
+</Note>
+
+---
+
+## Mail Integration
+
+Hub's mail integration connects email accounts to your workspace so incoming messages can trigger workflows, and outgoing notifications can be delivered as email.
+
+### Connecting a Mail Address
+
+<Steps>
+  <Step title="Open Mail settings">
+    Go to **Workspace Settings → Mail → Connect Address**.
+  </Step>
+  <Step title="Add your email address">
+    Enter the email address you want to connect (e.g., `support@yourcompany.com` or `invoices@yourcompany.com`). Hub supports OAuth connection for major providers and IMAP/SMTP for custom domains.
+  </Step>
+  <Step title="Verify ownership">
+    Complete the verification step for your provider. For shared team addresses, you may need to authorize from the account admin.
+  </Step>
+  <Step title="Assign a workflow trigger">
+    Once connected, you can configure which workflow fires when a new email arrives at this address. Select the workflow from the dropdown or create a new one.
+  </Step>
+</Steps>
+
+### Inbound Mail → Workflow Automation
+
+When an email arrives at a connected address, Hub can:
+
+1. **Extract structured data** — An AI agent reads the email body and any attachments, extracting fields like sender, subject, amount, due date, or document type.
+2. **Create a record** — The extracted data is written to a List automatically, creating a new row for the incoming item.
+3. **Trigger a workflow** — The record creation fires a workflow that routes it for review, assigns an owner, and sends notifications.
+
+<Accordion title="Example: Support inbox automation">
+  Connect `support@yourcompany.com` to a workflow that:
+
+  1. Creates a record in the **Support Requests** list with the sender, subject, and AI-generated urgency score.
+  2. Routes high-urgency requests to the on-call agent immediately.
+  3. Sends an acknowledgment email to the sender automatically.
+  4. Posts a summary to the `#support-escalations` channel if urgency is Critical.
+
+  The entire triage happens in under 30 seconds with no manual intervention.
+</Accordion>
+
+### Outbound Mail from Workflows
+
+Workflows can send emails as a step. Use cases include:
+
+- **Approval requests:** Send an email to an external approver with a one-click approve/reject link. Their reply updates the workflow status automatically.
+- **Status notifications:** Notify vendors, customers, or partners when a record reaches a specific status.
+- **Reminders:** Schedule an email to fire if a record hasn't been acted on within a defined time window.
+
+<Warning>
+  Outbound emails sent by workflows are delivered from the connected mail address. Make sure the address you connect has sending permissions and that your domain's SPF/DKIM records are configured to avoid deliverability issues.
+</Warning>

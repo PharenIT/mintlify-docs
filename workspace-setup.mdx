@@ -1,0 +1,213 @@
+---
+title: "Workspace Setup: Configure Your Pharen Hub Environment"
+sidebarTitle: "Workspace Setup"
+description: "Learn how to name your workspace, organize teams, configure your profile, and master workspace settings to match how your team actually works."
+---
+
+A well-configured workspace is the difference between a tool your team tolerates and one they rely on. This guide walks you through every important configuration step — from naming and branding your workspace, to organizing teams and channels, to locking down the settings that matter for security and compliance. Work through these steps after completing the [Quickstart](/quickstart) and your workspace will be ready for real, day-to-day use.
+
+## Workspace identity
+
+Your workspace name and URL are the first things every team member sees. Getting them right early saves you from confusion later.
+
+Navigate to **Settings → General** to access workspace identity settings.
+
+### Workspace name
+
+Your workspace name appears in the sidebar, in email notifications, and in any links shared with teammates. Use a name that's immediately recognizable — your company name, your department, or a project name depending on how broadly this workspace will be used.
+
+- ✅ `Acme Corp`, `Acme Product Team`, `Acme — Engineering`
+- ❌ `My Workspace`, `Test`, `Workspace 1`
+
+Click the name field, type your preferred name, and click **Save changes**.
+
+### Workspace URL
+
+Your workspace URL is the unique identifier used within Pharen Hub. It must be lowercase with no spaces (hyphens are fine). For example, `acme-product` or `engineering-team`.
+
+<Warning>
+  Changing your workspace URL after your team is active will break any previously shared links to specific documents or channels. Set a permanent URL early and stick with it.
+</Warning>
+
+### Workspace logo
+
+Upload a logo under **Settings → General → Workspace logo**. This appears in the sidebar and in email notifications sent from your workspace. Use a square image of at least 256×256 pixels for the best result across all contexts.
+
+---
+
+## Organizing with teams
+
+Teams in Pharen Hub are groups of members that share access to a dedicated set of channels, docs, and lists. They're the primary way to organize a larger workspace without everyone drowning in irrelevant content.
+
+<Info>
+  Teams are available on the **Team plan** (up to 3 teams), **Pro plan** (up to 10 teams), and **Enterprise** (unlimited). The Free and Starter plans use a single shared workspace without separate teams.
+</Info>
+
+### Creating a team
+
+1. Go to **Settings → Teams** and click **Create team**.
+2. Give the team a **name** (e.g. `Product`, `Marketing`, `Customer Success`) and an optional **description** so members understand its purpose.
+3. Set the team's **visibility**: **Open** teams are discoverable and joinable by any workspace member; **Private** teams require an invitation.
+4. Click **Create**.
+
+### Adding members to a team
+
+Open the team from **Settings → Teams**, then click **Add members**. Search for teammates by name or email and assign each one a team-level role:
+
+| Role | What they can do |
+|---|---|
+| **Team Admin** | Manage team settings, members, and all content within the team |
+| **Member** | Create and edit content, participate in channels |
+| **Guest** | View content they've been explicitly granted access to |
+
+<Tip>
+  Team membership is independent of workspace-level roles. A workspace Member can be a Team Admin within their specific team — giving them authority where they need it without elevating their global permissions.
+</Tip>
+
+### Team channels and content
+
+When you create a team, Pharen Hub automatically creates a default channel for that team. You can create additional channels, docs, and lists scoped to the team directly from within the team view. Content created inside a team is only visible to team members by default, though individual items can be shared more broadly if needed.
+
+---
+
+## Configuring your profile
+
+Your personal profile settings are separate from workspace settings and apply across all workspaces you belong to.
+
+Click your **avatar** in the bottom-left corner and select **Profile settings**.
+
+### Personal information
+
+| Field | Recommendation |
+|---|---|
+| **Display name** | Use your real name so teammates can find and mention you easily |
+| **Job title** | Add your role — it shows in your profile card and helps people know who to loop in |
+| **Profile photo** | Upload a clear headshot — it makes async communication much more personal |
+| **Time zone** | Set this accurately; it drives notification scheduling and timestamp display |
+
+### Notification preferences
+
+Under **Profile settings → Notifications**, you control exactly when and how Pharen Hub alerts you:
+
+- **Desktop notifications** — Enable for direct messages and mentions; consider disabling for all channel activity to protect focus.
+- **Email notifications** — Set the digest frequency (real-time, hourly, daily, or off). Real-time is useful for direct messages; daily digests work well for channel summaries.
+- **Mobile push notifications** — Configure separately for the mobile app. Most people enable push only for direct messages and @mentions.
+- **Do Not Disturb schedule** — Set quiet hours (e.g. 10 PM – 8 AM) to stop notifications outside working hours. Pharen Hub respects this even if teammates are in different time zones.
+
+<Tip>
+  You can temporarily pause all notifications with **Pause notifications** in the notification menu. Set it to pause for 30 minutes, 2 hours, or until tomorrow — useful during deep work sessions.
+</Tip>
+
+---
+
+## Roles and permissions
+
+Pharen Hub's permission system operates at two levels: **workspace-level roles** that apply globally, and **team-level roles** that apply within a specific team. Both can be managed from Settings.
+
+### Workspace roles
+
+| Role | Access level |
+|---|---|
+| **Owner** | Full control over all workspace settings, billing, and members. Only one Owner per workspace |
+| **Admin** | Can manage members, teams, and workspace settings, but cannot access billing |
+| **Member** | Standard access to content they've been granted permission on |
+| **Guest** | Limited access — can only view content explicitly shared with them |
+
+Navigate to **Settings → Members** to view all members, change their roles, or remove them from the workspace.
+
+### Content-level permissions
+
+Individual documents, lists, and channels carry their own permission settings, independent of team membership. When you open any item, click the **Share** button in the top right to configure who can view, comment, or edit it. Options include:
+
+- **Specific people** — Name individual members or guests.
+- **Team members** — Grant access to everyone in a given team.
+- **All workspace members** — Make it visible to anyone in the workspace.
+- **Private (only me)** — Keep it entirely to yourself until you're ready to share.
+
+<Warning>
+  Guest users can only access content you have explicitly shared with them. They cannot browse or discover other workspace content, which makes the Guest role suitable for external collaborators and clients.
+</Warning>
+
+---
+
+## Workspace settings reference
+
+The **Settings** area contains several sections worth reviewing as you set up your workspace. Here's a quick reference for the most important ones:
+
+### General
+
+Workspace name, URL, logo, and deletion. Also where you set the **default language** for the workspace interface.
+
+### Members
+
+View and manage all workspace members, send invitations, change roles, and remove members. You can also configure **invitation permissions** — whether only Admins can invite, or any Member can.
+
+### Teams
+
+Create and manage teams, adjust team membership and visibility, and archive teams that are no longer active.
+
+### Security
+
+- **Two-factor authentication (2FA)** — Require all members to enable 2FA before accessing the workspace. Strongly recommended for any workspace handling sensitive data.
+- **Session timeout** — Set how long an inactive session stays valid before requiring re-authentication.
+- **Allowed email domains** — Restrict new sign-ups to specific email domains (e.g. only `@acme.com` addresses) to prevent unauthorized access.
+
+### AI settings
+
+- **AI model policy** — Choose which AI models are available to workspace members. You can restrict to specific providers or models that comply with your data policies.
+- **Budget controls** — Set monthly spending caps on AI usage per member, per team, or across the whole workspace. Pharen Hub will alert you as you approach limits and can pause AI features automatically when a budget is hit.
+- **Data handling** — Review how your workspace content is used for AI inference. Enterprise plans include options for stricter data residency and processing controls.
+
+### Billing
+
+View your current plan, upgrade or downgrade, update payment information, and download invoices. Available plans:
+
+| Plan | Price | Members | Teams |
+|---|---|---|---|
+| **Free** | €0/month | 1 | — |
+| **Starter** | €20/month | Up to 3 | — |
+| **Team** | €50/month | Up to 5 | 3 |
+| **Pro** | €100/month | Up to 50 | 10 |
+| **Enterprise** | Custom | Unlimited | Unlimited |
+
+<Note>
+  All prices are per workspace per month. If you need multiple workspaces — for example, to separate client projects or subsidiaries — each workspace is billed independently.
+</Note>
+
+### API
+
+Generate and manage REST API keys for integrating Pharen Hub with external tools and services. The Pharen Hub REST API is available at `/v1/`. See the [API reference](/api-reference/introduction) for full documentation.
+
+---
+
+## Setup checklist
+
+Use this checklist to confirm your workspace is ready before you roll it out to your full team:
+
+<Steps>
+  <Step title="Set workspace name and URL">
+    Go to **Settings → General** and confirm both are finalized. Avoid changing the URL after launch.
+  </Step>
+  <Step title="Upload a workspace logo">
+    A logo makes the workspace feel official and helps members recognize notifications at a glance.
+  </Step>
+  <Step title="Create your teams">
+    Set up the team structure that reflects your organization. Assign team admins before adding general members.
+  </Step>
+  <Step title="Invite members and assign roles">
+    Go to **Settings → Members → Invite members** and send invitations with appropriate roles.
+  </Step>
+  <Step title="Configure security settings">
+    Enable 2FA requirements and set up allowed email domains under **Settings → Security**.
+  </Step>
+  <Step title="Review AI and budget settings">
+    Set your AI model policy and budget caps under **Settings → AI settings** before members start using AI features.
+  </Step>
+  <Step title="Set your personal notification preferences">
+    Head to **Profile settings → Notifications** and configure how and when you want to be alerted.
+  </Step>
+</Steps>
+
+<Tip>
+  Once your workspace is configured, share a link to this documentation with your team members so they can set up their own profiles and notification preferences before their first day in the workspace.
+</Tip>

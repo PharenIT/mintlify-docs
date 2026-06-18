@@ -1,0 +1,258 @@
+---
+title: "Pharen Hub Workflows: Automate Approvals and Processes"
+sidebarTitle: "Workflows"
+description: "Build approval workflows, automate triggers and notifications, and maintain a full audit trail for every process — all inside Pharen Hub Functions."
+---
+
+The Functions layer of Pharen Hub is built around the idea that every repeating process in your business deserves to be automated, audited, and continuously improving. Workflows are the engine of that layer: visual, configurable sequences of steps that connect people, data, AI agents, and external systems. Whether you're routing invoices for approval, onboarding a new customer, or responding to a support escalation, workflows eliminate the manual coordination that slows teams down and creates errors.
+
+## Core Concepts
+
+Before building your first workflow, it helps to understand how the main pieces fit together.
+
+<CardGroup cols={2}>
+  <Card title="Triggers" icon="bolt">
+    Every workflow starts with a trigger: a specific event that causes it to begin. Triggers can be a new list record, an incoming email, a schedule, a manual action, or a step in another workflow.
+  </Card>
+  <Card title="Steps" icon="arrow-right">
+    Steps are the actions the workflow takes: updating a record, sending a notification, requesting an approval, running an agent, calling an external API, or branching based on a condition.
+  </Card>
+  <Card title="Conditions" icon="code-branch">
+    Conditions let a workflow branch. Based on field values, approval decisions, or agent outputs, the workflow can follow different paths for different situations.
+  </Card>
+  <Card title="Audit Trail" icon="shield-check">
+    Every workflow run is logged. You can see exactly which steps ran, what data passed through them, who took which action, and when — for every single execution.
+  </Card>
+</CardGroup>
+
+---
+
+## Building an Approval Workflow
+
+The most common workflow pattern in Pharen Hub is the approval loop: a record is created, routed to one or more reviewers, and approved or rejected — with each decision logged and the process continuing automatically.
+
+<Steps>
+  <Step title="Open Workflows">
+    Navigate to **Functions → Workflows** in the left sidebar and click **+ New Workflow**.
+  </Step>
+  <Step title="Name your workflow">
+    Give the workflow a clear, process-oriented name like `invoice-approval` or `contract-review`. This name is used when triggering the workflow from agents, App Builder apps, and code.
+  </Step>
+  <Step title="Set the trigger">
+    Click **+ Add Trigger** and choose the event that starts this workflow. For an invoice approval, choose **List record updated** and configure it to fire when an invoice record's status changes to `Pending Approval`.
+  </Step>
+  <Step title="Add an approval step">
+    Click **+ Add Step → Approval**. Configure:
+    - **Assignee:** The person, role, or dynamic expression (e.g., the `Manager` field on the record) that receives the approval request.
+    - **Context:** Attach the relevant doc, list record, or file so the approver has everything they need.
+    - **Deadline:** An optional time limit. If the deadline passes with no action, the workflow can auto-escalate or auto-reject.
+    - **Delivery:** Send the approval request as a Hub notification, a channel message, an email, or all three.
+  </Step>
+  <Step title="Branch on the decision">
+    After the approval step, add a **Condition** branching on the decision result:
+    - **Approved:** Continue to the next step (e.g., update the record status to `Approved`, post to a channel, trigger an ERP transfer).
+    - **Rejected:** Route back to the originator with a rejection reason, update the record status to `Returned`, and optionally notify the submitter by email.
+  </Step>
+  <Step title="Add post-approval steps">
+    Add steps for what happens after approval: update the record, send a confirmation email, post a channel message, or call an external API. Use the **HTTP Request** step to push data to your ERP, CRM, or any external system.
+  </Step>
+  <Step title="Test and activate">
+    Click **Test Workflow** to run it against a real or synthetic record in sandbox mode. Review the execution log, adjust any steps, then click **Activate** to go live.
+  </Step>
+</Steps>
+
+<Tip>
+  Build approval workflows incrementally. Start with a single-step approval, activate it, and observe a few live runs before adding escalation logic and multi-step branching. Iterating on a working workflow is faster than designing a perfect one from scratch.
+</Tip>
+
+---
+
+## Automation Triggers
+
+Workflows can be started by a wide range of events. Choose the right trigger for your process:
+
+<Tabs>
+  <Tab title="List events">
+    | Trigger | Description |
+    |---|---|
+    | Record created | Fires when a new record is added to a list |
+    | Record updated | Fires when any field (or a specific field) changes value |
+    | Status changed to | Fires when the Status field reaches a specific value |
+    | Record due | Fires a set time before or after a Date field |
+    | Record assigned | Fires when the Assignee field is set or changed |
+  </Tab>
+  <Tab title="Mail events">
+    | Trigger | Description |
+    |---|---|
+    | Email received | Fires when a new email arrives at a connected address |
+    | Email received from | Fires only for emails from a specific sender or domain |
+    | Email reply received | Fires when a reply comes in on a thread started by a workflow |
+  </Tab>
+  <Tab title="Schedule">
+    | Trigger | Description |
+    |---|---|
+    | Daily at | Fires once per day at a specified time |
+    | Weekly on | Fires on a specific day and time each week |
+    | Monthly on | Fires on a specific date each month |
+    | Cron expression | Full cron syntax for custom schedules |
+  </Tab>
+  <Tab title="Manual & API">
+    | Trigger | Description |
+    |---|---|
+    | Manual | A user clicks "Run" in the workflow list or App Builder |
+    | Webhook | An external system POSTs to the workflow's webhook URL |
+    | Agent | An AI agent calls `workflow.trigger` from a skill |
+    | Another workflow | A workflow step triggers this workflow as a sub-process |
+  </Tab>
+</Tabs>
+
+---
+
+## Workflow Steps Reference
+
+<AccordionGroup>
+  <Accordion title="Approval">
+    Request a human decision. Configure the assignee, context, deadline, and delivery channels. The workflow pauses until the approver acts. Returns `approved` or `rejected` and an optional comment.
+  </Accordion>
+  <Accordion title="Update Record">
+    Write new values to fields in any list record. Use dynamic expressions to pull values from the trigger payload or from previous steps — e.g., set `Approved By` to the identity of the approver from the previous step.
+  </Accordion>
+  <Accordion title="Send Notification">
+    Send a Hub notification, a channel message, or an email. Supports templated messages using `{{field_name}}` placeholders that are filled at runtime from the record or workflow context.
+  </Accordion>
+  <Accordion title="Run Agent">
+    Invoke a named AI agent as a workflow step. Pass the current record as context. The agent executes its task and returns a result that subsequent steps can use. For example: run the `invoice-processor` agent to validate an invoice before routing it for approval.
+  </Accordion>
+  <Accordion title="HTTP Request">
+    Make a GET, POST, PUT, or PATCH request to any external URL. Use this to push approved data to your ERP, call a payment API, update a CRM record, or integrate with any third-party system that exposes an API.
+  </Accordion>
+  <Accordion title="Condition / Branch">
+    Branch the workflow based on any field value, approval decision, agent output, or HTTP response. Each branch continues independently and can rejoin at a later merge step if needed.
+  </Accordion>
+  <Accordion title="Wait / Delay">
+    Pause the workflow for a set duration or until a specific datetime. Useful for reminder sequences: send a notification, wait 48 hours, and if no action has been taken, escalate.
+  </Accordion>
+  <Accordion title="Create Record">
+    Create a new record in any list. Useful for spawning sub-tasks, logging summaries, or creating output records from a workflow run.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Audit Trails
+
+Every workflow execution generates a complete, immutable audit trail. This is not optional logging — it's a first-class feature of Hub's Functions layer.
+
+### What's Logged
+
+For every workflow run, Hub records:
+
+- The trigger event and its full payload
+- Each step that executed, in order
+- The input and output data for each step
+- The identity and timestamp of every human action (approval, rejection, manual trigger)
+- Any errors or retries, with the error details
+- The final outcome of the run
+
+### Accessing the Audit Trail
+
+<Steps>
+  <Step title="Open Workflows">
+    Navigate to **Functions → Workflows** and select the workflow you want to inspect.
+  </Step>
+  <Step title="Open Run History">
+    Click the **Run History** tab. You'll see a list of every execution, sorted by most recent, with status (Completed, Failed, Pending, Cancelled) and duration.
+  </Step>
+  <Step title="Inspect a run">
+    Click any run to open the execution detail view. Each step is shown as a timeline entry. Click a step to see its input, output, and timing. Approval steps show who acted and when.
+  </Step>
+  <Step title="Export the log">
+    Click **Export** to download the full run log as JSON. This is useful for compliance reporting or feeding into external audit systems.
+  </Step>
+</Steps>
+
+<Note>
+  Audit trail data is retained for the lifetime of your workspace. If your compliance requirements demand a specific retention period or external archival, use the **Export** function or the Audit API to pull logs to your own storage.
+</Note>
+
+---
+
+## Notifications and Escalations
+
+Workflows communicate with people through notifications. Hub gives you fine-grained control over how and when those messages are sent.
+
+### Notification Channels
+
+Each notification step can deliver to one or more channels simultaneously:
+
+- **Hub notification** — appears in the recipient's in-app notification bell
+- **Channel message** — posts to a named channel, optionally with an `@mention`
+- **Email** — sends to the recipient's connected email address
+- **Mobile push** — sends a push notification to the Hub mobile app
+
+### Escalation Patterns
+
+<Accordion title="Deadline-based escalation">
+  Set a deadline on any approval step. If the deadline passes without action:
+
+  1. The workflow checks the escalation rule.
+  2. It reassigns the approval to the escalation target (e.g., the approver's manager).
+  3. It sends a new notification with context about the missed deadline.
+  4. It logs the escalation in the audit trail.
+
+  Configure deadline and escalation under the **Approval Step → Advanced** settings.
+</Accordion>
+
+<Accordion title="Reminder sequences">
+  Use a **Wait** step followed by a **Condition** step to build reminder sequences:
+
+  1. Send the initial approval request.
+  2. Wait 24 hours.
+  3. Check: has the record's `Approval Status` changed?
+  4. If not, send a reminder notification.
+  5. Wait another 24 hours.
+  6. If still pending, escalate.
+</Accordion>
+
+---
+
+## Real-World Use Cases
+
+### Invoice Processing
+
+Manual invoice handling is one of the highest-friction processes in most organizations. Hub reduces it from ~15 minutes per invoice to ~2 minutes.
+
+<Steps>
+  <Step title="Receive">
+    An invoice arrives by email at `invoices@yourcompany.com`. The inbound mail trigger fires.
+  </Step>
+  <Step title="Extract">
+    The `invoice-processor` AI agent uses OCR to extract vendor, amount, line items, due date, and PO number from the attached PDF — in under 60 seconds.
+  </Step>
+  <Step title="Create record">
+    The agent creates a record in the Invoice list with all extracted fields populated and sets the status to `Pending Approval`.
+  </Step>
+  <Step title="Route">
+    The `invoice-approval` workflow triggers. Based on the amount, it routes to the appropriate approver tier (under €5,000 → team lead, €5,000–€50,000 → finance manager, above €50,000 → CFO).
+  </Step>
+  <Step title="Approve">
+    The approver receives a notification with the full invoice context and a one-click approve button — accessible from web or mobile.
+  </Step>
+  <Step title="Transfer">
+    On approval, the workflow calls the ERP HTTP endpoint to create the payment order automatically. The record status updates to `Transferred` and the audit trail closes.
+  </Step>
+</Steps>
+
+### Insurance Claims Triage
+
+Hub's AI triage cuts claim capture and initial review time dramatically.
+
+- A new claim arrives (email, form, or direct API post).
+- The AI agent reads submitted documents in under 1 minute, extracting claim type, claimant, amount, and supporting evidence quality.
+- Claims are scored for urgency and completeness and sorted into a prioritized queue.
+- Adjusters work the queue in order — no manual sorting, no missed claims.
+- Each step is logged for regulatory audit purposes.
+
+<Tip>
+  For regulated industries, enable the **Immutable Audit Log** option under **Workspace Settings → Compliance**. This writes all workflow events to a write-once log that cannot be edited or deleted, suitable for regulatory review.
+</Tip>

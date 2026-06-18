@@ -1,0 +1,95 @@
+---
+title: "Pharen Hub Billing FAQ: Plans, Credits, and Pricing Answers"
+sidebarTitle: "FAQ"
+description: "Answers to the most common billing questions about Pharen Hub — plan selection, AI credits, workflow runs, list limits, and pricing discounts."
+---
+
+Choosing the right plan and understanding what counts toward your limits are decisions that come up for every workspace owner. The questions below cover the most common billing and pricing topics so you can make informed choices without having to dig through settings to find out how things work.
+
+<AccordionGroup>
+  <Accordion title="Which plan is right for me?">
+    The best starting point is the size of your team and how heavily you plan to use workflows and AI.
+
+    - **Free** is the right choice if you're evaluating Pharen Hub solo, building a prototype, or running a very lightweight personal project. There's no time limit on the free plan.
+    - **Starter** fits freelancers or small collaborations — up to three people, one team, and a modest workflow allowance of 100 runs per month.
+    - **Team** is a strong fit when you have multiple distinct workstreams that benefit from separate teams, and you need at least 500 workflow runs per month.
+    - **Pro** is the recommended plan for organizations running production AI workflows or managing larger teams. At up to 50 members, 10 teams, and 5,000 workflow runs per month, it covers almost every non-enterprise use case.
+    - **Enterprise** is for organizations that need unlimited scale, custom infrastructure, or bespoke billing terms.
+
+    If you're uncertain, start on a lower plan and upgrade when you hit limits. Upgrades take effect immediately and your data carries over seamlessly.
+  </Accordion>
+
+  <Accordion title="Are there annual prices or discounts?">
+    All published pricing is billed monthly, and there are currently no annual billing options listed on the pricing page. If you're on **Enterprise** and interested in a multi-month or annual commitment for a better rate, that's something you can discuss directly with the Pharen Hub team — custom billing terms are part of what makes the Enterprise tier flexible.
+
+    For non-Enterprise plans, keep an eye on the [pricing page](/billing/plans) or the in-app notifications for any promotions or limited-time offers. Consulting services are billed at a flat **€130/hour** rate regardless of your plan tier.
+  </Accordion>
+
+  <Accordion title="How do AI credits work?">
+    AI credits are a separate balance from your workspace plan. Whenever Pharen Hub calls an AI model — inside a workflow step, through a bulk list operation, or via an in-workspace AI feature — it deducts credits from your balance.
+
+    You can fund your credit balance in two ways:
+
+    - **Prepaid top-up:** Buy a block of credits whenever you need them. They're added immediately and never expire.
+    - **Monthly subscription:** Set up a recurring credit allocation that tops up automatically each billing cycle.
+
+    Free plan workspaces can purchase prepaid credits. Starter, Team, and Pro workspaces can use either prepaid or a monthly subscription. Enterprise workspaces can arrange flexible billing directly with the Pharen Hub team.
+
+    If your credits run out, AI-dependent workflow steps will fail until you add more. See the [AI Credits page](/billing/ai-credits) for full details on consumption, monitoring, and low-balance alerts.
+  </Accordion>
+
+  <Accordion title="Can I change my plan later?">
+    Yes — you can upgrade or downgrade your workspace plan at any time from **Workspace Settings → Billing**.
+
+    **Upgrading** takes effect immediately. The moment your payment is processed, your workspace gains access to the higher plan's limits.
+
+    **Downgrading** takes effect at the end of your current billing period. This gives you time to reduce usage (for example, removing members or archiving list records) if your current usage exceeds the lower plan's limits. If a conflict exists at the time the downgrade would take effect, Pharen Hub will prompt you to resolve it first.
+
+    There are no penalties or fees for changing plans.
+  </Accordion>
+
+  <Accordion title="What counts as a workflow run?">
+    A workflow run is counted each time a workflow is triggered and begins executing — regardless of whether it completes successfully or fails partway through. Each of the following counts as one run:
+
+    - A scheduled workflow fires on its cron schedule
+    - A webhook or external event triggers a workflow
+    - You manually trigger a workflow from the interface or via the API
+    - A workflow is triggered by another workflow (each child execution counts separately)
+
+    Runs that are **not** counted include:
+    - Workflows you disable before they fire
+    - Test runs executed in the workflow editor's test mode (these use a separate test quota)
+
+    If a run fails mid-execution — including because AI credits ran out — it still counts against your monthly allowance because the run was initiated and resources were consumed up to the point of failure.
+
+    <Note>
+      Your monthly run count resets on your billing date each month, not on the 1st of the calendar month.
+    </Note>
+  </Accordion>
+
+  <Accordion title="How are list limits counted?">
+    List records are counted as the total number of individual records stored across all lists in your workspace, at any given time. This is a **total at-rest count**, not a monthly throughput figure.
+
+    For example, if you have three lists with 200, 150, and 100 records respectively, your workspace is using 450 records toward its limit.
+
+    A few things to keep in mind:
+
+    - **Deleting records frees up space.** If you're approaching your limit, archiving or removing records you no longer need will bring your count back down.
+    - **Archived records still count.** Records moved to an archive state within a list remain in storage and count toward your total unless permanently deleted.
+    - **Limits are workspace-wide.** There's no per-list cap — you're free to distribute your total allowance across as many lists as you like.
+
+    If you hit your record limit, you won't be able to create new records until you delete existing ones or upgrade your plan. Existing records and workflows are not affected.
+
+    | Plan | List Record Limit |
+    |---|---|
+    | Free | 100 records |
+    | Starter | 1,000 records |
+    | Team | 5,000 records |
+    | Pro | 50,000 records |
+    | Enterprise | Unlimited |
+  </Accordion>
+</AccordionGroup>
+
+<Info>
+  Have a question that isn't covered here? Reach out through the [contact page](https://pharen.de/en/contact) or open a support ticket from inside your workspace — we're happy to help you figure out the right setup.
+</Info>

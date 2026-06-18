@@ -1,0 +1,136 @@
+---
+title: "Pharen Hub Docs & Lists: Manage Knowledge and Data"
+sidebarTitle: "Docs & Lists"
+description: "Store, edit, and structure your team's knowledge with Hub Docs and Lists. Switch between list, Kanban, and calendar views in one unified Data layer."
+---
+
+The Data layer of Pharen Hub is where your team's knowledge and structured information live. Docs give you a flexible, collaborative writing surface for everything from runbooks to meeting notes. Lists give you structured, queryable records — tasks, requests, assets, contacts — viewable as a flat list, a Kanban board, or a calendar. Because both live inside the same workspace, your AI agents and workflows can read and write to them directly, without any integration plumbing.
+
+## Docs
+
+### Creating a Document
+
+<Steps>
+  <Step title="Open the Docs section">
+    In the left sidebar of the Hub web app, click **Docs**. You'll see all documents in your workspace, organized by folder.
+  </Step>
+  <Step title="Create a new doc">
+    Click **+ New Doc** in the top-right corner. Give it a title — this becomes the doc's identifier for other layers of the Hub (agents, workflows, and the App Builder can reference it by name).
+  </Step>
+  <Step title="Start writing">
+    The editor opens with a clean canvas. Type `/` to open the block menu and insert headings, bullet lists, code blocks, tables, callouts, dividers, and more.
+  </Step>
+  <Step title="Invite collaborators">
+    Click **Share** in the top-right. Add teammates by name or email. You can grant view-only or edit access on a per-doc basis.
+  </Step>
+</Steps>
+
+### Editing and Formatting
+
+Hub Docs uses a block-based editor. Every paragraph, heading, image, or table is an independent block you can drag, duplicate, or delete.
+
+<Tabs>
+  <Tab title="Text blocks">
+    Use `/heading` for H1–H3, `/quote` for block quotes, `/callout` for highlighted notes, and `/divider` for visual separation. Standard Markdown shortcuts (`**bold**`, `_italic_`, `~~strikethrough~~`) work inline.
+  </Tab>
+  <Tab title="Structured blocks">
+    Use `/table` to insert a structured table, `/code` for a fenced code block with syntax highlighting, and `/toggle` for collapsible sections — useful for FAQs and runbooks.
+  </Tab>
+  <Tab title="Media & embeds">
+    Use `/image` to upload or link an image, `/file` to attach a downloadable asset, and `/embed` to drop in a URL-based preview (dashboards, videos, external tools).
+  </Tab>
+</Tabs>
+
+### Linking Docs to the Rest of Hub
+
+Docs aren't isolated pages — they're live workspace objects.
+
+- **Reference in workflows:** When building an approval workflow, attach a doc as context. Approvers see the relevant policy or specification directly in the approval panel.
+- **Feed AI agents:** Add a doc to an agent's context window using the `docs` parameter in the workspace configuration. The agent can read, summarize, and cite it.
+- **Link between docs:** Type `@` followed by a doc name to create an inline cross-reference. Hub resolves it to the current version of that document.
+
+<Tip>
+  Use a dedicated **Ops Playbook** doc as your team's single source of truth for recurring processes. Agents and workflows can pull from it automatically, keeping guidance consistent without manual copy-pasting.
+</Tip>
+
+### Version History
+
+Every edit is saved automatically. To review or restore a previous version, open the doc, click the **⋯ menu** in the top-right, and select **Version History**. You'll see a timestamped list of every edit session, who made it, and a diff view. Click **Restore** on any version to roll back — without losing the current version, which is saved as a new entry.
+
+---
+
+## Lists
+
+Lists are the structured data store of Pharen Hub. Where a Doc is freeform prose, a List is a table of records — each row has defined fields (text, number, date, status, person, relation) and can be acted on by workflows and agents.
+
+### Creating a List
+
+<Steps>
+  <Step title="Open Lists">
+    Click **Lists** in the left sidebar. You'll see all lists in your workspace.
+  </Step>
+  <Step title="Create a new list">
+    Click **+ New List**. Choose a name and optionally a template (Tasks, Bug Tracker, Invoice Queue, Contact List, and more).
+  </Step>
+  <Step title="Define your fields">
+    Add columns using the **+ Field** button. Each field has a type: **Text**, **Number**, **Date**, **Status**, **Person**, **Checkbox**, **URL**, or **Relation** (links to another list). You can reorder and rename fields at any time.
+  </Step>
+  <Step title="Add records">
+    Click **+ New Record** or press `N` to add a row. Fill in fields inline or open the record detail panel for a full editing view, including a rich-text notes section and an activity log.
+  </Step>
+</Steps>
+
+### Switching Views
+
+Every list supports three view types. Switch between them using the view toggle at the top of the list.
+
+<CardGroup cols={3}>
+  <Card title="List View" icon="list">
+    The default table layout. Sort and filter by any field. Best for reviewing many records at once, bulk editing, and data entry.
+  </Card>
+  <Card title="Kanban View" icon="table-columns">
+    Groups records into columns by any **Status** or **Select** field. Drag cards between columns to update their status. Best for task management, request queues, and pipeline tracking.
+  </Card>
+  <Card title="Calendar View" icon="calendar">
+    Plots records on a monthly or weekly calendar using any **Date** field. Best for scheduling, deadlines, and event planning.
+  </Card>
+</CardGroup>
+
+<Note>
+  View preferences are saved per user. Your Kanban view doesn't affect a teammate who prefers the list view — you each see the same data, formatted your way.
+</Note>
+
+### Filtering and Grouping
+
+Use the **Filter** button to narrow records by any field value. Filters can be stacked — for example, show all records where **Status = In Review** AND **Assignee = You** AND **Due Date = This Week**.
+
+Use **Group** to cluster records by a field. In list view, grouping by Status creates collapsible sections. In Kanban, grouping is already visual.
+
+### Connecting Lists to Workflows and Agents
+
+Like docs, lists are first-class objects in the Hub workspace:
+
+- **Workflow triggers:** A workflow can fire whenever a record is created, updated to a specific status, or reaches a due date. For example, when an invoice record moves to **Pending Approval**, the approval workflow starts automatically.
+- **Agent reads/writes:** An AI agent can query a list (e.g., "find all open requests assigned to nobody") and create, update, or close records as part of its execution plan.
+- **Relations:** Link records across lists. An Invoice record can relate to a Vendor record in a separate list, letting agents and workflows pull full context from both.
+
+<Accordion title="Example: Invoice processing list setup">
+  A typical invoice processing list includes the following fields:
+
+  | Field | Type | Purpose |
+  |---|---|---|
+  | Invoice Number | Text | Unique identifier |
+  | Vendor | Relation | Links to the Vendor list |
+  | Amount | Number | Invoice total |
+  | Due Date | Date | Payment deadline |
+  | Status | Status | Draft → Pending Approval → Approved → Transferred |
+  | Assignee | Person | Current owner of the record |
+  | Document | File | Uploaded PDF or scanned image |
+  | Notes | Text | Free-form context from the AI agent or reviewer |
+
+  When the AI agent processes an incoming invoice, it creates a record here automatically — populating every field from the scanned document via OCR — then moves the status to **Pending Approval** to trigger the workflow.
+</Accordion>
+
+### Exporting Data
+
+To export a list, open the **⋯ menu** and select **Export**. You can export to CSV or JSON. Exports respect your active filters, so you can export a filtered subset without modifying the full list.

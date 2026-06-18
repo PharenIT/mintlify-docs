@@ -1,0 +1,136 @@
+---
+title: "Control AI Model Policies and Providers in Pharen Hub"
+sidebarTitle: "AI Model Policies"
+description: "Control which AI models and providers your workspace can use, enforce approved infrastructure across all teams, and prevent unauthorized model usage."
+---
+
+When your team uses AI, the models and providers behind those interactions matter — for security, compliance, cost predictability, and consistency. Pharen Hub's AI model policies let you define exactly which models and providers are permitted in your workspace. Once a policy is in place, team members can only work with the AI infrastructure you've approved. This eliminates shadow AI usage and gives you a clear, auditable record of what's running in your environment.
+
+## Why Model Governance Matters
+
+Not all AI models carry the same data handling guarantees, pricing structures, or output quality. Without a policy layer, individual team members may use models that:
+
+- **Route data to unapproved third parties** — a compliance and data residency risk
+- **Incur unpredictable costs** — some models charge significantly more per token than approved alternatives
+- **Produce inconsistent results** — mixing models across teams makes it hard to benchmark or audit outputs
+- **Violate contractual obligations** — certain enterprise agreements require you to use specific approved providers
+
+A model policy in Pharen Hub prevents these scenarios by making the approved list the only option available to your workspace.
+
+<Note>
+  Model policies apply to AI features used directly in Pharen Hub. If your team connects external tools or integrations that call their own AI providers, those connections are governed by your integration settings, not model policies.
+</Note>
+
+## Understanding the Policy Structure
+
+Pharen Hub's model policies work at two levels:
+
+<CardGroup cols={2}>
+  <Card title="Provider Policies" icon="building-columns">
+    Allow or block entire AI providers (for example, permit only providers with SOC 2 Type II certification, or restrict usage to a single approved vendor). Blocking a provider automatically blocks all models from that provider.
+  </Card>
+  <Card title="Model Policies" icon="microchip-ai">
+    Fine-grained control within an allowed provider. You can permit a provider but restrict it to specific models — for example, allowing a provider's standard model but blocking access to experimental or preview versions.
+  </Card>
+</CardGroup>
+
+## Configuring Your Model Policy
+
+<Steps>
+  <Step title="Open AI Model Policies">
+    Navigate to **Workspace Settings → Security & Admin → AI Model Policies**. The page shows a list of all available providers and their associated models, with their current status (allowed or blocked) for your workspace.
+  </Step>
+  <Step title="Review available providers">
+    Pharen Hub lists every provider currently integrated with the platform. Each provider card shows:
+    - The provider name and a brief description
+    - The number of models available from that provider
+    - Current policy status: **Allowed**, **Restricted**, or **Blocked**
+  </Step>
+  <Step title="Set provider-level access">
+    Click a provider to expand its settings. At the top of the provider panel, set the overall access level:
+    - **Allowed** — all models from this provider are available unless specifically blocked at the model level
+    - **Restricted** — only models you explicitly allow are available; all others from this provider are blocked
+    - **Blocked** — no models from this provider can be used anywhere in the workspace
+  </Step>
+  <Step title="Configure individual model access">
+    Within an allowed or restricted provider, toggle individual models on or off. This lets you, for example, allow a provider's production-grade models while blocking their experimental or beta releases.
+  </Step>
+  <Step title="Set team-level overrides (optional)">
+    If specific teams need access to models that aren't available workspace-wide, you can create team-level overrides. Select **Add Team Override**, choose the team, and configure a modified policy that applies only to that team. Team overrides can expand or further restrict what the workspace policy allows.
+  </Step>
+  <Step title="Review and save the policy">
+    Before saving, Pharen Hub shows you a **Policy Impact Summary**: how many teams and members are affected, which models they'll lose access to, and which they'll gain. Review this carefully, then click **Save Policy**. Changes take effect within a few minutes for all active sessions.
+  </Step>
+</Steps>
+
+<Warning>
+  When you block a model or provider that teams are actively using, their in-progress work using that model will not be interrupted — but they won't be able to start new requests with it. Communicate policy changes to affected teams before saving to avoid confusion.
+</Warning>
+
+## Setting a Default Model
+
+Beyond controlling which models are available, you can set a default model that Pharen Hub uses when a team member doesn't explicitly choose one. This encourages consistency and ensures that the most cost-effective or compliance-appropriate model is used by default.
+
+<Steps>
+  <Step title="Open Default Model Settings">
+    From the **AI Model Policies** page, click the **Default Model** tab.
+  </Step>
+  <Step title="Choose a default model">
+    Select from the models currently in your allowed list. The default must be an allowed model — blocked or restricted models don't appear in this list.
+  </Step>
+  <Step title="Set team-specific defaults (optional)">
+    You can override the workspace default for specific teams. For example, your engineering team might default to a more capable model, while other teams use the standard default. Click **Add Team Default** and configure the model for each team separately.
+  </Step>
+  <Step title="Save">
+    Click **Save**. New AI interactions that don't specify a model will use the default you've set.
+  </Step>
+</Steps>
+
+## Updating Policies Over Time
+
+AI providers regularly release new models, retire old ones, and update their terms of service. You should review your model policies periodically to keep them accurate and effective.
+
+<Accordion title="When a provider releases a new model">
+  Pharen Hub adds new models to the provider's model list automatically. New models default to **Blocked** until you explicitly allow them, so they won't be available to your team until you review and approve them. You'll receive a notification in **Workspace Settings** when new models are added to a provider you've allowed.
+</Accordion>
+
+<Accordion title="When a provider retires a model">
+  Retired models are marked as **Deprecated** in the model list. Pharen Hub will notify admins before the model is removed. If the deprecated model is currently set as a team's default, you'll be prompted to choose a replacement before the retirement date.
+</Accordion>
+
+<Accordion title="When your compliance requirements change">
+  If your organization changes AI vendors, updates its data handling policies, or adds new regulatory requirements, revisit your provider and model policies. Use the **Policy History** tab to see a full log of all policy changes, who made them, and when — useful for compliance audits and change management reviews.
+</Accordion>
+
+<Accordion title="When onboarding a new team with different needs">
+  New teams may have different AI use cases than existing ones. Rather than changing the workspace-wide policy, add a team-level override that grants the new team access to the models they need. This keeps the global policy conservative while giving the new team what they need to be productive.
+</Accordion>
+
+## Reviewing Model Usage
+
+The **Model Usage** report shows you which models are being used across your workspace, broken down by team, member, and time period.
+
+<Steps>
+  <Step title="Open the Model Usage report">
+    Go to **Workspace Settings → Security & Admin → AI Model Policies → Usage Report**.
+  </Step>
+  <Step title="Filter by time period and team">
+    Use the filters to focus on a specific date range, team, or provider. The report shows request counts, estimated token usage, and relative cost by model.
+  </Step>
+  <Step title="Identify high-usage models">
+    Use the report to spot which models are driving the most usage and cost. If an expensive model is being used heavily for tasks where a lower-cost model would work just as well, you can update the default model setting or refine the allowed list to guide teams toward more efficient options.
+  </Step>
+  <Step title="Export the report">
+    Click **Export** to download a CSV for use in internal reporting, vendor reviews, or compliance documentation.
+  </Step>
+</Steps>
+
+<Tip>
+  Combine model usage data with budget controls to get a complete picture of AI spend. If you know which models cost the most, you can set lower team-level budget limits for teams that have access to high-cost models, or require approval for requests that use them.
+</Tip>
+
+## Policy Enforcement Details
+
+<Info>
+  Model policies are enforced server-side in Pharen Hub. A team member cannot bypass a policy by using a different client, integration, or browser. If a request specifies a blocked model, Pharen Hub returns an error and logs the attempt — it does not silently fall back to an allowed model, which ensures that teams are always aware of policy boundaries rather than unknowingly using a different model than intended.
+</Info>

@@ -1,0 +1,96 @@
+---
+title: "AI Credits in Pharen Hub: How They Work and How to Add Them"
+sidebarTitle: "AI Credits"
+description: "Learn how Pharen Hub AI credits are consumed, how to top up with prepaid balance or a monthly subscription, and what happens when credits run out."
+---
+
+AI credits are the currency that powers every AI-driven action in Pharen Hub — from running language model steps inside workflows to generating content, classifying data, and processing documents. Credits are separate from your base workspace plan, which means you pay for AI usage on top of your plan's core features. This design keeps base plan pricing predictable while letting you scale AI usage independently as your needs grow.
+
+## What Are AI Credits?
+
+Every time Pharen Hub calls an AI model on your behalf, it draws from your workspace's credit balance. The exact number of credits consumed depends on the operation: a short text classification step uses fewer credits than generating a long-form document or running a complex reasoning chain. You can monitor your credit consumption in real time from **Workspace Settings → AI Credits**.
+
+<Info>
+  AI credits are scoped to a workspace. If you have multiple workspaces, each one maintains its own credit balance and its own top-up or subscription settings.
+</Info>
+
+### What Consumes AI Credits?
+
+- **Workflow AI steps** — any step in a workflow that invokes an AI model (text generation, summarization, classification, extraction, etc.)
+- **In-workspace AI actions** — using AI features directly in the Pharen Hub interface, such as drafting list record content or asking the AI assistant questions about your data
+- **Bulk AI operations** — running AI transformations across large sets of list records
+
+Standard workflow logic — triggers, conditionals, data mapping, and integrations — does **not** consume AI credits.
+
+## Adding AI Credits
+
+You have two ways to maintain a credit balance in your workspace: a one-time prepaid top-up, or an ongoing monthly subscription. Both options are available from **Workspace Settings → AI Credits → Add Credits**.
+
+<CardGroup cols={2}>
+  <Card title="Prepaid Balance" icon="coins">
+    Purchase a fixed block of AI credits whenever you need them. Credits are added to your balance immediately after payment and never expire. This option is ideal if your AI usage is irregular or project-based.
+
+    **Good for:**
+    - Sporadic or burst AI usage
+    - Testing and prototyping
+    - Workspaces where AI usage is hard to predict
+  </Card>
+  <Card title="Monthly Subscription" icon="calendar-check">
+    Subscribe to a recurring monthly credit allocation that replenishes automatically on your billing date. You'll always start each month with a fresh top-up, making budgeting straightforward.
+
+    **Good for:**
+    - Consistent, predictable AI usage
+    - Production workflows that run regularly
+    - Teams that want to avoid manual top-ups
+  </Card>
+</CardGroup>
+
+<Tip>
+  You can use both options at once. For example, subscribe to a monthly allocation to cover baseline usage and keep a prepaid balance as a buffer for unexpectedly busy months.
+</Tip>
+
+### Plan Availability
+
+| Plan | Prepaid Credits | Monthly Subscription |
+|---|---|---|
+| Free | ✓ | — |
+| Starter | ✓ | ✓ |
+| Team | ✓ | ✓ |
+| Pro | ✓ | ✓ |
+| Enterprise | Flexible billing | Flexible billing |
+
+<Note>
+  Enterprise workspaces can arrange AI credit billing in any structure that suits them — prepaid blocks, monthly commitments, or usage-based invoicing. Talk to your account manager to configure this.
+</Note>
+
+## Monitoring Your Credit Balance
+
+You can check your current balance and usage history at any time:
+
+1. Open **Workspace Settings** from the left sidebar.
+2. Navigate to the **AI Credits** tab.
+3. View your current balance, this month's consumption, and a breakdown by workflow or feature.
+
+You can also set up **low-balance alerts** to receive an email notification when your credits fall below a threshold you define. This helps you avoid unexpected disruptions to AI-powered workflows.
+
+## What Happens When Credits Run Out?
+
+If your AI credit balance reaches zero, Pharen Hub will pause any workflow steps or actions that require an AI model. The behavior depends on where credits run out:
+
+- **During a workflow run** — the AI step fails, and the workflow is marked as failed. Other non-AI steps in the same workflow are not affected if they appear before the failing step.
+- **During a manual AI action** — the action is blocked and you'll see an in-app prompt to top up your balance.
+- **Scheduled or automated workflows** — the run is attempted, and if credits are insufficient, the run fails and you receive an email notification.
+
+<Note>
+  Workflow runs that fail due to insufficient credits still count against your plan's monthly workflow run allowance, since the run was initiated and partially executed.
+</Note>
+
+### Resuming After Running Out
+
+Once you add credits — either via a prepaid top-up or by ensuring your monthly subscription renews — workflows will resume processing on the next trigger or scheduled run. Failed runs are not automatically retried; you'll need to re-trigger them manually or wait for the next scheduled execution.
+
+To avoid disruptions in production:
+
+- Enable **low-balance email alerts** in the AI Credits settings
+- Consider pairing a monthly subscription with a prepaid buffer
+- Review your AI usage trends monthly in **Workspace Settings → AI Credits → Usage History** to right-size your allocation

@@ -1,0 +1,129 @@
+---
+title: "GET /v1/new-page: List All Pages in Pharen Hub API"
+sidebarTitle: "List Pages"
+description: "Retrieve a paginated list of all pages in your Pharen Hub workspace. Use query parameters to filter, sort, and page through results."
+---
+
+The List Pages endpoint returns a paginated collection of every page in your workspace that your API key has access to. Results are returned in reverse-chronological order by default — most recently updated pages appear first. You can use query parameters to filter, sort, and page through results.
+
+## Endpoint
+
+```bash
+GET https://api.pharen.de/v1/new-page
+```
+
+## Query Parameters
+
+<ParamField query="page" type="integer">
+  The page number to retrieve. Defaults to `1`. Use this alongside `per_page` to paginate through large result sets.
+</ParamField>
+
+<ParamField query="per_page" type="integer">
+  The number of pages to return per response. Defaults to `20`. Maximum value is `100`.
+</ParamField>
+
+<ParamField query="sort" type="string">
+  The field to sort results by. Accepted values are `updated_at` (default), `created_at`, and `title`.
+</ParamField>
+
+<ParamField query="order" type="string">
+  The sort direction. Accepted values are `desc` (default) and `asc`.
+</ParamField>
+
+<ParamField query="search" type="string">
+  A search string to filter pages by title. Returns all pages whose title contains the provided string (case-insensitive).
+</ParamField>
+
+## Request Example
+
+```bash
+curl "https://api.pharen.de/v1/new-page?page=1&per_page=20&sort=updated_at&order=desc" \
+  --request GET \
+  --header "Authorization: Bearer YOUR_API_KEY" \
+  --header "Content-Type: application/json"
+```
+
+## Response
+
+A successful request returns a `200 OK` status and a JSON object containing a `data` array of page objects along with pagination metadata.
+
+### Response Fields
+
+<ResponseField name="data" type="array">
+  An array of page objects. Each object represents a single page in your workspace.
+
+  <Expandable title="Page object fields">
+    <ResponseField name="id" type="string">
+      The unique identifier for the page. Use this ID when reading, updating, or deleting a specific page.
+    </ResponseField>
+
+    <ResponseField name="title" type="string">
+      The human-readable title of the page.
+    </ResponseField>
+
+    <ResponseField name="content" type="string">
+      The body content of the page. May contain rich text or Markdown depending on your workspace settings.
+    </ResponseField>
+
+    <ResponseField name="created_at" type="string">
+      ISO 8601 timestamp recording when the page was created.
+    </ResponseField>
+
+    <ResponseField name="updated_at" type="string">
+      ISO 8601 timestamp recording when the page was last modified.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="total" type="integer">
+  The total number of pages across all pages of results. Use this to calculate the total number of result pages.
+</ResponseField>
+
+<ResponseField name="page" type="integer">
+  The current page number returned in this response.
+</ResponseField>
+
+<ResponseField name="per_page" type="integer">
+  The number of results per page used for this response.
+</ResponseField>
+
+### Response Example
+
+```json
+{
+  "data": [
+    {
+      "id": "page_01hx9k2m3nqvw4e5r6t7y8u9p",
+      "title": "Getting Started Guide",
+      "content": "Welcome to Pharen Hub. This guide walks you through...",
+      "created_at": "2024-06-01T09:00:00Z",
+      "updated_at": "2024-06-10T14:32:00Z"
+    },
+    {
+      "id": "page_02jy0l3n4orvx5f6s7u8z9v0q",
+      "title": "API Overview",
+      "content": "The Pharen API exposes all workspace resources...",
+      "created_at": "2024-05-28T11:15:00Z",
+      "updated_at": "2024-06-09T08:47:00Z"
+    }
+  ],
+  "total": 42,
+  "page": 1,
+  "per_page": 20
+}
+```
+
+## Pagination
+
+When the total number of pages exceeds your `per_page` value, iterate through results by incrementing the `page` parameter. You can determine the total number of result pages by dividing `total` by `per_page` and rounding up.
+
+```bash
+# Fetch the second page of results
+curl "https://api.pharen.de/v1/new-page?page=2&per_page=20" \
+  --request GET \
+  --header "Authorization: Bearer YOUR_API_KEY"
+```
+
+<Note>
+  If you request a page number beyond the available results, the API returns a `200 OK` with an empty `data` array rather than a `404` error.
+</Note>

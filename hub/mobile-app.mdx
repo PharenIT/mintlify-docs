@@ -1,0 +1,171 @@
+---
+title: "Pharen Hub Mobile App: Approvals and Updates on the Go"
+sidebarTitle: "Mobile App"
+description: "The Pharen Hub mobile app keeps your team's approvals, notifications, and decisions moving from any device — fully synced with the web workspace."
+---
+
+The Pharen Hub mobile app is the fifth layer of the Hub — and the one that makes the other four resilient to the real world. Approvals don't stall because a reviewer is between meetings. Urgent updates don't wait until someone is back at their desk. Decisions that need context get the full record, not just a forwarded email. The mobile app delivers the same workspace capabilities your team relies on from the web, formatted for focus and speed on a phone or tablet.
+
+## Getting Started
+
+<Steps>
+  <Step title="Download the app">
+    Search for **Pharen Hub** on the Apple App Store or Google Play Store and install it on your device.
+  </Step>
+  <Step title="Sign in">
+    Open the app and tap **Sign In**. Use your Pharen Hub workspace credentials — the same email and password you use on the web. If your workspace uses SSO, tap **Sign in with SSO** and enter your workspace domain.
+  </Step>
+  <Step title="Enable notifications">
+    When prompted, allow push notifications. This is how the app delivers approval requests, urgent channel mentions, and workflow alerts in real time. You can refine notification preferences later in **Settings → Notifications**.
+  </Step>
+  <Step title="Explore your workspace">
+    The mobile home screen shows your notification feed, pending approvals, recent activity, and quick links to your most-used lists and channels.
+  </Step>
+</Steps>
+
+---
+
+## Approvals on the Go
+
+Approvals are the highest-value mobile use case in Hub. When a workflow routes a record to you for a decision, you get a push notification with enough context to act immediately — without switching to a laptop.
+
+### Receiving an Approval Request
+
+When a workflow assigns an approval to you:
+
+1. Your device receives a push notification with the record title and the workflow name.
+2. Tap the notification to open the approval detail view.
+3. The view shows the full record — all fields, attached documents, and the workflow context that the sender or agent included.
+4. Scroll through the context, then tap **Approve** or **Reject**.
+5. If you reject, you'll be prompted for a brief reason. This is logged in the audit trail and sent back to the originator.
+
+<Tip>
+  For invoice approvals, the mobile view shows the extracted invoice data alongside the original PDF so you can verify the numbers before approving — no need to download anything or open a separate app.
+</Tip>
+
+### Bulk Approvals
+
+When multiple approval requests are pending, the **Approvals** tab shows them in a prioritized queue. You can:
+
+- Tap any item to review and act on it individually.
+- Use **Bulk Approve** to approve multiple low-risk items in one tap (available when all selected items are below a configured amount or priority threshold set by your workspace admin).
+
+<Warning>
+  Bulk approval is a workspace-level setting. If your organization requires individual review for all approvals — for example, due to financial controls or regulatory requirements — an admin can disable bulk approval under **Workspace Settings → Workflows → Approval Policy**.
+</Warning>
+
+---
+
+## Notifications
+
+The Hub mobile app delivers notifications across all five layers of the workspace, consolidated into a single, organized feed.
+
+<CardGroup cols={2}>
+  <Card title="Approval requests" icon="circle-check">
+    Routed to you by a workflow. Tap to review full context and act immediately.
+  </Card>
+  <Card title="Channel mentions" icon="at">
+    Someone used @yourname or @channel in a channel you belong to. Tap to view the message and reply inline.
+  </Card>
+  <Card title="Workflow alerts" icon="triangle-exclamation">
+    A workflow you own has stalled, failed, or reached an escalation threshold. Tap to view the run detail and take action.
+  </Card>
+  <Card title="Record updates" icon="pen-to-square">
+    A list record you're assigned to or watching has been updated. Tap to see what changed and by whom.
+  </Card>
+  <Card title="Meeting reminders" icon="calendar">
+    A Hub Meeting you accepted is starting soon. Tap to open the meeting view, review the agenda, and join the video call.
+  </Card>
+  <Card title="Agent completions" icon="robot">
+    An AI agent you triggered has finished its task. Tap to review the summary and any records it created or updated.
+  </Card>
+</CardGroup>
+
+### Configuring Notification Preferences
+
+Go to **Settings → Notifications** in the mobile app to control what you receive and how:
+
+- **Per-source toggles:** Turn off push notifications for specific sources (e.g., suppress channel mentions outside working hours while keeping approval requests always on).
+- **Quiet hours:** Set a window during which the app suppresses non-urgent push notifications. Approvals marked **Urgent** by a workflow bypass quiet hours.
+- **Notification grouping:** Choose whether notifications from the same source are grouped into a single push or delivered individually.
+
+---
+
+## Key Mobile Features
+
+### Lists
+
+The full Lists experience is available on mobile. View, filter, and update records from any of your lists.
+
+<Tabs>
+  <Tab title="Viewing records">
+    Open a list and scroll through records in list view. Tap any record to open the full detail panel — all fields, attached files, comments, and activity history. Swipe left on a record for quick actions: assign, update status, or archive.
+  </Tab>
+  <Tab title="Updating records">
+    Tap any field in the record detail panel to edit it inline. Status fields offer a tap-to-select picker. Date fields open a calendar. File fields let you attach a photo taken directly from your camera — useful for capturing receipts, site photos, or physical documents on the go.
+  </Tab>
+  <Tab title="Creating records">
+    Tap **+** in any list to create a new record. Fill in fields manually, or tap the AI icon to open the assistant — describe the record in plain language and the AI pre-fills the fields for you to review and confirm.
+  </Tab>
+</Tabs>
+
+### Channels
+
+Read and post in any channel directly from the mobile app.
+
+- Tap a channel to open the message thread.
+- Use the text bar to compose a message with formatting, mentions, and emoji.
+- Tap and hold any message to add an emoji reaction or reply in a thread.
+- Tap the **+** in the message bar to attach a file from your device or camera roll.
+
+### Docs
+
+Browse and read any doc in your workspace. Tap the **edit** icon to make changes — the mobile editor supports the same block types as the web app, including headings, lists, code blocks, and tables. Changes sync instantly to the web.
+
+### AI Chat
+
+The AI Chat interface is fully available on mobile. Open it from the bottom navigation bar. Ask questions, give instructions, and get execution plans — the same workspace context is available as on the web.
+
+---
+
+## Sync with the Web App
+
+The mobile app and web app are the same workspace — not two separate products that sync. Any change you make on mobile is immediately reflected on the web, and vice versa.
+
+<CardGroup cols={2}>
+  <Card title="Real-time sync" icon="rotate">
+    Record updates, channel messages, doc edits, and workflow state changes appear on all devices within seconds. There is no "sync now" button — everything is always current.
+  </Card>
+  <Card title="Offline support" icon="wifi-slash">
+    The mobile app caches your recent lists, docs, and notifications for offline reading. Edits made offline are queued and sync automatically when connectivity is restored.
+  </Card>
+  <Card title="Consistent permissions" icon="lock">
+    Your workspace role and access permissions are enforced identically on mobile and web. You can only see and act on the same objects on both platforms.
+  </Card>
+  <Card title="Cross-device audit trail" icon="shield-check">
+    Actions taken on mobile are logged in the same audit trail as web actions — including the device and platform. The approval you gave from your phone is attributed to you, timestamped, and stored permanently.
+  </Card>
+</CardGroup>
+
+<Note>
+  The mobile app requires iOS 16 or later, or Android 10 or later. For the best experience, keep the app updated to the latest version — Hub releases mobile updates in sync with web feature releases.
+</Note>
+
+---
+
+## Mobile-Specific Tips
+
+<AccordionGroup>
+  <Accordion title="Use the camera for document capture">
+    When you need to add a document to a list record on the go — a receipt, a delivery note, a physical form — tap the file field in the record and choose **Take Photo**. Hub automatically attaches the image and, if the record is part of an OCR workflow, queues it for AI extraction.
+  </Accordion>
+  <Accordion title="Act on approvals from the lock screen">
+    Approval push notifications include action buttons visible directly on the iOS lock screen or Android notification shade. For simple approvals where you've already reviewed context, you can approve or reject without even unlocking your phone.
+  </Accordion>
+  <Accordion title="Star important channels for quick access">
+    In the Channels tab, long-press any channel and tap **Star** to pin it to the top of your list. On mobile, reducing the number of taps to your most critical channels makes a real difference during a busy day.
+  </Accordion>
+  <Accordion title="Use AI Chat for fast record lookups">
+    Instead of navigating to a list and filtering, ask Chat: "What's the status of invoice INV-00492?" or "Who is assigned to the packaging scan task?" The AI returns the answer with a link directly to the record.
+  </Accordion>
+</AccordionGroup>

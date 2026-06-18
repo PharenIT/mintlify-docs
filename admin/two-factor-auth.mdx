@@ -1,0 +1,154 @@
+---
+title: "Enable and Enforce Two-Factor Authentication in Pharen Hub"
+sidebarTitle: "Two-Factor Auth"
+description: "Set up two-factor authentication for your workspace, enforce it across all members, and apply stronger sign-in policies for internal and external users."
+---
+
+Two-factor authentication (2FA) is one of the most effective steps you can take to protect your workspace from unauthorized access. Even if a team member's password is compromised, 2FA requires a second verification step — such as a code from an authenticator app — before granting entry. Pharen Hub lets you enable 2FA for your entire workspace and enforce it as a requirement, so no member can skip it. You can also apply differentiated sign-in policies for internal staff versus external collaborators.
+
+## How 2FA Works in Pharen Hub
+
+When 2FA is enabled, members complete their normal sign-in (email and password, or SSO) and are then prompted for a second factor. Pharen Hub supports two types of second factors:
+
+<CardGroup cols={2}>
+  <Card title="Authenticator App (TOTP)" icon="mobile-screen">
+    Members link an authenticator app — such as Google Authenticator, Authy, or 1Password — to their Pharen Hub account. The app generates a time-based six-digit code that refreshes every 30 seconds.
+  </Card>
+  <Card title="Email OTP" icon="envelope">
+    A one-time passcode is sent to the member's verified email address at each sign-in. This is a convenient fallback option and the default second factor when members first enroll.
+  </Card>
+</CardGroup>
+
+<Note>
+  Authenticator app (TOTP) is the stronger option. Email OTP is convenient but depends on the security of the member's email account. For high-security workspaces, consider requiring TOTP for all members using the policy settings described below.
+</Note>
+
+## Enabling 2FA for Your Workspace
+
+<Steps>
+  <Step title="Open Security Settings">
+    Go to **Workspace Settings → Security & Admin → Two-Factor Authentication**. The page shows your current 2FA policy status and a list of members who have (or haven't) enrolled.
+  </Step>
+  <Step title="Enable 2FA at the workspace level">
+    Toggle **Enable Two-Factor Authentication** to on. At this point, 2FA is available to all members — they can set it up voluntarily — but it isn't enforced yet. This gives members a window to enroll before enforcement begins.
+  </Step>
+  <Step title="Set the enrollment period">
+    Choose how long members have to enroll before 2FA becomes mandatory. Options range from **Immediate** (enforce now) to **7 days**, **14 days**, or **30 days**. During this window, members who haven't enrolled see a persistent banner prompting them to set up 2FA, but can still access the workspace.
+  </Step>
+  <Step title="Enable enforcement">
+    Toggle **Require 2FA for all members** to on and confirm your choice. Once the enrollment window closes, any member who has not enrolled in 2FA will be redirected to the 2FA setup flow at their next sign-in and must complete it before accessing the workspace.
+  </Step>
+</Steps>
+
+<Warning>
+  Before enabling enforcement, verify that **your own account** has 2FA set up. If you lock yourself out by enforcing 2FA before enrolling, you'll need to contact Pharen Hub support to regain access.
+</Warning>
+
+## Setting Up Your Own 2FA (Admin Guide)
+
+As the administrator enabling this policy, you should enroll first so you can guide your team through the process.
+
+<Steps>
+  <Step title="Go to your Account Security settings">
+    Click your avatar in the top-right corner and select **Account Settings → Security**.
+  </Step>
+  <Step title="Click Set Up Two-Factor Authentication">
+    Under the **Two-Factor Authentication** section, click **Set Up**. You'll be prompted to choose your preferred second factor.
+  </Step>
+  <Step title="Choose Authenticator App or Email OTP">
+    - **Authenticator App**: Open your authenticator app, scan the QR code shown on screen, then enter the six-digit code the app generates to confirm the link.
+    - **Email OTP**: Pharen Hub sends a code to your registered email address. Enter it to confirm enrollment.
+  </Step>
+  <Step title="Save your recovery codes">
+    Pharen Hub generates a set of single-use recovery codes. Download or securely store these immediately — they're the only way to access your account if you lose access to your second factor. Each code can only be used once.
+  </Step>
+  <Step title="Confirm enrollment">
+    Click **Finish Setup**. 2FA is now active on your account and will be required at your next sign-in.
+  </Step>
+</Steps>
+
+<Tip>
+  Store recovery codes in a password manager or a secure, offline location — not in the same place as your workspace password. Treat each recovery code like a one-time-use master key to your account.
+</Tip>
+
+## Enforcing 2FA for Specific Member Groups
+
+You can apply differentiated 2FA policies to internal team members and external collaborators, giving you stricter control where it matters most.
+
+<Steps>
+  <Step title="Open the 2FA Policy settings">
+    From **Two-Factor Authentication**, click the **Policies** tab.
+  </Step>
+  <Step title="Set the internal members policy">
+    Under **Internal Members**, choose the required second factor type:
+    - **Any method** — members can use either authenticator app or email OTP
+    - **Authenticator app only** — requires the stronger TOTP method; email OTP alone is not accepted
+  </Step>
+  <Step title="Set the external collaborators policy">
+    External collaborators (guests and contractors) can have a separate policy. Common configurations:
+    - Require the same 2FA standard as internal members for maximum security
+    - Require 2FA but allow email OTP, accommodating collaborators who may not use a company-managed device
+    - Enforce a shorter session duration so external users must re-authenticate more frequently
+  </Step>
+  <Step title="Configure session duration">
+    Under **Session Settings**, set how long an authenticated session lasts before 2FA is required again:
+    - **Per session** — 2FA is required every time the member signs in
+    - **Every 24 hours** — 2FA is re-prompted once per day, regardless of session activity
+    - **Every 7 days** — a balance between security and convenience for trusted devices
+    - **Every 30 days** — suitable for low-risk internal users on managed devices
+    
+    You can set different session durations for internal members and external collaborators.
+  </Step>
+  <Step title="Save the policy">
+    Click **Save Policy**. Changes apply to all future sign-in events. Current sessions are not terminated, but the new policy applies at the next re-authentication.
+  </Step>
+</Steps>
+
+## Managing 2FA Enrollment Across Your Team
+
+The **2FA Status** list on the Two-Factor Authentication page shows every workspace member and their current enrollment state. Use this to monitor adoption and take action where needed.
+
+<Steps>
+  <Step title="Identify unenrolled members">
+    Members with **Not Enrolled** status haven't yet set up 2FA. If enforcement is approaching, these members will be blocked at sign-in. Sort the list by status to see all unenrolled members at a glance.
+  </Step>
+  <Step title="Send enrollment reminders">
+    Select unenrolled members using the checkboxes and click **Send Reminder**. Pharen Hub sends them an email with instructions for setting up 2FA and a link to their Account Security settings.
+  </Step>
+  <Step title="Reset 2FA for a member">
+    If a member has lost access to their authenticator app or recovery codes, you can reset their 2FA as an admin. Click the member's name, then click **Reset 2FA**. This removes their current second-factor enrollment and sends them a link to set up a new one. Their account is temporarily accessible without 2FA until they complete the new setup — keep this window short.
+  </Step>
+  <Step title="View sign-in history">
+    Click any member's name to see their recent sign-in history, including the timestamp, IP address, and whether 2FA was completed for each session. Use this to identify suspicious activity, such as sign-ins from unusual locations.
+  </Step>
+</Steps>
+
+<Info>
+  When you reset a member's 2FA, the event is logged in the Audit Log with your admin account as the actor, the timestamp, and the affected member. This ensures there's always a record of administrative interventions in sign-in security.
+</Info>
+
+## Account Security Best Practices
+
+<Accordion title="Require authenticator apps for admin accounts">
+  Admin accounts have the highest level of access in your workspace. Require all admins to use an authenticator app (TOTP) rather than email OTP. Set this in **Policies** by creating a custom policy group for your Admin role and selecting **Authenticator app only**.
+</Accordion>
+
+<Accordion title="Set shorter session durations for external collaborators">
+  External collaborators typically access your workspace from personal devices that may not be managed by your IT policies. Reducing the session duration — for example, to 24 hours — limits the window of exposure if an external user's device is compromised without invalidating your internal team's longer-lived sessions.
+</Accordion>
+
+<Accordion title="Audit sign-in events regularly">
+  Periodically review the sign-in history for admin accounts and high-privilege members. Look for sign-ins from unfamiliar IP addresses or geographic locations that don't match your team's normal patterns. You can export sign-in history from the **Audit Log** for offline analysis.
+</Accordion>
+
+<Accordion title="Combine 2FA with SSO for maximum protection">
+  If your organization uses Single Sign-On (SSO), you can require that SSO authentication also passes through your identity provider's own 2FA policies before Pharen Hub grants access. This means members authenticate through your IdP (which enforces MFA) and Pharen Hub verifies the session, giving you a layered security model.
+</Accordion>
+
+<Accordion title="Educate your team on phishing and social engineering">
+  2FA significantly raises the bar for account compromise, but it doesn't eliminate phishing risk entirely. Brief your team on recognizing phishing attempts that try to capture both passwords and 2FA codes in real time. Remind members that Pharen Hub support will never ask for their 2FA codes.
+</Accordion>
+
+<Accordion title="Keep recovery codes in a safe place">
+  Recovery codes are the safety net when a member loses their second factor — but they're also a potential attack vector if stolen. Advise members to store recovery codes in a password manager, not in notes apps, email, or messaging platforms. If a member suspects their recovery codes have been compromised, they should generate new ones immediately from **Account Settings → Security → Recovery Codes → Regenerate**.
+</Accordion>
