@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "almond",
+  "theme": "aspen",
   "name": "Pharen",
   "description": "Documentation for Pharen Hub — the AI workspace that unifies docs, lists, channels, mail, and agents so your team can automate workflows and move faster.",
   "colors": {
