@@ -41,16 +41,60 @@
         {
           "anchor": "Pharen.de",
           "icon": "globe",
-          "href": "https://pharen.de/en"
+          "href": "https://pharen.de"
         },
         {
           "anchor": "Contact",
           "icon": "life-buoy",
-          "href": "https://pharen.de/en/contact"
+          "href": "https://pharen.de/en/contacts"
         }
       ]
     },
     "tabs": [
+      {
+        "tab": "General",
+        "pages": [
+          "general/overview.mdx",
+          "general/concepts.mdx"
+        ]
+      },
+      {
+        "tab": "Mobile",
+        "pages": [
+          "mobile/overview.mdx",
+          "mobile/installation.mdx"
+        ]
+      },
+      {
+        "tab": "Workflows",
+        "pages": [
+          "workflows/overview.mdx",
+          "workflows/triggers.mdx",
+          "workflows/actions.mdx"
+        ]
+      },
+      {
+        "tab": "Lists",
+        "pages": [
+          "lists/overview.mdx",
+          "lists/fields.mdx",
+          "lists/views.mdx"
+        ]
+      },
+      {
+        "tab": "Studio",
+        "pages": [
+          "studio/overview.mdx",
+          "studio/getting-started.mdx"
+        ]
+      },
+      {
+        "tab": "Transformation",
+        "pages": [
+          "transformation/overview.mdx",
+          "transformation/pipelines.mdx"
+        ]
+      },
       {
         "tab": "Documentation",
         "groups": [
@@ -62,18 +106,6 @@
               "introduction",
               "quickstart",
               "workspace-setup"
-            ]
-          },
-          {
-            "group": "Pharen Hub",
-            "icon": "layout-dashboard",
-            "pages": [
-              "hub/overview",
-              "hub/docs-and-lists",
-              "hub/channels-and-mail",
-              "hub/ai-agents",
-              "hub/workflows",
-              "hub/mobile-app"
             ]
           },
           {
