@@ -31,25 +31,6 @@
     }
   },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Home",
-          "icon": "house",
-          "href": "/general/overview"
-        },
-        {
-          "anchor": "Pharen.de",
-          "icon": "globe",
-          "href": "https://pharen.de"
-        },
-        {
-          "anchor": "Contact",
-          "icon": "life-buoy",
-          "href": "https://pharen.de/en/contacts"
-        }
-      ]
-    },
     "languages": [
       {
         "language": "en",
