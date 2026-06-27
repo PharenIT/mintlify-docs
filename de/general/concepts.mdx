@@ -1,0 +1,109 @@
+---
+title: "Core concepts"
+sidebarTitle: "Konzepte"
+description: "Lerne die Bausteine von Pharen Hub kennen: Workspaces, Docs, Listen, Workflows, Freigaben und AI Agents."
+---
+
+Pharen Hub ist am einfachsten zu verstehen als gemeinsamer Arbeitsraum.
+
+Dein Team hat weiterhin Dokumente, strukturierte Daten, Kommunikation, Prozesse und Entscheidungen. Der Unterschied ist: Diese Dinge liegen nicht mehr in getrennten Tools. Sie liegen in einem Workspace. Dadurch können Menschen und AI Agents mit demselben Kontext arbeiten.
+
+## Workspace
+
+Ein Workspace ist das Zuhause für ein Team, eine Firma, eine Abteilung oder ein Kundenprojekt.
+
+Er enthält Mitglieder, Rechte, Docs, Listen, Channels, Workflows, AI-Einstellungen und Agents. Viele Teams starten mit einem Workspace. Größere Organisationen nutzen mehrere Workspaces, wenn Kunden, Tochtergesellschaften oder sensible Bereiche getrennt bleiben sollen.
+
+<Tip>
+  Benenne einen Workspace nach dem Team oder Unternehmen, dem die Arbeit gehört. Vermeide Namen wie `Test` oder `Demo`, sobald echte Daten im System liegen.
+</Tip>
+
+## Docs
+
+Docs sind für Wissen in Textform.
+
+Nutze sie für Playbooks, Briefings, Richtlinien, Meeting Notes, Prozessbeschreibungen und Recherche. Ein Doc kann allein stehen. Es wird aber stärker, wenn es Listen, Entscheidungen oder Workflows im selben Workspace referenziert.
+
+Gute Docs beantworten:
+
+- Was machen wir?
+- Warum ist das wichtig?
+- Wer ist verantwortlich?
+- Welche Daten oder Workflows hängen daran?
+
+## Listen
+
+Listen speichern strukturierte Arbeit.
+
+Nutze sie für CRM-Daten, Assets, Rechnungen, Onboarding-Aufgaben, Content-Pipelines, Support-Anfragen oder alles, was dein Team regelmäßig verfolgt. Eine Liste hat Felder, Ansichten, Status, Verantwortliche, Daten und Einträge, die Agents lesen oder aktualisieren können.
+
+<CardGroup cols={2}>
+  <Card title="Docs erklären die Arbeit" icon="file-text">
+    Nutze Docs für Kontext, Entscheidungen, Anleitungen und längeres Wissen.
+  </Card>
+  <Card title="Listen bewegen die Arbeit" icon="list-checks">
+    Nutze Listen für Einträge, Status, Zuständigkeit und wiederholbare operative Daten.
+  </Card>
+</CardGroup>
+
+## Channels und Mail
+
+Channels halten Kommunikation nah an der Arbeit. Sie eignen sich für Projekträume, Team-Updates und kurze Abstimmungen.
+
+Mail verbindet externe Kommunikation mit Workflows. Eine eingehende E-Mail kann Auslöser, Kontext oder Teil des Audit Trails sein.
+
+## Workflows
+
+Workflows machen wiederholbare Prozesse sichtbar und steuerbar.
+
+Ein Workflow kann manuell starten, durch eine E-Mail, eine Listenänderung, einen Zeitplan, einen API Call oder einen Agent. Er kann Freigaben einholen, Einträge aktualisieren, Nachrichten senden, externe Systeme aufrufen und einen Audit Trail schreiben.
+
+Nutze Workflows, wenn ein Prozess Regeln hat:
+
+- Etwas braucht eine Freigabe.
+- Ein Eintrag ändert seinen Status.
+- Eine Person oder ein Team muss informiert werden.
+- Eine wiederholte Aufgabe soll nicht jedes Mal manuell passieren.
+- Ein Agent braucht einen kontrollierten Ausführungspfad.
+
+## Freigaben
+
+Freigaben halten Automatisierung verantwortlich.
+
+Ein Agent oder Workflow kann Arbeit vorbereiten. Sensible Aktionen können trotzdem eine menschliche Entscheidung brauchen. Das ist wichtig bei Rechnungen, Signaturen, Kundenkommunikation, Zugriffsrechten und allem mit rechtlicher oder finanzieller Wirkung.
+
+<Note>
+  Ziel ist nicht, Menschen aus dem Prozess zu entfernen. Ziel ist, wiederholte Koordination zu entfernen und Verantwortung klar zu halten.
+</Note>
+
+## AI Assistants und Agents
+
+AI Assistants sind interaktiv. Du fragst, sie antworten oder helfen dir bei einer Aufgabe.
+
+AI Agents sind konfigurierte Worker. Sie haben Anweisungen, Zugriff, Tools und eine Aufgabe. Sie können manuell, geplant oder aus Workflows gestartet werden.
+
+Wichtig ist der Kontext. Ein guter Agent braucht mehr als einen Prompt. Er braucht die richtigen Docs, Listeneinträge, Rechte, Freigaben und vorherige Entscheidungen.
+
+## Wie alles zusammenspielt
+
+Ein typischer Ablauf sieht so aus:
+
+<Steps>
+  <Step title="Eine Anfrage kommt rein">
+    Eine Kundenmail, ein Listeneintrag, ein Formular oder eine manuelle Aufgabe startet den Prozess.
+  </Step>
+  <Step title="Kontext wird gesammelt">
+    Ein Workflow oder Agent liest die passenden Docs, Listeneinträge und vorherigen Aktivitäten.
+  </Step>
+  <Step title="Arbeit wird vorbereitet">
+    Der Agent entwirft eine Antwort, aktualisiert einen Eintrag, extrahiert Daten oder schlägt den nächsten Schritt vor.
+  </Step>
+  <Step title="Ein Mensch gibt frei">
+    Wenn es sensibel wird, fragt der Workflow die richtige Person nach einer Entscheidung.
+  </Step>
+  <Step title="Das System dokumentiert den Schritt">
+    Aktion, Entscheidung und Kontext bleiben im Workspace sichtbar.
+  </Step>
+</Steps>
+
+Die Produktidee in einem Satz: gemeinsamer Kontext, kontrollierte Ausführung, sichtbare Arbeit.

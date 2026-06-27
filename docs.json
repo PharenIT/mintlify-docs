@@ -50,109 +50,141 @@
         }
       ]
     },
-    "tabs": [
+    "languages": [
       {
-        "tab": "General",
-        "pages": [
-          "general/overview.mdx",
-          "general/concepts.mdx"
-        ]
-      },
-      {
-        "tab": "Mobile",
-        "pages": [
-          "mobile/overview.mdx",
-          "mobile/installation.mdx"
-        ]
-      },
-      {
-        "tab": "Workflows",
-        "pages": [
-          "workflows/overview.mdx",
-          "workflows/triggers.mdx",
-          "workflows/actions.mdx"
-        ]
-      },
-      {
-        "tab": "Lists",
-        "pages": [
-          "lists/overview.mdx",
-          "lists/fields.mdx",
-          "lists/views.mdx"
-        ]
-      },
-      {
-        "tab": "Studio",
-        "pages": [
-          "studio/overview.mdx",
-          "studio/getting-started.mdx"
-        ]
-      },
-      {
-        "tab": "Transformation",
-        "pages": [
-          "transformation/overview.mdx",
-          "transformation/pipelines.mdx"
-        ]
-      },
-      {
-        "tab": "Documentation",
-        "groups": [
+        "language": "en",
+        "default": true,
+        "tabs": [
           {
-            "group": "Get Started",
-            "icon": "rocket",
-            "expanded": true,
+            "tab": "General",
             "pages": [
-              "introduction",
-              "quickstart",
-              "workspace-setup"
+              "general/overview.mdx",
+              "general/concepts.mdx",
+              "general/local-setup.mdx"
             ]
           },
           {
-            "group": "Security & Admin",
-            "icon": "shield",
+            "tab": "Mobile",
             "pages": [
-              "admin/roles-and-permissions",
-              "admin/budget-controls",
-              "admin/ai-model-policies",
-              "admin/two-factor-auth"
+              "mobile/overview.mdx",
+              "mobile/installation.mdx"
             ]
           },
           {
-            "group": "Plans & Billing",
-            "icon": "credit-card",
+            "tab": "Workflows",
             "pages": [
-              "billing/plans",
-              "billing/ai-credits",
-              "billing/faq"
+              "workflows/overview.mdx",
+              "workflows/triggers.mdx",
+              "workflows/actions.mdx"
+            ]
+          },
+          {
+            "tab": "Lists",
+            "pages": [
+              "lists/overview.mdx",
+              "lists/fields.mdx",
+              "lists/views.mdx"
+            ]
+          },
+          {
+            "tab": "Studio",
+            "pages": [
+              "studio/overview.mdx",
+              "studio/getting-started.mdx"
+            ]
+          },
+          {
+            "tab": "Transformation",
+            "pages": [
+              "transformation/overview.mdx",
+              "transformation/pipelines.mdx"
+            ]
+          },
+          {
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "Get Started",
+                "icon": "rocket",
+                "expanded": true,
+                "pages": [
+                  "introduction",
+                  "quickstart",
+                  "workspace-setup"
+                ]
+              },
+              {
+                "group": "Security & Admin",
+                "icon": "shield",
+                "pages": [
+                  "admin/roles-and-permissions",
+                  "admin/budget-controls",
+                  "admin/ai-model-policies",
+                  "admin/two-factor-auth"
+                ]
+              },
+              {
+                "group": "Plans & Billing",
+                "icon": "credit-card",
+                "pages": [
+                  "billing/plans",
+                  "billing/ai-credits",
+                  "billing/faq"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Overview",
+                "icon": "book-open",
+                "expanded": true,
+                "pages": [
+                  "api-reference/introduction",
+                  "api-reference/authentication"
+                ]
+              },
+              {
+                "group": "Resources",
+                "icon": "layers",
+                "pages": [
+                  "api-reference/pages/list",
+                  "api-reference/pages/create",
+                  "api-reference/pages/read",
+                  "api-reference/pages/update",
+                  "api-reference/pages/delete"
+                ]
+              }
             ]
           }
         ]
       },
       {
-        "tab": "API Reference",
-        "groups": [
+        "language": "de",
+        "tabs": [
           {
-            "group": "Overview",
-            "icon": "book-open",
-            "expanded": true,
+            "tab": "Allgemein",
             "pages": [
-              "api-reference/introduction",
-              "api-reference/authentication"
-            ]
-          },
-          {
-            "group": "Resources",
-            "icon": "layers",
-            "pages": [
-              "api-reference/pages/list",
-              "api-reference/pages/create",
-              "api-reference/pages/read",
-              "api-reference/pages/update",
-              "api-reference/pages/delete"
+              "de/general/overview.mdx",
+              "de/general/concepts.mdx",
+              "de/general/local-setup.mdx"
             ]
           }
-        ]
+        ],
+        "navbar": {
+          "primary": {
+            "type": "button",
+            "label": "Zum Hub",
+            "href": "https://pharen.de/hub"
+          }
+        },
+        "footer": {
+          "socials": {
+            "linkedin": "https://linkedin.com/company/pharen"
+          }
+        }
       }
     ]
   },

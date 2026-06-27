@@ -1,5 +1,109 @@
 ---
-title: "Core concepts: workspaces, lists, and agents"
+title: "Core concepts"
 sidebarTitle: "Concepts"
-description: "Learn the building blocks of Pharen Hub, including workspaces, lists, records, workflows, and AI agents, and how they fit together day to day."
+description: "Learn the building blocks of Pharen Hub, including workspaces, docs, lists, workflows, approvals, and AI agents."
 ---
+
+Pharen Hub is easiest to understand as a shared operating space for work.
+
+Your team still has documents, structured data, communication, processes, and decisions. The difference is that those things are not scattered across disconnected tools. They live in one workspace, so humans and AI agents can use the same context.
+
+## Workspace
+
+A workspace is the top-level home for a team, company, department, or client environment.
+
+It contains members, permissions, docs, lists, channels, workflows, AI settings, and agents. Most teams start with one workspace. Larger organizations may use multiple workspaces when they need clear separation between clients, subsidiaries, or sensitive environments.
+
+<Tip>
+  Name a workspace after the team or company that owns the work. Avoid temporary names like `Test` or `Demo` once real data enters the system.
+</Tip>
+
+## Docs
+
+Docs are where narrative knowledge lives.
+
+Use them for playbooks, briefs, policies, meeting notes, process descriptions, and research. A doc can stand alone, but it becomes more useful when it references lists, decisions, and workflows inside the same workspace.
+
+Good docs answer:
+
+- What are we doing?
+- Why does this matter?
+- Who owns the next step?
+- Which data or workflow is connected to this?
+
+## Lists
+
+Lists store structured work.
+
+Use them for CRM records, assets, invoices, onboarding tasks, content pipelines, support requests, or anything your team tracks repeatedly. A list can have fields, views, statuses, owners, dates, and records that AI agents can read or update.
+
+<CardGroup cols={2}>
+  <Card title="Docs explain the work" icon="file-text">
+    Use docs for context, decisions, instructions, and long-form knowledge.
+  </Card>
+  <Card title="Lists move the work" icon="list-checks">
+    Use lists for records, states, ownership, and repeatable operational data.
+  </Card>
+</CardGroup>
+
+## Channels and mail
+
+Channels keep team communication close to the work. They are useful for project rooms, team updates, and lightweight discussion.
+
+Mail connects external communication to workflows. Instead of treating email as a separate inbox, Pharen can use incoming messages as triggers, context, or audit trail entries.
+
+## Workflows
+
+Workflows turn repeatable processes into visible, controlled steps.
+
+A workflow can start from a manual action, an email, a list change, a schedule, an API call, or an agent. It can route approvals, update records, send messages, call external systems, and keep an audit trail.
+
+Use workflows when the process has rules:
+
+- Something needs approval.
+- A record changes state.
+- A person or team must be notified.
+- A repeated task should not be done manually every time.
+- An agent needs a controlled execution path.
+
+## Approvals
+
+Approvals are how Pharen keeps automation accountable.
+
+An agent or workflow can prepare work, but sensitive actions can still require a human decision. This is important for invoices, signatures, customer communication, access changes, and anything with financial or legal impact.
+
+<Note>
+  The goal is not to remove humans from the process. The goal is to remove repetitive coordination while keeping responsibility clear.
+</Note>
+
+## AI assistants and agents
+
+AI assistants are interactive. You ask, they answer or help you perform a task.
+
+AI agents are configured workers. They have instructions, access, tools, and a job to complete. They can be triggered manually, scheduled, or started from workflows.
+
+The important part is context. A useful agent needs more than a prompt. It needs access to the right docs, list records, permissions, approvals, and previous decisions.
+
+## How the pieces fit together
+
+Here is a common pattern:
+
+<Steps>
+  <Step title="A request enters the workspace">
+    A customer email, list record, form submission, or manual task starts the process.
+  </Step>
+  <Step title="Context is gathered">
+    A workflow or agent reads the relevant docs, list records, and previous activity.
+  </Step>
+  <Step title="Work is prepared">
+    The agent drafts a response, updates a record, extracts data, or proposes the next action.
+  </Step>
+  <Step title="A human approves when needed">
+    The workflow asks the right person for a decision before anything sensitive happens.
+  </Step>
+  <Step title="The system leaves a trace">
+    The final action, decision, and context remain visible in the workspace.
+  </Step>
+</Steps>
+
+That is the product idea in one line: shared context, controlled execution, visible work.

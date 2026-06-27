@@ -6,6 +6,19 @@
   --default-border-color: var(--gray-800);
 }
 
+#navbar {
+  min-height: 76px;
+  padding-top: 1rem !important;
+  padding-bottom: 0.9rem !important;
+}
+
+@media (min-width: 1024px) {
+  #navbar {
+    padding-left: 1.75rem !important;
+    padding-right: 1.75rem !important;
+  }
+}
+
 #sidebar .nav-dropdown-trigger {
   border: none !important;
   background: transparent !important;
@@ -144,6 +157,6 @@ body:has([data-product-guide-index]) #sidebar a.nav-anchor[href='/'] svg {
 }
 
 img.nav-logo {
-  max-width: 140px;
+  max-width: 148px;
   height: auto;
 }

@@ -1,0 +1,209 @@
+---
+title: "Local setup and contributing"
+sidebarTitle: "Local setup"
+description: "Set up the Pharen monorepo locally, run quality checks, and contribute changes with the same guardrails used by agents and maintainers."
+---
+
+This page is for people working on the Pharen Hub codebase.
+
+The repo is a Django, Celery, PostgreSQL, Nuxt, Vue, TypeScript, Tailwind, and Nx monorepo. That sounds like a lot, so the local workflow is deliberately simple: use Make targets, keep changes scoped, and let Nx handle the frontend task graph.
+
+## Repository layout
+
+The app repo is `PharenIT/ELEV8-Labs`.
+
+```text
+src/apps/app-server/        Django backend, API, Celery tasks, tests
+src/apps/hub/               Nuxt Hub app
+src/apps/realtime-service/  Realtime collaboration service
+src/packages/               Shared frontend packages
+src/nx.json                 Nx workspace configuration
+Makefile                    Main developer command surface
+.quality-rules.json         File and symbol size limits
+scripts/quality-guardrails.mjs
+```
+
+## Core rule
+
+Use Make targets from the repo root.
+
+```bash
+make up
+make down
+make restart
+make logs
+make lint
+make test
+make quality
+```
+
+Do not call raw Docker, pnpm, uv, pytest, or Nx commands unless you are debugging the wrapper itself. The Makefile exists because the repo has Docker services, local Node tooling, backend virtual environments, and Nx targets that need to stay aligned.
+
+## First local run
+
+<Steps>
+  <Step title="Install prerequisites">
+    Use Node 22, pnpm 9, Python 3.12, Docker, and Docker Compose.
+
+    If you use `nvm`, install the version from the repo `.nvmrc` before installing frontend dependencies.
+  </Step>
+  <Step title="Create the environment file">
+    Copy the example environment file if your local checkout does not have one yet.
+
+    ```bash
+    cp .env.example .env
+    ```
+  </Step>
+  <Step title="Start the stack">
+    Start the local services with:
+
+    ```bash
+    make up
+    ```
+  </Step>
+  <Step title="Run migrations">
+    Prepare the database:
+
+    ```bash
+    make migrate
+    ```
+  </Step>
+  <Step title="Serve the Hub app">
+    For local frontend development:
+
+    ```bash
+    TMPDIR=/tmp make serve
+    ```
+
+    The short `TMPDIR` avoids a macOS Nuxt/Vite socket path issue where the dev server can otherwise return HTTP 500.
+  </Step>
+</Steps>
+
+## Fast development loop
+
+Use the smallest useful check while coding.
+
+For frontend packages:
+
+```bash
+make nx PKG=@pharen/chat T=test
+make nx PKG=@pharen/chat T=lint
+make nx PKG=@pharen/chat T=typecheck
+```
+
+For backend changes:
+
+```bash
+make test-backend-file FILE=api/agents/tests/test_run_service.py
+make test-backend-paths PATHS="api/agents api/workspace"
+```
+
+For a committed branch where Nx can compare against a base:
+
+```bash
+make affected B=origin/test H=HEAD
+```
+
+Use the full selective handoff check before finishing:
+
+```bash
+make quality
+```
+
+## Quality guardrails
+
+Pharen has executable rules for file size and Python symbol size. They exist because agents and humans both tend to make files grow when pressure is high.
+
+Run them with:
+
+```bash
+make quality-rules
+```
+
+This calls the Nx target:
+
+```bash
+cd src
+pnpm exec nx run pharen-hub:quality-rules
+```
+
+The target runs `scripts/quality-guardrails.mjs` and reads `.quality-rules.json`.
+
+### How the rule model works
+
+Each rule has two levels:
+
+- `target`: preferred size. Going above it prints a warning.
+- `max`: hard ceiling. New code above it fails.
+
+Existing files that already exceed a hard limit can be touched only if they do not get larger. This keeps legacy debt from blocking every change while still stopping files from growing forever.
+
+## Size expectations
+
+Default expectations:
+
+- Backend production files stay near 300 lines and below 500 lines.
+- Backend functions stay below 40 lines.
+- Backend classes stay below 200 lines.
+- Vue files stay below 500 lines.
+- Frontend composables and services stay below 300 lines.
+- Frontend stores stay below 400 lines.
+- Test files may be larger, but should still be split by behavior or contract.
+
+Split by responsibility, not by arbitrary line count.
+
+## Where code belongs
+
+Backend changes should follow this path:
+
+```text
+model -> serializer -> service -> view -> url -> test -> migrate
+```
+
+Use these boundaries:
+
+- Views handle request and response details.
+- Services own writes and side effects.
+- Selectors own reads and query shaping.
+- Tasks own async execution and retry behavior.
+- Tests cover permissions, tenant scope, validation, status codes, and response contracts.
+
+Frontend changes should follow this path:
+
+```text
+types -> mapper/service/composable -> component -> page
+```
+
+Use these boundaries:
+
+- Services call APIs and external systems only.
+- Mappers convert API shape to frontend shape.
+- Composables own state and user actions.
+- Components render UI and emit events.
+- Pages compose route-level data and layout.
+
+## Contributing checklist
+
+Before opening a pull request or handing work to another maintainer:
+
+<Steps>
+  <Step title="Keep the change scoped">
+    Avoid unrelated refactors. If a large legacy file needs splitting, do it around a real responsibility boundary.
+  </Step>
+  <Step title="Run targeted checks">
+    Run the smallest frontend or backend checks that match the changed area.
+  </Step>
+  <Step title="Run quality rules">
+    Run `make quality-rules` when you add files, split files, or touch already large modules.
+  </Step>
+  <Step title="Run handoff checks">
+    Run `make quality` before handoff. Use `QUALITY_FORCE_ALL=1 make quality` for wide dependency, package, or config changes.
+  </Step>
+  <Step title="Document local noise">
+    If a recurring local failure is unrelated to the change, document it in `.Agents.md` so the next developer or agent does not debug the same issue again.
+  </Step>
+</Steps>
+
+<Note>
+  Specialized review agents are opt-in. Use quality, security, performance, or pre-push review agents only when the user explicitly asks for that review gate or the work is being pushed or opened as a pull request.
+</Note>
