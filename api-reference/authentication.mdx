@@ -1,26 +1,29 @@
 ---
 title: "Pharen API Authentication: API Keys and Bearer Tokens"
 sidebarTitle: "Authentication"
-description: "Authenticate every Pharen API request with a Bearer token API key. Learn how to generate your key and attach it to requests in any language."
+description: "Authenticate Pharen API requests with Bearer token API keys or the X-API-Key header."
 ---
 
 Every request you make to the Pharen API must be authenticated. The API uses **Bearer token authentication** — you include a long-lived API key in the `Authorization` header of each request. Without a valid key, the API returns a `401 Unauthorized` response and does not process your request.
 
-## Generating an API Key
+## Generate an API key
 
 You manage your API keys from inside the Pharen Hub dashboard:
 
-1. Sign in to [app.pharen.de](https://app.pharen.de).
+1. Sign in to [pharen.app](https://pharen.app).
 2. Navigate to **Settings → API Keys** in the left sidebar.
-3. Click **Generate New Key**.
+3. Click **New API Key**.
 4. Give your key a descriptive name (e.g., `ci-pipeline` or `data-export-script`).
-5. Copy the key immediately — it is only shown once in full at creation time.
+5. Choose an access target and scopes.
+6. Copy the key immediately — it is only shown once in full at creation time.
 
 <Warning>
   Treat your API key like a password. Anyone who holds it can make API calls on behalf of your workspace. Do not commit keys to source control, log them, or expose them in client-side code. Use environment variables or a secrets manager instead.
 </Warning>
 
-## Using Your API Key
+For a full walkthrough of key scopes, team targets, rotation, and storage, see [API keys](/api-reference/api-keys).
+
+## Use your API key
 
 Pass your API key as a Bearer token in the `Authorization` header of every HTTP request:
 
@@ -78,6 +81,12 @@ print(data)
 
 </CodeGroup>
 
+If your HTTP client cannot set a Bearer token, send the same key through `X-API-Key`:
+
+```bash
+X-API-Key: YOUR_API_KEY
+```
+
 <Info>
   In the examples above, the API key is read from an environment variable (`PHAREN_API_KEY`). This is the recommended approach — it keeps secrets out of your codebase and makes rotating keys straightforward.
 </Info>
@@ -111,6 +120,8 @@ If a key is compromised or no longer needed, revoke it immediately from **Settin
   Rotating keys periodically is a good security practice, even if you have no reason to suspect a compromise. Consider setting a reminder to rotate production keys every 90 days.
 </Note>
 
-## Key Scopes and Permissions
+## Key scopes and permissions
 
-API keys inherit the permissions of the workspace member who created them. If that member's role is changed or their account is deactivated, all keys they created will reflect the updated permissions (or stop working, in the case of deactivation). For production integrations, it's best practice to create keys under a dedicated service account with only the permissions your integration requires.
+API keys combine explicit key scopes with the permissions of the workspace member who created them. If that member's role is changed or their account is deactivated, all keys they created reflect the updated permissions or stop working.
+
+For production integrations, create keys under a dedicated service account with only the scopes your integration requires. See the [API keys scope reference](/api-reference/api-keys#scope-reference) for the full list.

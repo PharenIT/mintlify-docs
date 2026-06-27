@@ -1,0 +1,131 @@
+---
+title: "API-Keys"
+sidebarTitle: "API-Keys"
+description: "Erstelle, begrenze, speichere, rotiere und widerrufe API-Keys für programmatischen Zugriff auf Pharen Hub."
+---
+
+API-Keys geben vertrauenswürdigen Skripten, internen Tools und Backend-Services Zugriff auf Pharen Hub, ohne dass sich ein Mensch interaktiv anmelden muss. Erstelle Keys für konkrete Automatisierungen, vergib nur die nötigen Rechte und rotiere sie, wenn sich Verantwortung oder Risiko ändern.
+
+<Warning>
+  Behandle API-Keys wie Passwörter. Lege sie nicht im Quellcode ab, nutze sie nicht in Client-Code und schreibe sie nicht in Logs.
+</Warning>
+
+## Key erstellen
+
+Du erstellst API-Keys direkt in Pharen Hub.
+
+<Steps>
+  <Step title="API-Key-Einstellungen öffnen">
+    Gehe in deinem Workspace zu **Einstellungen → API-Keys**.
+  </Step>
+  <Step title="Key benennen">
+    Wähle einen kurzen, eindeutigen Namen wie `calendar-sync-production` oder `docs-import-worker`.
+  </Step>
+  <Step title="Zielbereich wählen">
+    Wähle **Ganzer Workspace** für workspaceweite Automatisierungen oder **Ausgewählte Teams**, wenn die Integration nur in bestimmten Teams funktionieren soll.
+  </Step>
+  <Step title="Berechtigungen auswählen">
+    Vergib nur die Rechte, die die Integration braucht. Listen, Docs, Kalender, Workflows und Agents können separat berechtigt werden.
+  </Step>
+  <Step title="Key einmal kopieren">
+    Kopiere den generierten Key sofort. Pharen zeigt den vollständigen Key nur einmal an.
+  </Step>
+</Steps>
+
+## Key verwenden
+
+Sende den Key bei jeder Anfrage mit. Bearer-Authentifizierung wird empfohlen:
+
+```bash
+curl https://pharen.app/api/calendar/events/ \
+  --request GET \
+  --header "Authorization: Bearer $PHAREN_API_KEY" \
+  --header "Content-Type: application/json"
+```
+
+Du kannst auch den Header `X-API-Key` verwenden, wenn ein Server-to-Server-Tool keinen `Authorization`-Header setzen kann:
+
+```bash
+curl https://pharen.app/api/calendar/events/ \
+  --request GET \
+  --header "X-API-Key: $PHAREN_API_KEY"
+```
+
+<Info>
+  API-Keys von Pharen beginnen mit `phk_`. Speichere den vollständigen Wert in einem Secret-Manager oder in einer Umgebungsvariable wie `PHAREN_API_KEY`.
+</Info>
+
+## Berechtigungsstufen
+
+Listen, Docs und Kalender nutzen vier Berechtigungsstufen.
+
+| Stufe | Enthaltene Scopes | Geeignet für |
+| --- | --- | --- |
+| Keine | Keine Scopes | Keys, die keinen Zugriff auf diese Ressource haben sollen. |
+| Lesen | `resource:read` | Reports, Sync-Jobs, Exporte und read-only Dashboards. |
+| Schreiben | `resource:read`, `resource:create`, `resource:update` | Importe und bidirektionale Syncs, die keine Daten löschen sollen. |
+| Vollzugriff | `resource:read`, `resource:create`, `resource:update`, `resource:delete` | Administrative Jobs, die Daten entfernen dürfen. |
+
+Workflows und Agents nutzen gezielte Ausführungsrechte.
+
+| Ressource | Lesen | Ausführen |
+| --- | --- | --- |
+| Workflows | `workflows:read` | `workflows:read`, `workflows:run` |
+| Agents | `agents:read` | `agents:read`, `agents:run` |
+
+## Scope-Referenz
+
+| Scope | Erlaubt |
+| --- | --- |
+| `lists:read` | Gespeicherte Listendaten, Felder, Zeilen, Zellen und Ansichten lesen. |
+| `lists:create` | Neue Listen erstellen. |
+| `lists:update` | Listen, Felder, Zeilen, Zellen, Ansichten und Freigabedaten aktualisieren. |
+| `lists:delete` | Listen oder Listeneinträge löschen. |
+| `docs:read` | Dokumente, Sammlungen, Versionen, Dateien und Zugriffsmetadaten lesen. |
+| `docs:create` | Dokumente und Sammlungen erstellen. |
+| `docs:update` | Dokumente, Sammlungen, Dateien, Freigaben, Versionen und Aktivitätslinks aktualisieren. |
+| `docs:delete` | Dokumente und Sammlungen löschen oder wiederherstellen. |
+| `calendar:read` | Kalenderquellen, Ereignisse und Exporte lesen. |
+| `calendar:create` | Kalenderquellen, Ereignisse und Importe erstellen. |
+| `calendar:update` | Kalenderquellen und Ereignisse aktualisieren. |
+| `calendar:delete` | Kalenderquellen und Ereignisse löschen. |
+| `workflows:read` | Workflow-Definitionen, Versionen, Validierungsergebnisse und Ausführungspläne lesen. |
+| `workflows:run` | Workflows ausführen. Streaming-Ausführung benötigt zusätzlich Streaming-Zugriff auf dem Key. |
+| `agents:read` | Agents, Katalogdaten, Tools, Unterhaltungen und Logs lesen. |
+| `agents:run` | Agent-Chat-Anfragen senden oder aktive Agent-Läufe abbrechen. |
+
+<Note>
+  Ein Key kann nur ausführen, was seine Scopes und die Berechtigungen des erstellenden Kontos erlauben. Verliert die erstellende Person Zugriff, verlieren ihre Keys diesen Zugriff ebenfalls.
+</Note>
+
+## Workspace- und Team-Scope
+
+Jeder Key gehört zu einem Workspace. Ein workspaceweiter Key kann innerhalb dieses Workspaces überall arbeiten, wo Scopes und Berechtigungen der erstellenden Person es erlauben.
+
+Team-begrenzte Keys sind strenger. Sie greifen nur bei Anfragen, die eines der ausgewählten Teams adressieren. Nutze Team-Scope für produktive Automatisierungen, die einem Team oder Bereich gehören.
+
+## Ablauf und Rotation
+
+Ein Ablaufdatum ist optional, aber für temporäre Jobs und externe Integrationen empfohlen. Für dauerhafte produktive Jobs solltest du Keys regelmäßig rotieren.
+
+1. Erstelle einen Ersatz-Key mit denselben oder engeren Scopes.
+2. Hinterlege den neuen Key im Secret-Manager.
+3. Prüfe, ob die Integration mit dem neuen Key funktioniert.
+4. Widerrufe den alten Key unter **Einstellungen → API-Keys**.
+
+## Häufige Fehler
+
+| Status | Bedeutung | Lösung |
+| --- | --- | --- |
+| `401 Unauthorized` | Der Key fehlt, ist fehlerhaft, abgelaufen, widerrufen oder ungültig. | Prüfe Header, Secret-Wert und Key-Status. |
+| `403 Forbidden` | Der Key ist gültig, hat aber nicht den nötigen Scope oder Zielbereich. | Ergänze den fehlenden Scope, wähle das richtige Team oder nutze einen anderen Key. |
+| `404 Not Found` | Die Zielressource ist für die erstellende Person nicht sichtbar. | Prüfe, ob die Ressource existiert und die erstellende Person noch Zugriff hat. |
+
+## Best Practices
+
+- Erstelle einen Key pro Integration oder Umgebung.
+- Benenne Keys nach Job und Umgebung, nicht nach Person.
+- Nutze **Lesen** oder **Schreiben** statt **Vollzugriff**, wenn Löschen nicht nötig ist.
+- Nutze Team-Scope, wenn eine Automatisierung zu einem einzelnen Team gehört.
+- Speichere Keys in einem Secret-Manager.
+- Widerrufe nicht mehr genutzte Keys sofort.

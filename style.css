@@ -1,5 +1,7 @@
 :root {
   --default-border-color: var(--gray-200);
+  --pharen-primary: #158065;
+  --pharen-primary-hover: #106c55;
 }
 
 html,
@@ -26,38 +28,39 @@ body {
 }
 
 #topbar-cta-button > a {
-  color: rgb(17 24 39) !important;
+  color: #ffffff !important;
 }
 
 #topbar-cta-button > a > span.absolute {
-  background: #ffffff !important;
-  border: 1px solid rgb(209 213 219) !important;
+  background: var(--pharen-primary) !important;
+  border: 1px solid rgb(255 255 255 / 0.14) !important;
   border-radius: 0.75rem !important;
   opacity: 1 !important;
+  box-shadow: 0 8px 22px rgb(21 128 101 / 0.18) !important;
 }
 
 #topbar-cta-button > a:hover > span.absolute {
-  background: rgb(249 250 251) !important;
-  border-color: rgb(209 213 219) !important;
+  background: var(--pharen-primary-hover) !important;
+  border-color: rgb(255 255 255 / 0.2) !important;
 }
 
 #topbar-cta-button > a span.z-10,
 #topbar-cta-button > a svg {
-  color: rgb(17 24 39) !important;
+  color: #ffffff !important;
 }
 
 .dark #topbar-cta-button > a {
-  color: rgb(249 250 251) !important;
+  color: #ffffff !important;
 }
 
 .dark #topbar-cta-button > a > span.absolute {
-  background: transparent !important;
-  border-color: rgb(82 82 91) !important;
+  background: var(--pharen-primary) !important;
+  border-color: rgb(255 255 255 / 0.16) !important;
 }
 
 .dark #topbar-cta-button > a:hover > span.absolute {
-  background: rgb(255 255 255 / 0.06) !important;
-  border-color: rgb(113 113 122) !important;
+  background: var(--pharen-primary-hover) !important;
+  border-color: rgb(255 255 255 / 0.24) !important;
 }
 
 .dark #topbar-cta-button > a span.z-10,
