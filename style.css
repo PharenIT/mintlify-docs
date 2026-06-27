@@ -21,13 +21,17 @@ body {
   padding-bottom: 0.125rem;
 }
 
+#navbar .nav-tabs-item > div.absolute {
+  bottom: -0.125rem !important;
+}
+
 #topbar-cta-button > a {
   color: rgb(17 24 39) !important;
 }
 
 #topbar-cta-button > a > span.absolute {
   background: #ffffff !important;
-  border: 1px solid rgb(229 231 235) !important;
+  border: 1px solid rgb(209 213 219) !important;
   border-radius: 0.75rem !important;
   opacity: 1 !important;
 }
@@ -48,7 +52,7 @@ body {
 
 .dark #topbar-cta-button > a > span.absolute {
   background: transparent !important;
-  border-color: rgb(63 63 70) !important;
+  border-color: rgb(82 82 91) !important;
 }
 
 .dark #topbar-cta-button > a:hover > span.absolute {
