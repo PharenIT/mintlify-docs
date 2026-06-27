@@ -26,8 +26,8 @@
     "links": [],
     "primary": {
       "type": "button",
-      "label": "Go to Hub",
-      "href": "https://pharen.de/en/hub"
+      "label": "Pharen.app",
+      "href": "https://pharen.app"
     }
   },
   "navigation": {
@@ -152,13 +152,109 @@
               "de/general/concepts",
               "de/general/local-setup"
             ]
+          },
+          {
+            "tab": "Mobile",
+            "pages": [
+              "de/mobile/overview",
+              "de/mobile/installation"
+            ]
+          },
+          {
+            "tab": "Workflows",
+            "pages": [
+              "de/workflows/overview",
+              "de/workflows/triggers",
+              "de/workflows/actions"
+            ]
+          },
+          {
+            "tab": "Listen",
+            "pages": [
+              "de/lists/overview",
+              "de/lists/fields",
+              "de/lists/views"
+            ]
+          },
+          {
+            "tab": "Studio",
+            "pages": [
+              "de/studio/overview",
+              "de/studio/getting-started"
+            ]
+          },
+          {
+            "tab": "Transformation",
+            "pages": [
+              "de/transformation/overview",
+              "de/transformation/pipelines"
+            ]
+          },
+          {
+            "tab": "Dokumentation",
+            "groups": [
+              {
+                "group": "Start",
+                "icon": "rocket",
+                "expanded": true,
+                "pages": [
+                  "de/introduction",
+                  "de/quickstart",
+                  "de/workspace-setup"
+                ]
+              },
+              {
+                "group": "Sicherheit & Admin",
+                "icon": "shield",
+                "pages": [
+                  "de/admin/roles-and-permissions",
+                  "de/admin/budget-controls",
+                  "de/admin/ai-model-policies",
+                  "de/admin/two-factor-auth"
+                ]
+              },
+              {
+                "group": "Pläne & Abrechnung",
+                "icon": "credit-card",
+                "pages": [
+                  "de/billing/plans",
+                  "de/billing/ai-credits",
+                  "de/billing/faq"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Referenz",
+            "groups": [
+              {
+                "group": "Überblick",
+                "icon": "book-open",
+                "expanded": true,
+                "pages": [
+                  "de/api-reference/introduction",
+                  "de/api-reference/authentication"
+                ]
+              },
+              {
+                "group": "Ressourcen",
+                "icon": "layers",
+                "pages": [
+                  "de/api-reference/pages/list",
+                  "de/api-reference/pages/create",
+                  "de/api-reference/pages/read",
+                  "de/api-reference/pages/update",
+                  "de/api-reference/pages/delete"
+                ]
+              }
+            ]
           }
         ],
         "navbar": {
           "primary": {
             "type": "button",
-            "label": "Zum Hub",
-            "href": "https://pharen.de/hub"
+            "label": "Pharen.app",
+            "href": "https://pharen.app"
           }
         },
         "footer": {
