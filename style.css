@@ -17,20 +17,24 @@ body {
   --default-border-color: var(--gray-800);
 }
 
+#navbar > div:last-child {
+  padding-bottom: 0.125rem;
+}
+
 #topbar-cta-button > a {
   color: rgb(17 24 39) !important;
 }
 
 #topbar-cta-button > a > span.absolute {
   background: #ffffff !important;
-  border: 1px solid rgb(209 213 219) !important;
+  border: 1px solid rgb(229 231 235) !important;
   border-radius: 0.75rem !important;
   opacity: 1 !important;
 }
 
 #topbar-cta-button > a:hover > span.absolute {
   background: rgb(249 250 251) !important;
-  border-color: rgb(156 163 175) !important;
+  border-color: rgb(209 213 219) !important;
 }
 
 #topbar-cta-button > a span.z-10,
@@ -44,12 +48,12 @@ body {
 
 .dark #topbar-cta-button > a > span.absolute {
   background: transparent !important;
-  border-color: rgb(82 82 91) !important;
+  border-color: rgb(63 63 70) !important;
 }
 
 .dark #topbar-cta-button > a:hover > span.absolute {
   background: rgb(255 255 255 / 0.06) !important;
-  border-color: rgb(161 161 170) !important;
+  border-color: rgb(113 113 122) !important;
 }
 
 .dark #topbar-cta-button > a span.z-10,
