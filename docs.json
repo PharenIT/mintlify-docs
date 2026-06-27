@@ -20,16 +20,19 @@
   },
   "api": {
     "mdx": {
-      "server": "https://pharen.app",
+      "server": [
+        "https://pharen.app",
+        "http://localhost:8000"
+      ],
       "auth": {
         "method": "bearer"
       }
     },
     "playground": {
       "display": "interactive",
-      "proxy": true,
-      "url": "full"
+      "proxy": true
     },
+    "url": "full",
     "examples": {
       "languages": ["curl", "javascript", "python"],
       "defaults": "required",
