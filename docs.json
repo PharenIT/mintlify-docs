@@ -8,7 +8,7 @@
     "light": "#0b0b0b",
     "dark": "#dcdcdc"
   },
-  "favicon": "https://media.brand.dev/2eceb334-2b0b-48c5-9412-3ffca0b62690.jpg",
+  "favicon": "/favicon.ico",
   "icons": {
     "library": "lucide"
   },
@@ -36,7 +36,7 @@
         {
           "anchor": "Home",
           "icon": "house",
-          "href": "/"
+          "href": "/general/overview"
         },
         {
           "anchor": "Pharen.de",
@@ -58,46 +58,46 @@
           {
             "tab": "General",
             "pages": [
-              "general/overview.mdx",
-              "general/concepts.mdx",
-              "general/local-setup.mdx"
+              "general/overview",
+              "general/concepts",
+              "general/local-setup"
             ]
           },
           {
             "tab": "Mobile",
             "pages": [
-              "mobile/overview.mdx",
-              "mobile/installation.mdx"
+              "mobile/overview",
+              "mobile/installation"
             ]
           },
           {
             "tab": "Workflows",
             "pages": [
-              "workflows/overview.mdx",
-              "workflows/triggers.mdx",
-              "workflows/actions.mdx"
+              "workflows/overview",
+              "workflows/triggers",
+              "workflows/actions"
             ]
           },
           {
             "tab": "Lists",
             "pages": [
-              "lists/overview.mdx",
-              "lists/fields.mdx",
-              "lists/views.mdx"
+              "lists/overview",
+              "lists/fields",
+              "lists/views"
             ]
           },
           {
             "tab": "Studio",
             "pages": [
-              "studio/overview.mdx",
-              "studio/getting-started.mdx"
+              "studio/overview",
+              "studio/getting-started"
             ]
           },
           {
             "tab": "Transformation",
             "pages": [
-              "transformation/overview.mdx",
-              "transformation/pipelines.mdx"
+              "transformation/overview",
+              "transformation/pipelines"
             ]
           },
           {
@@ -167,9 +167,9 @@
           {
             "tab": "Allgemein",
             "pages": [
-              "de/general/overview.mdx",
-              "de/general/concepts.mdx",
-              "de/general/local-setup.mdx"
+              "de/general/overview",
+              "de/general/concepts",
+              "de/general/local-setup"
             ]
           }
         ],
@@ -188,6 +188,28 @@
       }
     ]
   },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/general/overview",
+      "permanent": false
+    },
+    {
+      "source": "/docs/overview",
+      "destination": "/general/overview",
+      "permanent": false
+    },
+    {
+      "source": "/de",
+      "destination": "/de/general/overview",
+      "permanent": false
+    },
+    {
+      "source": "/de/docs/overview",
+      "destination": "/de/general/overview",
+      "permanent": false
+    }
+  ],
   "footer": {
     "socials": {
       "linkedin": "https://linkedin.com/company/pharen"
