@@ -4,11 +4,11 @@
   "name": "Pharen",
   "description": "Documentation for Pharen Hub — the AI workspace that unifies docs, lists, channels, mail, and agents so your team can automate workflows and move faster.",
   "colors": {
-    "primary": "#7c7c7c",
-    "light": "#0b0b0b",
-    "dark": "#dcdcdc"
+    "primary": "#111111",
+    "light": "#f5f5f5",
+    "dark": "#f5f5f5"
   },
-  "favicon": "https://media.brand.dev/2eceb334-2b0b-48c5-9412-3ffca0b62690.jpg",
+  "favicon": "/favicon.ico",
   "icons": {
     "library": "lucide"
   },
@@ -26,30 +26,11 @@
     "links": [],
     "primary": {
       "type": "button",
-      "label": "Go to Hub",
-      "href": "https://pharen.de/en/hub"
+      "label": "Open Hub",
+      "href": "https://pharen.app"
     }
   },
   "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Home",
-          "icon": "house",
-          "href": "/"
-        },
-        {
-          "anchor": "Pharen.de",
-          "icon": "globe",
-          "href": "https://pharen.de"
-        },
-        {
-          "anchor": "Contact",
-          "icon": "life-buoy",
-          "href": "https://pharen.de/en/contacts"
-        }
-      ]
-    },
     "languages": [
       {
         "language": "en",
@@ -58,46 +39,46 @@
           {
             "tab": "General",
             "pages": [
-              "general/overview.mdx",
-              "general/concepts.mdx",
-              "general/local-setup.mdx"
+              "general/overview",
+              "general/concepts",
+              "general/local-setup"
             ]
           },
           {
             "tab": "Mobile",
             "pages": [
-              "mobile/overview.mdx",
-              "mobile/installation.mdx"
+              "mobile/overview",
+              "mobile/installation"
             ]
           },
           {
             "tab": "Workflows",
             "pages": [
-              "workflows/overview.mdx",
-              "workflows/triggers.mdx",
-              "workflows/actions.mdx"
+              "workflows/overview",
+              "workflows/triggers",
+              "workflows/actions"
             ]
           },
           {
             "tab": "Lists",
             "pages": [
-              "lists/overview.mdx",
-              "lists/fields.mdx",
-              "lists/views.mdx"
+              "lists/overview",
+              "lists/fields",
+              "lists/views"
             ]
           },
           {
             "tab": "Studio",
             "pages": [
-              "studio/overview.mdx",
-              "studio/getting-started.mdx"
+              "studio/overview",
+              "studio/getting-started"
             ]
           },
           {
             "tab": "Transformation",
             "pages": [
-              "transformation/overview.mdx",
-              "transformation/pipelines.mdx"
+              "transformation/overview",
+              "transformation/pipelines"
             ]
           },
           {
@@ -167,9 +148,105 @@
           {
             "tab": "Allgemein",
             "pages": [
-              "de/general/overview.mdx",
-              "de/general/concepts.mdx",
-              "de/general/local-setup.mdx"
+              "de/general/overview",
+              "de/general/concepts",
+              "de/general/local-setup"
+            ]
+          },
+          {
+            "tab": "Mobile",
+            "pages": [
+              "de/mobile/overview",
+              "de/mobile/installation"
+            ]
+          },
+          {
+            "tab": "Workflows",
+            "pages": [
+              "de/workflows/overview",
+              "de/workflows/triggers",
+              "de/workflows/actions"
+            ]
+          },
+          {
+            "tab": "Listen",
+            "pages": [
+              "de/lists/overview",
+              "de/lists/fields",
+              "de/lists/views"
+            ]
+          },
+          {
+            "tab": "Studio",
+            "pages": [
+              "de/studio/overview",
+              "de/studio/getting-started"
+            ]
+          },
+          {
+            "tab": "Transformation",
+            "pages": [
+              "de/transformation/overview",
+              "de/transformation/pipelines"
+            ]
+          },
+          {
+            "tab": "Dokumentation",
+            "groups": [
+              {
+                "group": "Start",
+                "icon": "rocket",
+                "expanded": true,
+                "pages": [
+                  "de/introduction",
+                  "de/quickstart",
+                  "de/workspace-setup"
+                ]
+              },
+              {
+                "group": "Sicherheit & Admin",
+                "icon": "shield",
+                "pages": [
+                  "de/admin/roles-and-permissions",
+                  "de/admin/budget-controls",
+                  "de/admin/ai-model-policies",
+                  "de/admin/two-factor-auth"
+                ]
+              },
+              {
+                "group": "Pläne & Abrechnung",
+                "icon": "credit-card",
+                "pages": [
+                  "de/billing/plans",
+                  "de/billing/ai-credits",
+                  "de/billing/faq"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Referenz",
+            "groups": [
+              {
+                "group": "Überblick",
+                "icon": "book-open",
+                "expanded": true,
+                "pages": [
+                  "de/api-reference/introduction",
+                  "de/api-reference/authentication"
+                ]
+              },
+              {
+                "group": "Ressourcen",
+                "icon": "layers",
+                "pages": [
+                  "de/api-reference/pages/list",
+                  "de/api-reference/pages/create",
+                  "de/api-reference/pages/read",
+                  "de/api-reference/pages/update",
+                  "de/api-reference/pages/delete"
+                ]
+              }
             ]
           }
         ],
@@ -177,7 +254,7 @@
           "primary": {
             "type": "button",
             "label": "Zum Hub",
-            "href": "https://pharen.de/hub"
+            "href": "https://pharen.app"
           }
         },
         "footer": {
@@ -188,6 +265,28 @@
       }
     ]
   },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/general/overview",
+      "permanent": false
+    },
+    {
+      "source": "/docs/overview",
+      "destination": "/general/overview",
+      "permanent": false
+    },
+    {
+      "source": "/de",
+      "destination": "/de/general/overview",
+      "permanent": false
+    },
+    {
+      "source": "/de/docs/overview",
+      "destination": "/de/general/overview",
+      "permanent": false
+    }
+  ],
   "footer": {
     "socials": {
       "linkedin": "https://linkedin.com/company/pharen"
