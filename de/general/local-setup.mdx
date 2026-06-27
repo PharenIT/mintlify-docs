@@ -1,0 +1,209 @@
+---
+title: "Lokales Setup und Contribution"
+sidebarTitle: "Lokales Setup"
+description: "Richte das Pharen Monorepo lokal ein, führe Quality Checks aus und arbeite mit denselben Regeln wie Maintainer und Agents."
+---
+
+Diese Seite ist für alle, die am Pharen Hub Code arbeiten.
+
+Das Repo ist ein Monorepo mit Django, Celery, PostgreSQL, Nuxt, Vue, TypeScript, Tailwind und Nx. Das ist viel Technik. Der lokale Workflow soll trotzdem einfach bleiben: Make-Befehle nutzen, Änderungen klein halten und Nx die Frontend-Tasks steuern lassen.
+
+## Repo-Struktur
+
+Das App-Repo heißt `PharenIT/ELEV8-Labs`.
+
+```text
+src/apps/app-server/        Django Backend, API, Celery Tasks, Tests
+src/apps/hub/               Nuxt Hub App
+src/apps/realtime-service/  Realtime Collaboration Service
+src/packages/               Geteilte Frontend Packages
+src/nx.json                 Nx Workspace Konfiguration
+Makefile                    Hauptoberfläche für lokale Befehle
+.quality-rules.json         Regeln für Datei- und Symbolgrößen
+scripts/quality-guardrails.mjs
+```
+
+## Wichtigste Regel
+
+Nutze Make-Befehle aus dem Repo Root.
+
+```bash
+make up
+make down
+make restart
+make logs
+make lint
+make test
+make quality
+```
+
+Rufe Docker, pnpm, uv, pytest oder Nx nicht direkt auf, außer du debugst den Wrapper selbst. Das Makefile hält Docker-Services, Node-Tooling, Backend-Umgebungen und Nx-Targets zusammen.
+
+## Erstes lokales Setup
+
+<Steps>
+  <Step title="Voraussetzungen installieren">
+    Nutze Node 22, pnpm 9, Python 3.12, Docker und Docker Compose.
+
+    Wenn du `nvm` nutzt, installiere die Version aus der `.nvmrc`, bevor du Frontend-Abhängigkeiten installierst.
+  </Step>
+  <Step title="Environment-Datei erstellen">
+    Kopiere die Beispiel-Datei, falls dein Checkout noch keine `.env` hat.
+
+    ```bash
+    cp .env.example .env
+    ```
+  </Step>
+  <Step title="Stack starten">
+    Starte die lokalen Services:
+
+    ```bash
+    make up
+    ```
+  </Step>
+  <Step title="Migrationen ausführen">
+    Bereite die Datenbank vor:
+
+    ```bash
+    make migrate
+    ```
+  </Step>
+  <Step title="Hub App lokal starten">
+    Für lokale Frontend-Entwicklung:
+
+    ```bash
+    TMPDIR=/tmp make serve
+    ```
+
+    Das kurze `TMPDIR` verhindert auf macOS ein Nuxt/Vite-Socket-Problem, bei dem der Dev Server sonst HTTP 500 zurückgeben kann.
+  </Step>
+</Steps>
+
+## Schneller Entwicklungsloop
+
+Nutze beim Coden den kleinsten sinnvollen Check.
+
+Für Frontend-Packages:
+
+```bash
+make nx PKG=@pharen/chat T=test
+make nx PKG=@pharen/chat T=lint
+make nx PKG=@pharen/chat T=typecheck
+```
+
+Für Backend-Änderungen:
+
+```bash
+make test-backend-file FILE=api/agents/tests/test_run_service.py
+make test-backend-paths PATHS="api/agents api/workspace"
+```
+
+Für einen committed Branch, den Nx mit einer Base vergleichen kann:
+
+```bash
+make affected B=origin/test H=HEAD
+```
+
+Vor Übergabe oder Pull Request:
+
+```bash
+make quality
+```
+
+## Quality Guardrails
+
+Pharen hat ausführbare Regeln für Dateigrößen und Python-Funktions- oder Klassengrößen. Sie existieren, weil große Dateien schnell entstehen, wenn Menschen oder Agents unter Zeitdruck arbeiten.
+
+Starte sie so:
+
+```bash
+make quality-rules
+```
+
+Das ruft ein Nx Target auf:
+
+```bash
+cd src
+pnpm exec nx run pharen-hub:quality-rules
+```
+
+Das Target startet `scripts/quality-guardrails.mjs` und liest `.quality-rules.json`.
+
+### Wie die Regeln funktionieren
+
+Jede Regel hat zwei Werte:
+
+- `target`: gewünschte Größe. Darüber gibt es eine Warnung.
+- `max`: harte Grenze. Neue Änderungen darüber schlagen fehl.
+
+Dateien, die schon vorher zu groß waren, dürfen nur geändert werden, wenn sie nicht noch größer werden. So blockiert alter Code nicht jede Änderung, wächst aber auch nicht weiter.
+
+## Größenregeln
+
+Standard-Erwartungen:
+
+- Backend-Dateien bleiben ungefähr bei 300 Zeilen und unter 500 Zeilen.
+- Backend-Funktionen bleiben unter 40 Zeilen.
+- Backend-Klassen bleiben unter 200 Zeilen.
+- Vue-Dateien bleiben unter 500 Zeilen.
+- Frontend-Composables und Services bleiben unter 300 Zeilen.
+- Frontend-Stores bleiben unter 400 Zeilen.
+- Testdateien dürfen größer sein, sollten aber nach Verhalten oder Verträgen gesplittet werden.
+
+Splitte nach Verantwortung, nicht nach beliebiger Zeilenzahl.
+
+## Wo Code hingehört
+
+Backend-Änderungen folgen diesem Pfad:
+
+```text
+model -> serializer -> service -> view -> url -> test -> migrate
+```
+
+Grenzen:
+
+- Views kümmern sich um Request und Response.
+- Services schreiben Daten und führen Side Effects aus.
+- Selectors lesen Daten und formen Queries.
+- Tasks kümmern sich um async Ausführung und Retries.
+- Tests prüfen Rechte, Tenant Scope, Validierung, Status Codes und Response-Verträge.
+
+Frontend-Änderungen folgen diesem Pfad:
+
+```text
+types -> mapper/service/composable -> component -> page
+```
+
+Grenzen:
+
+- Services sprechen mit APIs und externen Systemen.
+- Mappers wandeln API-Daten in Frontend-Daten um.
+- Composables halten State und User Actions.
+- Components rendern UI und senden Events.
+- Pages verbinden Route, Daten und Layout.
+
+## Contribution-Checkliste
+
+Vor Pull Request oder Übergabe:
+
+<Steps>
+  <Step title="Änderung klein halten">
+    Vermeide fremde Refactors. Wenn eine große Datei gesplittet wird, dann entlang einer echten Verantwortung.
+  </Step>
+  <Step title="Gezielte Checks ausführen">
+    Starte die kleinsten Frontend- oder Backend-Checks, die zum geänderten Bereich passen.
+  </Step>
+  <Step title="Quality Rules ausführen">
+    Starte `make quality-rules`, wenn du Dateien hinzufügst, Dateien splittest oder große Module berührst.
+  </Step>
+  <Step title="Handoff-Checks ausführen">
+    Starte `make quality`. Für breite Dependency-, Package- oder Config-Änderungen nutze `QUALITY_FORCE_ALL=1 make quality`.
+  </Step>
+  <Step title="Lokale Testgeräusche dokumentieren">
+    Wenn ein wiederkehrender lokaler Fehler nichts mit deiner Änderung zu tun hat, dokumentiere ihn in `.Agents.md`.
+  </Step>
+</Steps>
+
+<Note>
+  Review-Agents sind opt-in. Nutze Quality-, Security-, Performance- oder Pre-Push-Review-Agents nur, wenn jemand diesen Review ausdrücklich will oder wenn ein Push beziehungsweise Pull Request vorbereitet wird.
+</Note>
