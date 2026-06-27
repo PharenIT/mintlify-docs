@@ -1,7 +1,7 @@
 ---
 title: "Pharen API Authentication: API Keys and Bearer Tokens"
 sidebarTitle: "Authentication"
-description: "Authenticate Pharen API requests with Bearer token API keys or the X-API-Key header."
+description: "Authenticate every Pharen API request with a Bearer token API key or the X-API-Key header, including curl, Python, and Node.js code examples."
 ---
 
 Every request you make to the Pharen API must be authenticated. The API uses **Bearer token authentication** — you include a long-lived API key in the `Authorization` header of each request. Without a valid key, the API returns a `401 Unauthorized` response and does not process your request.
