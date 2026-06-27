@@ -1,0 +1,49 @@
+---
+title: "Mit Agent chatten"
+sidebarTitle: "Mit Agent chatten"
+description: "Sende eine Nachricht an einen Agent mit einem API-Key."
+api: "POST /api/agents/{agent_uuid}/chat/"
+---
+
+Sendet eine Nachricht an einen Agent. Der Endpunkt streamt die Modellantwort. API-Keys mussen Streaming explizit erlauben, wenn der Client Streaming anfordert.
+
+<Note>
+  Erforderlicher API-Key-Scope: `agents:run`.
+</Note>
+
+## Path-Parameter
+
+<ParamField path="agent_uuid" type="string" required>
+  UUID des Agents.
+</ParamField>
+
+## Body-Parameter
+
+<ParamField body="message" type="string" required>
+  Nachricht an den Agent. Maximale Lange: `32000` Zeichen.
+</ParamField>
+
+<ParamField body="conversation_uuid" type="string">
+  UUID einer bestehenden Unterhaltung. Ohne Wert startet Pharen eine neue Unterhaltung.
+</ParamField>
+
+<ParamField body="model" type="string">
+  Optionales Modell. Ohne Wert nutzt Pharen das Standardmodell des Agents.
+</ParamField>
+
+<ParamField body="enable_thinking" type="boolean">
+  Aktiviert Reasoning, wenn das Modell es unterstutzt.
+</ParamField>
+
+<ParamField body="page_context" type="object">
+  Optionaler JSON-Kontext der aufrufenden Seite.
+</ParamField>
+
+## Beispiel-Body
+
+```json
+{
+  "message": "Fasse die offenen Aufgaben in diesem Workspace zusammen.",
+  "enable_thinking": true
+}
+```

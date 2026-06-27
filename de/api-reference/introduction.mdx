@@ -1,11 +1,32 @@
 ---
-title: "Pharen Hub REST API: Einführung und Grundkonzepte"
+title: "Pharen Hub REST API"
 sidebarTitle: "Einführung"
-description: "Die Pharen REST API verwaltet alle Workspace-Ressourcen programmatisch. Alle Anfragen nutzen JSON und werden über Bearer-Token authentifiziert."
+description: "Nutze API-Keys, um Pharen Hub programmatisch aufzurufen."
 ---
 
-Diese Seite ist in der deutschen Navigation angelegt, damit der Sprachwechsel vollständig ist.
+Die Pharen REST API gibt vertrauenswürdigen Backend-Services, Sync-Jobs und internen Tools Zugriff auf Pharen Hub. Die API-Referenz nutzt den interaktiven Mintlify-Playground, damit du Parameter prüfen, Beispiele generieren und API-Key-Anfragen direkt ausprobieren kannst.
 
-<Note>
-  Die vollständige deutsche Fassung folgt. Bis dahin kannst du die englische Originalseite nutzen: [English version](/api-reference/introduction).
-</Note>
+## Basis-URL
+
+```bash
+https://pharen.app/api
+```
+
+## Authentifizierung
+
+Erstelle unter **Einstellungen -> API-Keys** einen begrenzten Key und sende ihn als Bearer-Token:
+
+```bash
+Authorization: Bearer phk_...
+```
+
+Wenn dein Client keinen `Authorization`-Header setzen kann, nutze stattdessen `X-API-Key`.
+
+<CardGroup cols={2}>
+  <Card title="API-Keys erstellen" icon="key" href="/de/api-reference/api-keys">
+    Lerne, wie Scopes, Team-Ziele, Ablaufdaten und Rotation funktionieren.
+  </Card>
+  <Card title="Kalenderereignisse testen" icon="calendar" href="/de/api-reference/calendar/list-events">
+    Probiere eine read-only Anfrage im interaktiven Playground aus.
+  </Card>
+</CardGroup>

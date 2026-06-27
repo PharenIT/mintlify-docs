@@ -1,0 +1,57 @@
+---
+title: "Chat with agent"
+sidebarTitle: "Chat with agent"
+description: "Send a message to an agent with an API key."
+api: "POST /api/agents/{agent_uuid}/chat/"
+---
+
+Sends a message to an agent. The endpoint streams the model response. API keys must explicitly allow streaming when a streaming response is requested by the client.
+
+<Note>
+  Required API key scope: `agents:run`.
+</Note>
+
+## Path parameters
+
+<ParamField path="agent_uuid" type="string" required>
+  UUID of the agent.
+</ParamField>
+
+## Body parameters
+
+<ParamField body="message" type="string" required>
+  User message for the agent. Maximum length is `32000` characters.
+</ParamField>
+
+<ParamField body="conversation_uuid" type="string">
+  Existing conversation UUID. If omitted, Pharen starts a new conversation.
+</ParamField>
+
+<ParamField body="model" type="string">
+  Optional model override. If omitted, the agent default model is used.
+</ParamField>
+
+<ParamField body="enable_thinking" type="boolean">
+  Whether to enable model reasoning when supported by the selected model.
+</ParamField>
+
+<ParamField body="artifact_mode" type="boolean">
+  Whether the agent should produce an artifact-oriented response.
+</ParamField>
+
+<ParamField body="artifact_category" type="string">
+  Optional artifact category hint.
+</ParamField>
+
+<ParamField body="page_context" type="object">
+  Optional JSON context from the caller's current page.
+</ParamField>
+
+## Example body
+
+```json
+{
+  "message": "Summarize the open tasks for this workspace.",
+  "enable_thinking": true
+}
+```

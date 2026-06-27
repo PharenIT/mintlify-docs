@@ -1,0 +1,57 @@
+---
+title: "Kalenderereignis erstellen"
+sidebarTitle: "Ereignis erstellen"
+description: "Erstelle ein Kalenderereignis mit einem API-Key."
+api: "POST /api/calendar/events/"
+---
+
+Erstellt ein lokales Kalenderereignis. Nutze diesen Endpunkt fur Termin-Automatisierungen und Importe.
+
+<Note>
+  Erforderlicher API-Key-Scope: `calendar:create`.
+</Note>
+
+## Body-Parameter
+
+<ParamField body="calendar_id" type="string" required>
+  UUID des Zielkalenders.
+</ParamField>
+
+<ParamField body="title" type="string">
+  Titel des Ereignisses. Leere Titel sind erlaubt.
+</ParamField>
+
+<ParamField body="starts_at" type="string" required>
+  ISO-8601-Datetime fur den Beginn.
+</ParamField>
+
+<ParamField body="ends_at" type="string" required>
+  ISO-8601-Datetime fur das Ende.
+</ParamField>
+
+<ParamField body="is_all_day" type="boolean">
+  Gibt an, ob das Ereignis ganztagig ist.
+</ParamField>
+
+<ParamField body="location" type="string">
+  Ort des Ereignisses.
+</ParamField>
+
+<ParamField body="conference_url" type="string">
+  Meeting- oder Konferenz-URL.
+</ParamField>
+
+<ParamField body="notes" type="string">
+  Interne Notizen.
+</ParamField>
+
+## Beispiel-Body
+
+```json
+{
+  "calendar_id": "2de9d72d-9077-4cb6-9836-5fc821cf1b71",
+  "title": "Quartalsplanung",
+  "starts_at": "2026-07-03T09:00:00Z",
+  "ends_at": "2026-07-03T10:00:00Z"
+}
+```

@@ -1,0 +1,64 @@
+---
+title: "List calendar events"
+sidebarTitle: "List events"
+description: "Retrieve calendar events visible to the API key."
+api: "GET /api/calendar/events/"
+---
+
+Returns calendar events for the authenticated key. Use this endpoint for sync jobs, dashboards, and reporting tools that need read-only calendar data.
+
+<Note>
+  Required API key scope: `calendar:read`.
+</Note>
+
+## Query parameters
+
+<ParamField query="range_start" type="string">
+  ISO 8601 datetime for the beginning of the event window. If omitted, Pharen uses a bounded default range.
+</ParamField>
+
+<ParamField query="range_end" type="string">
+  ISO 8601 datetime for the end of the event window. Must be after `range_start`.
+</ParamField>
+
+<ParamField query="team_id" type="string">
+  Team UUID for team-scoped keys. Workspace-wide keys can omit this unless the integration is intentionally targeting one team.
+</ParamField>
+
+## Response
+
+<ResponseField name="id" type="string">
+  Event UUID.
+</ResponseField>
+
+<ResponseField name="calendar_id" type="string">
+  UUID of the calendar that owns the event.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+  Event title.
+</ResponseField>
+
+<ResponseField name="starts_at" type="string">
+  Event start time as an ISO 8601 datetime.
+</ResponseField>
+
+<ResponseField name="ends_at" type="string">
+  Event end time as an ISO 8601 datetime.
+</ResponseField>
+
+<ResponseField name="is_all_day" type="boolean">
+  Whether the event spans the full day.
+</ResponseField>
+
+<ResponseField name="location" type="string">
+  Event location, if set.
+</ResponseField>
+
+<ResponseField name="conference_url" type="string">
+  Meeting or conference URL, if set.
+</ResponseField>
+
+<ResponseField name="attendees" type="array">
+  Attendee objects associated with the event.
+</ResponseField>

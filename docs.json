@@ -18,6 +18,24 @@
   "contextual": {
     "options": ["copy", "view", "assistant", "mcp", "add-mcp"]
   },
+  "api": {
+    "mdx": {
+      "server": "https://pharen.app",
+      "auth": {
+        "method": "bearer"
+      }
+    },
+    "playground": {
+      "display": "interactive",
+      "proxy": true,
+      "url": "full"
+    },
+    "examples": {
+      "languages": ["curl", "javascript", "python"],
+      "defaults": "required",
+      "prefill": true
+    }
+  },
   "logo": {
     "light": "https://media.brand.dev/70fa3769-6705-48e9-8340-cef95a902e88.svg",
     "dark": "https://media.brand.dev/de991512-f9de-434e-866d-6c978fec7b16.svg"
@@ -129,14 +147,41 @@
                 ]
               },
               {
-                "group": "Resources",
-                "icon": "layers",
+                "group": "Calendar",
+                "icon": "calendar",
                 "pages": [
-                  "api-reference/pages/list",
-                  "api-reference/pages/create",
-                  "api-reference/pages/read",
-                  "api-reference/pages/update",
-                  "api-reference/pages/delete"
+                  "api-reference/calendar/list-events",
+                  "api-reference/calendar/create-event"
+                ]
+              },
+              {
+                "group": "Lists",
+                "icon": "list",
+                "pages": [
+                  "api-reference/lists/list-lists"
+                ]
+              },
+              {
+                "group": "Docs",
+                "icon": "file-text",
+                "pages": [
+                  "api-reference/docs/list-documents"
+                ]
+              },
+              {
+                "group": "Workflows",
+                "icon": "workflow",
+                "pages": [
+                  "api-reference/workflows/list-workflows",
+                  "api-reference/workflows/run-workflow"
+                ]
+              },
+              {
+                "group": "Agents",
+                "icon": "bot",
+                "pages": [
+                  "api-reference/agents/list-agents",
+                  "api-reference/agents/chat-agent"
                 ]
               }
             ]
@@ -239,14 +284,41 @@
                 ]
               },
               {
-                "group": "Ressourcen",
-                "icon": "layers",
+                "group": "Kalender",
+                "icon": "calendar",
                 "pages": [
-                  "de/api-reference/pages/list",
-                  "de/api-reference/pages/create",
-                  "de/api-reference/pages/read",
-                  "de/api-reference/pages/update",
-                  "de/api-reference/pages/delete"
+                  "de/api-reference/calendar/list-events",
+                  "de/api-reference/calendar/create-event"
+                ]
+              },
+              {
+                "group": "Listen",
+                "icon": "list",
+                "pages": [
+                  "de/api-reference/lists/list-lists"
+                ]
+              },
+              {
+                "group": "Docs",
+                "icon": "file-text",
+                "pages": [
+                  "de/api-reference/docs/list-documents"
+                ]
+              },
+              {
+                "group": "Workflows",
+                "icon": "workflow",
+                "pages": [
+                  "de/api-reference/workflows/list-workflows",
+                  "de/api-reference/workflows/run-workflow"
+                ]
+              },
+              {
+                "group": "Agents",
+                "icon": "bot",
+                "pages": [
+                  "de/api-reference/agents/list-agents",
+                  "de/api-reference/agents/chat-agent"
                 ]
               }
             ]

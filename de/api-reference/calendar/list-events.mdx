@@ -1,0 +1,52 @@
+---
+title: "Kalenderereignisse auflisten"
+sidebarTitle: "Ereignisse listen"
+description: "Rufe Kalenderereignisse ab, die fur den API-Key sichtbar sind."
+api: "GET /api/calendar/events/"
+---
+
+Gibt Kalenderereignisse zuruck, die der authentifizierte Key lesen darf. Nutze diesen Endpunkt fur Sync-Jobs, Dashboards und Reporting-Tools.
+
+<Note>
+  Erforderlicher API-Key-Scope: `calendar:read`.
+</Note>
+
+## Query-Parameter
+
+<ParamField query="range_start" type="string">
+  ISO-8601-Datetime fur den Beginn des Zeitfensters. Ohne Wert nutzt Pharen einen begrenzten Standardbereich.
+</ParamField>
+
+<ParamField query="range_end" type="string">
+  ISO-8601-Datetime fur das Ende des Zeitfensters. Muss nach `range_start` liegen.
+</ParamField>
+
+<ParamField query="team_id" type="string">
+  Team-UUID fur teambegrenzte Keys. Workspaceweite Keys konnen den Parameter weglassen.
+</ParamField>
+
+## Antwort
+
+<ResponseField name="id" type="string">
+  Ereignis-UUID.
+</ResponseField>
+
+<ResponseField name="calendar_id" type="string">
+  UUID des Kalenders.
+</ResponseField>
+
+<ResponseField name="title" type="string">
+  Titel des Ereignisses.
+</ResponseField>
+
+<ResponseField name="starts_at" type="string">
+  Startzeit als ISO-8601-Datetime.
+</ResponseField>
+
+<ResponseField name="ends_at" type="string">
+  Endzeit als ISO-8601-Datetime.
+</ResponseField>
+
+<ResponseField name="is_all_day" type="boolean">
+  Gibt an, ob das Ereignis ganztagig ist.
+</ResponseField>

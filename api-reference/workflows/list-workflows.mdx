@@ -1,0 +1,48 @@
+---
+title: "List workflows"
+sidebarTitle: "List workflows"
+description: "Retrieve workflows visible to the API key."
+api: "GET /api/flow/workflows/"
+---
+
+Returns workflows in the selected team. Workflow endpoints are team-oriented, so include `team_id` for predictable results.
+
+<Note>
+  Required API key scope: `workflows:read`.
+</Note>
+
+## Query parameters
+
+<ParamField query="team_id" type="string" required>
+  Team UUID that owns the workflows.
+</ParamField>
+
+<ParamField query="search" type="string">
+  Search workflows by name, description, or owner.
+</ParamField>
+
+<ParamField query="status" type="string">
+  Filter by workflow status.
+</ParamField>
+
+<ParamField query="ordering" type="string">
+  Sort by `name`, `updated_at`, or `created_at`. Prefix with `-` for descending order.
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Page number for paginated responses.
+</ParamField>
+
+<ParamField query="page_size" type="integer">
+  Number of workflows per page. Maximum value is `100`.
+</ParamField>
+
+## Response
+
+<ResponseField name="count" type="integer">
+  Total number of matching workflows.
+</ResponseField>
+
+<ResponseField name="results" type="array">
+  Workflow records visible to the key.
+</ResponseField>

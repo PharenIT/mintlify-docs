@@ -1,0 +1,40 @@
+---
+title: "Listen auflisten"
+sidebarTitle: "Listen auflisten"
+description: "Rufe gespeicherte Listen ab, die fur den API-Key sichtbar sind."
+api: "GET /api/lists/"
+---
+
+Gibt gespeicherte Listen zuruck, die die erstellende Person des Keys sehen darf.
+
+<Note>
+  Erforderlicher API-Key-Scope: `lists:read`.
+</Note>
+
+## Query-Parameter
+
+<ParamField query="team_id" type="string">
+  Team-UUID. Fur teambegrenzte Keys erforderlich.
+</ParamField>
+
+<ParamField query="ordering" type="string">
+  Sortierung. Unterstutzte Felder sind `created_at`, `updated_at`, `name`, `field_count` und `row_count`. Nutze `-` fur absteigend.
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Seitennummer.
+</ParamField>
+
+<ParamField query="page_size" type="integer">
+  Anzahl der Listen pro Seite.
+</ParamField>
+
+## Antwort
+
+<ResponseField name="count" type="integer">
+  Gesamtzahl der passenden Listen.
+</ResponseField>
+
+<ResponseField name="results" type="array">
+  Listen, die fur den Key sichtbar sind.
+</ResponseField>

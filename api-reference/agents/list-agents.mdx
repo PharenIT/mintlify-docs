@@ -1,0 +1,36 @@
+---
+title: "List agents"
+sidebarTitle: "List agents"
+description: "Retrieve agents visible to the API key."
+api: "GET /api/agents/"
+---
+
+Returns agents visible to the key creator. Use this endpoint to discover agent UUIDs before sending chat requests.
+
+<Note>
+  Required API key scope: `agents:read`.
+</Note>
+
+## Query parameters
+
+<ParamField query="team_id" type="string">
+  Team UUID for team-scoped keys.
+</ParamField>
+
+## Response
+
+<ResponseField name="id" type="string">
+  Agent UUID.
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Agent name.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Agent description.
+</ResponseField>
+
+<ResponseField name="is_active" type="boolean">
+  Whether the agent is active.
+</ResponseField>

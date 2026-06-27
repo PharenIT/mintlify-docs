@@ -1,0 +1,40 @@
+---
+title: "Workflows auflisten"
+sidebarTitle: "Workflows auflisten"
+description: "Rufe Workflows ab, die fur den API-Key sichtbar sind."
+api: "GET /api/flow/workflows/"
+---
+
+Gibt Workflows im ausgewahlten Team zuruck. Workflow-Endpunkte sind teamorientiert, daher solltest du `team_id` mitsenden.
+
+<Note>
+  Erforderlicher API-Key-Scope: `workflows:read`.
+</Note>
+
+## Query-Parameter
+
+<ParamField query="team_id" type="string" required>
+  Team-UUID, zu der die Workflows gehoren.
+</ParamField>
+
+<ParamField query="search" type="string">
+  Suche nach Name, Beschreibung oder Besitzer.
+</ParamField>
+
+<ParamField query="status" type="string">
+  Filter nach Workflow-Status.
+</ParamField>
+
+<ParamField query="ordering" type="string">
+  Sortierung nach `name`, `updated_at` oder `created_at`. Nutze `-` fur absteigend.
+</ParamField>
+
+## Antwort
+
+<ResponseField name="count" type="integer">
+  Gesamtzahl der passenden Workflows.
+</ResponseField>
+
+<ResponseField name="results" type="array">
+  Workflows, die fur den Key sichtbar sind.
+</ResponseField>

@@ -4,7 +4,7 @@ sidebarTitle: "Authentication"
 description: "Authenticate every Pharen API request with a Bearer token API key or the X-API-Key header, including curl, Python, and Node.js code examples."
 ---
 
-Every request you make to the Pharen API must be authenticated. The API uses **Bearer token authentication** — you include a long-lived API key in the `Authorization` header of each request. Without a valid key, the API returns a `401 Unauthorized` response and does not process your request.
+Every request you make to the Pharen API must be authenticated. Send a scoped API key as a Bearer token in the `Authorization` header. Without a valid key, the API returns `401 Unauthorized` and does not process the request.
 
 ## Generate an API key
 
@@ -31,19 +31,19 @@ Pass your API key as a Bearer token in the `Authorization` header of every HTTP 
 Authorization: Bearer YOUR_API_KEY
 ```
 
-The examples below show how to do this in the most common languages and tools.
+The examples below call the calendar events endpoint. You can also use the interactive playground on each endpoint page.
 
 <CodeGroup>
 
 ```bash curl
-curl https://api.pharen.de/v1/new-page \
+curl https://pharen.app/api/calendar/events/ \
   --request GET \
   --header "Authorization: Bearer YOUR_API_KEY" \
   --header "Content-Type: application/json"
 ```
 
 ```javascript JavaScript (fetch)
-const response = await fetch("https://api.pharen.de/v1/new-page", {
+const response = await fetch("https://pharen.app/api/calendar/events/", {
   method: "GET",
   headers: {
     "Authorization": `Bearer ${process.env.PHAREN_API_KEY}`,
@@ -70,7 +70,7 @@ headers = {
 }
 
 response = requests.get(
-    "https://api.pharen.de/v1/new-page",
+    "https://pharen.app/api/calendar/events/",
     headers=headers,
 )
 response.raise_for_status()

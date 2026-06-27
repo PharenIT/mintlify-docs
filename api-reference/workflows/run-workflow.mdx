@@ -1,0 +1,54 @@
+---
+title: "Run workflow"
+sidebarTitle: "Run workflow"
+description: "Execute a workflow with an API key."
+api: "POST /api/flow/workflows/{workflow_uuid}/execute/"
+---
+
+Executes a published workflow and returns node-level progress information. Streaming responses are available only when the key was created with streaming access.
+
+<Note>
+  Required API key scope: `workflows:run`.
+</Note>
+
+## Path parameters
+
+<ParamField path="workflow_uuid" type="string" required>
+  UUID of the workflow to execute.
+</ParamField>
+
+## Query parameters
+
+<ParamField query="team_id" type="string" required>
+  Team UUID that owns the workflow.
+</ParamField>
+
+<ParamField query="stream" type="boolean">
+  Set to `true` to request a streaming response. The key must allow streaming.
+</ParamField>
+
+## Body parameters
+
+<ParamField body="inputs" type="object">
+  Values for workflow input variables.
+</ParamField>
+
+<ParamField body="trigger_type" type="string">
+  Trigger label for the run. Defaults to `manual`.
+</ParamField>
+
+<ParamField body="locale" type="string">
+  Locale hint used by nodes that produce localized output.
+</ParamField>
+
+## Example body
+
+```json
+{
+  "trigger_type": "api",
+  "inputs": {
+    "company": "Pharen",
+    "priority": "high"
+  }
+}
+```

@@ -1,30 +1,41 @@
 ---
-title: "Pharen Hub REST API — Introduction and Core Concepts"
+title: "Pharen Hub REST API"
 sidebarTitle: "Introduction"
-description: "The Pharen REST API lets you manage workspace resources programmatically. All requests use JSON and authenticate via Bearer token."
+description: "Use API keys to call Pharen Hub resources programmatically."
 ---
 
-The Pharen REST API gives you programmatic access to every resource in your Pharen Hub workspace. Whether you're building internal tooling, automating content workflows, or integrating Pharen into a larger platform, the API provides a consistent, predictable interface built on standard HTTP conventions.
+The Pharen REST API lets trusted backend services, sync jobs, and internal tools work with your Pharen Hub workspace. The API reference uses Mintlify's interactive playground, so you can inspect request parameters, generate code examples, and try scoped API-key calls from the docs.
 
 ## Base URL
 
 All API requests are made to the following base URL:
 
 ```bash
-https://api.pharen.de/v1
+https://pharen.app/api
 ```
 
-Every endpoint in this reference is relative to this base. For example, the full URL for listing pages is `https://api.pharen.de/v1/new-page`.
+Every endpoint in this reference is relative to this base. For example, the full URL for listing calendar events is `https://pharen.app/api/calendar/events/`.
 
-## Versioning
+## Authentication
 
-The current API version is **v1**, reflected in the base URL path. When Pharen introduces breaking changes, a new version will be released under a new path prefix (e.g., `/v2/`). Your existing integrations will continue to work on `/v1/` until the version is formally deprecated, at which point you'll receive advance notice.
+Create a scoped API key in **Settings -> API Keys**, then send it as a Bearer token:
 
-<Note>
-  Non-breaking additions — such as new optional request parameters or new fields in response objects — may be added to existing endpoints at any time without a version bump. Write your integration to gracefully ignore unknown fields.
-</Note>
+```bash
+Authorization: Bearer phk_...
+```
 
-## Request Format
+If your client cannot set an `Authorization` header, send the same key through `X-API-Key`.
+
+<CardGroup cols={2}>
+  <Card title="Create and scope keys" icon="key" href="/api-reference/api-keys">
+    Learn how API key scopes, team targets, expiration, and rotation work.
+  </Card>
+  <Card title="List calendar events" icon="calendar" href="/api-reference/calendar/list-events">
+    Try a read-only API-key request in the interactive playground.
+  </Card>
+</CardGroup>
+
+## Request format
 
 The API accepts JSON-encoded request bodies. For any request that includes a body (`POST`, `PUT`), you must set the `Content-Type` header to `application/json`.
 
@@ -34,7 +45,7 @@ Content-Type: application/json
 
 All path and query parameters should be URL-encoded where applicable.
 
-## Response Format
+## Response format
 
 Every response from the API is JSON-encoded. Successful responses return the requested resource object or a list of resource objects. The `Content-Type` of all responses is `application/json`.
 
@@ -42,12 +53,11 @@ A typical single-resource response looks like this:
 
 ```json
 {
-  "id": "page_01hx9k2m3nqvw4e5r6t7y8u9p",
-  "title": "Getting Started Guide",
-  "content": "Welcome to Pharen Hub...",
-  "created_at": "2024-06-01T12:00:00Z",
-  "updated_at": "2024-06-01T12:00:00Z"
-}
+    "id": "2de9d72d-9077-4cb6-9836-5fc821cf1b71",
+    "title": "Quarterly planning",
+    "starts_at": "2026-07-03T09:00:00Z",
+    "ends_at": "2026-07-03T10:00:00Z"
+  }
 ```
 
 List responses return an array of resource objects alongside pagination metadata:
@@ -61,7 +71,7 @@ List responses return an array of resource objects alongside pagination metadata
 }
 ```
 
-## HTTP Status Codes
+## HTTP status codes
 
 The API uses standard HTTP status codes to communicate the outcome of every request.
 
@@ -77,7 +87,7 @@ The API uses standard HTTP status codes to communicate the outcome of every requ
 | `422 Unprocessable Entity` | The request was well-formed but contained semantic validation errors. |
 | `500 Internal Server Error` | Something went wrong on Pharen's servers. If this persists, contact support. |
 
-## Error Objects
+## Error objects
 
 When a request fails (4xx or 5xx), the response body contains a structured error object to help you diagnose the problem:
 
@@ -99,7 +109,7 @@ When a request fails (4xx or 5xx), the response body contains a structured error
 | `error.message` | A human-readable explanation of what went wrong. |
 | `error.details` | An optional object with additional context, such as which field failed validation. |
 
-## Rate Limiting
+## Rate limiting
 
 To ensure fair usage and platform stability, the API enforces rate limits on all endpoints. By default, your API key is limited to **1,000 requests per minute**.
 
@@ -115,15 +125,15 @@ When you exceed the rate limit, the API returns a `429 Too Many Requests` respon
   Implement exponential backoff in your integration when you receive `429` responses. Continuing to send requests at a high rate after being rate-limited may result in temporary suspension of your API key.
 </Warning>
 
-## Making Your First Request
+## Make your first request
 
-Here's a minimal example that authenticates and retrieves your list of pages:
+Here's a minimal example that authenticates and retrieves calendar events:
 
 ```bash
-curl https://api.pharen.de/v1/new-page \
+curl https://pharen.app/api/calendar/events/ \
   --request GET \
   --header "Authorization: Bearer YOUR_API_KEY" \
   --header "Content-Type: application/json"
 ```
 
-Replace `YOUR_API_KEY` with the key you generate in the [Pharen Hub dashboard](https://pharen.app/settings/api). See the [Authentication](/api-reference/authentication) page for full details on obtaining and using API keys.
+Replace `YOUR_API_KEY` with the key you generate in the [Pharen Hub dashboard](https://pharen.app/settings/api). See [Authentication](/api-reference/authentication) and [API keys](/api-reference/api-keys) for the full setup flow.

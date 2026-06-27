@@ -1,0 +1,40 @@
+---
+title: "Dokumente auflisten"
+sidebarTitle: "Dokumente auflisten"
+description: "Rufe Dokumente ab, die fur den API-Key sichtbar sind."
+api: "GET /api/kb/documents/"
+---
+
+Gibt Pharen Docs Dokumente zuruck, die die erstellende Person des Keys sehen darf.
+
+<Note>
+  Erforderlicher API-Key-Scope: `docs:read`.
+</Note>
+
+## Query-Parameter
+
+<ParamField query="team_id" type="string">
+  Team-UUID fur teambegrenzte Keys.
+</ParamField>
+
+<ParamField query="collection_id" type="string">
+  Optionale Collection-UUID, um Ergebnisse auf eine Collection zu begrenzen.
+</ParamField>
+
+<ParamField query="search" type="string">
+  Suchbegriff fur Dokumentnamen und sichtbare Metadaten.
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Seitennummer.
+</ParamField>
+
+## Antwort
+
+<ResponseField name="count" type="integer">
+  Gesamtzahl der passenden Dokumente.
+</ResponseField>
+
+<ResponseField name="results" type="array">
+  Dokumente, die fur den Key sichtbar sind.
+</ResponseField>

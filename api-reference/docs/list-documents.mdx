@@ -1,0 +1,40 @@
+---
+title: "List documents"
+sidebarTitle: "List documents"
+description: "Retrieve documents visible to the API key."
+api: "GET /api/kb/documents/"
+---
+
+Returns Pharen Docs documents visible to the key creator. Use this endpoint for document inventories, search indexing jobs, and export tools.
+
+<Note>
+  Required API key scope: `docs:read`.
+</Note>
+
+## Query parameters
+
+<ParamField query="team_id" type="string">
+  Team UUID for team-scoped keys.
+</ParamField>
+
+<ParamField query="collection_id" type="string">
+  Optional collection UUID to limit results to one collection.
+</ParamField>
+
+<ParamField query="search" type="string">
+  Search term for document names and visible metadata.
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Page number for paginated responses.
+</ParamField>
+
+## Response
+
+<ResponseField name="count" type="integer">
+  Total number of matching documents.
+</ResponseField>
+
+<ResponseField name="results" type="array">
+  Document records visible to the key.
+</ResponseField>

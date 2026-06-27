@@ -1,0 +1,71 @@
+---
+title: "Create calendar event"
+sidebarTitle: "Create event"
+description: "Create a calendar event with an API key."
+api: "POST /api/calendar/events/"
+---
+
+Creates a new local calendar event. Use this endpoint for scheduling automation and imports that already know the target calendar.
+
+<Note>
+  Required API key scope: `calendar:create`.
+</Note>
+
+## Body parameters
+
+<ParamField body="calendar_id" type="string" required>
+  UUID of the calendar where the event should be created.
+</ParamField>
+
+<ParamField body="title" type="string">
+  Event title. Empty titles are allowed.
+</ParamField>
+
+<ParamField body="starts_at" type="string" required>
+  ISO 8601 datetime for the event start.
+</ParamField>
+
+<ParamField body="ends_at" type="string" required>
+  ISO 8601 datetime for the event end.
+</ParamField>
+
+<ParamField body="is_all_day" type="boolean">
+  Whether this is an all-day event.
+</ParamField>
+
+<ParamField body="location" type="string">
+  Event location.
+</ParamField>
+
+<ParamField body="conference_url" type="string">
+  Meeting or conference URL.
+</ParamField>
+
+<ParamField body="notes" type="string">
+  Internal notes for the event.
+</ParamField>
+
+<ParamField body="reminder_minutes_before_start" type="integer">
+  Reminder offset in minutes. The maximum value is `10080`.
+</ParamField>
+
+<ParamField body="attendees" type="array">
+  Attendee objects for the event.
+</ParamField>
+
+## Example body
+
+```json
+{
+  "calendar_id": "2de9d72d-9077-4cb6-9836-5fc821cf1b71",
+  "title": "Quarterly planning",
+  "starts_at": "2026-07-03T09:00:00Z",
+  "ends_at": "2026-07-03T10:00:00Z",
+  "location": "Berlin",
+  "conference_url": "https://meet.example.com/planning"
+}
+```
+
+## Response
+
+Returns the created calendar event with the same shape as [List events](/api-reference/calendar/list-events).

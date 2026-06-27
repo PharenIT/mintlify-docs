@@ -1,0 +1,36 @@
+---
+title: "Agents auflisten"
+sidebarTitle: "Agents auflisten"
+description: "Rufe Agents ab, die fur den API-Key sichtbar sind."
+api: "GET /api/agents/"
+---
+
+Gibt Agents zuruck, die die erstellende Person des Keys sehen darf. Nutze diesen Endpunkt, um Agent-UUIDs fur Chat-Anfragen zu finden.
+
+<Note>
+  Erforderlicher API-Key-Scope: `agents:read`.
+</Note>
+
+## Query-Parameter
+
+<ParamField query="team_id" type="string">
+  Team-UUID fur teambegrenzte Keys.
+</ParamField>
+
+## Antwort
+
+<ResponseField name="id" type="string">
+  Agent-UUID.
+</ResponseField>
+
+<ResponseField name="name" type="string">
+  Agent-Name.
+</ResponseField>
+
+<ResponseField name="description" type="string">
+  Agent-Beschreibung.
+</ResponseField>
+
+<ResponseField name="is_active" type="boolean">
+  Gibt an, ob der Agent aktiv ist.
+</ResponseField>

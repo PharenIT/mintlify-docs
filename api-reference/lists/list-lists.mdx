@@ -1,0 +1,48 @@
+---
+title: "List saved lists"
+sidebarTitle: "List lists"
+description: "Retrieve saved lists visible to the API key."
+api: "GET /api/lists/"
+---
+
+Returns saved lists the key creator can access. Use this endpoint before reading list rows, fields, views, or linked automation data.
+
+<Note>
+  Required API key scope: `lists:read`.
+</Note>
+
+## Query parameters
+
+<ParamField query="team_id" type="string">
+  Team UUID. Required for team-scoped keys and useful when you want to list one team's data.
+</ParamField>
+
+<ParamField query="ordering" type="string">
+  Sort expression. Supported fields include `created_at`, `updated_at`, `name`, `field_count`, and `row_count`. Prefix with `-` for descending order.
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Page number for paginated responses.
+</ParamField>
+
+<ParamField query="page_size" type="integer">
+  Number of lists per page.
+</ParamField>
+
+## Response
+
+<ResponseField name="count" type="integer">
+  Total number of matching lists.
+</ResponseField>
+
+<ResponseField name="next" type="string">
+  URL for the next page, if one exists.
+</ResponseField>
+
+<ResponseField name="previous" type="string">
+  URL for the previous page, if one exists.
+</ResponseField>
+
+<ResponseField name="results" type="array">
+  List records visible to the key.
+</ResponseField>

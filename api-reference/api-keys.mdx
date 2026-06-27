@@ -32,6 +32,25 @@ You create API keys in Pharen Hub.
   </Step>
 </Steps>
 
+## Try API key requests
+
+The endpoint pages in this reference use Mintlify's interactive playground. Add your key as a Bearer token, fill the parameters, and run a request directly from the docs.
+
+<CardGroup cols={2}>
+  <Card title="List calendar events" icon="calendar" href="/api-reference/calendar/list-events">
+    Test a `calendar:read` key against a read-only endpoint.
+  </Card>
+  <Card title="Run workflow" icon="workflow" href="/api-reference/workflows/run-workflow">
+    Test a `workflows:run` key against an execution endpoint.
+  </Card>
+  <Card title="List documents" icon="file-text" href="/api-reference/docs/list-documents">
+    Test a `docs:read` key against Pharen Docs.
+  </Card>
+  <Card title="Chat with agent" icon="bot" href="/api-reference/agents/chat-agent">
+    Test an `agents:run` key against an agent chat endpoint.
+  </Card>
+</CardGroup>
+
 ## Use a key
 
 Send the key with every request. Bearer authentication is recommended:
