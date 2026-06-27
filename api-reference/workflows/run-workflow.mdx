@@ -2,7 +2,7 @@
 title: "Run workflow"
 sidebarTitle: "Run workflow"
 description: "Execute a published Pharen Hub workflow by UUID and stream node-level progress back over HTTP using a scoped workflows:run API key."
-api: "POST /api/flow/workflows/{workflow_uuid}/execute/"
+openapi: "openapi.json POST /api/flow/workflows/{workflow_uuid}/execute/"
 ---
 
 Executes a published workflow and returns node-level progress information. Streaming responses are available only when the key was created with streaming access.

@@ -1,0 +1,1026 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Pharen Hub API",
+    "version": "1.0.0",
+    "description": "Scoped REST API for Pharen Hub workspaces, calendars, lists, docs, workflows, and agents."
+  },
+  "servers": [
+    {
+      "url": "{baseUrl}",
+      "description": "Pharen Hub API base URL",
+      "variables": {
+        "baseUrl": {
+          "default": "https://pharen.app",
+          "description": "The Pharen Hub API origin. Keep the default for production, or enter another environment such as http://localhost:8000."
+        }
+      }
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Calendar",
+      "description": "Calendar source and event operations."
+    },
+    {
+      "name": "Lists",
+      "description": "Saved list data and metadata operations."
+    },
+    {
+      "name": "Docs",
+      "description": "Document and collection operations."
+    },
+    {
+      "name": "Workflows",
+      "description": "Workflow definition and execution operations."
+    },
+    {
+      "name": "Agents",
+      "description": "Agent catalog and chat operations."
+    }
+  ],
+  "paths": {
+    "/api/calendar/events/": {
+      "get": {
+        "tags": ["Calendar"],
+        "summary": "List calendar events",
+        "description": "Fetch calendar events for sync jobs, dashboards, and reporting tools. Requires the `calendar:read` scope.",
+        "operationId": "listCalendarEvents",
+        "parameters": [
+          {
+            "name": "range_start",
+            "in": "query",
+            "description": "ISO 8601 datetime for the beginning of the event window.",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2026-07-01T00:00:00Z"
+            }
+          },
+          {
+            "name": "range_end",
+            "in": "query",
+            "description": "ISO 8601 datetime for the end of the event window. Must be after `range_start`.",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2026-07-31T23:59:59Z"
+            }
+          },
+          {
+            "name": "team_id",
+            "in": "query",
+            "description": "Team UUID for team-scoped keys.",
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "1f5e2d4c-7a5b-45db-b61a-b7d42f3f94cc"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Calendar events returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CalendarEvent"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "example": 12
+                    },
+                    "page": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "per_page": {
+                      "type": "integer",
+                      "example": 20
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "x-mint": {
+          "href": "/api-reference/calendar/list-events",
+          "metadata": {
+            "title": "List calendar events",
+            "sidebarTitle": "List events",
+            "description": "Fetch Pharen Hub calendar events for sync jobs, dashboards, and reporting tools."
+          }
+        }
+      },
+      "post": {
+        "tags": ["Calendar"],
+        "summary": "Create calendar event",
+        "description": "Create a local calendar event from scheduling automations or import jobs. Requires the `calendar:create` scope.",
+        "operationId": "createCalendarEvent",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCalendarEventRequest"
+              },
+              "examples": {
+                "planning": {
+                  "summary": "Planning meeting",
+                  "value": {
+                    "calendar_id": "2de9d72d-9077-4cb6-9836-5fc821cf1b71",
+                    "title": "Quarterly planning",
+                    "starts_at": "2026-07-03T09:00:00Z",
+                    "ends_at": "2026-07-03T10:00:00Z",
+                    "location": "Berlin",
+                    "conference_url": "https://meet.example.com/planning"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Calendar event created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CalendarEvent"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "x-mint": {
+          "href": "/api-reference/calendar/create-event",
+          "metadata": {
+            "title": "Create calendar event",
+            "sidebarTitle": "Create event",
+            "description": "Create a Pharen Hub calendar event from scheduling automations or import jobs."
+          }
+        }
+      }
+    },
+    "/api/lists/": {
+      "get": {
+        "tags": ["Lists"],
+        "summary": "List saved lists",
+        "description": "Fetch list metadata and saved list data available to the API key. Requires the `lists:read` scope.",
+        "operationId": "listLists",
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "query",
+            "description": "Team UUID for team-scoped keys.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for paginated results.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of results per page.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lists returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedLists"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "x-mint": {
+          "href": "/api-reference/lists/list-lists",
+          "metadata": {
+            "title": "List saved lists",
+            "sidebarTitle": "List lists",
+            "description": "Read saved list data, fields, rows, cells, and views with a scoped API key."
+          }
+        }
+      }
+    },
+    "/api/kb/documents/": {
+      "get": {
+        "tags": ["Docs"],
+        "summary": "List documents",
+        "description": "Fetch document and collection metadata available to the API key. Requires the `docs:read` scope.",
+        "operationId": "listDocuments",
+        "parameters": [
+          {
+            "name": "collection_id",
+            "in": "query",
+            "description": "Optional collection UUID to filter documents.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "team_id",
+            "in": "query",
+            "description": "Team UUID for team-scoped keys.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for paginated results.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of results per page.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Documents returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedDocuments"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "x-mint": {
+          "href": "/api-reference/docs/list-documents",
+          "metadata": {
+            "title": "List documents",
+            "sidebarTitle": "List documents",
+            "description": "Read Pharen Docs documents, collections, versions, files, and access metadata."
+          }
+        }
+      }
+    },
+    "/api/flow/workflows/": {
+      "get": {
+        "tags": ["Workflows"],
+        "summary": "List workflows",
+        "description": "Fetch workflow definitions available to the API key. Requires the `workflows:read` scope.",
+        "operationId": "listWorkflows",
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "query",
+            "description": "Team UUID for team-scoped keys.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for paginated results.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of results per page.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Workflows returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedWorkflows"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "x-mint": {
+          "href": "/api-reference/workflows/list-workflows",
+          "metadata": {
+            "title": "List workflows",
+            "sidebarTitle": "List workflows",
+            "description": "Read workflow definitions, versions, validation results, and execution plans."
+          }
+        }
+      }
+    },
+    "/api/flow/workflows/{workflow_uuid}/execute/": {
+      "post": {
+        "tags": ["Workflows"],
+        "summary": "Run workflow",
+        "description": "Execute a workflow with optional JSON input. Requires the `workflows:run` scope.",
+        "operationId": "runWorkflow",
+        "parameters": [
+          {
+            "name": "workflow_uuid",
+            "in": "path",
+            "required": true,
+            "description": "Workflow UUID.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunWorkflowRequest"
+              },
+              "examples": {
+                "input": {
+                  "summary": "Workflow input",
+                  "value": {
+                    "input": {
+                      "source": "api",
+                      "customer_id": "cus_123"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Workflow execution started or completed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowRun"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "x-mint": {
+          "href": "/api-reference/workflows/run-workflow",
+          "metadata": {
+            "title": "Run workflow",
+            "sidebarTitle": "Run workflow",
+            "description": "Execute a Pharen workflow from an internal tool, cron job, or external automation."
+          }
+        }
+      }
+    },
+    "/api/agents/": {
+      "get": {
+        "tags": ["Agents"],
+        "summary": "List agents",
+        "description": "Fetch agents available to the API key. Requires the `agents:read` scope.",
+        "operationId": "listAgents",
+        "parameters": [
+          {
+            "name": "team_id",
+            "in": "query",
+            "description": "Team UUID for team-scoped keys.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for paginated results.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of results per page.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Agents returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedAgents"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          }
+        },
+        "x-mint": {
+          "href": "/api-reference/agents/list-agents",
+          "metadata": {
+            "title": "List agents",
+            "sidebarTitle": "List agents",
+            "description": "Read agents, catalog data, tools, conversations, and logs."
+          }
+        }
+      }
+    },
+    "/api/agents/{agent_uuid}/chat/": {
+      "post": {
+        "tags": ["Agents"],
+        "summary": "Chat with agent",
+        "description": "Send a message to an agent and receive a response. Requires the `agents:run` scope.",
+        "operationId": "chatWithAgent",
+        "parameters": [
+          {
+            "name": "agent_uuid",
+            "in": "path",
+            "required": true,
+            "description": "Agent UUID.",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentChatRequest"
+              },
+              "examples": {
+                "message": {
+                  "summary": "Ask an agent",
+                  "value": {
+                    "message": "Summarize the latest onboarding blockers.",
+                    "conversation_id": "conv_123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Agent response returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentChatResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "x-mint": {
+          "href": "/api-reference/agents/chat-agent",
+          "metadata": {
+            "title": "Chat with agent",
+            "sidebarTitle": "Chat with agent",
+            "description": "Send agent chat requests from backend services and workflow automation."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Paste your Pharen API key without the Bearer prefix.",
+        "x-default": "phk_your_api_key"
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "The request was malformed or missing required fields.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "The request did not include a valid API key.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "The API key is valid but does not have the required scope or workspace access.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "The requested resource was not found or is outside the key's access target.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "CalendarEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "calendar_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string",
+            "example": "Quarterly planning"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ends_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "is_all_day": {
+            "type": "boolean"
+          },
+          "location": {
+            "type": "string"
+          },
+          "conference_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "attendees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventAttendee"
+            }
+          }
+        }
+      },
+      "CreateCalendarEventRequest": {
+        "type": "object",
+        "required": ["calendar_id", "starts_at", "ends_at"],
+        "properties": {
+          "calendar_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "starts_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ends_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "is_all_day": {
+            "type": "boolean"
+          },
+          "location": {
+            "type": "string"
+          },
+          "conference_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "reminder_minutes_before_start": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10080
+          },
+          "attendees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventAttendee"
+            }
+          }
+        }
+      },
+      "EventAttendee": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["needs_action", "accepted", "declined", "tentative"]
+          }
+        }
+      },
+      "PaginatedLists": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/List"
+            }
+          },
+          "total": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "per_page": {
+            "type": "integer"
+          }
+        }
+      },
+      "List": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PaginatedDocuments": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Document"
+            }
+          },
+          "total": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "per_page": {
+            "type": "integer"
+          }
+        }
+      },
+      "Document": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "collection_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "team_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PaginatedWorkflows": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Workflow"
+            }
+          },
+          "total": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "per_page": {
+            "type": "integer"
+          }
+        }
+      },
+      "Workflow": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "example": "active"
+          },
+          "team_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "RunWorkflowRequest": {
+        "type": "object",
+        "properties": {
+          "input": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "JSON input passed to the workflow run."
+          }
+        }
+      },
+      "WorkflowRun": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "workflow_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "example": "running"
+          },
+          "started_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "PaginatedAgents": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Agent"
+            }
+          },
+          "total": {
+            "type": "integer"
+          },
+          "page": {
+            "type": "integer"
+          },
+          "per_page": {
+            "type": "integer"
+          }
+        }
+      },
+      "Agent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "team_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "AgentChatRequest": {
+        "type": "object",
+        "required": ["message"],
+        "properties": {
+          "message": {
+            "type": "string",
+            "example": "Summarize the latest onboarding blockers."
+          },
+          "conversation_id": {
+            "type": "string",
+            "description": "Optional conversation identifier for continuing a thread."
+          },
+          "context": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Optional structured context for the agent."
+          }
+        }
+      },
+      "AgentChatResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "conversation_id": {
+            "type": "string"
+          },
+          "run_id": {
+            "type": "string"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "forbidden"
+              },
+              "message": {
+                "type": "string",
+                "example": "This API key does not have the required scope."
+              },
+              "details": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

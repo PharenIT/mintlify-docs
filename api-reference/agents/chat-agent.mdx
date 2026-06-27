@@ -2,7 +2,7 @@
 title: "Chat with agent"
 sidebarTitle: "Chat with agent"
 description: "Send a user message to a Pharen Hub AI agent by UUID and stream the model response back over HTTP using a scoped agents:run API key."
-api: "POST /api/agents/{agent_uuid}/chat/"
+openapi: "openapi.json POST /api/agents/{agent_uuid}/chat/"
 ---
 
 Sends a message to an agent. The endpoint streams the model response. API keys must explicitly allow streaming when a streaming response is requested by the client.

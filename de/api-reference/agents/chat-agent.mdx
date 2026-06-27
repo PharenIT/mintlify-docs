@@ -2,7 +2,7 @@
 title: "Mit Agent chatten"
 sidebarTitle: "Mit Agent chatten"
 description: "Sende eine Nutzernachricht an einen Pharen Hub KI-Agenten per UUID und streame die Modellantwort über HTTP mit einem agents:run API-Key."
-api: "POST /api/agents/{agent_uuid}/chat/"
+openapi: "openapi.json POST /api/agents/{agent_uuid}/chat/"
 ---
 
 Sendet eine Nachricht an einen Agent. Der Endpunkt streamt die Modellantwort. API-Keys mussen Streaming explizit erlauben, wenn der Client Streaming anfordert.
