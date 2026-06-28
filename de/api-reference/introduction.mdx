@@ -12,7 +12,9 @@ Die Pharen REST API gibt vertrauenswürdigen Backend-Services, Sync-Jobs und int
 https://pharen.app/api
 ```
 
-Jede Endpoint-Seite hat einen **Try it**-Bereich. Setze **Authorization** auf deinen Bearer-Token und passe bei Bedarf **baseUrl** von `https://pharen.app` auf eine andere Umgebung wie `http://localhost:8000` an, bevor du die Anfrage sendest.
+Jede Endpoint-Seite hat einen **Try it**-Bereich. Setze **Authorization** auf deinen Bearer-Token und wähle danach den Server, gegen den du testen möchtest.
+
+Für lokale Tests wählst du **Custom HTTP environment** und setzt **host** auf `localhost:8000`. Schreibe kein `http://` in **host**, weil die Server-Option das bereits ergänzt. Playground-Anfragen werden direkt aus deinem Browser gesendet, daher muss dein lokales Backend laufen und Anfragen von der Docs-Seite erlauben.
 
 ## Authentifizierung
 

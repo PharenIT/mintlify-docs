@@ -7,12 +7,26 @@
   },
   "servers": [
     {
-      "url": "{baseUrl}",
-      "description": "Pharen Hub API base URL",
+      "url": "https://pharen.app",
+      "description": "Production"
+    },
+    {
+      "url": "http://{host}",
+      "description": "Custom HTTP environment",
       "variables": {
-        "baseUrl": {
-          "default": "https://pharen.app",
-          "description": "The Pharen Hub API origin. Keep the default for production, or enter another environment such as http://localhost:8000."
+        "host": {
+          "default": "localhost:8000",
+          "description": "Host, optional port, and optional base path for an HTTP environment. Use localhost:8000 for local development. Do not include http://."
+        }
+      }
+    },
+    {
+      "url": "https://{host}",
+      "description": "Custom HTTPS environment",
+      "variables": {
+        "host": {
+          "default": "pharen.app",
+          "description": "Host, optional port, and optional base path for an HTTPS environment. Do not include https://."
         }
       }
     }

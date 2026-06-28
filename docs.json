@@ -22,7 +22,7 @@
     "openapi": "openapi.json",
     "playground": {
       "display": "interactive",
-      "proxy": true
+      "proxy": false
     },
     "url": "full",
     "examples": {
