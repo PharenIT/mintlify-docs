@@ -14,7 +14,7 @@ https://pharen.app/api
 
 Jede Endpoint-Seite hat einen **Try it**-Bereich. Setze **Authorization** auf deinen Bearer-Token und wähle danach den Server, gegen den du testen möchtest.
 
-Für lokale Tests wählst du **Custom HTTP environment** und setzt **host** auf `localhost:8000`. Schreibe kein `http://` in **host**, weil die Server-Option das bereits ergänzt. Playground-Anfragen werden direkt aus deinem Browser gesendet, daher muss dein lokales Backend laufen und Anfragen von der Docs-Seite erlauben.
+Für lokale Tests wählst du **Custom URL environment** und setzt **baseUrl** auf `http://localhost:8000`. Gib `http://` oder `https://` mit an, damit der Playground eine gültige URL bauen kann. Playground-Anfragen werden direkt aus deinem Browser gesendet, daher muss dein lokales Backend laufen und Anfragen von der Docs-Seite erlauben.
 
 ## Authentifizierung
 

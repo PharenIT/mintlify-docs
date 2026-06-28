@@ -11,22 +11,12 @@
       "description": "Production"
     },
     {
-      "url": "http://{host}",
-      "description": "Custom HTTP environment",
+      "url": "{baseUrl}",
+      "description": "Custom URL environment",
       "variables": {
-        "host": {
-          "default": "localhost:8000",
-          "description": "Host, optional port, and optional base path for an HTTP environment. Use localhost:8000 for local development. Do not include http://."
-        }
-      }
-    },
-    {
-      "url": "https://{host}",
-      "description": "Custom HTTPS environment",
-      "variables": {
-        "host": {
-          "default": "pharen.app",
-          "description": "Host, optional port, and optional base path for an HTTPS environment. Do not include https://."
+        "baseUrl": {
+          "default": "http://localhost:8000",
+          "description": "Full API origin, including http:// or https://. Use http://localhost:8000 for local development."
         }
       }
     }
