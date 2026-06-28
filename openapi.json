@@ -7,16 +7,12 @@
   },
   "servers": [
     {
-      "url": "https://pharen.app",
-      "description": "Production"
-    },
-    {
+      "description": "API base URL",
       "url": "{baseUrl}",
-      "description": "Custom URL environment",
       "variables": {
         "baseUrl": {
-          "default": "http://localhost:8000",
-          "description": "Full API origin, including http:// or https://. Use http://localhost:8000 for local development."
+          "default": "https://pharen.app",
+          "description": "Full API origin, including http:// or https://. Use https://pharen.app for production or http://localhost:8000 for local development."
         }
       }
     }
