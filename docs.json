@@ -39,7 +39,8 @@
   },
   "logo": {
     "light": "https://media.brand.dev/70fa3769-6705-48e9-8340-cef95a902e88.svg",
-    "dark": "https://media.brand.dev/de991512-f9de-434e-866d-6c978fec7b16.svg"
+    "dark": "https://media.brand.dev/de991512-f9de-434e-866d-6c978fec7b16.svg",
+    "href": "/hub/overview"
   },
   "navbar": {
     "links": [],
@@ -91,7 +92,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "/general/overview",
+      "destination": "/hub/overview",
       "permanent": false
     },
     {
