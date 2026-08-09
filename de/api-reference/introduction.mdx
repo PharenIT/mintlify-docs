@@ -1,11 +1,36 @@
 ---
-title: "API Einführung"
+title: "Pharen Hub REST API-Referenz: Base URL und Authentifizierung"
 sidebarTitle: "Einführung"
-description: "Diese deutsche Seite ist vorbereitet. Die vollständige Übersetzung folgt."
+description: "Einstieg in die Pharen Hub REST API: Base URL, Bearer-Token-Authentifizierung, Scopes, Rate Limits und interaktive Mintlify-Playground-Beispiele."
 ---
 
-Diese Seite ist in der deutschen Navigation angelegt, damit der Sprachwechsel vollständig ist.
+Die Pharen REST API gibt vertrauenswürdigen Backend-Services, Sync-Jobs und internen Tools Zugriff auf Pharen Hub. Die API-Referenz nutzt den interaktiven Mintlify-Playground, damit du Parameter prüfen, Beispiele generieren und API-Key-Anfragen direkt ausprobieren kannst.
 
-<Note>
-  Die vollständige deutsche Fassung folgt. Bis dahin kannst du die englische Originalseite nutzen: [English version](/api-reference/introduction).
-</Note>
+## Basis-URL
+
+```bash
+https://pharen.app/api
+```
+
+Jede Endpoint-Seite hat einen **Try it**-Bereich. Setze **Authorization** auf deinen Bearer-Token und nutze danach das **baseUrl**-Feld in der Request-URL-Leiste für den Server, gegen den du testen möchtest.
+
+Für lokale Tests ersetzt du den Standardwert `https://pharen.app` durch `http://localhost:8000`. Gib `http://` oder `https://` mit an, damit der Playground eine gültige URL bauen kann. Playground-Anfragen werden direkt aus deinem Browser gesendet, daher muss dein lokales Backend laufen und Anfragen von der Docs-Seite erlauben.
+
+## Authentifizierung
+
+Erstelle unter **Einstellungen -> API-Keys** einen begrenzten Key und sende ihn als Bearer-Token:
+
+```bash
+Authorization: Bearer phk_...
+```
+
+Wenn dein Client keinen `Authorization`-Header setzen kann, nutze stattdessen `X-API-Key`.
+
+<CardGroup cols={2}>
+  <Card title="API-Keys erstellen" icon="key" href="/de/api-reference/api-keys">
+    Lerne, wie Scopes, Team-Ziele, Ablaufdaten und Rotation funktionieren.
+  </Card>
+  <Card title="Kalenderereignisse testen" icon="calendar" href="/de/api-reference/calendar/list-events">
+    Probiere eine read-only Anfrage im interaktiven Playground aus.
+  </Card>
+</CardGroup>

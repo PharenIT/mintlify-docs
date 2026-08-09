@@ -4,9 +4,9 @@
   "name": "Pharen",
   "description": "Documentation for Pharen Hub — the AI workspace that unifies docs, lists, channels, mail, and agents so your team can automate workflows and move faster.",
   "colors": {
-    "primary": "#111111",
-    "light": "#f5f5f5",
-    "dark": "#f5f5f5"
+    "primary": "#158065",
+    "light": "#158065",
+    "dark": "#6ee7b7"
   },
   "favicon": "/favicon.ico",
   "icons": {
@@ -23,6 +23,19 @@
       "mcp",
       "add-mcp"
     ]
+  },
+  "api": {
+    "openapi": "openapi.json",
+    "playground": {
+      "display": "interactive",
+      "proxy": false
+    },
+    "url": "full",
+    "examples": {
+      "languages": ["curl", "javascript", "python"],
+      "defaults": "required",
+      "prefill": true
+    }
   },
   "logo": {
     "light": "https://media.brand.dev/70fa3769-6705-48e9-8340-cef95a902e88.svg",
@@ -293,18 +306,46 @@
                 "expanded": true,
                 "pages": [
                   "api-reference/introduction",
-                  "api-reference/authentication"
+                  "api-reference/authentication",
+                  "api-reference/api-keys"
                 ]
               },
               {
-                "group": "Resources",
-                "icon": "layers",
+                "group": "Calendar",
+                "icon": "calendar",
                 "pages": [
-                  "api-reference/pages/list",
-                  "api-reference/pages/create",
-                  "api-reference/pages/read",
-                  "api-reference/pages/update",
-                  "api-reference/pages/delete"
+                  "api-reference/calendar/list-events",
+                  "api-reference/calendar/create-event"
+                ]
+              },
+              {
+                "group": "Lists",
+                "icon": "list",
+                "pages": [
+                  "api-reference/lists/list-lists"
+                ]
+              },
+              {
+                "group": "Docs",
+                "icon": "file-text",
+                "pages": [
+                  "api-reference/docs/list-documents"
+                ]
+              },
+              {
+                "group": "Workflows",
+                "icon": "workflow",
+                "pages": [
+                  "api-reference/workflows/list-workflows",
+                  "api-reference/workflows/run-workflow"
+                ]
+              },
+              {
+                "group": "Agents",
+                "icon": "bot",
+                "pages": [
+                  "api-reference/agents/list-agents",
+                  "api-reference/agents/chat-agent"
                 ]
               }
             ]
@@ -565,18 +606,46 @@
                 "expanded": true,
                 "pages": [
                   "de/api-reference/introduction",
-                  "de/api-reference/authentication"
+                  "de/api-reference/authentication",
+                  "de/api-reference/api-keys"
                 ]
               },
               {
-                "group": "Ressourcen",
-                "icon": "layers",
+                "group": "Kalender",
+                "icon": "calendar",
                 "pages": [
-                  "de/api-reference/pages/list",
-                  "de/api-reference/pages/create",
-                  "de/api-reference/pages/read",
-                  "de/api-reference/pages/update",
-                  "de/api-reference/pages/delete"
+                  "de/api-reference/calendar/list-events",
+                  "de/api-reference/calendar/create-event"
+                ]
+              },
+              {
+                "group": "Listen",
+                "icon": "list",
+                "pages": [
+                  "de/api-reference/lists/list-lists"
+                ]
+              },
+              {
+                "group": "Docs",
+                "icon": "file-text",
+                "pages": [
+                  "de/api-reference/docs/list-documents"
+                ]
+              },
+              {
+                "group": "Workflows",
+                "icon": "workflow",
+                "pages": [
+                  "de/api-reference/workflows/list-workflows",
+                  "de/api-reference/workflows/run-workflow"
+                ]
+              },
+              {
+                "group": "Agents",
+                "icon": "bot",
+                "pages": [
+                  "de/api-reference/agents/list-agents",
+                  "de/api-reference/agents/chat-agent"
                 ]
               }
             ]
