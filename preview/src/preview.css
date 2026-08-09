@@ -35,7 +35,7 @@ body {
 
 .pharen-ui-preview-root {
   display: flex;
-  min-height: 18rem;
+  min-height: 14rem;
   min-width: 0;
   width: 100%;
   align-items: center;
@@ -74,9 +74,81 @@ body {
   [data-example='select'],
   [data-example='slider'],
   [data-example='textarea']
+) {
+  min-height: 12rem;
+}
+
+.pharen-ui-preview-root:is(
+  [data-example='ai-model-select'],
+  [data-example='autocomplete'],
+  [data-example='combobox'],
+  [data-example='color-picker'],
+  [data-example='date-picker'],
+  [data-example='dropfile'],
+  [data-example='field'],
+  [data-example='file-upload'],
+  [data-example='form'],
+  [data-example='input-group'],
+  [data-example='input'],
+  [data-example='multi-select'],
+  [data-example='native-select'],
+  [data-example='number-field'],
+  [data-example='phone-input'],
+  [data-example='radio-group'],
+  [data-example='remote-select'],
+  [data-example='search-input'],
+  [data-example='select'],
+  [data-example='slider'],
+  [data-example='textarea']
 ) > * {
   width: 100%;
   max-width: 28rem;
+}
+
+.pharen-ui-preview-root[data-example='ai-model-select'] {
+  min-height: 10rem;
+}
+
+.pharen-ui-preview-root[data-example='ai-model-select'] > * {
+  max-width: 22rem;
+}
+
+.pharen-ui-preview-root:is(
+  [data-example='accordion'],
+  [data-example='ai-plan'],
+  [data-example='alert'],
+  [data-example='aspect-ratio'],
+  [data-example='border-beam'],
+  [data-example='card'],
+  [data-example='chain-of-thought'],
+  [data-example='chart'],
+  [data-example='carousel'],
+  [data-example='checkpoint'],
+  [data-example='code-block'],
+  [data-example='collapsible'],
+  [data-example='command'],
+  [data-example='conversation'],
+  [data-example='empty-state'],
+  [data-example='empty'],
+  [data-example='filters'],
+  [data-example='frame'],
+  [data-example='item'],
+  [data-example='kanban'],
+  [data-example='message'],
+  [data-example='plan'],
+  [data-example='progress'],
+  [data-example='reasoning'],
+  [data-example='resizable'],
+  [data-example='scroll-area'],
+  [data-example='sortable'],
+  [data-example='stat-card'],
+  [data-example='table'],
+  [data-example='tabs'],
+  [data-example='timeline'],
+  [data-example='tool'],
+  [data-example='tree']
+) {
+  min-height: 18rem;
 }
 
 .pharen-ui-preview-root:is(
@@ -153,4 +225,10 @@ body {
 
 .pharen-ui-preview-root[data-example='sidebar'] > * {
   width: 100%;
+}
+
+html[data-pharen-preview-modal-open],
+html[data-pharen-preview-modal-open] body,
+html[data-pharen-preview-modal-open] .pharen-ui-preview-root {
+  background: transparent;
 }

@@ -10,10 +10,11 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
 
   const iframeRef = useRef(null)
   const previewId = `pharen-ui-${name}`
-  const [height, setHeight] = useState(360)
+  const [height, setHeight] = useState(224)
   const [bundle, setBundle] = useState(null)
   const [loadError, setLoadError] = useState(false)
   const [loadAttempt, setLoadAttempt] = useState(0)
+  const [modalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
     let active = true
@@ -44,8 +45,9 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
   }, [loadAttempt])
 
   useEffect(() => {
-    setHeight(360)
-  }, [previewId])
+    setHeight(224)
+    setModalOpen(false)
+  }, [previewId, loadAttempt])
 
   useEffect(() => {
     const handleMessage = (event) => {
@@ -53,7 +55,12 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
       if (event.data?.source !== 'pharen-ui-preview') return
       if (event.data?.id !== previewId) return
 
-      const nextHeight = Math.min(900, Math.max(288, Number(event.data.height) || 360))
+      if (event.data?.type === 'modal-state') {
+        setModalOpen(Boolean(event.data.open))
+        return
+      }
+
+      const nextHeight = Math.min(900, Math.max(160, Number(event.data.height) || 224))
       setHeight((currentHeight) =>
         Math.abs(currentHeight - nextHeight) > 2 ? nextHeight : currentHeight,
       )
@@ -63,6 +70,16 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
     return () => window.removeEventListener('message', handleMessage)
   }, [previewId])
 
+  useEffect(() => {
+    if (!modalOpen) return undefined
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [modalOpen])
+
   const source = useMemo(() => {
     if (!bundle) return null
 
@@ -70,6 +87,7 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
     const safeScript = String(bundle.js).replace(/<\/script/gi, '<\\/script')
     const safeName = escapePreviewAttribute(name)
     const serializedId = JSON.stringify(previewId).replace(/</g, '\\u003c')
+    const serializedName = JSON.stringify(String(name)).replace(/</g, '\\u003c')
 
     return `<!doctype html>
 <html lang="en">
@@ -90,6 +108,16 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
     <script>
       (() => {
         const previewId = ${serializedId};
+        const exampleName = ${serializedName};
+        const viewportModalExamples = new Set(['alert-dialog', 'dialog', 'drawer', 'sheet']);
+        const modalSelector = [
+          '[role="alertdialog"][data-state="open"]',
+          '[role="dialog"][data-state="open"]',
+          '[data-slot="alert-dialog-overlay"][data-state="open"]',
+          '[data-slot="dialog-overlay"][data-state="open"]',
+          '[data-slot="drawer-overlay"][data-state="open"]',
+        ].join(',');
+        let lastModalOpen = null;
         const syncTheme = () => document.documentElement.classList.toggle(
           'dark',
           window.parent !== window && window.parent.document.documentElement.classList.contains('dark'),
@@ -106,16 +134,51 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
           id: previewId,
           height: Math.ceil(document.body.scrollHeight),
         }, '*');
-        requestAnimationFrame(sendHeight);
+        const syncModalState = () => {
+          if (!viewportModalExamples.has(exampleName)) return;
+          const modalOpen = Boolean(document.querySelector(modalSelector));
+          document.documentElement.toggleAttribute('data-pharen-preview-modal-open', modalOpen);
+          if (modalOpen === lastModalOpen) return;
+          lastModalOpen = modalOpen;
+          window.parent.postMessage({
+            source: 'pharen-ui-preview',
+            id: previewId,
+            type: 'modal-state',
+            open: modalOpen,
+          }, '*');
+        };
+        requestAnimationFrame(() => {
+          sendHeight();
+          syncModalState();
+        });
         new ResizeObserver(sendHeight).observe(document.documentElement);
+        new MutationObserver(() => requestAnimationFrame(syncModalState)).observe(document.body, {
+          attributeFilter: ['data-state'],
+          attributes: true,
+          childList: true,
+          subtree: true,
+        });
       })();
     <\/script>
   </body>
 </html>`
   }, [bundle, name, previewId, title])
 
+  const previewFrameStyle = modalOpen
+    ? {
+        position: 'fixed',
+        inset: 0,
+        width: '100vw',
+        height: '100dvh',
+        zIndex: 2147483000,
+      }
+    : { height: `${height}px` }
+  const previewShellClassName = `not-prose my-6 rounded-xl border border-gray-200 bg-white shadow-sm dark:border-white/10 dark:bg-zinc-950 ${
+    modalOpen ? 'overflow-visible' : 'overflow-hidden'
+  }`
+
   return (
-    <div className="not-prose my-6 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-white/10 dark:bg-zinc-950">
+    <div className={previewShellClassName}>
       {loadError ? (
         <div className="flex min-h-72 flex-col items-center justify-center gap-3 p-6 text-center" role="alert">
           <p className="m-0 text-sm font-medium text-red-700 dark:text-red-300">
@@ -137,7 +200,7 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
           title={title}
           allow="clipboard-write"
           className="block w-full border-0 bg-transparent"
-          style={{ height: `${height}px` }}
+          style={previewFrameStyle}
         />
       ) : (
         <div className="flex h-64 items-center justify-center text-sm text-gray-500">
