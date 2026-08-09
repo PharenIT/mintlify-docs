@@ -1,0 +1,47 @@
+---
+title: "Accordion"
+sidebarTitle: "Accordion"
+description: "Importiere und verwende die Accordion-Komponenten aus @pharen/ui."
+---
+
+Mit **Accordion** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@pharen/ui';
+</script>
+
+<template>
+  <Accordion type="single" collapsible>
+    <AccordionItem value="billing">
+      <AccordionTrigger>How does billing work?</AccordionTrigger>
+      <AccordionContent>Plans are billed per workspace.</AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Accordion` | Exportierte Vue-Komponente dieses Moduls. |
+| `AccordionContent` | Enthält den sichtbaren Inhalt. |
+| `AccordionItem` | Stellt ein einzelnes Element dar. |
+| `AccordionTrigger` | Öffnet oder aktiviert die Komponente. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/accordion)

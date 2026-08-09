@@ -1,0 +1,42 @@
+---
+title: "Label"
+sidebarTitle: "Label"
+description: "Import and use the Label components from @pharen/ui."
+---
+
+Use **Label** to collect and edit a value. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Label } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Input, Label } from '@pharen/ui';
+</script>
+
+<template>
+  <div class="grid gap-2">
+    <Label for="name">Name</Label>
+    <Input id="name" />
+  </div>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Label` | Labels a value or region. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/Label.vue)

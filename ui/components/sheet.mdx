@@ -1,0 +1,49 @@
+---
+title: "Sheet"
+sidebarTitle: "Sheet"
+description: "Import and use the Sheet components from @pharen/ui."
+---
+
+Use **Sheet** to present supporting content beside the current view. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Sheet, SheetTrigger, SheetContent } from '@pharen/ui';
+</script>
+
+<template>
+  <Sheet>
+    <SheetTrigger>Open sheet</SheetTrigger>
+    <SheetContent>Sheet content</SheetContent>
+  </Sheet>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Sheet` | Exported Vue component from this module. |
+| `SheetClose` | Exported Vue component from this module. |
+| `SheetContent` | Contains the visible content. |
+| `SheetDescription` | Renders supporting description. |
+| `SheetFooter` | Structures the footer region. |
+| `SheetHeader` | Structures the header region. |
+| `SheetTitle` | Renders the accessible title. |
+| `SheetTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/sheet)

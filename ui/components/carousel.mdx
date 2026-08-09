@@ -1,0 +1,45 @@
+---
+title: "Carousel"
+sidebarTitle: "Carousel"
+description: "Import and use the Carousel components from @pharen/ui."
+---
+
+Use **Carousel** to organize content and responsive regions. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Carousel, CarouselItem } from '@pharen/ui';
+</script>
+
+<template>
+  <Carousel>
+    <CarouselItem>First item</CarouselItem>
+  </Carousel>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Carousel` | Exported Vue component from this module. |
+| `CarouselContent` | Contains the visible content. |
+| `CarouselItem` | Represents one item. |
+| `CarouselNext` | Exported Vue component from this module. |
+| `CarouselPrevious` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/carousel)

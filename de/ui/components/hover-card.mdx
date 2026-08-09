@@ -1,0 +1,44 @@
+---
+title: "Hover card"
+sidebarTitle: "Hover card"
+description: "Importiere und verwende die Hover card-Komponenten aus @pharen/ui."
+---
+
+Mit **Hover card** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { HoverCard, HoverCardTrigger, HoverCardContent } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { HoverCard, HoverCardTrigger, HoverCardContent } from '@pharen/ui';
+</script>
+
+<template>
+  <HoverCard>
+    <HoverCardTrigger>Open hover card</HoverCardTrigger>
+    <HoverCardContent>Hover card content</HoverCardContent>
+  </HoverCard>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `HoverCard` | Exportierte Vue-Komponente dieses Moduls. |
+| `HoverCardTrigger` | Öffnet oder aktiviert die Komponente. |
+| `HoverCardContent` | Enthält den sichtbaren Inhalt. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/hover-card)

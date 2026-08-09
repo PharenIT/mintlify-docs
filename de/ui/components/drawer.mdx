@@ -1,0 +1,51 @@
+---
+title: "Drawer"
+sidebarTitle: "Drawer"
+description: "Importiere und verwende die Drawer-Komponenten aus @pharen/ui."
+---
+
+Mit **Drawer** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerOverlay, DrawerPortal, DrawerTitle, DrawerTrigger } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Drawer, DrawerTrigger, DrawerContent } from '@pharen/ui';
+</script>
+
+<template>
+  <Drawer>
+    <DrawerTrigger>Open drawer</DrawerTrigger>
+    <DrawerContent>Drawer content</DrawerContent>
+  </Drawer>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Drawer` | Exportierte Vue-Komponente dieses Moduls. |
+| `DrawerClose` | Exportierte Vue-Komponente dieses Moduls. |
+| `DrawerContent` | Enthält den sichtbaren Inhalt. |
+| `DrawerDescription` | Zeigt ergänzende Beschreibung. |
+| `DrawerFooter` | Strukturiert den Fußbereich. |
+| `DrawerHeader` | Strukturiert den Kopfbereich. |
+| `DrawerOverlay` | Exportierte Vue-Komponente dieses Moduls. |
+| `DrawerPortal` | Exportierte Vue-Komponente dieses Moduls. |
+| `DrawerTitle` | Zeigt den zugänglichen Titel. |
+| `DrawerTrigger` | Öffnet oder aktiviert die Komponente. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/drawer)

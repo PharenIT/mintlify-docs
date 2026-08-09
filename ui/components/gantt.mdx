@@ -1,0 +1,49 @@
+---
+title: "Gantt"
+sidebarTitle: "Gantt"
+description: "Import and use the Gantt components from @pharen/ui."
+---
+
+Use **Gantt** to visualize work across a project timeline. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { GanttProvider, GanttSidebar, GanttSidebarGroup, GanttSidebarItem, GanttTimeline, GanttHeader, GanttFeatureList, GanttFeatureListGroup, GanttFeatureItem, GanttMarker, GanttToday } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { GanttProvider } from '@pharen/ui';
+</script>
+
+<template>
+  <GanttProvider />
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `GanttProvider` | Exported Vue component from this module. |
+| `GanttSidebar` | Exported Vue component from this module. |
+| `GanttSidebarGroup` | Groups related items. |
+| `GanttSidebarItem` | Represents one item. |
+| `GanttTimeline` | Exported Vue component from this module. |
+| `GanttHeader` | Structures the header region. |
+| `GanttFeatureList` | Exported Vue component from this module. |
+| `GanttFeatureListGroup` | Groups related items. |
+| `GanttFeatureItem` | Represents one item. |
+| `GanttMarker` | Exported Vue component from this module. |
+| `GanttToday` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/gantt)

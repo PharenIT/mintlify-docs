@@ -1,0 +1,57 @@
+---
+title: "Dialog"
+sidebarTitle: "Dialog"
+description: "Importiere und verwende die Dialog-Komponenten aus @pharen/ui."
+---
+
+Mit **Dialog** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogScrollContent, DialogTitle, DialogTrigger } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Button, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@pharen/ui';
+</script>
+
+<template>
+  <Dialog>
+    <DialogTrigger as-child><Button variant="outline">Open dialog</Button></DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Edit workspace</DialogTitle>
+        <DialogDescription>Update the workspace name and details.</DialogDescription>
+      </DialogHeader>
+    </DialogContent>
+  </Dialog>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Dialog` | Exportierte Vue-Komponente dieses Moduls. |
+| `DialogClose` | Exportierte Vue-Komponente dieses Moduls. |
+| `DialogContent` | Enthält den sichtbaren Inhalt. |
+| `DialogDescription` | Zeigt ergänzende Beschreibung. |
+| `DialogFooter` | Strukturiert den Fußbereich. |
+| `DialogHeader` | Strukturiert den Kopfbereich. |
+| `DialogOverlay` | Exportierte Vue-Komponente dieses Moduls. |
+| `DialogPortal` | Exportierte Vue-Komponente dieses Moduls. |
+| `DialogScrollContent` | Enthält den sichtbaren Inhalt. |
+| `DialogTitle` | Zeigt den zugänglichen Titel. |
+| `DialogTrigger` | Öffnet oder aktiviert die Komponente. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/dialog)

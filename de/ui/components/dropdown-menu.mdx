@@ -1,0 +1,56 @@
+---
+title: "Dropdown menu"
+sidebarTitle: "Dropdown menu"
+description: "Importiere und verwende die Dropdown menu-Komponenten aus @pharen/ui."
+---
+
+Mit **Dropdown menu** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, DropdownMenuPortal } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from '@pharen/ui';
+</script>
+
+<template>
+  <DropdownMenu>
+    <DropdownMenuTrigger>Open dropdown menu</DropdownMenuTrigger>
+    <DropdownMenuContent>Dropdown menu content</DropdownMenuContent>
+  </DropdownMenu>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `DropdownMenu` | Exportierte Vue-Komponente dieses Moduls. |
+| `DropdownMenuCheckboxItem` | Stellt ein einzelnes Element dar. |
+| `DropdownMenuContent` | Enthält den sichtbaren Inhalt. |
+| `DropdownMenuGroup` | Gruppiert zusammengehörige Elemente. |
+| `DropdownMenuItem` | Stellt ein einzelnes Element dar. |
+| `DropdownMenuLabel` | Beschriftet einen Wert oder Bereich. |
+| `DropdownMenuRadioGroup` | Gruppiert zusammengehörige Elemente. |
+| `DropdownMenuRadioItem` | Stellt ein einzelnes Element dar. |
+| `DropdownMenuSeparator` | Trennt benachbarte Bereiche. |
+| `DropdownMenuShortcut` | Exportierte Vue-Komponente dieses Moduls. |
+| `DropdownMenuSub` | Exportierte Vue-Komponente dieses Moduls. |
+| `DropdownMenuSubContent` | Enthält den sichtbaren Inhalt. |
+| `DropdownMenuSubTrigger` | Öffnet oder aktiviert die Komponente. |
+| `DropdownMenuTrigger` | Öffnet oder aktiviert die Komponente. |
+| `DropdownMenuPortal` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/dropdown-menu)

@@ -1,0 +1,45 @@
+---
+title: "Chain of thought"
+sidebarTitle: "Chain of thought"
+description: "Importiere und verwende die Chain of thought-Komponenten aus @pharen/ui/components/ai."
+---
+
+Mit **Chain of thought** kannst du AI-Oberflächen aufzubauen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { ChainOfThought, ChainOfThoughtHeader, ChainOfThoughtContent, ChainOfThoughtStep, ChainOfThoughtSearchResults, ChainOfThoughtSearchResult, ChainOfThoughtImage } from '@pharen/ui/components/ai';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { ChainOfThought } from '@pharen/ui/components/ai';
+</script>
+
+<template>
+  <ChainOfThought />
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `ChainOfThought` | Exportierte Vue-Komponente dieses Moduls. |
+| `ChainOfThoughtHeader` | Strukturiert den Kopfbereich. |
+| `ChainOfThoughtContent` | Enthält den sichtbaren Inhalt. |
+| `ChainOfThoughtStep` | Exportierte Vue-Komponente dieses Moduls. |
+| `ChainOfThoughtSearchResults` | Exportierte Vue-Komponente dieses Moduls. |
+| `ChainOfThoughtSearchResult` | Exportierte Vue-Komponente dieses Moduls. |
+| `ChainOfThoughtImage` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/ai/chain-of-thought)

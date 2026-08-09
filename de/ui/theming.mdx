@@ -1,0 +1,45 @@
+---
+title: "Styles und Theme"
+sidebarTitle: "Styles und Theme"
+description: "Passe Pharen UI über CSS-Variablen und den klassenbasierten Dark Mode an."
+---
+
+Pharen UI verwendet semantische CSS-Variablen. Überschreibe Tokens in deiner globalen CSS-Datei, nachdem du die Paket-Styles importiert hast.
+
+```css
+@import '@pharen/ui/styles.css';
+
+:root {
+  --primary: #158065;
+  --primary-foreground: #ffffff;
+  --background: #ffffff;
+  --foreground: #111111;
+  --border: #e5e5e5;
+  --radius: 0.625rem;
+}
+```
+
+## Dark mode
+
+Die Bibliothek aktiviert Dark Mode über die Klasse `dark`. Setze sie auf `html` oder auf einen umschließenden Bereich.
+
+```html
+<html class="dark">
+  <!-- Your app -->
+</html>
+```
+
+## Wichtige Token-Gruppen
+
+| Gruppe | Beispiele |
+| --- | --- |
+| Flächen | `--background`, `--card`, `--popover` |
+| Text | `--foreground`, `--muted-foreground` |
+| Aktionen | `--primary`, `--secondary`, `--destructive` |
+| Ränder | `--border`, `--input`, `--ring` |
+| Form | `--radius` |
+| Sidebar | `--sidebar-background`, `--sidebar-foreground`, `--sidebar-border` |
+
+<Warning>
+  Überschreibe semantische Tokens statt interner Komponentenklassen. So bleiben Varianten und Dark Mode konsistent.
+</Warning>

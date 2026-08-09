@@ -1,0 +1,52 @@
+---
+title: "Combobox"
+sidebarTitle: "Combobox"
+description: "Import and use the Combobox components from @pharen/ui."
+---
+
+Use **Combobox** to collect and edit a value. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Combobox, ComboboxAnchor, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxItemIndicator, ComboboxList, ComboboxSeparator, ComboboxViewport, ComboboxCancel, ComboboxTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Combobox, ComboboxItem } from '@pharen/ui';
+</script>
+
+<template>
+  <Combobox>
+    <ComboboxItem>First item</ComboboxItem>
+  </Combobox>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Combobox` | Exported Vue component from this module. |
+| `ComboboxAnchor` | Exported Vue component from this module. |
+| `ComboboxEmpty` | Exported Vue component from this module. |
+| `ComboboxGroup` | Groups related items. |
+| `ComboboxInput` | Exported Vue component from this module. |
+| `ComboboxItem` | Represents one item. |
+| `ComboboxItemIndicator` | Exported Vue component from this module. |
+| `ComboboxList` | Exported Vue component from this module. |
+| `ComboboxSeparator` | Separates adjacent regions. |
+| `ComboboxViewport` | Exported Vue component from this module. |
+| `ComboboxCancel` | Exported Vue component from this module. |
+| `ComboboxTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/combobox)

@@ -1,0 +1,57 @@
+---
+title: "Dialog"
+sidebarTitle: "Dialog"
+description: "Import and use the Dialog components from @pharen/ui."
+---
+
+Use **Dialog** to focus a task in a modal surface. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogScrollContent, DialogTitle, DialogTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Button, Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@pharen/ui';
+</script>
+
+<template>
+  <Dialog>
+    <DialogTrigger as-child><Button variant="outline">Open dialog</Button></DialogTrigger>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Edit workspace</DialogTitle>
+        <DialogDescription>Update the workspace name and details.</DialogDescription>
+      </DialogHeader>
+    </DialogContent>
+  </Dialog>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Dialog` | Exported Vue component from this module. |
+| `DialogClose` | Exported Vue component from this module. |
+| `DialogContent` | Contains the visible content. |
+| `DialogDescription` | Renders supporting description. |
+| `DialogFooter` | Structures the footer region. |
+| `DialogHeader` | Structures the header region. |
+| `DialogOverlay` | Exported Vue component from this module. |
+| `DialogPortal` | Exported Vue component from this module. |
+| `DialogScrollContent` | Contains the visible content. |
+| `DialogTitle` | Renders the accessible title. |
+| `DialogTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/dialog)

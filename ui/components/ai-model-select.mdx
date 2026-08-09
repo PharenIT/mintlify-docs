@@ -1,0 +1,43 @@
+---
+title: "AI model select"
+sidebarTitle: "AI model select"
+description: "Import and use the AI model select components from @pharen/ui."
+---
+
+Use **AI model select** to choose an AI model with model-specific metadata. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { AiModelSelect, AiModelIcon, AiModelSelectItem } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { AiModelSelect, AiModelSelectItem } from '@pharen/ui';
+</script>
+
+<template>
+  <AiModelSelect>
+    <AiModelSelectItem>First item</AiModelSelectItem>
+  </AiModelSelect>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `AiModelSelect` | Exported Vue component from this module. |
+| `AiModelIcon` | Exported Vue component from this module. |
+| `AiModelSelectItem` | Represents one item. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/ai-model-select)

@@ -1,0 +1,49 @@
+---
+title: "Pagination"
+sidebarTitle: "Pagination"
+description: "Import and use the Pagination components from @pharen/ui."
+---
+
+Use **Pagination** to navigate through paginated results. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationFirst, PaginationItem, PaginationLast, PaginationLink, PaginationNext, PaginationPrevious } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Pagination, PaginationItem } from '@pharen/ui';
+</script>
+
+<template>
+  <Pagination>
+    <PaginationItem>First item</PaginationItem>
+  </Pagination>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Pagination` | Exported Vue component from this module. |
+| `PaginationContent` | Contains the visible content. |
+| `PaginationEllipsis` | Exported Vue component from this module. |
+| `PaginationFirst` | Exported Vue component from this module. |
+| `PaginationItem` | Represents one item. |
+| `PaginationLast` | Exported Vue component from this module. |
+| `PaginationLink` | Exported Vue component from this module. |
+| `PaginationNext` | Exported Vue component from this module. |
+| `PaginationPrevious` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/pagination)

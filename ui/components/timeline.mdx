@@ -1,0 +1,48 @@
+---
+title: "Timeline"
+sidebarTitle: "Timeline"
+description: "Import and use the Timeline components from @pharen/ui."
+---
+
+Use **Timeline** to present structured product information. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Timeline, TimelineContent, TimelineDate, TimelineHeader, TimelineIndicator, TimelineItem, TimelineSeparator, TimelineTitle } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Timeline, TimelineItem } from '@pharen/ui';
+</script>
+
+<template>
+  <Timeline>
+    <TimelineItem>First item</TimelineItem>
+  </Timeline>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Timeline` | Exported Vue component from this module. |
+| `TimelineContent` | Contains the visible content. |
+| `TimelineDate` | Exported Vue component from this module. |
+| `TimelineHeader` | Structures the header region. |
+| `TimelineIndicator` | Exported Vue component from this module. |
+| `TimelineItem` | Represents one item. |
+| `TimelineSeparator` | Separates adjacent regions. |
+| `TimelineTitle` | Renders the accessible title. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/timeline)

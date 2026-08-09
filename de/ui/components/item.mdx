@@ -1,0 +1,48 @@
+---
+title: "Item"
+sidebarTitle: "Item"
+description: "Importiere und verwende die Item-Komponenten aus @pharen/ui."
+---
+
+Mit **Item** kannst du strukturierte Produktinformationen darzustellen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Item, ItemActions, ItemContent, ItemDescription, ItemFooter, ItemGroup, ItemHeader, ItemMedia, ItemSeparator, ItemTitle } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Item } from '@pharen/ui';
+</script>
+
+<template>
+  <Item />
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Item` | Stellt ein einzelnes Element dar. |
+| `ItemActions` | Exportierte Vue-Komponente dieses Moduls. |
+| `ItemContent` | Enthält den sichtbaren Inhalt. |
+| `ItemDescription` | Zeigt ergänzende Beschreibung. |
+| `ItemFooter` | Strukturiert den Fußbereich. |
+| `ItemGroup` | Gruppiert zusammengehörige Elemente. |
+| `ItemHeader` | Strukturiert den Kopfbereich. |
+| `ItemMedia` | Exportierte Vue-Komponente dieses Moduls. |
+| `ItemSeparator` | Trennt benachbarte Bereiche. |
+| `ItemTitle` | Zeigt den zugänglichen Titel. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/item)

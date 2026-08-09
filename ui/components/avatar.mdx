@@ -1,0 +1,46 @@
+---
+title: "Avatar"
+sidebarTitle: "Avatar"
+description: "Import and use the Avatar components from @pharen/ui."
+---
+
+Use **Avatar** to represent a person, team, or agent. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Avatar, AvatarBadge, AvatarFallback, AvatarImage, AvatarUser } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Avatar, AvatarFallback, AvatarImage } from '@pharen/ui';
+</script>
+
+<template>
+  <Avatar>
+    <AvatarImage src="/people/johannes.jpg" alt="Johannes Kanthak" />
+    <AvatarFallback>JK</AvatarFallback>
+  </Avatar>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Avatar` | Exported Vue component from this module. |
+| `AvatarBadge` | Exported Vue component from this module. |
+| `AvatarFallback` | Exported Vue component from this module. |
+| `AvatarImage` | Exported Vue component from this module. |
+| `AvatarUser` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/avatar)

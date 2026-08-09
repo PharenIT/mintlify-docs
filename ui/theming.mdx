@@ -1,0 +1,45 @@
+---
+title: "Styles and theming"
+sidebarTitle: "Styles and theming"
+description: "Customize Pharen UI with CSS variables and class-based dark mode."
+---
+
+Pharen UI uses semantic CSS variables. Override tokens in your global stylesheet after importing the package styles.
+
+```css
+@import '@pharen/ui/styles.css';
+
+:root {
+  --primary: #158065;
+  --primary-foreground: #ffffff;
+  --background: #ffffff;
+  --foreground: #111111;
+  --border: #e5e5e5;
+  --radius: 0.625rem;
+}
+```
+
+## Dark mode
+
+The library enables dark mode through the `dark` class. Apply it to `html` or a containing region.
+
+```html
+<html class="dark">
+  <!-- Your app -->
+</html>
+```
+
+## Important token groups
+
+| Group | Examples |
+| --- | --- |
+| Surfaces | `--background`, `--card`, `--popover` |
+| Text | `--foreground`, `--muted-foreground` |
+| Actions | `--primary`, `--secondary`, `--destructive` |
+| Boundaries | `--border`, `--input`, `--ring` |
+| Shape | `--radius` |
+| Sidebar | `--sidebar-background`, `--sidebar-foreground`, `--sidebar-border` |
+
+<Warning>
+  Override semantic tokens instead of internal component classes so variants and dark mode stay consistent.
+</Warning>

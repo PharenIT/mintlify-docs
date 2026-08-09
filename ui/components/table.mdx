@@ -1,0 +1,49 @@
+---
+title: "Table"
+sidebarTitle: "Table"
+description: "Import and use the Table components from @pharen/ui."
+---
+
+Use **Table** to present structured rows and columns. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@pharen/ui';
+</script>
+
+<template>
+  <Table>
+    <TableHeader><TableRow><TableHead>Member</TableHead><TableHead>Role</TableHead></TableRow></TableHeader>
+    <TableBody><TableRow><TableCell>Johannes</TableCell><TableCell>Owner</TableCell></TableRow></TableBody>
+  </Table>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Table` | Exported Vue component from this module. |
+| `TableHeader` | Structures the header region. |
+| `TableBody` | Exported Vue component from this module. |
+| `TableFooter` | Structures the footer region. |
+| `TableRow` | Exported Vue component from this module. |
+| `TableHead` | Exported Vue component from this module. |
+| `TableCell` | Exported Vue component from this module. |
+| `TableCaption` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/table)

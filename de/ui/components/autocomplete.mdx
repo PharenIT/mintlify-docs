@@ -1,0 +1,61 @@
+---
+title: "Autocomplete"
+sidebarTitle: "Autocomplete"
+description: "Importiere und verwende die Autocomplete-Komponenten aus @pharen/ui."
+---
+
+Mit **Autocomplete** kannst du einen Wert zu erfassen oder zu bearbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Autocomplete, AutocompleteClear, AutocompleteContent, AutocompleteEmpty, AutocompleteGroup, AutocompleteGroupLabel, AutocompleteInput, AutocompleteItem, AutocompleteList, AutocompleteSeparator, AutocompleteTrigger, AutocompleteArrow, AutocompleteBackdrop, AutocompleteCollection, AutocompleteItemIndicator, AutocompletePortal, AutocompletePositioner, AutocompleteRow, AutocompleteStatus, AutocompleteValue } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Autocomplete, AutocompleteTrigger, AutocompleteContent } from '@pharen/ui';
+</script>
+
+<template>
+  <Autocomplete>
+    <AutocompleteTrigger>Open autocomplete</AutocompleteTrigger>
+    <AutocompleteContent>Autocomplete content</AutocompleteContent>
+  </Autocomplete>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Autocomplete` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteClear` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteContent` | Enthält den sichtbaren Inhalt. |
+| `AutocompleteEmpty` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteGroup` | Gruppiert zusammengehörige Elemente. |
+| `AutocompleteGroupLabel` | Beschriftet einen Wert oder Bereich. |
+| `AutocompleteInput` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteItem` | Stellt ein einzelnes Element dar. |
+| `AutocompleteList` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteSeparator` | Trennt benachbarte Bereiche. |
+| `AutocompleteTrigger` | Öffnet oder aktiviert die Komponente. |
+| `AutocompleteArrow` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteBackdrop` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteCollection` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteItemIndicator` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompletePortal` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompletePositioner` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteRow` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteStatus` | Exportierte Vue-Komponente dieses Moduls. |
+| `AutocompleteValue` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/autocomplete)

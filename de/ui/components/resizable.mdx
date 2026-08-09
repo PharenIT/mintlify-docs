@@ -1,0 +1,41 @@
+---
+title: "Resizable"
+sidebarTitle: "Resizable"
+description: "Importiere und verwende die Resizable-Komponenten aus @pharen/ui."
+---
+
+Mit **Resizable** kannst du Inhalte und responsive Bereiche anzuordnen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { ResizableHandle } from '@pharen/ui';
+</script>
+
+<template>
+  <ResizableHandle />
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `ResizableHandle` | Exportierte Vue-Komponente dieses Moduls. |
+| `ResizablePanel` | Exportierte Vue-Komponente dieses Moduls. |
+| `ResizablePanelGroup` | Gruppiert zusammengehörige Elemente. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/resizable)

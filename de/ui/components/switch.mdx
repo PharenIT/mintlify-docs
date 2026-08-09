@@ -1,0 +1,42 @@
+---
+title: "Switch"
+sidebarTitle: "Switch"
+description: "Importiere und verwende die Switch-Komponenten aus @pharen/ui."
+---
+
+Mit **Switch** kannst du einen Wert zu erfassen oder zu bearbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Switch } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Label, Switch } from '@pharen/ui';
+</script>
+
+<template>
+  <div class="flex items-center gap-2">
+    <Switch id="notifications" />
+    <Label for="notifications">Notifications</Label>
+  </div>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Switch` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/switch)

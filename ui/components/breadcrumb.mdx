@@ -1,0 +1,51 @@
+---
+title: "Breadcrumb"
+sidebarTitle: "Breadcrumb"
+description: "Import and use the Breadcrumb components from @pharen/ui."
+---
+
+Use **Breadcrumb** to show the current location in a hierarchy. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@pharen/ui';
+</script>
+
+<template>
+  <Breadcrumb>
+    <BreadcrumbList>
+      <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+      <BreadcrumbSeparator />
+      <BreadcrumbItem><BreadcrumbPage>Settings</BreadcrumbPage></BreadcrumbItem>
+    </BreadcrumbList>
+  </Breadcrumb>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Breadcrumb` | Exported Vue component from this module. |
+| `BreadcrumbEllipsis` | Exported Vue component from this module. |
+| `BreadcrumbItem` | Represents one item. |
+| `BreadcrumbLink` | Exported Vue component from this module. |
+| `BreadcrumbList` | Exported Vue component from this module. |
+| `BreadcrumbPage` | Exported Vue component from this module. |
+| `BreadcrumbSeparator` | Separates adjacent regions. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/breadcrumb)

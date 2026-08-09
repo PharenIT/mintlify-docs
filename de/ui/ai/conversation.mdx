@@ -1,0 +1,45 @@
+---
+title: "Conversation"
+sidebarTitle: "Conversation"
+description: "Importiere und verwende die Conversation-Komponenten aus @pharen/ui/components/ai."
+---
+
+Mit **Conversation** kannst du AI-Oberflächen aufzubauen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Conversation, ConversationContent, ConversationEmptyState } from '@pharen/ui/components/ai';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Conversation, ConversationContent, ConversationEmptyState } from '@pharen/ui/components/ai';
+</script>
+
+<template>
+  <Conversation>
+    <ConversationContent>
+      <ConversationEmptyState title="Start a conversation" />
+    </ConversationContent>
+  </Conversation>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Conversation` | Exportierte Vue-Komponente dieses Moduls. |
+| `ConversationContent` | Enthält den sichtbaren Inhalt. |
+| `ConversationEmptyState` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/ai/conversation)

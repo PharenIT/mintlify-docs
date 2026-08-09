@@ -1,0 +1,65 @@
+---
+title: "Kanban"
+sidebarTitle: "Kanban"
+description: "Import and use the Kanban components from @pharen/ui."
+---
+
+Use **Kanban** to organize cards across workflow columns. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Kanban, KanbanBoard, KanbanCard, KanbanCards, KanbanHeader, KanbanProvider, KanbanColumn, KanbanColumnContent, KanbanColumnHandle, KanbanItem, KanbanItemHandle, KanbanOverlay } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Kanban, KanbanBoard, KanbanCard, KanbanCards, KanbanColumn, KanbanHeader, KanbanItem } from '@pharen/ui';
+const columns = {
+  todo: [{ id: 'brief', title: 'Write project brief' }],
+  done: [{ id: 'scope', title: 'Confirm scope' }],
+};
+</script>
+
+<template>
+  <Kanban :default-value="columns" :get-item-value="item => item.id">
+    <KanbanBoard>
+      <KanbanColumn v-for="(items, key) in columns" :key="key" :value="key">
+        <KanbanHeader>{{ key }}</KanbanHeader>
+        <KanbanCards>
+          <KanbanItem v-for="item in items" :key="item.id" :value="item.id">
+            <KanbanCard>{{ item.title }}</KanbanCard>
+          </KanbanItem>
+        </KanbanCards>
+      </KanbanColumn>
+    </KanbanBoard>
+  </Kanban>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Kanban` | Exported Vue component from this module. |
+| `KanbanBoard` | Exported Vue component from this module. |
+| `KanbanCard` | Exported Vue component from this module. |
+| `KanbanCards` | Exported Vue component from this module. |
+| `KanbanHeader` | Structures the header region. |
+| `KanbanProvider` | Exported Vue component from this module. |
+| `KanbanColumn` | Exported Vue component from this module. |
+| `KanbanColumnContent` | Contains the visible content. |
+| `KanbanColumnHandle` | Exported Vue component from this module. |
+| `KanbanItem` | Represents one item. |
+| `KanbanItemHandle` | Exported Vue component from this module. |
+| `KanbanOverlay` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/kanban)

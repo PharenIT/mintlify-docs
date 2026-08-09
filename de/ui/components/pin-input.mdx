@@ -1,0 +1,42 @@
+---
+title: "Pin input"
+sidebarTitle: "Pin input"
+description: "Importiere und verwende die Pin input-Komponenten aus @pharen/ui."
+---
+
+Mit **Pin input** kannst du einen Wert zu erfassen oder zu bearbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { PinInput } from '@pharen/ui';
+</script>
+
+<template>
+  <PinInput />
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `PinInput` | Exportierte Vue-Komponente dieses Moduls. |
+| `PinInputGroup` | Gruppiert zusammengehörige Elemente. |
+| `PinInputSeparator` | Trennt benachbarte Bereiche. |
+| `PinInputSlot` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/pin-input)

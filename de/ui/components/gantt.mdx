@@ -1,0 +1,49 @@
+---
+title: "Gantt"
+sidebarTitle: "Gantt"
+description: "Importiere und verwende die Gantt-Komponenten aus @pharen/ui."
+---
+
+Mit **Gantt** kannst du mit strukturierten operativen Daten zu arbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { GanttProvider, GanttSidebar, GanttSidebarGroup, GanttSidebarItem, GanttTimeline, GanttHeader, GanttFeatureList, GanttFeatureListGroup, GanttFeatureItem, GanttMarker, GanttToday } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { GanttProvider } from '@pharen/ui';
+</script>
+
+<template>
+  <GanttProvider />
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `GanttProvider` | Exportierte Vue-Komponente dieses Moduls. |
+| `GanttSidebar` | Exportierte Vue-Komponente dieses Moduls. |
+| `GanttSidebarGroup` | Gruppiert zusammengehörige Elemente. |
+| `GanttSidebarItem` | Stellt ein einzelnes Element dar. |
+| `GanttTimeline` | Exportierte Vue-Komponente dieses Moduls. |
+| `GanttHeader` | Strukturiert den Kopfbereich. |
+| `GanttFeatureList` | Exportierte Vue-Komponente dieses Moduls. |
+| `GanttFeatureListGroup` | Gruppiert zusammengehörige Elemente. |
+| `GanttFeatureItem` | Stellt ein einzelnes Element dar. |
+| `GanttMarker` | Exportierte Vue-Komponente dieses Moduls. |
+| `GanttToday` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/gantt)

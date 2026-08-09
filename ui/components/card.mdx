@@ -1,0 +1,54 @@
+---
+title: "Card"
+sidebarTitle: "Card"
+description: "Import and use the Card components from @pharen/ui."
+---
+
+Use **Card** to group related content and actions. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Card, CardAction, CardHeader, CardContent, CardTable, CardFooter, CardHeading, CardToolbar, CardTitle, CardDescription } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@pharen/ui';
+</script>
+
+<template>
+  <Card>
+    <CardHeader>
+      <CardTitle>Workspace usage</CardTitle>
+      <CardDescription>Usage for the current billing period.</CardDescription>
+    </CardHeader>
+    <CardContent>42 workflow runs</CardContent>
+  </Card>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Card` | Exported Vue component from this module. |
+| `CardAction` | Exported Vue component from this module. |
+| `CardHeader` | Structures the header region. |
+| `CardContent` | Contains the visible content. |
+| `CardTable` | Exported Vue component from this module. |
+| `CardFooter` | Structures the footer region. |
+| `CardHeading` | Exported Vue component from this module. |
+| `CardToolbar` | Exported Vue component from this module. |
+| `CardTitle` | Renders the accessible title. |
+| `CardDescription` | Renders supporting description. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/card)

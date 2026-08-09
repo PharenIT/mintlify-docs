@@ -1,0 +1,44 @@
+---
+title: "Empty"
+sidebarTitle: "Empty"
+description: "Importiere und verwende die Empty-Komponenten aus @pharen/ui."
+---
+
+Mit **Empty** kannst du strukturierte Produktinformationen darzustellen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Empty } from '@pharen/ui';
+</script>
+
+<template>
+  <Empty />
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Empty` | Exportierte Vue-Komponente dieses Moduls. |
+| `EmptyContent` | Enthält den sichtbaren Inhalt. |
+| `EmptyDescription` | Zeigt ergänzende Beschreibung. |
+| `EmptyHeader` | Strukturiert den Kopfbereich. |
+| `EmptyMedia` | Exportierte Vue-Komponente dieses Moduls. |
+| `EmptyTitle` | Zeigt den zugänglichen Titel. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/empty)

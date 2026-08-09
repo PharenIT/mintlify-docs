@@ -1,0 +1,41 @@
+---
+title: "Badge"
+sidebarTitle: "Badge"
+description: "Importiere und verwende die Badge-Komponenten aus @pharen/ui."
+---
+
+Mit **Badge** kannst du strukturierte Produktinformationen darzustellen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Badge, BadgeButton, BadgeDot } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Badge } from '@pharen/ui';
+</script>
+
+<template>
+  <Badge variant="secondary">Active</Badge>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Badge` | Exportierte Vue-Komponente dieses Moduls. |
+| `BadgeButton` | Exportierte Vue-Komponente dieses Moduls. |
+| `BadgeDot` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/badge)

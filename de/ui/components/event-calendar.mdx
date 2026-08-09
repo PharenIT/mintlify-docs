@@ -1,0 +1,72 @@
+---
+title: "Event calendar"
+sidebarTitle: "Event calendar"
+description: "Importiere und verwende die Event calendar-Komponenten aus @pharen/ui."
+---
+
+Mit **Event calendar** kannst du mit strukturierten operativen Daten zu arbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { EventCalendar, EventCalendarAgendaView, EventCalendarContent, EventCalendarDatePicker, EventCalendarDayView, EventCalendarDaysView, EventCalendarEvent, EventCalendarMonthView, EventCalendarMoreIndicator, EventCalendarNav, EventCalendarNavNext, EventCalendarNavPrev, EventCalendarNavToday, EventCalendarNowIndicator, EventCalendarResourceView, EventCalendarTimeGrid, EventCalendarTimeGutter, EventCalendarTitle, EventCalendarToolbar, EventCalendarViewSwitcher, EventCalendarWeekView, EventCalendarContext, EventCalendarViewConfigContext, EventCalendarViewContext, EventCalendarRecurrenceError } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { EventCalendar, EventCalendarContent, EventCalendarNav } from '@pharen/ui';
+const events = [{
+  id: 'kickoff',
+  title: 'Project kickoff',
+  start: new Date(2026, 7, 12, 10),
+  end: new Date(2026, 7, 12, 11),
+}];
+</script>
+
+<template>
+  <EventCalendar :events="events" default-view="month">
+    <EventCalendarNav />
+    <EventCalendarContent />
+  </EventCalendar>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `EventCalendar` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarAgendaView` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarContent` | Enthält den sichtbaren Inhalt. |
+| `EventCalendarDatePicker` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarDayView` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarDaysView` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarEvent` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarMonthView` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarMoreIndicator` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarNav` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarNavNext` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarNavPrev` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarNavToday` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarNowIndicator` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarResourceView` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarTimeGrid` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarTimeGutter` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarTitle` | Zeigt den zugänglichen Titel. |
+| `EventCalendarToolbar` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarViewSwitcher` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarWeekView` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarContext` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarViewConfigContext` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarViewContext` | Exportierte Vue-Komponente dieses Moduls. |
+| `EventCalendarRecurrenceError` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/event-calendar)

@@ -1,0 +1,49 @@
+---
+title: "Command"
+sidebarTitle: "Command"
+description: "Importiere und verwende die Command-Komponenten aus @pharen/ui."
+---
+
+Mit **Command** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Command, CommandItem } from '@pharen/ui';
+</script>
+
+<template>
+  <Command>
+    <CommandItem>First item</CommandItem>
+  </Command>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Command` | Exportierte Vue-Komponente dieses Moduls. |
+| `CommandDialog` | Exportierte Vue-Komponente dieses Moduls. |
+| `CommandEmpty` | Exportierte Vue-Komponente dieses Moduls. |
+| `CommandGroup` | Gruppiert zusammengehörige Elemente. |
+| `CommandInput` | Exportierte Vue-Komponente dieses Moduls. |
+| `CommandItem` | Stellt ein einzelnes Element dar. |
+| `CommandList` | Exportierte Vue-Komponente dieses Moduls. |
+| `CommandSeparator` | Trennt benachbarte Bereiche. |
+| `CommandShortcut` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/command)

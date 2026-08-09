@@ -1,0 +1,42 @@
+---
+title: "Skeleton"
+sidebarTitle: "Skeleton"
+description: "Import and use the Skeleton components from @pharen/ui."
+---
+
+Use **Skeleton** to reserve layout while content loads. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Skeleton } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Skeleton } from '@pharen/ui';
+</script>
+
+<template>
+  <div class="grid gap-2">
+    <Skeleton class="h-4 w-48" />
+    <Skeleton class="h-4 w-32" />
+  </div>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Skeleton` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/skeleton)

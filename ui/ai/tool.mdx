@@ -1,0 +1,44 @@
+---
+title: "Tool"
+sidebarTitle: "Tool"
+description: "Import and use the Tool components from @pharen/ui/components/ai."
+---
+
+Use **Tool** to build AI interfaces. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Tool, ToolInput, ToolOutput } from '@pharen/ui/components/ai';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Tool, ToolInput, ToolOutput } from '@pharen/ui/components/ai';
+</script>
+
+<template>
+  <Tool title="Search workspace" state="output-available">
+    <ToolInput :input="{ query: 'Q3 plan' }" />
+    <ToolOutput output="3 matching documents" />
+  </Tool>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Tool` | Exported Vue component from this module. |
+| `ToolInput` | Exported Vue component from this module. |
+| `ToolOutput` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/ai/tool)

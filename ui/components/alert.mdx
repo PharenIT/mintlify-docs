@@ -1,0 +1,48 @@
+---
+title: "Alert"
+sidebarTitle: "Alert"
+description: "Import and use the Alert components from @pharen/ui."
+---
+
+Use **Alert** to communicate an important inline message. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Alert, AlertAction, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertToolbar } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Alert, AlertDescription, AlertTitle } from '@pharen/ui';
+</script>
+
+<template>
+  <Alert>
+    <AlertTitle>Changes saved</AlertTitle>
+    <AlertDescription>Your workspace settings are up to date.</AlertDescription>
+  </Alert>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Alert` | Exported Vue component from this module. |
+| `AlertAction` | Exported Vue component from this module. |
+| `AlertContent` | Contains the visible content. |
+| `AlertDescription` | Renders supporting description. |
+| `AlertIcon` | Exported Vue component from this module. |
+| `AlertTitle` | Renders the accessible title. |
+| `AlertToolbar` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/alert)

@@ -1,0 +1,70 @@
+---
+title: "Sidebar"
+sidebarTitle: "Sidebar"
+description: "Import and use the Sidebar components from @pharen/ui."
+---
+
+Use **Sidebar** to build an application sidebar with responsive behavior. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupAction, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarInput, SidebarInset, SidebarMenu, SidebarMenuAction, SidebarMenuBadge, SidebarMenuButton, SidebarMenuItem, SidebarMenuSkeleton, SidebarMenuSub, SidebarMenuSubButton, SidebarMenuSubItem, SidebarProvider, SidebarRail, SidebarSeparator, SidebarTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Sidebar, SidebarContent, SidebarHeader, SidebarInset, SidebarProvider, SidebarTrigger } from '@pharen/ui';
+</script>
+
+<template>
+  <SidebarProvider>
+    <Sidebar>
+      <SidebarHeader>Pharen</SidebarHeader>
+      <SidebarContent>Navigation</SidebarContent>
+    </Sidebar>
+    <SidebarInset>
+      <SidebarTrigger />
+      <main>Page content</main>
+    </SidebarInset>
+  </SidebarProvider>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Sidebar` | Exported Vue component from this module. |
+| `SidebarContent` | Contains the visible content. |
+| `SidebarFooter` | Structures the footer region. |
+| `SidebarGroup` | Groups related items. |
+| `SidebarGroupAction` | Exported Vue component from this module. |
+| `SidebarGroupContent` | Contains the visible content. |
+| `SidebarGroupLabel` | Labels a value or region. |
+| `SidebarHeader` | Structures the header region. |
+| `SidebarInput` | Exported Vue component from this module. |
+| `SidebarInset` | Exported Vue component from this module. |
+| `SidebarMenu` | Exported Vue component from this module. |
+| `SidebarMenuAction` | Exported Vue component from this module. |
+| `SidebarMenuBadge` | Exported Vue component from this module. |
+| `SidebarMenuButton` | Exported Vue component from this module. |
+| `SidebarMenuItem` | Represents one item. |
+| `SidebarMenuSkeleton` | Exported Vue component from this module. |
+| `SidebarMenuSub` | Exported Vue component from this module. |
+| `SidebarMenuSubButton` | Exported Vue component from this module. |
+| `SidebarMenuSubItem` | Represents one item. |
+| `SidebarProvider` | Exported Vue component from this module. |
+| `SidebarRail` | Exported Vue component from this module. |
+| `SidebarSeparator` | Separates adjacent regions. |
+| `SidebarTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/sidebar)

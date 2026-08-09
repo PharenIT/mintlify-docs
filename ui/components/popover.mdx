@@ -1,0 +1,48 @@
+---
+title: "Popover"
+sidebarTitle: "Popover"
+description: "Import and use the Popover components from @pharen/ui."
+---
+
+Use **Popover** to show contextual interactive content. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Popover, PopoverAnchor, PopoverContent, PopoverDescription, PopoverHeader, PopoverTitle, PopoverTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@pharen/ui';
+</script>
+
+<template>
+  <Popover>
+    <PopoverTrigger as-child><Button variant="outline">Open</Button></PopoverTrigger>
+    <PopoverContent>Choose a workspace action.</PopoverContent>
+  </Popover>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Popover` | Exported Vue component from this module. |
+| `PopoverAnchor` | Exported Vue component from this module. |
+| `PopoverContent` | Contains the visible content. |
+| `PopoverDescription` | Renders supporting description. |
+| `PopoverHeader` | Structures the header region. |
+| `PopoverTitle` | Renders the accessible title. |
+| `PopoverTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/popover)
