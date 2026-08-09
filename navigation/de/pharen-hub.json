@@ -1,0 +1,139 @@
+{
+  "product": "Pharen Hub",
+  "description": "AI-Workspace, Workflow-Automatisierung, Administration und API.",
+  "icon": "panels-top-left",
+  "tabs": [
+    {
+      "tab": "Allgemein",
+      "pages": [
+        "de/general/overview",
+        "de/general/concepts",
+        "de/general/local-setup"
+      ]
+    },
+    {
+      "tab": "Mobile",
+      "pages": [
+        "de/mobile/overview",
+        "de/mobile/installation"
+      ]
+    },
+    {
+      "tab": "Workflows",
+      "pages": [
+        "de/workflows/overview",
+        "de/workflows/triggers",
+        "de/workflows/actions"
+      ]
+    },
+    {
+      "tab": "Listen",
+      "pages": [
+        "de/lists/overview",
+        "de/lists/fields",
+        "de/lists/views"
+      ]
+    },
+    {
+      "tab": "Studio",
+      "pages": [
+        "de/studio/overview",
+        "de/studio/getting-started"
+      ]
+    },
+    {
+      "tab": "Transformation",
+      "pages": [
+        "de/transformation/overview",
+        "de/transformation/pipelines"
+      ]
+    },
+    {
+      "tab": "Dokumentation",
+      "groups": [
+        {
+          "group": "Start",
+          "icon": "rocket",
+          "expanded": true,
+          "pages": [
+            "de/introduction",
+            "de/quickstart",
+            "de/workspace-setup"
+          ]
+        },
+        {
+          "group": "Sicherheit & Admin",
+          "icon": "shield",
+          "pages": [
+            "de/admin/roles-and-permissions",
+            "de/admin/budget-controls",
+            "de/admin/ai-model-policies",
+            "de/admin/two-factor-auth"
+          ]
+        },
+        {
+          "group": "Pläne & Abrechnung",
+          "icon": "credit-card",
+          "pages": [
+            "de/billing/plans",
+            "de/billing/ai-credits",
+            "de/billing/faq"
+          ]
+        }
+      ]
+    },
+    {
+      "tab": "API Referenz",
+      "groups": [
+        {
+          "group": "Überblick",
+          "icon": "book-open",
+          "expanded": true,
+          "pages": [
+            "de/api-reference/introduction",
+            "de/api-reference/authentication",
+            "de/api-reference/api-keys"
+          ]
+        },
+        {
+          "group": "Kalender",
+          "icon": "calendar",
+          "pages": [
+            "de/api-reference/calendar/list-events",
+            "de/api-reference/calendar/create-event"
+          ]
+        },
+        {
+          "group": "Listen",
+          "icon": "list",
+          "pages": [
+            "de/api-reference/lists/list-lists"
+          ]
+        },
+        {
+          "group": "Docs",
+          "icon": "file-text",
+          "pages": [
+            "de/api-reference/docs/list-documents"
+          ]
+        },
+        {
+          "group": "Workflows",
+          "icon": "workflow",
+          "pages": [
+            "de/api-reference/workflows/list-workflows",
+            "de/api-reference/workflows/run-workflow"
+          ]
+        },
+        {
+          "group": "Agents",
+          "icon": "bot",
+          "pages": [
+            "de/api-reference/agents/list-agents",
+            "de/api-reference/agents/chat-agent"
+          ]
+        }
+      ]
+    }
+  ]
+}

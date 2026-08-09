@@ -1,0 +1,165 @@
+{
+  "product": "Pharen UI",
+  "description": "Vue-3-Komponenten, Design-Tokens und AI-Interface-Patterns.",
+  "icon": "blocks",
+  "groups": [
+    {
+      "group": "Start",
+      "icon": "package-open",
+      "expanded": true,
+      "pages": [
+        "de/ui/overview",
+        "de/ui/installation",
+        "de/ui/theming",
+        "de/ui/components/index",
+        "de/ui/ai/index"
+      ]
+    },
+    {
+      "group": "Formulare und Eingaben",
+      "icon": "text-cursor-input",
+      "pages": [
+        "de/ui/components/ai-model-select",
+        "de/ui/components/autocomplete",
+        "de/ui/components/calendar",
+        "de/ui/components/checkbox",
+        "de/ui/components/color-picker",
+        "de/ui/components/combobox",
+        "de/ui/components/date-picker",
+        "de/ui/components/date-selector",
+        "de/ui/components/dropfile",
+        "de/ui/components/field",
+        "de/ui/components/file-upload",
+        "de/ui/components/form",
+        "de/ui/components/input",
+        "de/ui/components/input-group",
+        "de/ui/components/input-otp",
+        "de/ui/components/label",
+        "de/ui/components/multi-select",
+        "de/ui/components/native-select",
+        "de/ui/components/number-field",
+        "de/ui/components/phone-input",
+        "de/ui/components/pin-input",
+        "de/ui/components/radio-group",
+        "de/ui/components/rating",
+        "de/ui/components/remote-select",
+        "de/ui/components/search-input",
+        "de/ui/components/segmented-control",
+        "de/ui/components/select",
+        "de/ui/components/slider",
+        "de/ui/components/switch",
+        "de/ui/components/textarea",
+        "de/ui/components/toggle",
+        "de/ui/components/toggle-group"
+      ]
+    },
+    {
+      "group": "Aktionen und Navigation",
+      "icon": "mouse-pointer-click",
+      "pages": [
+        "de/ui/components/breadcrumb",
+        "de/ui/components/button",
+        "de/ui/components/button-group",
+        "de/ui/components/detail-icon-nav",
+        "de/ui/components/menubar",
+        "de/ui/components/navigation-menu",
+        "de/ui/components/pagination",
+        "de/ui/components/scrollspy",
+        "de/ui/components/sidebar",
+        "de/ui/components/stepper",
+        "de/ui/components/tabs",
+        "de/ui/components/tree"
+      ]
+    },
+    {
+      "group": "Datenanzeige",
+      "icon": "layout-grid",
+      "pages": [
+        "de/ui/components/aspect-ratio",
+        "de/ui/components/avatar",
+        "de/ui/components/avatar-group",
+        "de/ui/components/badge",
+        "de/ui/components/border-beam",
+        "de/ui/components/card",
+        "de/ui/components/chart",
+        "de/ui/components/empty",
+        "de/ui/components/empty-state",
+        "de/ui/components/frame",
+        "de/ui/components/icon-stack",
+        "de/ui/components/icon-tile",
+        "de/ui/components/item",
+        "de/ui/components/kbd",
+        "de/ui/components/live-waveform",
+        "de/ui/components/plan",
+        "de/ui/components/progress",
+        "de/ui/components/separator",
+        "de/ui/components/skeleton",
+        "de/ui/components/spinner",
+        "de/ui/components/stat-card",
+        "de/ui/components/table",
+        "de/ui/components/timeline"
+      ]
+    },
+    {
+      "group": "Layout",
+      "icon": "panels-top-left",
+      "pages": [
+        "de/ui/components/carousel",
+        "de/ui/components/collapsible",
+        "de/ui/components/resizable",
+        "de/ui/components/scroll-area"
+      ]
+    },
+    {
+      "group": "Overlays und Feedback",
+      "icon": "messages-square",
+      "pages": [
+        "de/ui/components/accordion",
+        "de/ui/components/alert",
+        "de/ui/components/alert-dialog",
+        "de/ui/components/command",
+        "de/ui/components/context-menu",
+        "de/ui/components/dialog",
+        "de/ui/components/drawer",
+        "de/ui/components/dropdown-menu",
+        "de/ui/components/hover-card",
+        "de/ui/components/popover",
+        "de/ui/components/sheet",
+        "de/ui/components/sonner",
+        "de/ui/components/tooltip"
+      ]
+    },
+    {
+      "group": "Daten und Planung",
+      "icon": "table-properties",
+      "pages": [
+        "de/ui/components/data-grid",
+        "de/ui/components/event-calendar",
+        "de/ui/components/filters",
+        "de/ui/components/gantt",
+        "de/ui/components/kanban",
+        "de/ui/components/sortable"
+      ]
+    },
+    {
+      "group": "AI Components",
+      "icon": "sparkles",
+      "pages": [
+        "de/ui/ai/approval",
+        "de/ui/ai/chain-of-thought",
+        "de/ui/ai/checkpoint",
+        "de/ui/ai/code-block",
+        "de/ui/ai/context",
+        "de/ui/ai/conversation",
+        "de/ui/ai/message",
+        "de/ui/ai/pharen-thinking",
+        "de/ui/ai/plan",
+        "de/ui/ai/reasoning",
+        "de/ui/ai/shimmer",
+        "de/ui/ai/suggestion",
+        "de/ui/ai/thinking-label",
+        "de/ui/ai/tool"
+      ]
+    }
+  ]
+}

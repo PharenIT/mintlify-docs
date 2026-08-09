@@ -19,6 +19,23 @@ body {
   --default-border-color: var(--gray-800);
 }
 
+@media (min-width: 1024px) {
+  body {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+
+  :has(> #navbar) {
+    overflow: visible !important;
+  }
+
+  #navbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 50 !important;
+  }
+}
+
 #navbar > div:last-child {
   padding-bottom: 0.125rem;
 }
