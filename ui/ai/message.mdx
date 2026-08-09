@@ -1,0 +1,53 @@
+---
+title: "Message"
+sidebarTitle: "Message"
+description: "Import and use the Message components from @pharen/ui/components/ai."
+---
+
+Use **Message** to build AI interfaces. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Message, MessageContent, MessageActions, MessageResponse, MessageToolbar, MessageBranch, MessageBranchContent, MessageBranchSelector, MessageBranchPrevious, MessageBranchNext, MessageBranchPage } from '@pharen/ui/components/ai';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Message, MessageContent, MessageResponse } from '@pharen/ui/components/ai';
+</script>
+
+<template>
+  <Message from="assistant">
+    <MessageContent>
+      <MessageResponse content="Your workflow is ready." />
+    </MessageContent>
+  </Message>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Message` | Exported Vue component from this module. |
+| `MessageContent` | Contains the visible content. |
+| `MessageActions` | Exported Vue component from this module. |
+| `MessageResponse` | Exported Vue component from this module. |
+| `MessageToolbar` | Exported Vue component from this module. |
+| `MessageBranch` | Exported Vue component from this module. |
+| `MessageBranchContent` | Contains the visible content. |
+| `MessageBranchSelector` | Exported Vue component from this module. |
+| `MessageBranchPrevious` | Exported Vue component from this module. |
+| `MessageBranchNext` | Exported Vue component from this module. |
+| `MessageBranchPage` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/ai/message)

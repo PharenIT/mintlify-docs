@@ -1,0 +1,48 @@
+---
+title: "Popover"
+sidebarTitle: "Popover"
+description: "Importiere und verwende die Popover-Komponenten aus @pharen/ui."
+---
+
+Mit **Popover** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Popover, PopoverAnchor, PopoverContent, PopoverDescription, PopoverHeader, PopoverTitle, PopoverTrigger } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@pharen/ui';
+</script>
+
+<template>
+  <Popover>
+    <PopoverTrigger as-child><Button variant="outline">Open</Button></PopoverTrigger>
+    <PopoverContent>Choose a workspace action.</PopoverContent>
+  </Popover>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Popover` | Exportierte Vue-Komponente dieses Moduls. |
+| `PopoverAnchor` | Exportierte Vue-Komponente dieses Moduls. |
+| `PopoverContent` | Enthält den sichtbaren Inhalt. |
+| `PopoverDescription` | Zeigt ergänzende Beschreibung. |
+| `PopoverHeader` | Strukturiert den Kopfbereich. |
+| `PopoverTitle` | Zeigt den zugänglichen Titel. |
+| `PopoverTrigger` | Öffnet oder aktiviert die Komponente. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/popover)

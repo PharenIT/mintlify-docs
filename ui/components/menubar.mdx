@@ -1,0 +1,57 @@
+---
+title: "Menubar"
+sidebarTitle: "Menubar"
+description: "Import and use the Menubar components from @pharen/ui."
+---
+
+Use **Menubar** to build an action or navigation pattern. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarGroup, MenubarItem, MenubarLabel, MenubarMenu, MenubarPortal, MenubarRadioGroup, MenubarRadioItem, MenubarSeparator, MenubarShortcut, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Menubar, MenubarTrigger, MenubarContent } from '@pharen/ui';
+</script>
+
+<template>
+  <Menubar>
+    <MenubarTrigger>Open menubar</MenubarTrigger>
+    <MenubarContent>Menubar content</MenubarContent>
+  </Menubar>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Menubar` | Exported Vue component from this module. |
+| `MenubarCheckboxItem` | Represents one item. |
+| `MenubarContent` | Contains the visible content. |
+| `MenubarGroup` | Groups related items. |
+| `MenubarItem` | Represents one item. |
+| `MenubarLabel` | Labels a value or region. |
+| `MenubarMenu` | Exported Vue component from this module. |
+| `MenubarPortal` | Exported Vue component from this module. |
+| `MenubarRadioGroup` | Groups related items. |
+| `MenubarRadioItem` | Represents one item. |
+| `MenubarSeparator` | Separates adjacent regions. |
+| `MenubarShortcut` | Exported Vue component from this module. |
+| `MenubarSub` | Exported Vue component from this module. |
+| `MenubarSubContent` | Contains the visible content. |
+| `MenubarSubTrigger` | Opens or activates the component. |
+| `MenubarTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/menubar)

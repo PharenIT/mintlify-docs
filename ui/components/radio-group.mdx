@@ -1,0 +1,42 @@
+---
+title: "Radio group"
+sidebarTitle: "Radio group"
+description: "Import and use the Radio group components from @pharen/ui."
+---
+
+Use **Radio group** to collect and edit a value. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { RadioGroup, RadioGroupItem } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { RadioGroup, RadioGroupItem } from '@pharen/ui';
+</script>
+
+<template>
+  <RadioGroup>
+    <RadioGroupItem>First item</RadioGroupItem>
+  </RadioGroup>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `RadioGroup` | Groups related items. |
+| `RadioGroupItem` | Represents one item. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/radio-group)

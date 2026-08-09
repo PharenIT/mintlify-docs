@@ -1,0 +1,45 @@
+---
+title: "Conversation"
+sidebarTitle: "Conversation"
+description: "Import and use the Conversation components from @pharen/ui/components/ai."
+---
+
+Use **Conversation** to build AI interfaces. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Conversation, ConversationContent, ConversationEmptyState } from '@pharen/ui/components/ai';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Conversation, ConversationContent, ConversationEmptyState } from '@pharen/ui/components/ai';
+</script>
+
+<template>
+  <Conversation>
+    <ConversationContent>
+      <ConversationEmptyState title="Start a conversation" />
+    </ConversationContent>
+  </Conversation>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Conversation` | Exported Vue component from this module. |
+| `ConversationContent` | Contains the visible content. |
+| `ConversationEmptyState` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/ai/conversation)

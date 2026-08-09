@@ -1,0 +1,47 @@
+---
+title: "Tooltip"
+sidebarTitle: "Tooltip"
+description: "Import and use the Tooltip components from @pharen/ui."
+---
+
+Use **Tooltip** to explain an action or value on hover and keyboard focus. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@pharen/ui';
+</script>
+
+<template>
+  <TooltipProvider>
+    <Tooltip>
+      <TooltipTrigger as-child><Button variant="outline">Hover or focus</Button></TooltipTrigger>
+      <TooltipContent>Open workspace settings</TooltipContent>
+    </Tooltip>
+  </TooltipProvider>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Tooltip` | Exported Vue component from this module. |
+| `TooltipProvider` | Exported Vue component from this module. |
+| `TooltipTrigger` | Opens or activates the component. |
+| `TooltipContent` | Contains the visible content. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/tooltip)

@@ -1,0 +1,54 @@
+---
+title: "Card"
+sidebarTitle: "Card"
+description: "Importiere und verwende die Card-Komponenten aus @pharen/ui."
+---
+
+Mit **Card** kannst du strukturierte Produktinformationen darzustellen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Card, CardAction, CardHeader, CardContent, CardTable, CardFooter, CardHeading, CardToolbar, CardTitle, CardDescription } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@pharen/ui';
+</script>
+
+<template>
+  <Card>
+    <CardHeader>
+      <CardTitle>Workspace usage</CardTitle>
+      <CardDescription>Usage for the current billing period.</CardDescription>
+    </CardHeader>
+    <CardContent>42 workflow runs</CardContent>
+  </Card>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Card` | Exportierte Vue-Komponente dieses Moduls. |
+| `CardAction` | Exportierte Vue-Komponente dieses Moduls. |
+| `CardHeader` | Strukturiert den Kopfbereich. |
+| `CardContent` | Enthält den sichtbaren Inhalt. |
+| `CardTable` | Exportierte Vue-Komponente dieses Moduls. |
+| `CardFooter` | Strukturiert den Fußbereich. |
+| `CardHeading` | Exportierte Vue-Komponente dieses Moduls. |
+| `CardToolbar` | Exportierte Vue-Komponente dieses Moduls. |
+| `CardTitle` | Zeigt den zugänglichen Titel. |
+| `CardDescription` | Zeigt ergänzende Beschreibung. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/card)

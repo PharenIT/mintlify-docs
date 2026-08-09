@@ -1,0 +1,39 @@
+---
+title: "Progress"
+sidebarTitle: "Progress"
+description: "Import and use the Progress components from @pharen/ui."
+---
+
+Use **Progress** to communicate completion against a known total. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Progress } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Progress } from '@pharen/ui';
+</script>
+
+<template>
+  <Progress :model-value="64" />
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Progress` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/progress)

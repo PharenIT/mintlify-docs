@@ -1,0 +1,51 @@
+---
+title: "Stepper"
+sidebarTitle: "Stepper"
+description: "Import and use the Stepper components from @pharen/ui."
+---
+
+Use **Stepper** to build an action or navigation pattern. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Stepper, StepperContent, StepperDescription, StepperIndicator, StepperItem, StepperNav, StepperPanel, StepperSeparator, StepperTitle, StepperTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Stepper, StepperTrigger, StepperContent } from '@pharen/ui';
+</script>
+
+<template>
+  <Stepper>
+    <StepperTrigger>Open stepper</StepperTrigger>
+    <StepperContent>Stepper content</StepperContent>
+  </Stepper>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Stepper` | Exported Vue component from this module. |
+| `StepperContent` | Contains the visible content. |
+| `StepperDescription` | Renders supporting description. |
+| `StepperIndicator` | Exported Vue component from this module. |
+| `StepperItem` | Represents one item. |
+| `StepperNav` | Exported Vue component from this module. |
+| `StepperPanel` | Exported Vue component from this module. |
+| `StepperSeparator` | Separates adjacent regions. |
+| `StepperTitle` | Renders the accessible title. |
+| `StepperTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/stepper)

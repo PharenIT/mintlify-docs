@@ -1,0 +1,53 @@
+---
+title: "Alert dialog"
+sidebarTitle: "Alert dialog"
+description: "Importiere und verwende die Alert dialog-Komponenten aus @pharen/ui."
+---
+
+Mit **Alert dialog** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogMedia, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { AlertDialog, AlertDialogTrigger, AlertDialogContent } from '@pharen/ui';
+</script>
+
+<template>
+  <AlertDialog>
+    <AlertDialogTrigger>Open alert dialog</AlertDialogTrigger>
+    <AlertDialogContent>Alert dialog content</AlertDialogContent>
+  </AlertDialog>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `AlertDialog` | Exportierte Vue-Komponente dieses Moduls. |
+| `AlertDialogAction` | Exportierte Vue-Komponente dieses Moduls. |
+| `AlertDialogCancel` | Exportierte Vue-Komponente dieses Moduls. |
+| `AlertDialogContent` | Enthält den sichtbaren Inhalt. |
+| `AlertDialogDescription` | Zeigt ergänzende Beschreibung. |
+| `AlertDialogFooter` | Strukturiert den Fußbereich. |
+| `AlertDialogHeader` | Strukturiert den Kopfbereich. |
+| `AlertDialogMedia` | Exportierte Vue-Komponente dieses Moduls. |
+| `AlertDialogOverlay` | Exportierte Vue-Komponente dieses Moduls. |
+| `AlertDialogPortal` | Exportierte Vue-Komponente dieses Moduls. |
+| `AlertDialogTitle` | Zeigt den zugänglichen Titel. |
+| `AlertDialogTrigger` | Öffnet oder aktiviert die Komponente. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/alert-dialog)

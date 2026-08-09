@@ -1,0 +1,49 @@
+---
+title: "Command"
+sidebarTitle: "Command"
+description: "Import and use the Command components from @pharen/ui."
+---
+
+Use **Command** to show contextual content or user feedback. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Command, CommandItem } from '@pharen/ui';
+</script>
+
+<template>
+  <Command>
+    <CommandItem>First item</CommandItem>
+  </Command>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Command` | Exported Vue component from this module. |
+| `CommandDialog` | Exported Vue component from this module. |
+| `CommandEmpty` | Exported Vue component from this module. |
+| `CommandGroup` | Groups related items. |
+| `CommandInput` | Exported Vue component from this module. |
+| `CommandItem` | Represents one item. |
+| `CommandList` | Exported Vue component from this module. |
+| `CommandSeparator` | Separates adjacent regions. |
+| `CommandShortcut` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/command)

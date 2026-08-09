@@ -1,0 +1,41 @@
+---
+title: "Native select"
+sidebarTitle: "Native select"
+description: "Importiere und verwende die Native select-Komponenten aus @pharen/ui."
+---
+
+Mit **Native select** kannst du einen Wert zu erfassen oder zu bearbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { NativeSelect, NativeSelectOptGroup, NativeSelectOption } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { NativeSelect } from '@pharen/ui';
+</script>
+
+<template>
+  <NativeSelect />
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `NativeSelect` | Exportierte Vue-Komponente dieses Moduls. |
+| `NativeSelectOptGroup` | Gruppiert zusammengehörige Elemente. |
+| `NativeSelectOption` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/native-select)

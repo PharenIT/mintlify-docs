@@ -1,0 +1,56 @@
+---
+title: "Dropdown menu"
+sidebarTitle: "Dropdown menu"
+description: "Import and use the Dropdown menu components from @pharen/ui."
+---
+
+Use **Dropdown menu** to show contextual content or user feedback. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, DropdownMenuPortal } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent } from '@pharen/ui';
+</script>
+
+<template>
+  <DropdownMenu>
+    <DropdownMenuTrigger>Open dropdown menu</DropdownMenuTrigger>
+    <DropdownMenuContent>Dropdown menu content</DropdownMenuContent>
+  </DropdownMenu>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `DropdownMenu` | Exported Vue component from this module. |
+| `DropdownMenuCheckboxItem` | Represents one item. |
+| `DropdownMenuContent` | Contains the visible content. |
+| `DropdownMenuGroup` | Groups related items. |
+| `DropdownMenuItem` | Represents one item. |
+| `DropdownMenuLabel` | Labels a value or region. |
+| `DropdownMenuRadioGroup` | Groups related items. |
+| `DropdownMenuRadioItem` | Represents one item. |
+| `DropdownMenuSeparator` | Separates adjacent regions. |
+| `DropdownMenuShortcut` | Exported Vue component from this module. |
+| `DropdownMenuSub` | Exported Vue component from this module. |
+| `DropdownMenuSubContent` | Contains the visible content. |
+| `DropdownMenuSubTrigger` | Opens or activates the component. |
+| `DropdownMenuTrigger` | Opens or activates the component. |
+| `DropdownMenuPortal` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/dropdown-menu)

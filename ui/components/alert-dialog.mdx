@@ -1,0 +1,53 @@
+---
+title: "Alert dialog"
+sidebarTitle: "Alert dialog"
+description: "Import and use the Alert dialog components from @pharen/ui."
+---
+
+Use **Alert dialog** to confirm a consequential action. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogMedia, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { AlertDialog, AlertDialogTrigger, AlertDialogContent } from '@pharen/ui';
+</script>
+
+<template>
+  <AlertDialog>
+    <AlertDialogTrigger>Open alert dialog</AlertDialogTrigger>
+    <AlertDialogContent>Alert dialog content</AlertDialogContent>
+  </AlertDialog>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `AlertDialog` | Exported Vue component from this module. |
+| `AlertDialogAction` | Exported Vue component from this module. |
+| `AlertDialogCancel` | Exported Vue component from this module. |
+| `AlertDialogContent` | Contains the visible content. |
+| `AlertDialogDescription` | Renders supporting description. |
+| `AlertDialogFooter` | Structures the footer region. |
+| `AlertDialogHeader` | Structures the header region. |
+| `AlertDialogMedia` | Exported Vue component from this module. |
+| `AlertDialogOverlay` | Exported Vue component from this module. |
+| `AlertDialogPortal` | Exported Vue component from this module. |
+| `AlertDialogTitle` | Renders the accessible title. |
+| `AlertDialogTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/alert-dialog)

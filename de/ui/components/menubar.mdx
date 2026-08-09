@@ -1,0 +1,57 @@
+---
+title: "Menubar"
+sidebarTitle: "Menubar"
+description: "Importiere und verwende die Menubar-Komponenten aus @pharen/ui."
+---
+
+Mit **Menubar** kannst du eine Aktion oder Navigation aufzubauen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarGroup, MenubarItem, MenubarLabel, MenubarMenu, MenubarPortal, MenubarRadioGroup, MenubarRadioItem, MenubarSeparator, MenubarShortcut, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Menubar, MenubarTrigger, MenubarContent } from '@pharen/ui';
+</script>
+
+<template>
+  <Menubar>
+    <MenubarTrigger>Open menubar</MenubarTrigger>
+    <MenubarContent>Menubar content</MenubarContent>
+  </Menubar>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Menubar` | Exportierte Vue-Komponente dieses Moduls. |
+| `MenubarCheckboxItem` | Stellt ein einzelnes Element dar. |
+| `MenubarContent` | Enthält den sichtbaren Inhalt. |
+| `MenubarGroup` | Gruppiert zusammengehörige Elemente. |
+| `MenubarItem` | Stellt ein einzelnes Element dar. |
+| `MenubarLabel` | Beschriftet einen Wert oder Bereich. |
+| `MenubarMenu` | Exportierte Vue-Komponente dieses Moduls. |
+| `MenubarPortal` | Exportierte Vue-Komponente dieses Moduls. |
+| `MenubarRadioGroup` | Gruppiert zusammengehörige Elemente. |
+| `MenubarRadioItem` | Stellt ein einzelnes Element dar. |
+| `MenubarSeparator` | Trennt benachbarte Bereiche. |
+| `MenubarShortcut` | Exportierte Vue-Komponente dieses Moduls. |
+| `MenubarSub` | Exportierte Vue-Komponente dieses Moduls. |
+| `MenubarSubContent` | Enthält den sichtbaren Inhalt. |
+| `MenubarSubTrigger` | Öffnet oder aktiviert die Komponente. |
+| `MenubarTrigger` | Öffnet oder aktiviert die Komponente. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/menubar)

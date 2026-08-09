@@ -1,0 +1,49 @@
+---
+title: "Plan"
+sidebarTitle: "Plan"
+description: "Import and use the Plan components from @pharen/ui."
+---
+
+Use **Plan** to present structured product information. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Plan, PlanHeader, PlanTitle, PlanDescription, PlanAction, PlanContent, PlanFooter, PlanTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Plan, PlanTrigger, PlanContent } from '@pharen/ui';
+</script>
+
+<template>
+  <Plan>
+    <PlanTrigger>Open plan</PlanTrigger>
+    <PlanContent>Plan content</PlanContent>
+  </Plan>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Plan` | Exported Vue component from this module. |
+| `PlanHeader` | Structures the header region. |
+| `PlanTitle` | Renders the accessible title. |
+| `PlanDescription` | Renders supporting description. |
+| `PlanAction` | Exported Vue component from this module. |
+| `PlanContent` | Contains the visible content. |
+| `PlanFooter` | Structures the footer region. |
+| `PlanTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/plan)

@@ -1,0 +1,44 @@
+---
+title: "Tree"
+sidebarTitle: "Tree"
+description: "Import and use the Tree components from @pharen/ui."
+---
+
+Use **Tree** to build an action or navigation pattern. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Tree, TreeDragLine, TreeItem, TreeItemLabel } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Tree, TreeItem } from '@pharen/ui';
+</script>
+
+<template>
+  <Tree>
+    <TreeItem>First item</TreeItem>
+  </Tree>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Tree` | Exported Vue component from this module. |
+| `TreeDragLine` | Exported Vue component from this module. |
+| `TreeItem` | Represents one item. |
+| `TreeItemLabel` | Labels a value or region. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/tree)

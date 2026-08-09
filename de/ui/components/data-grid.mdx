@@ -1,0 +1,63 @@
+---
+title: "Data grid"
+sidebarTitle: "Data grid"
+description: "Importiere und verwende die Data grid-Komponenten aus @pharen/ui."
+---
+
+Mit **Data grid** kannst du mit strukturierten operativen Daten zu arbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { DataGrid, DataGridColumnFilter, DataGridColumnHeader, DataGridColumnVisibility, DataGridContainer, DataGridPagination, DataGridScrollArea, DataGridTable, DataGridTableDnd, DataGridTableDndRowHandle, DataGridTableDndRows, DataGridTableVirtual } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { DataGrid, DataGridContainer, DataGridTable } from '@pharen/ui';
+import { getCoreRowModel, useVueTable, type ColumnDef } from '@tanstack/vue-table';
+
+type Member = { name: string; role: string };
+const data: Member[] = [{ name: 'Johannes', role: 'Owner' }];
+const columns: ColumnDef<Member>[] = [
+  { accessorKey: 'name', header: 'Member' },
+  { accessorKey: 'role', header: 'Role' },
+];
+const table = useVueTable({ data, columns, getCoreRowModel: getCoreRowModel() });
+</script>
+
+<template>
+  <DataGrid :table="table" :record-count="data.length">
+    <DataGridContainer>
+      <DataGridTable />
+    </DataGridContainer>
+  </DataGrid>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `DataGrid` | Exportierte Vue-Komponente dieses Moduls. |
+| `DataGridColumnFilter` | Exportierte Vue-Komponente dieses Moduls. |
+| `DataGridColumnHeader` | Strukturiert den Kopfbereich. |
+| `DataGridColumnVisibility` | Exportierte Vue-Komponente dieses Moduls. |
+| `DataGridContainer` | Exportierte Vue-Komponente dieses Moduls. |
+| `DataGridPagination` | Exportierte Vue-Komponente dieses Moduls. |
+| `DataGridScrollArea` | Exportierte Vue-Komponente dieses Moduls. |
+| `DataGridTable` | Exportierte Vue-Komponente dieses Moduls. |
+| `DataGridTableDnd` | Exportierte Vue-Komponente dieses Moduls. |
+| `DataGridTableDndRowHandle` | Exportierte Vue-Komponente dieses Moduls. |
+| `DataGridTableDndRows` | Exportierte Vue-Komponente dieses Moduls. |
+| `DataGridTableVirtual` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/data-grid)

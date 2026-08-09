@@ -1,0 +1,49 @@
+---
+title: "Context"
+sidebarTitle: "Context"
+description: "Import and use the Context components from @pharen/ui/components/ai."
+---
+
+Use **Context** to build AI interfaces. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Context, ContextTrigger, ContextContent, ContextContentHeader, ContextContentBody, ContextContentFooter, ContextInputUsage, ContextOutputUsage } from '@pharen/ui/components/ai';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Context, ContextTrigger, ContextContent } from '@pharen/ui/components/ai';
+</script>
+
+<template>
+  <Context>
+    <ContextTrigger>Open context</ContextTrigger>
+    <ContextContent>Context content</ContextContent>
+  </Context>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Context` | Exported Vue component from this module. |
+| `ContextTrigger` | Opens or activates the component. |
+| `ContextContent` | Contains the visible content. |
+| `ContextContentHeader` | Structures the header region. |
+| `ContextContentBody` | Exported Vue component from this module. |
+| `ContextContentFooter` | Structures the footer region. |
+| `ContextInputUsage` | Exported Vue component from this module. |
+| `ContextOutputUsage` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/ai/context)

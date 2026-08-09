@@ -1,0 +1,45 @@
+---
+title: "Chain of thought"
+sidebarTitle: "Chain of thought"
+description: "Import and use the Chain of thought components from @pharen/ui/components/ai."
+---
+
+Use **Chain of thought** to build AI interfaces. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { ChainOfThought, ChainOfThoughtHeader, ChainOfThoughtContent, ChainOfThoughtStep, ChainOfThoughtSearchResults, ChainOfThoughtSearchResult, ChainOfThoughtImage } from '@pharen/ui/components/ai';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { ChainOfThought } from '@pharen/ui/components/ai';
+</script>
+
+<template>
+  <ChainOfThought />
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `ChainOfThought` | Exported Vue component from this module. |
+| `ChainOfThoughtHeader` | Structures the header region. |
+| `ChainOfThoughtContent` | Contains the visible content. |
+| `ChainOfThoughtStep` | Exported Vue component from this module. |
+| `ChainOfThoughtSearchResults` | Exported Vue component from this module. |
+| `ChainOfThoughtSearchResult` | Exported Vue component from this module. |
+| `ChainOfThoughtImage` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/ai/chain-of-thought)

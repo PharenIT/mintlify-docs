@@ -1,0 +1,44 @@
+---
+title: "Collapsible"
+sidebarTitle: "Collapsible"
+description: "Import and use the Collapsible components from @pharen/ui."
+---
+
+Use **Collapsible** to organize content and responsive regions. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@pharen/ui';
+</script>
+
+<template>
+  <Collapsible>
+    <CollapsibleTrigger>Open collapsible</CollapsibleTrigger>
+    <CollapsibleContent>Collapsible content</CollapsibleContent>
+  </Collapsible>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Collapsible` | Exported Vue component from this module. |
+| `CollapsibleContent` | Contains the visible content. |
+| `CollapsibleTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/collapsible)

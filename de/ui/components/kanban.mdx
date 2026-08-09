@@ -1,0 +1,65 @@
+---
+title: "Kanban"
+sidebarTitle: "Kanban"
+description: "Importiere und verwende die Kanban-Komponenten aus @pharen/ui."
+---
+
+Mit **Kanban** kannst du mit strukturierten operativen Daten zu arbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Kanban, KanbanBoard, KanbanCard, KanbanCards, KanbanHeader, KanbanProvider, KanbanColumn, KanbanColumnContent, KanbanColumnHandle, KanbanItem, KanbanItemHandle, KanbanOverlay } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Kanban, KanbanBoard, KanbanCard, KanbanCards, KanbanColumn, KanbanHeader, KanbanItem } from '@pharen/ui';
+const columns = {
+  todo: [{ id: 'brief', title: 'Write project brief' }],
+  done: [{ id: 'scope', title: 'Confirm scope' }],
+};
+</script>
+
+<template>
+  <Kanban :default-value="columns" :get-item-value="item => item.id">
+    <KanbanBoard>
+      <KanbanColumn v-for="(items, key) in columns" :key="key" :value="key">
+        <KanbanHeader>{{ key }}</KanbanHeader>
+        <KanbanCards>
+          <KanbanItem v-for="item in items" :key="item.id" :value="item.id">
+            <KanbanCard>{{ item.title }}</KanbanCard>
+          </KanbanItem>
+        </KanbanCards>
+      </KanbanColumn>
+    </KanbanBoard>
+  </Kanban>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Kanban` | Exportierte Vue-Komponente dieses Moduls. |
+| `KanbanBoard` | Exportierte Vue-Komponente dieses Moduls. |
+| `KanbanCard` | Exportierte Vue-Komponente dieses Moduls. |
+| `KanbanCards` | Exportierte Vue-Komponente dieses Moduls. |
+| `KanbanHeader` | Strukturiert den Kopfbereich. |
+| `KanbanProvider` | Exportierte Vue-Komponente dieses Moduls. |
+| `KanbanColumn` | Exportierte Vue-Komponente dieses Moduls. |
+| `KanbanColumnContent` | Enthält den sichtbaren Inhalt. |
+| `KanbanColumnHandle` | Exportierte Vue-Komponente dieses Moduls. |
+| `KanbanItem` | Stellt ein einzelnes Element dar. |
+| `KanbanItemHandle` | Exportierte Vue-Komponente dieses Moduls. |
+| `KanbanOverlay` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/kanban)

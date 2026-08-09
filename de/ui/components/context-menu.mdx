@@ -1,0 +1,56 @@
+---
+title: "Context menu"
+sidebarTitle: "Context menu"
+description: "Importiere und verwende die Context menu-Komponenten aus @pharen/ui."
+---
+
+Mit **Context menu** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger } from '@pharen/ui';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { ContextMenu, ContextMenuTrigger, ContextMenuContent } from '@pharen/ui';
+</script>
+
+<template>
+  <ContextMenu>
+    <ContextMenuTrigger>Open context menu</ContextMenuTrigger>
+    <ContextMenuContent>Context menu content</ContextMenuContent>
+  </ContextMenu>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `ContextMenu` | Exportierte Vue-Komponente dieses Moduls. |
+| `ContextMenuCheckboxItem` | Stellt ein einzelnes Element dar. |
+| `ContextMenuContent` | Enthält den sichtbaren Inhalt. |
+| `ContextMenuGroup` | Gruppiert zusammengehörige Elemente. |
+| `ContextMenuItem` | Stellt ein einzelnes Element dar. |
+| `ContextMenuLabel` | Beschriftet einen Wert oder Bereich. |
+| `ContextMenuPortal` | Exportierte Vue-Komponente dieses Moduls. |
+| `ContextMenuRadioGroup` | Gruppiert zusammengehörige Elemente. |
+| `ContextMenuRadioItem` | Stellt ein einzelnes Element dar. |
+| `ContextMenuSeparator` | Trennt benachbarte Bereiche. |
+| `ContextMenuShortcut` | Exportierte Vue-Komponente dieses Moduls. |
+| `ContextMenuSub` | Exportierte Vue-Komponente dieses Moduls. |
+| `ContextMenuSubContent` | Enthält den sichtbaren Inhalt. |
+| `ContextMenuSubTrigger` | Öffnet oder aktiviert die Komponente. |
+| `ContextMenuTrigger` | Öffnet oder aktiviert die Komponente. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/context-menu)

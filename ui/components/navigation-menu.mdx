@@ -1,0 +1,49 @@
+---
+title: "Navigation menu"
+sidebarTitle: "Navigation menu"
+description: "Import and use the Navigation menu components from @pharen/ui."
+---
+
+Use **Navigation menu** to build an action or navigation pattern. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { NavigationMenu, NavigationMenuTrigger, NavigationMenuContent } from '@pharen/ui';
+</script>
+
+<template>
+  <NavigationMenu>
+    <NavigationMenuTrigger>Open navigation menu</NavigationMenuTrigger>
+    <NavigationMenuContent>Navigation menu content</NavigationMenuContent>
+  </NavigationMenu>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `NavigationMenu` | Exported Vue component from this module. |
+| `NavigationMenuContent` | Contains the visible content. |
+| `NavigationMenuIndicator` | Exported Vue component from this module. |
+| `NavigationMenuItem` | Represents one item. |
+| `NavigationMenuLink` | Exported Vue component from this module. |
+| `NavigationMenuList` | Exported Vue component from this module. |
+| `NavigationMenuTrigger` | Opens or activates the component. |
+| `NavigationMenuViewport` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/navigation-menu)

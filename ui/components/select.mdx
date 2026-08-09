@@ -1,0 +1,55 @@
+---
+title: "Select"
+sidebarTitle: "Select"
+description: "Import and use the Select components from @pharen/ui."
+---
+
+Use **Select** to let users choose one value from a list. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Select, SelectContent, SelectGroup, SelectItem, SelectItemText, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@pharen/ui';
+</script>
+
+<template>
+  <Select>
+    <SelectTrigger><SelectValue placeholder="Choose a role" /></SelectTrigger>
+    <SelectContent>
+      <SelectItem value="admin">Admin</SelectItem>
+      <SelectItem value="member">Member</SelectItem>
+    </SelectContent>
+  </Select>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Select` | Exported Vue component from this module. |
+| `SelectContent` | Contains the visible content. |
+| `SelectGroup` | Groups related items. |
+| `SelectItem` | Represents one item. |
+| `SelectItemText` | Exported Vue component from this module. |
+| `SelectLabel` | Labels a value or region. |
+| `SelectScrollDownButton` | Exported Vue component from this module. |
+| `SelectScrollUpButton` | Exported Vue component from this module. |
+| `SelectSeparator` | Separates adjacent regions. |
+| `SelectTrigger` | Opens or activates the component. |
+| `SelectValue` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/select)

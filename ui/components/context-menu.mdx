@@ -1,0 +1,56 @@
+---
+title: "Context menu"
+sidebarTitle: "Context menu"
+description: "Import and use the Context menu components from @pharen/ui."
+---
+
+Use **Context menu** to show contextual content or user feedback. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { ContextMenu, ContextMenuTrigger, ContextMenuContent } from '@pharen/ui';
+</script>
+
+<template>
+  <ContextMenu>
+    <ContextMenuTrigger>Open context menu</ContextMenuTrigger>
+    <ContextMenuContent>Context menu content</ContextMenuContent>
+  </ContextMenu>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `ContextMenu` | Exported Vue component from this module. |
+| `ContextMenuCheckboxItem` | Represents one item. |
+| `ContextMenuContent` | Contains the visible content. |
+| `ContextMenuGroup` | Groups related items. |
+| `ContextMenuItem` | Represents one item. |
+| `ContextMenuLabel` | Labels a value or region. |
+| `ContextMenuPortal` | Exported Vue component from this module. |
+| `ContextMenuRadioGroup` | Groups related items. |
+| `ContextMenuRadioItem` | Represents one item. |
+| `ContextMenuSeparator` | Separates adjacent regions. |
+| `ContextMenuShortcut` | Exported Vue component from this module. |
+| `ContextMenuSub` | Exported Vue component from this module. |
+| `ContextMenuSubContent` | Contains the visible content. |
+| `ContextMenuSubTrigger` | Opens or activates the component. |
+| `ContextMenuTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/context-menu)

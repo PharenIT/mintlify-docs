@@ -1,0 +1,49 @@
+---
+title: "Context"
+sidebarTitle: "Context"
+description: "Importiere und verwende die Context-Komponenten aus @pharen/ui/components/ai."
+---
+
+Mit **Context** kannst du AI-Oberflächen aufzubauen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
+
+<Note>
+  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
+</Note>
+
+## Import
+
+```ts
+import { Context, ContextTrigger, ContextContent, ContextContentHeader, ContextContentBody, ContextContentFooter, ContextInputUsage, ContextOutputUsage } from '@pharen/ui/components/ai';
+```
+
+## Beispiel
+
+```vue
+<script setup lang="ts">
+import { Context, ContextTrigger, ContextContent } from '@pharen/ui/components/ai';
+</script>
+
+<template>
+  <Context>
+    <ContextTrigger>Open context</ContextTrigger>
+    <ContextContent>Context content</ContextContent>
+  </Context>
+</template>
+```
+
+## Exporte
+
+| Export | Aufgabe |
+| --- | --- |
+| `Context` | Exportierte Vue-Komponente dieses Moduls. |
+| `ContextTrigger` | Öffnet oder aktiviert die Komponente. |
+| `ContextContent` | Enthält den sichtbaren Inhalt. |
+| `ContextContentHeader` | Strukturiert den Kopfbereich. |
+| `ContextContentBody` | Exportierte Vue-Komponente dieses Moduls. |
+| `ContextContentFooter` | Strukturiert den Fußbereich. |
+| `ContextInputUsage` | Exportierte Vue-Komponente dieses Moduls. |
+| `ContextOutputUsage` | Exportierte Vue-Komponente dieses Moduls. |
+
+## Quellcode
+
+[Quellcode auf GitHub öffnen](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/ai/context)

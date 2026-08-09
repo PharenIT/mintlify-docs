@@ -1,0 +1,69 @@
+---
+title: "Pharen UI installieren"
+sidebarTitle: "Installation"
+description: "Installiere @pharen/ui, lade die gemeinsamen Styles und verwende die erste Vue-Komponente."
+---
+
+Pharen UI unterstützt Vue 3. Installiere das Paket mit dem Paketmanager deiner Anwendung.
+
+## 1. Paket installieren
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+## 2. Styles laden
+
+Importiere die Styles genau einmal, zum Beispiel in `main.ts`, `app.vue` oder deiner globalen CSS-Datei.
+
+```ts
+import '@pharen/ui/styles.css';
+```
+
+## 3. Komponente importieren
+
+```vue
+<script setup lang="ts">
+import { Button } from '@pharen/ui';
+</script>
+
+<template>
+  <Button>Save changes</Button>
+</template>
+```
+
+## Nuxt
+
+Füge die Paket-Styles in `nuxt.config.ts` zur globalen CSS-Liste hinzu.
+
+```ts
+export default defineNuxtConfig({
+  css: ['@pharen/ui/styles.css'],
+});
+```
+
+## AI Components
+
+AI-spezifische Komponenten liegen in einem eigenen Exportpfad.
+
+```ts
+import { Conversation, Message, Tool } from '@pharen/ui/components/ai';
+```
+
+<Note>
+  Das Paket erwartet Vue `^3.5.26` als Peer Dependency.
+</Note>

@@ -1,0 +1,49 @@
+---
+title: "Tabs"
+sidebarTitle: "Tabs"
+description: "Import and use the Tabs components from @pharen/ui."
+---
+
+Use **Tabs** to switch between related content panels. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@pharen/ui';
+</script>
+
+<template>
+  <Tabs default-value="overview">
+    <TabsList>
+      <TabsTrigger value="overview">Overview</TabsTrigger>
+      <TabsTrigger value="activity">Activity</TabsTrigger>
+    </TabsList>
+    <TabsContent value="overview">Workspace overview</TabsContent>
+    <TabsContent value="activity">Recent activity</TabsContent>
+  </Tabs>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Tabs` | Exported Vue component from this module. |
+| `TabsContent` | Contains the visible content. |
+| `TabsList` | Exported Vue component from this module. |
+| `TabsTrigger` | Opens or activates the component. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/tabs)

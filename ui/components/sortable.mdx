@@ -1,0 +1,44 @@
+---
+title: "Sortable"
+sidebarTitle: "Sortable"
+description: "Import and use the Sortable components from @pharen/ui."
+---
+
+Use **Sortable** to reorder items with drag-and-drop interactions. This page covers every Vue component exported by the public module.
+
+<Note>
+  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
+</Note>
+
+## Import
+
+```ts
+import { Sortable, SortableItem, SortableItemHandle, SortableOverlay } from '@pharen/ui';
+```
+
+## Example
+
+```vue
+<script setup lang="ts">
+import { Sortable, SortableItem } from '@pharen/ui';
+</script>
+
+<template>
+  <Sortable>
+    <SortableItem>First item</SortableItem>
+  </Sortable>
+</template>
+```
+
+## Exports
+
+| Export | Purpose |
+| --- | --- |
+| `Sortable` | Exported Vue component from this module. |
+| `SortableItem` | Represents one item. |
+| `SortableItemHandle` | Exported Vue component from this module. |
+| `SortableOverlay` | Exported Vue component from this module. |
+
+## Source
+
+[Open the source on GitHub](https://github.com/PharenIT/ELEV8-Labs/tree/main/src/packages/ui/src/components/sortable)
