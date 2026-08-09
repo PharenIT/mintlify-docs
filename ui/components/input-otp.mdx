@@ -4,28 +4,59 @@ sidebarTitle: "Input OTP"
 description: "Import and use the Input OTP components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Input OTP** to collect and edit a value. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="input-otp" title="Input OTP preview" />
 
-## Import
-
-```ts
-import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { InputOTP } from '@pharen/ui';
+import { ref } from 'vue';
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@pharen/ui';
+
+const code = ref(['4', '2']);
 </script>
 
 <template>
-  <InputOTP />
+  <InputOTP v-model="code" :maxlength="6">
+    <InputOTPGroup><InputOTPSlot v-for="index in 6" :key="index" :index="index - 1" /></InputOTPGroup>
+  </InputOTP>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from '@pharen/ui';
 ```
 
 ## Exports

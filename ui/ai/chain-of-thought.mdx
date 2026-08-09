@@ -4,28 +4,60 @@ sidebarTitle: "Chain of thought"
 description: "Import and use the Chain of thought components from @pharen/ui/components/ai."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Chain of thought** to build AI interfaces. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="chain-of-thought" title="Chain of thought preview" />
 
-## Import
-
-```ts
-import { ChainOfThought, ChainOfThoughtHeader, ChainOfThoughtContent, ChainOfThoughtStep, ChainOfThoughtSearchResults, ChainOfThoughtSearchResult, ChainOfThoughtImage } from '@pharen/ui/components/ai';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { ChainOfThought } from '@pharen/ui/components/ai';
+import { ChainOfThought, ChainOfThoughtContent, ChainOfThoughtHeader, ChainOfThoughtStep } from '@pharen/ui/components/ai';
 </script>
 
 <template>
-  <ChainOfThought />
+  <ChainOfThought default-open class="w-full max-w-lg">
+    <ChainOfThoughtHeader>How the answer was prepared</ChainOfThoughtHeader>
+    <ChainOfThoughtContent>
+      <ChainOfThoughtStep label="Searched the workspace" description="Found 12 related documents." icon="lucide:search" status="complete" />
+      <ChainOfThoughtStep label="Compared the results" description="Checked dates and duplicate entries." icon="lucide:list-checks" status="active" :spin="false" last />
+    </ChainOfThoughtContent>
+  </ChainOfThought>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { ChainOfThought, ChainOfThoughtHeader, ChainOfThoughtContent, ChainOfThoughtStep, ChainOfThoughtSearchResults, ChainOfThoughtSearchResult, ChainOfThoughtImage } from '@pharen/ui/components/ai';
 ```
 
 ## Exports

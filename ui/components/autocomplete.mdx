@@ -4,19 +4,13 @@ sidebarTitle: "Autocomplete"
 description: "Import and use the Autocomplete components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Autocomplete** to collect and edit a value. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="autocomplete" title="Autocomplete preview" />
 
-## Import
-
-```ts
-import { Autocomplete, AutocompleteClear, AutocompleteContent, AutocompleteEmpty, AutocompleteGroup, AutocompleteGroupLabel, AutocompleteInput, AutocompleteItem, AutocompleteList, AutocompleteSeparator, AutocompleteTrigger, AutocompleteArrow, AutocompleteBackdrop, AutocompleteCollection, AutocompleteItemIndicator, AutocompletePortal, AutocompletePositioner, AutocompleteRow, AutocompleteStatus, AutocompleteValue } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -29,6 +23,38 @@ import { Autocomplete, AutocompleteTrigger, AutocompleteContent } from '@pharen/
     <AutocompleteContent>Autocomplete content</AutocompleteContent>
   </Autocomplete>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Autocomplete, AutocompleteClear, AutocompleteContent, AutocompleteEmpty, AutocompleteGroup, AutocompleteGroupLabel, AutocompleteInput, AutocompleteItem, AutocompleteList, AutocompleteSeparator, AutocompleteTrigger, AutocompleteArrow, AutocompleteBackdrop, AutocompleteCollection, AutocompleteItemIndicator, AutocompletePortal, AutocompletePositioner, AutocompleteRow, AutocompleteStatus, AutocompleteValue } from '@pharen/ui';
 ```
 
 ## Exports

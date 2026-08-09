@@ -4,19 +4,13 @@ sidebarTitle: "Collapsible"
 description: "Importiere und verwende die Collapsible-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Collapsible** kannst du Inhalte und responsive Bereiche anzuordnen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="collapsible" title="Collapsible Vorschau" />
 
-## Import
-
-```ts
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
@@ -29,6 +23,38 @@ import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@pharen/ui'
     <CollapsibleContent>Collapsible content</CollapsibleContent>
   </Collapsible>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@pharen/ui';
 ```
 
 ## Exporte

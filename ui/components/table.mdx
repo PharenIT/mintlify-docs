@@ -4,19 +4,13 @@ sidebarTitle: "Table"
 description: "Import and use the Table components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Table** to present structured rows and columns. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="table" title="Table preview" />
 
-## Import
-
-```ts
-import { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -29,6 +23,38 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
     <TableBody><TableRow><TableCell>Johannes</TableCell><TableCell>Owner</TableCell></TableRow></TableBody>
   </Table>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption } from '@pharen/ui';
 ```
 
 ## Exports

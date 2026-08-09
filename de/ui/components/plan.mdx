@@ -4,31 +4,63 @@ sidebarTitle: "Plan"
 description: "Importiere und verwende die Plan-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Plan** kannst du strukturierte Produktinformationen darzustellen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="plan" title="Plan Vorschau" />
 
-## Import
-
-```ts
-import { Plan, PlanHeader, PlanTitle, PlanDescription, PlanAction, PlanContent, PlanFooter, PlanTrigger } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { Plan, PlanTrigger, PlanContent } from '@pharen/ui';
+import { Badge, Plan, PlanAction, PlanContent, PlanDescription, PlanFooter, PlanHeader, PlanTitle, PlanTrigger } from '@pharen/ui';
 </script>
 
 <template>
-  <Plan>
-    <PlanTrigger>Open plan</PlanTrigger>
-    <PlanContent>Plan content</PlanContent>
+  <Plan default-open class="w-full max-w-lg">
+    <PlanHeader>
+      <div><PlanTitle>Launch workflow</PlanTitle><PlanDescription>Review the execution plan before starting.</PlanDescription></div>
+      <PlanAction><Badge variant="secondary">3 steps</Badge><PlanTrigger /></PlanAction>
+    </PlanHeader>
+    <PlanContent>
+      <ol class="grid gap-2 text-sm"><li>1. Load workspace records</li><li>2. Generate the weekly summary</li><li>3. Send the result to Slack</li></ol>
+    </PlanContent>
+    <PlanFooter>Estimated duration: 45 seconds</PlanFooter>
   </Plan>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Plan, PlanHeader, PlanTitle, PlanDescription, PlanAction, PlanContent, PlanFooter, PlanTrigger } from '@pharen/ui';
 ```
 
 ## Exporte

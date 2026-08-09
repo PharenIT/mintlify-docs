@@ -4,28 +4,58 @@ sidebarTitle: "Button group"
 description: "Import and use the Button group components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Button group** to build an action or navigation pattern. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="button-group" title="Button group preview" />
 
-## Import
-
-```ts
-import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { ButtonGroup } from '@pharen/ui';
+import { Button, ButtonGroup, ButtonGroupText } from '@pharen/ui';
 </script>
 
 <template>
-  <ButtonGroup />
+  <ButtonGroup>
+    <Button variant="outline">Back</Button>
+    <ButtonGroupText>Step 2 of 3</ButtonGroupText>
+    <Button>Continue</Button>
+  </ButtonGroup>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from '@pharen/ui';
 ```
 
 ## Exports

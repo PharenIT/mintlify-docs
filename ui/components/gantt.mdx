@@ -4,28 +4,79 @@ sidebarTitle: "Gantt"
 description: "Import and use the Gantt components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Gantt** to visualize work across a project timeline. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="gantt" title="Gantt preview" />
 
-## Import
-
-```ts
-import { GanttProvider, GanttSidebar, GanttSidebarGroup, GanttSidebarItem, GanttTimeline, GanttHeader, GanttFeatureList, GanttFeatureListGroup, GanttFeatureItem, GanttMarker, GanttToday } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { GanttProvider } from '@pharen/ui';
+import { GanttFeatureItem, GanttFeatureList, GanttFeatureListGroup, GanttHeader, GanttProvider, GanttSidebar, GanttSidebarGroup, GanttSidebarItem, GanttTimeline, GanttToday } from '@pharen/ui';
+
+const group = { id: 'launch', name: 'Product launch' };
+const status = { id: 'active', name: 'Active', color: 'var(--primary)' };
+const features = [
+  { id: 'research', name: 'Research', startAt: new Date(2026, 7, 4), endAt: new Date(2026, 7, 11), status, group, progress: 100 },
+  { id: 'design', name: 'Design', startAt: new Date(2026, 7, 9), endAt: new Date(2026, 7, 19), status: { ...status, id: 'design', color: 'var(--info)' }, group, progress: 62 },
+  { id: 'release', name: 'Release', startAt: new Date(2026, 7, 20), endAt: new Date(2026, 7, 25), status: { ...status, id: 'release', color: 'var(--warning)' }, group, progress: 15 },
+];
 </script>
 
 <template>
-  <GanttProvider />
+  <div class="h-72 w-full overflow-hidden rounded-xl border">
+    <GanttProvider range="daily" :zoom="80">
+      <GanttSidebar>
+        <GanttSidebarGroup name="Product launch">
+          <GanttSidebarItem v-for="feature in features" :key="feature.id" :feature="feature" />
+        </GanttSidebarGroup>
+      </GanttSidebar>
+      <GanttTimeline>
+        <GanttHeader />
+        <GanttFeatureList>
+          <GanttFeatureListGroup>
+            <GanttFeatureItem v-for="feature in features" :key="feature.id" :feature="feature" />
+          </GanttFeatureListGroup>
+        </GanttFeatureList>
+        <GanttToday />
+      </GanttTimeline>
+    </GanttProvider>
+  </div>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { GanttProvider, GanttSidebar, GanttSidebarGroup, GanttSidebarItem, GanttTimeline, GanttHeader, GanttFeatureList, GanttFeatureListGroup, GanttFeatureItem, GanttMarker, GanttToday } from '@pharen/ui';
 ```
 
 ## Exports

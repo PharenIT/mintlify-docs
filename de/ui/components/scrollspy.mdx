@@ -4,19 +4,13 @@ sidebarTitle: "Scrollspy"
 description: "Importiere und verwende die Scrollspy-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Scrollspy** kannst du eine Aktion oder Navigation aufzubauen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="scrollspy" title="Scrollspy Vorschau" />
 
-## Import
-
-```ts
-import { Scrollspy } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
@@ -24,8 +18,44 @@ import { Scrollspy } from '@pharen/ui';
 </script>
 
 <template>
-  <Scrollspy />
+  <Scrollspy class="flex items-center gap-2 rounded-lg border p-1">
+    <a href="#overview" data-scrollspy-anchor="overview" class="rounded-md px-3 py-1.5 text-sm data-[active]:bg-primary data-[active]:text-primary-foreground">Overview</a>
+    <a href="#usage" data-scrollspy-anchor="usage" class="rounded-md px-3 py-1.5 text-sm data-[active]:bg-primary data-[active]:text-primary-foreground">Usage</a>
+    <a href="#api" data-scrollspy-anchor="api" class="rounded-md px-3 py-1.5 text-sm data-[active]:bg-primary data-[active]:text-primary-foreground">API</a>
+  </Scrollspy>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Scrollspy } from '@pharen/ui';
 ```
 
 ## Exporte

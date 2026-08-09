@@ -4,28 +4,58 @@ sidebarTitle: "Input group"
 description: "Importiere und verwende die Input group-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Input group** kannst du einen Wert zu erfassen oder zu bearbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="input-group" title="Input group Vorschau" />
 
-## Import
-
-```ts
-import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText, InputGroupTextarea } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { InputGroup } from '@pharen/ui';
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText } from '@pharen/ui';
 </script>
 
 <template>
-  <InputGroup />
+  <InputGroup class="w-full max-w-md">
+    <InputGroupAddon><InputGroupText>https://</InputGroupText></InputGroupAddon>
+    <InputGroupInput value="pharen.app/workflows" aria-label="Workspace URL" />
+    <InputGroupAddon align="inline-end"><InputGroupButton>Copy</InputGroupButton></InputGroupAddon>
+  </InputGroup>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput, InputGroupText, InputGroupTextarea } from '@pharen/ui';
 ```
 
 ## Exporte

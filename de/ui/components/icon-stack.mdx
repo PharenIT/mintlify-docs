@@ -4,28 +4,55 @@ sidebarTitle: "Icon stack"
 description: "Importiere und verwende die Icon stack-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Icon stack** kannst du strukturierte Produktinformationen darzustellen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="icon-stack" title="Icon stack Vorschau" />
 
-## Import
-
-```ts
-import { IconStack } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
+import { Icon } from '@iconify/vue';
 import { IconStack } from '@pharen/ui';
 </script>
 
 <template>
-  <IconStack />
+  <IconStack><Icon icon="lucide:layers-3" class="size-5" /></IconStack>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { IconStack } from '@pharen/ui';
 ```
 
 ## Exporte

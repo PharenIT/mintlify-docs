@@ -4,28 +4,55 @@ sidebarTitle: "Rating"
 description: "Import and use the Rating components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Rating** to collect and edit a value. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="rating" title="Rating preview" />
 
-## Import
-
-```ts
-import { Rating } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
+import { ref } from 'vue';
 import { Rating } from '@pharen/ui';
+
+const value = ref(4);
 </script>
 
-<template>
-  <Rating />
-</template>
+<template><Rating v-model="value" size="lg" /></template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Rating } from '@pharen/ui';
 ```
 
 ## Exports

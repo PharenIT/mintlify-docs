@@ -4,28 +4,60 @@ sidebarTitle: "Multi select"
 description: "Importiere und verwende die Multi select-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Multi select** kannst du einen Wert zu erfassen oder zu bearbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="multi-select" title="Multi select Vorschau" />
 
-## Import
-
-```ts
-import { MultiSelect } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
+import { ref } from 'vue';
 import { MultiSelect } from '@pharen/ui';
+
+const selected = ref(['marketing', 'sales']);
+const options = [
+  { label: 'Marketing', value: 'marketing' },
+  { label: 'Sales', value: 'sales' },
+  { label: 'Support', value: 'support' },
+];
 </script>
 
-<template>
-  <MultiSelect />
-</template>
+<template><MultiSelect v-model="selected" :options="options" class="w-full max-w-sm" /></template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { MultiSelect } from '@pharen/ui';
 ```
 
 ## Exporte

@@ -4,28 +4,58 @@ sidebarTitle: "Checkpoint"
 description: "Importiere und verwende die Checkpoint-Komponenten aus @pharen/ui/components/ai."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Checkpoint** kannst du AI-Oberflächen aufzubauen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="checkpoint" title="Checkpoint Vorschau" />
 
-## Import
-
-```ts
-import { Checkpoint, CheckpointIcon, CheckpointTrigger } from '@pharen/ui/components/ai';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { Checkpoint } from '@pharen/ui/components/ai';
+import { Checkpoint, CheckpointIcon, CheckpointTrigger } from '@pharen/ui/components/ai';
 </script>
 
 <template>
-  <Checkpoint />
+  <Checkpoint class="w-full max-w-lg">
+    <CheckpointTrigger tooltip="Restore this checkpoint" class="flex items-center gap-2 rounded-md px-2 py-1 text-sm hover:bg-muted">
+      <CheckpointIcon /> Saved before publishing
+    </CheckpointTrigger>
+  </Checkpoint>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Checkpoint, CheckpointIcon, CheckpointTrigger } from '@pharen/ui/components/ai';
 ```
 
 ## Exporte

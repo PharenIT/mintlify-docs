@@ -4,19 +4,13 @@ sidebarTitle: "Empty state"
 description: "Import and use the Empty state components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Empty state** to present structured product information. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="empty-state" title="Empty state preview" />
 
-## Import
-
-```ts
-import { EmptyState } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -24,8 +18,44 @@ import { EmptyState } from '@pharen/ui';
 </script>
 
 <template>
-  <EmptyState />
+  <EmptyState
+    title="No results found"
+    description="Try another search term or clear the filters."
+    :icons="['lucide:search', 'lucide:filter', 'lucide:files']"
+  />
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { EmptyState } from '@pharen/ui';
 ```
 
 ## Exports

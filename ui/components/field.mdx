@@ -4,28 +4,58 @@ sidebarTitle: "Field"
 description: "Import and use the Field components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Field** to collect and edit a value. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="field" title="Field preview" />
 
-## Import
-
-```ts
-import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet, FieldTitle } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { Field } from '@pharen/ui';
+import { Field, FieldDescription, FieldLabel, Input } from '@pharen/ui';
 </script>
 
 <template>
-  <Field />
+  <Field class="w-full max-w-sm">
+    <FieldLabel for="workspace-name">Workspace name</FieldLabel>
+    <Input id="workspace-name" value="Pharen" />
+    <FieldDescription>This name is visible to every workspace member.</FieldDescription>
+  </Field>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel, FieldLegend, FieldSeparator, FieldSet, FieldTitle } from '@pharen/ui';
 ```
 
 ## Exports

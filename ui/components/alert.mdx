@@ -4,19 +4,13 @@ sidebarTitle: "Alert"
 description: "Import and use the Alert components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Alert** to communicate an important inline message. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="alert" title="Alert preview" />
 
-## Import
-
-```ts
-import { Alert, AlertAction, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertToolbar } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -29,6 +23,38 @@ import { Alert, AlertDescription, AlertTitle } from '@pharen/ui';
     <AlertDescription>Your workspace settings are up to date.</AlertDescription>
   </Alert>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Alert, AlertAction, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertToolbar } from '@pharen/ui';
 ```
 
 ## Exports

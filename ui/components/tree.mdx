@@ -4,30 +4,68 @@ sidebarTitle: "Tree"
 description: "Import and use the Tree components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Tree** to build an action or navigation pattern. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="tree" title="Tree preview" />
 
-## Import
-
-```ts
-import { Tree, TreeDragLine, TreeItem, TreeItemLabel } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { Tree, TreeItem } from '@pharen/ui';
+import { Tree, TreeItem, TreeItemLabel } from '@pharen/ui';
+
+type Node = { id: string; label: string; children?: Node[] };
+const items: Node[] = [
+  { id: 'workspace', label: 'Workspace', children: [
+    { id: 'documents', label: 'Documents' },
+    { id: 'workflows', label: 'Workflows', children: [{ id: 'published', label: 'Published' }] },
+  ] },
+];
 </script>
 
 <template>
-  <Tree>
-    <TreeItem>First item</TreeItem>
+  <Tree :items="items" :get-key="node => node.id" :get-children="node => node.children" :default-expanded="['workspace', 'workflows']" class="w-full max-w-sm">
+    <template #default="{ flattenItems }">
+      <TreeItem v-for="item in flattenItems" :key="item.value.id" v-bind="item.bind" :value="item.value" :level="item.level">
+        <TreeItemLabel>{{ item.value.label }}</TreeItemLabel>
+      </TreeItem>
+    </template>
   </Tree>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Tree, TreeDragLine, TreeItem, TreeItemLabel } from '@pharen/ui';
 ```
 
 ## Exports

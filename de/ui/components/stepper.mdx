@@ -4,31 +4,70 @@ sidebarTitle: "Stepper"
 description: "Importiere und verwende die Stepper-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Stepper** kannst du eine Aktion oder Navigation aufzubauen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="stepper" title="Stepper Vorschau" />
 
-## Import
-
-```ts
-import { Stepper, StepperContent, StepperDescription, StepperIndicator, StepperItem, StepperNav, StepperPanel, StepperSeparator, StepperTitle, StepperTrigger } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { Stepper, StepperTrigger, StepperContent } from '@pharen/ui';
+import { Stepper, StepperDescription, StepperIndicator, StepperItem, StepperNav, StepperSeparator, StepperTitle, StepperTrigger } from '@pharen/ui';
+
+const steps = [
+  { step: 1, title: 'Account', description: 'Your details' },
+  { step: 2, title: 'Workspace', description: 'Team setup' },
+  { step: 3, title: 'Finish', description: 'Review' },
+];
 </script>
 
 <template>
-  <Stepper>
-    <StepperTrigger>Open stepper</StepperTrigger>
-    <StepperContent>Stepper content</StepperContent>
+  <Stepper :default-value="2" class="w-full max-w-2xl">
+    <StepperNav>
+      <StepperItem v-for="item in steps" :key="item.step" :step="item.step">
+        <StepperTrigger>
+          <StepperIndicator>{{ item.step }}</StepperIndicator>
+          <span class="hidden text-left sm:block"><StepperTitle>{{ item.title }}</StepperTitle><StepperDescription>{{ item.description }}</StepperDescription></span>
+        </StepperTrigger>
+        <StepperSeparator v-if="item.step < steps.length" />
+      </StepperItem>
+    </StepperNav>
   </Stepper>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Stepper, StepperContent, StepperDescription, StepperIndicator, StepperItem, StepperNav, StepperPanel, StepperSeparator, StepperTitle, StepperTrigger } from '@pharen/ui';
 ```
 
 ## Exporte

@@ -4,19 +4,13 @@ sidebarTitle: "Tooltip"
 description: "Import and use the Tooltip components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Tooltip** to explain an action or value on hover and keyboard focus. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="tooltip" title="Tooltip preview" />
 
-## Import
-
-```ts
-import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -31,6 +25,38 @@ import { Button, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from
     </Tooltip>
   </TooltipProvider>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@pharen/ui';
 ```
 
 ## Exports

@@ -4,31 +4,67 @@ sidebarTitle: "Navigation menu"
 description: "Importiere und verwende die Navigation menu-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Navigation menu** kannst du eine Aktion oder Navigation aufzubauen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="navigation-menu" title="Navigation menu Vorschau" />
 
-## Import
-
-```ts
-import { NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { NavigationMenu, NavigationMenuTrigger, NavigationMenuContent } from '@pharen/ui';
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@pharen/ui';
 </script>
 
 <template>
   <NavigationMenu>
-    <NavigationMenuTrigger>Open navigation menu</NavigationMenuTrigger>
-    <NavigationMenuContent>Navigation menu content</NavigationMenuContent>
+    <NavigationMenuList>
+      <NavigationMenuItem>
+        <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+        <NavigationMenuContent class="p-3">
+          <div class="grid w-72 gap-2">
+            <NavigationMenuLink href="#hub" class="rounded-md p-2 hover:bg-accent"><strong class="block text-sm">Pharen Hub</strong><span class="text-xs text-muted-foreground">Workflows and agents in one place.</span></NavigationMenuLink>
+            <NavigationMenuLink href="#ui" class="rounded-md p-2 hover:bg-accent"><strong class="block text-sm">Pharen UI</strong><span class="text-xs text-muted-foreground">Reusable Vue components.</span></NavigationMenuLink>
+          </div>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+      <NavigationMenuItem><NavigationMenuLink href="#docs" class="px-4 py-2 text-sm">Docs</NavigationMenuLink></NavigationMenuItem>
+    </NavigationMenuList>
   </NavigationMenu>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport } from '@pharen/ui';
 ```
 
 ## Exporte

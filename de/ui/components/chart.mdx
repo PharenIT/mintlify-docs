@@ -4,28 +4,76 @@ sidebarTitle: "Chart"
 description: "Importiere und verwende die Chart-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Chart** kannst du strukturierte Produktinformationen darzustellen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="chart" title="Chart Vorschau" />
 
-## Import
-
-```ts
-import { ChartContainer, ChartDonutBreakdown, ChartLegendContent, ChartStyle, ChartTooltipContent, ChartCrosshair, ChartTooltip, VisDonut, VisAnnotations, VisSingleContainer, VisXYContainer, VisXYLabels, VisLine, VisArea, VisAxis, VisStackedBar, VisGroupedBar, Donut, Line, Area, StackedBar, GroupedBar } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { ChartContainer } from '@pharen/ui';
+import { ChartDonutBreakdown, type ChartConfig } from '@pharen/ui';
+
+const data = [
+  { key: 'completed', label: 'Completed', value: 68, chartValue: 68, fill: 'var(--primary)', meta: '68 runs' },
+  { key: 'running', label: 'Running', value: 21, chartValue: 21, fill: 'var(--info)', meta: '21 runs' },
+  { key: 'failed', label: 'Failed', value: 11, chartValue: 11, fill: 'var(--destructive)', meta: '11 runs' },
+];
+const config: ChartConfig = {
+  completed: { label: 'Completed', color: 'var(--primary)' },
+  running: { label: 'Running', color: 'var(--info)' },
+  failed: { label: 'Failed', color: 'var(--destructive)' },
+};
 </script>
 
 <template>
-  <ChartContainer />
+  <ChartDonutBreakdown
+    title="Workflow runs"
+    description="Status distribution for the last 100 runs."
+    :data="data"
+    :config="config"
+    center-eyebrow="Total"
+    center-label="Runs"
+    center-value="100"
+    empty-text="No runs yet"
+    :tooltip-template="item => `${item.label}: ${item.value}%`"
+    class="w-full max-w-lg"
+  />
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { ChartContainer, ChartDonutBreakdown, ChartLegendContent, ChartStyle, ChartTooltipContent, ChartCrosshair, ChartTooltip, VisDonut, VisAnnotations, VisSingleContainer, VisXYContainer, VisXYLabels, VisLine, VisArea, VisAxis, VisStackedBar, VisGroupedBar, Donut, Line, Area, StackedBar, GroupedBar } from '@pharen/ui';
 ```
 
 ## Exporte

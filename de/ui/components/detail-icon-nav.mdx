@@ -4,28 +4,62 @@ sidebarTitle: "Detail icon nav"
 description: "Importiere und verwende die Detail icon nav-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Detail icon nav** kannst du eine Aktion oder Navigation aufzubauen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="detail-icon-nav" title="Detail icon nav Vorschau" />
 
-## Import
-
-```ts
-import { DetailIconNav } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
+import { ref } from 'vue';
 import { DetailIconNav } from '@pharen/ui';
+
+const active = ref('overview');
+const items = [
+  { id: 'overview', label: 'Overview', icon: 'lucide:layout-dashboard' },
+  { id: 'activity', label: 'Activity', icon: 'lucide:activity', badge: '3' },
+  { id: 'settings', label: 'Settings', icon: 'lucide:settings' },
+];
 </script>
 
 <template>
-  <DetailIconNav />
+  <DetailIconNav :items="items" :active-id="active" @select="active = $event" />
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { DetailIconNav } from '@pharen/ui';
 ```
 
 ## Exporte

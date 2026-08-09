@@ -4,28 +4,60 @@ sidebarTitle: "Remote select"
 description: "Importiere und verwende die Remote select-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Remote select** kannst du einen Wert zu erfassen oder zu bearbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="remote-select" title="Remote select Vorschau" />
 
-## Import
-
-```ts
-import { RemoteSelect } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
+import { ref } from 'vue';
 import { RemoteSelect } from '@pharen/ui';
+
+const value = ref('berlin');
+const fetchOptions = async () => [
+  { label: 'Berlin', value: 'berlin' },
+  { label: 'Hamburg', value: 'hamburg' },
+  { label: 'Munich', value: 'munich' },
+];
 </script>
 
-<template>
-  <RemoteSelect />
-</template>
+<template><RemoteSelect v-model="value" :fetch-fn="fetchOptions" class="w-full max-w-sm" /></template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { RemoteSelect } from '@pharen/ui';
 ```
 
 ## Exporte

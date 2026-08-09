@@ -4,19 +4,13 @@ sidebarTitle: "Conversation"
 description: "Import and use the Conversation components from @pharen/ui/components/ai."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Conversation** to build AI interfaces. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="conversation" title="Conversation preview" />
 
-## Import
-
-```ts
-import { Conversation, ConversationContent, ConversationEmptyState } from '@pharen/ui/components/ai';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -30,6 +24,38 @@ import { Conversation, ConversationContent, ConversationEmptyState } from '@phar
     </ConversationContent>
   </Conversation>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Conversation, ConversationContent, ConversationEmptyState } from '@pharen/ui/components/ai';
 ```
 
 ## Exports

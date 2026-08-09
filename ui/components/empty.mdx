@@ -4,28 +4,60 @@ sidebarTitle: "Empty"
 description: "Import and use the Empty components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Empty** to present structured product information. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="empty" title="Empty preview" />
 
-## Import
-
-```ts
-import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { Empty } from '@pharen/ui';
+import { Button, Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from '@pharen/ui';
 </script>
 
 <template>
-  <Empty />
+  <Empty class="w-full max-w-md border">
+    <EmptyHeader>
+      <EmptyTitle>No workflows yet</EmptyTitle>
+      <EmptyDescription>Create a workflow to automate your first process.</EmptyDescription>
+    </EmptyHeader>
+    <EmptyContent><Button size="sm">Create workflow</Button></EmptyContent>
+  </Empty>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from '@pharen/ui';
 ```
 
 ## Exports

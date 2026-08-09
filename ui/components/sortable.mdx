@@ -4,30 +4,66 @@ sidebarTitle: "Sortable"
 description: "Import and use the Sortable components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Sortable** to reorder items with drag-and-drop interactions. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="sortable" title="Sortable preview" />
 
-## Import
-
-```ts
-import { Sortable, SortableItem, SortableItemHandle, SortableOverlay } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { Sortable, SortableItem } from '@pharen/ui';
+import { ref } from 'vue';
+import { Sortable, SortableItem, SortableItemHandle } from '@pharen/ui';
+
+const tasks = ref([
+  { id: 'research', label: 'Research competitors' },
+  { id: 'draft', label: 'Draft campaign' },
+  { id: 'review', label: 'Review copy' },
+]);
 </script>
 
 <template>
-  <Sortable>
-    <SortableItem>First item</SortableItem>
+  <Sortable v-model="tasks" :get-item-value="item => item.id" class="grid w-full max-w-sm gap-2">
+    <SortableItem v-for="task in tasks" :key="task.id" :value="task.id" class="flex items-center gap-2 rounded-lg border bg-card p-3">
+      <SortableItemHandle :label="`Move ${task.label}`" />
+      <span class="text-sm">{{ task.label }}</span>
+    </SortableItem>
   </Sortable>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Sortable, SortableItem, SortableItemHandle, SortableOverlay } from '@pharen/ui';
 ```
 
 ## Exports

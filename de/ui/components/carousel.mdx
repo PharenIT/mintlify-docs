@@ -4,19 +4,13 @@ sidebarTitle: "Carousel"
 description: "Importiere und verwende die Carousel-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Carousel** kannst du Inhalte und responsive Bereiche anzuordnen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="carousel" title="Carousel Vorschau" />
 
-## Import
-
-```ts
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
@@ -28,6 +22,38 @@ import { Carousel, CarouselItem } from '@pharen/ui';
     <CarouselItem>First item</CarouselItem>
   </Carousel>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@pharen/ui';
 ```
 
 ## Exporte

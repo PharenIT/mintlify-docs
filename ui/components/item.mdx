@@ -4,28 +4,60 @@ sidebarTitle: "Item"
 description: "Import and use the Item components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Item** to present structured product information. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="item" title="Item preview" />
 
-## Import
-
-```ts
-import { Item, ItemActions, ItemContent, ItemDescription, ItemFooter, ItemGroup, ItemHeader, ItemMedia, ItemSeparator, ItemTitle } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { Item } from '@pharen/ui';
+import { Badge, Button, Item, ItemActions, ItemContent, ItemDescription, ItemTitle } from '@pharen/ui';
 </script>
 
 <template>
-  <Item />
+  <Item variant="outline" class="w-full max-w-md">
+    <ItemContent>
+      <ItemTitle>Customer onboarding</ItemTitle>
+      <ItemDescription>Runs when a new account is created.</ItemDescription>
+    </ItemContent>
+    <ItemActions><Badge variant="success">Active</Badge><Button size="sm" variant="ghost">Open</Button></ItemActions>
+  </Item>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Item, ItemActions, ItemContent, ItemDescription, ItemFooter, ItemGroup, ItemHeader, ItemMedia, ItemSeparator, ItemTitle } from '@pharen/ui';
 ```
 
 ## Exports

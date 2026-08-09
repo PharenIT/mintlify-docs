@@ -4,28 +4,61 @@ sidebarTitle: "Pin input"
 description: "Import and use the Pin input components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Pin input** to collect and edit a value. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="pin-input" title="Pin input preview" />
 
-## Import
-
-```ts
-import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { PinInput } from '@pharen/ui';
+import { ref } from 'vue';
+import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '@pharen/ui';
+
+const pin = ref(['1', '5', '8']);
 </script>
 
 <template>
-  <PinInput />
+  <PinInput v-model="pin" :maxlength="6">
+    <PinInputGroup><PinInputSlot v-for="index in 3" :key="index" :index="index - 1" /></PinInputGroup>
+    <PinInputSeparator />
+    <PinInputGroup><PinInputSlot v-for="index in [3, 4, 5]" :key="index" :index="index" /></PinInputGroup>
+  </PinInput>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { PinInput, PinInputGroup, PinInputSeparator, PinInputSlot } from '@pharen/ui';
 ```
 
 ## Exports

@@ -4,19 +4,13 @@ sidebarTitle: "Reasoning"
 description: "Import and use the Reasoning components from @pharen/ui/components/ai."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Reasoning** to build AI interfaces. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="reasoning" title="Reasoning preview" />
 
-## Import
-
-```ts
-import { Reasoning } from '@pharen/ui/components/ai';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -24,8 +18,42 @@ import { Reasoning } from '@pharen/ui/components/ai';
 </script>
 
 <template>
-  <Reasoning />
+  <Reasoning :duration="4" class="w-full max-w-lg">
+    I compared the workflow history with the current configuration and found two changes.
+  </Reasoning>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Reasoning } from '@pharen/ui/components/ai';
 ```
 
 ## Exports

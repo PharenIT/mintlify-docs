@@ -4,30 +4,60 @@ sidebarTitle: "Radio group"
 description: "Importiere und verwende die Radio group-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Radio group** kannst du einen Wert zu erfassen oder zu bearbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="radio-group" title="Radio group Vorschau" />
 
-## Import
-
-```ts
-import { RadioGroup, RadioGroupItem } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { RadioGroup, RadioGroupItem } from '@pharen/ui';
+import { ref } from 'vue';
+import { Label, RadioGroup, RadioGroupItem } from '@pharen/ui';
+
+const plan = ref('pro');
 </script>
 
 <template>
-  <RadioGroup>
-    <RadioGroupItem>First item</RadioGroupItem>
+  <RadioGroup v-model="plan" class="grid gap-3">
+    <div class="flex items-center gap-2"><RadioGroupItem id="starter" value="starter" /><Label for="starter">Starter</Label></div>
+    <div class="flex items-center gap-2"><RadioGroupItem id="pro" value="pro" /><Label for="pro">Pro</Label></div>
   </RadioGroup>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { RadioGroup, RadioGroupItem } from '@pharen/ui';
 ```
 
 ## Exporte

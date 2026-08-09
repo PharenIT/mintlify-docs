@@ -4,28 +4,61 @@ sidebarTitle: "Native select"
 description: "Import and use the Native select components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Native select** to collect and edit a value. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="native-select" title="Native select preview" />
 
-## Import
-
-```ts
-import { NativeSelect, NativeSelectOptGroup, NativeSelectOption } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { NativeSelect } from '@pharen/ui';
+import { ref } from 'vue';
+import { NativeSelect, NativeSelectOption } from '@pharen/ui';
+
+const role = ref('member');
 </script>
 
 <template>
-  <NativeSelect />
+  <NativeSelect v-model="role" aria-label="Role">
+    <NativeSelectOption value="admin">Admin</NativeSelectOption>
+    <NativeSelectOption value="member">Member</NativeSelectOption>
+    <NativeSelectOption value="viewer">Viewer</NativeSelectOption>
+  </NativeSelect>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { NativeSelect, NativeSelectOptGroup, NativeSelectOption } from '@pharen/ui';
 ```
 
 ## Exports

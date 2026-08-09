@@ -4,19 +4,13 @@ sidebarTitle: "Card"
 description: "Import and use the Card components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Card** to group related content and actions. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="card" title="Card preview" />
 
-## Import
-
-```ts
-import { Card, CardAction, CardHeader, CardContent, CardTable, CardFooter, CardHeading, CardToolbar, CardTitle, CardDescription } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -32,6 +26,38 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@phar
     <CardContent>42 workflow runs</CardContent>
   </Card>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Card, CardAction, CardHeader, CardContent, CardTable, CardFooter, CardHeading, CardToolbar, CardTitle, CardDescription } from '@pharen/ui';
 ```
 
 ## Exports

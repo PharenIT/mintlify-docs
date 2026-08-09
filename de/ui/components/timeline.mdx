@@ -4,30 +4,65 @@ sidebarTitle: "Timeline"
 description: "Importiere und verwende die Timeline-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Timeline** kannst du strukturierte Produktinformationen darzustellen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="timeline" title="Timeline Vorschau" />
 
-## Import
-
-```ts
-import { Timeline, TimelineContent, TimelineDate, TimelineHeader, TimelineIndicator, TimelineItem, TimelineSeparator, TimelineTitle } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { Timeline, TimelineItem } from '@pharen/ui';
+import { Timeline, TimelineContent, TimelineDate, TimelineHeader, TimelineIndicator, TimelineItem, TimelineSeparator, TimelineTitle } from '@pharen/ui';
+
+const events = [
+  { title: 'Workflow created', date: '09:30', text: 'Johannes created the workflow.' },
+  { title: 'Test completed', date: '10:05', text: 'All five steps finished successfully.' },
+];
 </script>
 
 <template>
-  <Timeline>
-    <TimelineItem>First item</TimelineItem>
+  <Timeline class="w-full max-w-md">
+    <TimelineItem v-for="event in events" :key="event.title">
+      <TimelineIndicator /><TimelineSeparator />
+      <TimelineHeader><TimelineTitle>{{ event.title }}</TimelineTitle><TimelineDate>{{ event.date }}</TimelineDate></TimelineHeader>
+      <TimelineContent>{{ event.text }}</TimelineContent>
+    </TimelineItem>
   </Timeline>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Timeline, TimelineContent, TimelineDate, TimelineHeader, TimelineIndicator, TimelineItem, TimelineSeparator, TimelineTitle } from '@pharen/ui';
 ```
 
 ## Exporte

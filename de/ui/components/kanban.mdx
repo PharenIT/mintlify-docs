@@ -4,43 +4,68 @@ sidebarTitle: "Kanban"
 description: "Importiere und verwende die Kanban-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Kanban** kannst du mit strukturierten operativen Daten zu arbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="kanban" title="Kanban Vorschau" />
 
-## Import
-
-```ts
-import { Kanban, KanbanBoard, KanbanCard, KanbanCards, KanbanHeader, KanbanProvider, KanbanColumn, KanbanColumnContent, KanbanColumnHandle, KanbanItem, KanbanItemHandle, KanbanOverlay } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { Kanban, KanbanBoard, KanbanCard, KanbanCards, KanbanColumn, KanbanHeader, KanbanItem } from '@pharen/ui';
+import { Kanban, KanbanBoard, KanbanCard, KanbanColumn, KanbanColumnContent, KanbanHeader, KanbanItem } from '@pharen/ui';
+
 const columns = {
-  todo: [{ id: 'brief', title: 'Write project brief' }],
+  todo: [{ id: 'brief', title: 'Write project brief' }, { id: 'research', title: 'Research competitors' }],
   done: [{ id: 'scope', title: 'Confirm scope' }],
 };
 </script>
 
 <template>
-  <Kanban :default-value="columns" :get-item-value="item => item.id">
-    <KanbanBoard>
-      <KanbanColumn v-for="(items, key) in columns" :key="key" :value="key">
-        <KanbanHeader>{{ key }}</KanbanHeader>
-        <KanbanCards>
-          <KanbanItem v-for="item in items" :key="item.id" :value="item.id">
-            <KanbanCard>{{ item.title }}</KanbanCard>
-          </KanbanItem>
-        </KanbanCards>
+  <Kanban :default-value="columns" :get-item-value="item => item.id" class="w-full">
+    <KanbanBoard class="sm:grid-cols-2">
+      <KanbanColumn v-for="(_, key) in columns" :key="key" :value="key">
+        <KanbanHeader class="capitalize">{{ key }}</KanbanHeader>
+        <KanbanColumnContent :value="key" class="rounded-lg bg-muted/50 p-2">
+          <template #default="{ item }"><KanbanItem :value="item.id"><KanbanCard>{{ item.title }}</KanbanCard></KanbanItem></template>
+        </KanbanColumnContent>
       </KanbanColumn>
     </KanbanBoard>
   </Kanban>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Kanban, KanbanBoard, KanbanCard, KanbanCards, KanbanHeader, KanbanProvider, KanbanColumn, KanbanColumnContent, KanbanColumnHandle, KanbanItem, KanbanItemHandle, KanbanOverlay } from '@pharen/ui';
 ```
 
 ## Exporte

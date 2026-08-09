@@ -4,30 +4,64 @@ sidebarTitle: "Command"
 description: "Importiere und verwende die Command-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Command** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="command" title="Command Vorschau" />
 
-## Import
-
-```ts
-import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { Command, CommandItem } from '@pharen/ui';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut } from '@pharen/ui';
 </script>
 
 <template>
-  <Command>
-    <CommandItem>First item</CommandItem>
+  <Command class="w-full max-w-md rounded-xl border shadow-sm">
+    <CommandInput placeholder="Search actions..." />
+    <CommandList>
+      <CommandEmpty>No actions found.</CommandEmpty>
+      <CommandGroup heading="Suggestions">
+        <CommandItem value="workflow">Create workflow<CommandShortcut>⌘N</CommandShortcut></CommandItem>
+        <CommandItem value="agent">Open agents<CommandShortcut>⌘A</CommandShortcut></CommandItem>
+        <CommandItem value="settings">Workspace settings<CommandShortcut>⌘,</CommandShortcut></CommandItem>
+      </CommandGroup>
+    </CommandList>
   </Command>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '@pharen/ui';
 ```
 
 ## Exporte

@@ -4,19 +4,13 @@ sidebarTitle: "Progress"
 description: "Import and use the Progress components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Progress** to communicate completion against a known total. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="progress" title="Progress preview" />
 
-## Import
-
-```ts
-import { Progress } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -24,8 +18,43 @@ import { Progress } from '@pharen/ui';
 </script>
 
 <template>
-  <Progress :model-value="64" />
+  <div class="w-full max-w-sm space-y-2">
+    <div class="flex justify-between text-sm"><span>Workspace setup</span><span class="font-medium">64%</span></div>
+    <Progress :model-value="64" />
+  </div>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Progress } from '@pharen/ui';
 ```
 
 ## Exports

@@ -4,19 +4,13 @@ sidebarTitle: "Autocomplete"
 description: "Importiere und verwende die Autocomplete-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Autocomplete** kannst du einen Wert zu erfassen oder zu bearbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="autocomplete" title="Autocomplete Vorschau" />
 
-## Import
-
-```ts
-import { Autocomplete, AutocompleteClear, AutocompleteContent, AutocompleteEmpty, AutocompleteGroup, AutocompleteGroupLabel, AutocompleteInput, AutocompleteItem, AutocompleteList, AutocompleteSeparator, AutocompleteTrigger, AutocompleteArrow, AutocompleteBackdrop, AutocompleteCollection, AutocompleteItemIndicator, AutocompletePortal, AutocompletePositioner, AutocompleteRow, AutocompleteStatus, AutocompleteValue } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
@@ -29,6 +23,38 @@ import { Autocomplete, AutocompleteTrigger, AutocompleteContent } from '@pharen/
     <AutocompleteContent>Autocomplete content</AutocompleteContent>
   </Autocomplete>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Autocomplete, AutocompleteClear, AutocompleteContent, AutocompleteEmpty, AutocompleteGroup, AutocompleteGroupLabel, AutocompleteInput, AutocompleteItem, AutocompleteList, AutocompleteSeparator, AutocompleteTrigger, AutocompleteArrow, AutocompleteBackdrop, AutocompleteCollection, AutocompleteItemIndicator, AutocompletePortal, AutocompletePositioner, AutocompleteRow, AutocompleteStatus, AutocompleteValue } from '@pharen/ui';
 ```
 
 ## Exporte

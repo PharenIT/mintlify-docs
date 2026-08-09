@@ -4,19 +4,13 @@ sidebarTitle: "Aspect ratio"
 description: "Import and use the Aspect ratio components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Aspect ratio** to present structured product information. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="aspect-ratio" title="Aspect ratio preview" />
 
-## Import
-
-```ts
-import { AspectRatio } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -24,8 +18,44 @@ import { AspectRatio } from '@pharen/ui';
 </script>
 
 <template>
-  <AspectRatio />
+  <AspectRatio :ratio="16 / 9" class="w-full max-w-md overflow-hidden rounded-xl bg-muted">
+    <div class="grid size-full place-items-center bg-primary/10 text-sm font-medium text-primary">
+      16:9 preview
+    </div>
+  </AspectRatio>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { AspectRatio } from '@pharen/ui';
 ```
 
 ## Exports

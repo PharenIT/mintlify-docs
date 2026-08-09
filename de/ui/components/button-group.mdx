@@ -4,28 +4,58 @@ sidebarTitle: "Button group"
 description: "Importiere und verwende die Button group-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Button group** kannst du eine Aktion oder Navigation aufzubauen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="button-group" title="Button group Vorschau" />
 
-## Import
-
-```ts
-import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { ButtonGroup } from '@pharen/ui';
+import { Button, ButtonGroup, ButtonGroupText } from '@pharen/ui';
 </script>
 
 <template>
-  <ButtonGroup />
+  <ButtonGroup>
+    <Button variant="outline">Back</Button>
+    <ButtonGroupText>Step 2 of 3</ButtonGroupText>
+    <Button>Continue</Button>
+  </ButtonGroup>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { ButtonGroup, ButtonGroupSeparator, ButtonGroupText } from '@pharen/ui';
 ```
 
 ## Exporte

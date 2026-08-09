@@ -4,28 +4,58 @@ sidebarTitle: "Sonner"
 description: "Import and use the Sonner components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Sonner** to show transient toast notifications. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="sonner" title="Sonner preview" />
 
-## Import
-
-```ts
-import { Sonner, Toaster } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { Sonner } from '@pharen/ui';
+import { onMounted } from 'vue';
+import { Button, Sonner, toast } from '@pharen/ui';
+
+const showToast = () => toast.success('Workflow published', { description: 'The automation is now active.', duration: Infinity });
+onMounted(showToast);
 </script>
 
 <template>
-  <Sonner />
+  <div><Button variant="outline" @click="showToast">Show notification</Button><Sonner position="top-center" /></div>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Sonner, Toaster } from '@pharen/ui';
 ```
 
 ## Exports

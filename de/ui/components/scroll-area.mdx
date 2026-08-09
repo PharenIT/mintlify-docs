@@ -4,28 +4,60 @@ sidebarTitle: "Scroll area"
 description: "Importiere und verwende die Scroll area-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Scroll area** kannst du Inhalte und responsive Bereiche anzuordnen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="scroll-area" title="Scroll area Vorschau" />
 
-## Import
-
-```ts
-import { ScrollArea, ScrollBar } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
 import { ScrollArea } from '@pharen/ui';
+
+const events = ['Workflow created', 'Trigger configured', 'Agent assigned', 'Test run completed', 'Workflow published', 'First run succeeded'];
 </script>
 
 <template>
-  <ScrollArea />
+  <ScrollArea class="h-40 w-full max-w-sm rounded-lg border">
+    <div class="divide-y p-3">
+      <div v-for="event in events" :key="event" class="py-2 text-sm">{{ event }}</div>
+    </div>
+  </ScrollArea>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { ScrollArea, ScrollBar } from '@pharen/ui';
 ```
 
 ## Exporte

@@ -4,19 +4,13 @@ sidebarTitle: "Border beam"
 description: "Import and use the Border beam components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Border beam** to present structured product information. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="border-beam" title="Border beam preview" />
 
-## Import
-
-```ts
-import { BorderBeam } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
@@ -24,8 +18,44 @@ import { BorderBeam } from '@pharen/ui';
 </script>
 
 <template>
-  <BorderBeam />
+  <div class="relative w-full max-w-sm overflow-hidden rounded-xl border bg-card p-6 shadow-sm">
+    <BorderBeam :duration="7" />
+    <p class="text-sm font-semibold">Live workflow</p>
+    <p class="mt-1 text-sm text-muted-foreground">The animated beam follows the surface border.</p>
+  </div>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { BorderBeam } from '@pharen/ui';
 ```
 
 ## Exports

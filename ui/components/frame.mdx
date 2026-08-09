@@ -4,28 +4,65 @@ sidebarTitle: "Frame"
 description: "Import and use the Frame components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Frame** to present structured product information. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="frame" title="Frame preview" />
 
-## Import
-
-```ts
-import { Frame, FrameDescription, FrameFooter, FrameHeader, FramePanel, FrameTitle } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { Frame } from '@pharen/ui';
+import { Frame, FrameDescription, FrameFooter, FrameHeader, FramePanel, FrameTitle } from '@pharen/ui';
 </script>
 
 <template>
-  <Frame />
+  <Frame class="w-full max-w-md">
+    <FrameHeader>
+      <FrameTitle>Agent activity</FrameTitle>
+      <FrameDescription>Latest run for the research agent.</FrameDescription>
+    </FrameHeader>
+    <FramePanel>
+      <div class="flex items-center justify-between text-sm">
+        <span>Processed documents</span><strong>24</strong>
+      </div>
+    </FramePanel>
+    <FrameFooter><span class="text-xs text-muted-foreground">Updated just now</span></FrameFooter>
+  </Frame>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Frame, FrameDescription, FrameFooter, FrameHeader, FramePanel, FrameTitle } from '@pharen/ui';
 ```
 
 ## Exports

@@ -4,19 +4,13 @@ sidebarTitle: "Accordion"
 description: "Importiere und verwende die Accordion-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Accordion** kannst du kontextbezogene Inhalte oder Feedback anzuzeigen. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="accordion" title="Accordion Vorschau" />
 
-## Import
-
-```ts
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
@@ -31,6 +25,38 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@p
     </AccordionItem>
   </Accordion>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@pharen/ui';
 ```
 
 ## Exporte

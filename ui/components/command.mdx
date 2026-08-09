@@ -4,30 +4,64 @@ sidebarTitle: "Command"
 description: "Import and use the Command components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Command** to show contextual content or user feedback. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="command" title="Command preview" />
 
-## Import
-
-```ts
-import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { Command, CommandItem } from '@pharen/ui';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut } from '@pharen/ui';
 </script>
 
 <template>
-  <Command>
-    <CommandItem>First item</CommandItem>
+  <Command class="w-full max-w-md rounded-xl border shadow-sm">
+    <CommandInput placeholder="Search actions..." />
+    <CommandList>
+      <CommandEmpty>No actions found.</CommandEmpty>
+      <CommandGroup heading="Suggestions">
+        <CommandItem value="workflow">Create workflow<CommandShortcut>⌘N</CommandShortcut></CommandItem>
+        <CommandItem value="agent">Open agents<CommandShortcut>⌘A</CommandShortcut></CommandItem>
+        <CommandItem value="settings">Workspace settings<CommandShortcut>⌘,</CommandShortcut></CommandItem>
+      </CommandGroup>
+    </CommandList>
   </Command>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from '@pharen/ui';
 ```
 
 ## Exports

@@ -4,31 +4,63 @@ sidebarTitle: "Plan"
 description: "Import and use the Plan components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Plan** to present structured product information. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="plan" title="Plan preview" />
 
-## Import
-
-```ts
-import { Plan, PlanHeader, PlanTitle, PlanDescription, PlanAction, PlanContent, PlanFooter, PlanTrigger } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { Plan, PlanTrigger, PlanContent } from '@pharen/ui';
+import { Badge, Plan, PlanAction, PlanContent, PlanDescription, PlanFooter, PlanHeader, PlanTitle, PlanTrigger } from '@pharen/ui';
 </script>
 
 <template>
-  <Plan>
-    <PlanTrigger>Open plan</PlanTrigger>
-    <PlanContent>Plan content</PlanContent>
+  <Plan default-open class="w-full max-w-lg">
+    <PlanHeader>
+      <div><PlanTitle>Launch workflow</PlanTitle><PlanDescription>Review the execution plan before starting.</PlanDescription></div>
+      <PlanAction><Badge variant="secondary">3 steps</Badge><PlanTrigger /></PlanAction>
+    </PlanHeader>
+    <PlanContent>
+      <ol class="grid gap-2 text-sm"><li>1. Load workspace records</li><li>2. Generate the weekly summary</li><li>3. Send the result to Slack</li></ol>
+    </PlanContent>
+    <PlanFooter>Estimated duration: 45 seconds</PlanFooter>
   </Plan>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { Plan, PlanHeader, PlanTitle, PlanDescription, PlanAction, PlanContent, PlanFooter, PlanTrigger } from '@pharen/ui';
 ```
 
 ## Exports

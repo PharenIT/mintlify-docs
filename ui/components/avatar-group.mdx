@@ -4,28 +4,62 @@ sidebarTitle: "Avatar group"
 description: "Import and use the Avatar group components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **Avatar group** to present structured product information. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="avatar-group" title="Avatar group preview" />
 
-## Import
-
-```ts
-import { AvatarGroup, AvatarGroupCount } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
 import { AvatarGroup } from '@pharen/ui';
+
+const people = [
+  { fallback: 'JK', alt: 'Johannes Kanthak' },
+  { fallback: 'AM', alt: 'Alex Morgan' },
+  { fallback: 'SL', alt: 'Sam Lee' },
+  { fallback: 'RK', alt: 'Robin Kim' },
+  { fallback: 'TN', alt: 'Taylor Nguyen' },
+];
 </script>
 
 <template>
-  <AvatarGroup />
+  <AvatarGroup :items="people" :max="4" size="base" />
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { AvatarGroup, AvatarGroupCount } from '@pharen/ui';
 ```
 
 ## Exports

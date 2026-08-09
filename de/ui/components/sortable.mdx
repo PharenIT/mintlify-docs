@@ -4,30 +4,66 @@ sidebarTitle: "Sortable"
 description: "Importiere und verwende die Sortable-Komponenten aus @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Mit **Sortable** kannst du mit strukturierten operativen Daten zu arbeiten. Diese Seite dokumentiert alle Vue-Komponenten, die das Modul öffentlich exportiert.
 
-<Note>
-  Installiere das Paket und importiere die Styles einmalig. Die vollständigen Schritte findest du unter [Installation](/de/ui/installation).
-</Note>
+<PharenUiPreview name="sortable" title="Sortable Vorschau" />
 
-## Import
-
-```ts
-import { Sortable, SortableItem, SortableItemHandle, SortableOverlay } from '@pharen/ui';
-```
-
-## Beispiel
+<Accordion title="Code anzeigen">
 
 ```vue
 <script setup lang="ts">
-import { Sortable, SortableItem } from '@pharen/ui';
+import { ref } from 'vue';
+import { Sortable, SortableItem, SortableItemHandle } from '@pharen/ui';
+
+const tasks = ref([
+  { id: 'research', label: 'Research competitors' },
+  { id: 'draft', label: 'Draft campaign' },
+  { id: 'review', label: 'Review copy' },
+]);
 </script>
 
 <template>
-  <Sortable>
-    <SortableItem>First item</SortableItem>
+  <Sortable v-model="tasks" :get-item-value="item => item.id" class="grid w-full max-w-sm gap-2">
+    <SortableItem v-for="task in tasks" :key="task.id" :value="task.id" class="flex items-center gap-2 rounded-lg border bg-card p-3">
+      <SortableItemHandle :label="`Move ${task.label}`" />
+      <span class="text-sm">{{ task.label }}</span>
+    </SortableItem>
   </Sortable>
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Importiere `@pharen/ui/styles.css` genau einmal im Einstiegspunkt deiner Anwendung.
+</Note>
+
+## Verwendung
+
+```ts
+import { Sortable, SortableItem, SortableItemHandle, SortableOverlay } from '@pharen/ui';
 ```
 
 ## Exporte

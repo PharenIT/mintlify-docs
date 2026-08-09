@@ -4,30 +4,62 @@ sidebarTitle: "AI model select"
 description: "Import and use the AI model select components from @pharen/ui."
 ---
 
+import { PharenUiPreview } from "/snippets/pharen-ui-preview.jsx"
+
 Use **AI model select** to choose an AI model with model-specific metadata. This page covers every Vue component exported by the public module.
 
-<Note>
-  Install the package and import its styles once. See [Installation](/ui/installation) for the complete setup.
-</Note>
+<PharenUiPreview name="ai-model-select" title="AI model select preview" />
 
-## Import
-
-```ts
-import { AiModelSelect, AiModelIcon, AiModelSelectItem } from '@pharen/ui';
-```
-
-## Example
+<Accordion title="View code">
 
 ```vue
 <script setup lang="ts">
-import { AiModelSelect, AiModelSelectItem } from '@pharen/ui';
+import { ref } from 'vue';
+import { AiModelSelect } from '@pharen/ui';
+
+const model = ref('gpt-5.4');
+const models = [
+  { id: 'gpt-5.4', name: 'GPT-5.4', provider: 'OpenAI', icon: 'simple-icons:openai', supportsThinking: true },
+  { id: 'claude-opus', name: 'Claude Opus', provider: 'Anthropic', icon: 'simple-icons:anthropic', supportsThinking: true },
+  { id: 'gemini-pro', name: 'Gemini Pro', provider: 'Google', icon: 'simple-icons:googlegemini' },
+];
 </script>
 
 <template>
-  <AiModelSelect>
-    <AiModelSelectItem>First item</AiModelSelectItem>
-  </AiModelSelect>
+  <AiModelSelect v-model="model" :models="models" class="w-full max-w-sm" show-thinking-toggle />
 </template>
+```
+
+</Accordion>
+
+## Installation
+
+<CodeGroup>
+```bash npm
+npm install @pharen/ui
+```
+
+```bash pnpm
+pnpm add @pharen/ui
+```
+
+```bash yarn
+yarn add @pharen/ui
+```
+
+```bash bun
+bun add @pharen/ui
+```
+</CodeGroup>
+
+<Note>
+  Import `@pharen/ui/styles.css` exactly once in your application entrypoint.
+</Note>
+
+## Usage
+
+```ts
+import { AiModelSelect, AiModelIcon, AiModelSelectItem } from '@pharen/ui';
 ```
 
 ## Exports
