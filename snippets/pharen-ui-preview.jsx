@@ -1,6 +1,5 @@
-const PHAREN_UI_PREVIEW_BUNDLE_REVISION = '2026-08-09-compact-modals'
-
 export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' }) => {
+  const previewBundleRevision = '2026-08-09-compact-modals'
   const escapePreviewAttribute = (value) =>
     String(value).replace(/[&<>"']/g, (character) => ({
       '&': '&amp;',
@@ -22,18 +21,18 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
     let active = true
     setLoadError(false)
     let bundlePromise =
-      window.__pharenUiPreviewBundleRevision === PHAREN_UI_PREVIEW_BUNDLE_REVISION
+      window.__pharenUiPreviewBundleRevision === previewBundleRevision
         ? window.__pharenUiPreviewBundlePromise
         : null
     if (!bundlePromise) {
       bundlePromise = fetch(
-        `/ui-preview/pharen-ui-preview.json?v=${PHAREN_UI_PREVIEW_BUNDLE_REVISION}`,
+        `/ui-preview/pharen-ui-preview.json?v=${previewBundleRevision}`,
       ).then((response) => {
         if (!response.ok) throw new Error(`Preview bundle returned ${response.status}`)
         return response.json()
       })
       window.__pharenUiPreviewBundlePromise = bundlePromise
-      window.__pharenUiPreviewBundleRevision = PHAREN_UI_PREVIEW_BUNDLE_REVISION
+      window.__pharenUiPreviewBundleRevision = previewBundleRevision
     }
 
     bundlePromise.then(

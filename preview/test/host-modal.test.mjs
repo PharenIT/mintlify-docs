@@ -5,10 +5,12 @@ import vm from 'node:vm';
 
 const snippetUrl = new URL('../../snippets/pharen-ui-preview.jsx', import.meta.url);
 const snippetSource = readFileSync(snippetUrl, 'utf8');
+const exportBoundary = snippetSource.indexOf('export const PharenUiPreview');
 const returnBoundary = snippetSource.indexOf('\n  return (');
 
 function executeComponentPrefix({ modalOpen = false, useCachedBundle = true } = {}) {
   assert.ok(returnBoundary > 0, 'preview component return boundary is available');
+  assert.ok(exportBoundary >= 0, 'preview component export is available');
 
   const effects = [];
   const listeners = new Map();
@@ -25,7 +27,7 @@ function executeComponentPrefix({ modalOpen = false, useCachedBundle = true } = 
   let stateIndex = 0;
 
   const componentPrefix = snippetSource
-    .slice(0, returnBoundary)
+    .slice(exportBoundary, returnBoundary)
     .replace('export const PharenUiPreview', 'const PharenUiPreview');
   const executable = `${componentPrefix}
     return {
@@ -71,18 +73,32 @@ function executeComponentPrefix({ modalOpen = false, useCachedBundle = true } = 
     },
   };
 
-  vm.runInNewContext(executable, context, { filename: 'pharen-ui-preview.jsx' });
-  const cleanups = effects.map((effect) => effect()).filter(Boolean);
+  let executionError = null;
+  let cleanups = [];
+  try {
+    vm.runInNewContext(executable, context, { filename: 'pharen-ui-preview.jsx' });
+    cleanups = effects.map((effect) => effect()).filter(Boolean);
+  } catch (error) {
+    executionError = error;
+  }
 
   return {
     ...context.result,
     cleanups,
     contentWindow,
+    executionError,
     fetchCalls,
     listeners,
     stateChanges,
   };
 }
+
+test('the preview component is self-contained in the Mintlify runtime', () => {
+  const preview = executeComponentPrefix();
+
+  assert.equal(preview.executionError, null);
+  preview.cleanups.forEach((cleanup) => cleanup());
+});
 
 test('the preview bundle request carries a deployment revision', () => {
   const preview = executeComponentPrefix({ useCachedBundle: false });
