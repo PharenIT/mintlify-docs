@@ -1,3 +1,5 @@
+const PHAREN_UI_PREVIEW_BUNDLE_REVISION = '2026-08-09-compact-modals'
+
 export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' }) => {
   const escapePreviewAttribute = (value) =>
     String(value).replace(/[&<>"']/g, (character) => ({
@@ -19,13 +21,19 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
   useEffect(() => {
     let active = true
     setLoadError(false)
-    let bundlePromise = window.__pharenUiPreviewBundlePromise
+    let bundlePromise =
+      window.__pharenUiPreviewBundleRevision === PHAREN_UI_PREVIEW_BUNDLE_REVISION
+        ? window.__pharenUiPreviewBundlePromise
+        : null
     if (!bundlePromise) {
-      bundlePromise = fetch('/ui-preview/pharen-ui-preview.json').then((response) => {
+      bundlePromise = fetch(
+        `/ui-preview/pharen-ui-preview.json?v=${PHAREN_UI_PREVIEW_BUNDLE_REVISION}`,
+      ).then((response) => {
         if (!response.ok) throw new Error(`Preview bundle returned ${response.status}`)
         return response.json()
       })
       window.__pharenUiPreviewBundlePromise = bundlePromise
+      window.__pharenUiPreviewBundleRevision = PHAREN_UI_PREVIEW_BUNDLE_REVISION
     }
 
     bundlePromise.then(
@@ -33,6 +41,7 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
       (error) => {
         if (window.__pharenUiPreviewBundlePromise === bundlePromise) {
           window.__pharenUiPreviewBundlePromise = null
+          window.__pharenUiPreviewBundleRevision = null
         }
         console.error(error)
         if (active) setLoadError(true)

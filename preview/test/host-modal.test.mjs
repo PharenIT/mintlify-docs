@@ -7,11 +7,12 @@ const snippetUrl = new URL('../../snippets/pharen-ui-preview.jsx', import.meta.u
 const snippetSource = readFileSync(snippetUrl, 'utf8');
 const returnBoundary = snippetSource.indexOf('\n  return (');
 
-function executeComponentPrefix({ modalOpen = false } = {}) {
+function executeComponentPrefix({ modalOpen = false, useCachedBundle = true } = {}) {
   assert.ok(returnBoundary > 0, 'preview component return boundary is available');
 
   const effects = [];
   const listeners = new Map();
+  const fetchCalls = [];
   const stateChanges = [];
   const contentWindow = {};
   const stateValues = [
@@ -37,6 +38,10 @@ function executeComponentPrefix({ modalOpen = false } = {}) {
   const context = {
     console,
     document: { body: { style: { overflow: '' } } },
+    fetch(url) {
+      fetchCalls.push(url);
+      return Promise.resolve({ ok: true, json: () => Promise.resolve(stateValues[1]) });
+    },
     result: null,
     setTimeout,
     clearTimeout,
@@ -54,7 +59,9 @@ function executeComponentPrefix({ modalOpen = false } = {}) {
       return [stateValues[index], (value) => stateChanges.push({ index, value })];
     },
     window: {
-      __pharenUiPreviewBundlePromise: Promise.resolve(stateValues[1]),
+      __pharenUiPreviewBundlePromise: useCachedBundle
+        ? Promise.resolve(stateValues[1])
+        : null,
       addEventListener(type, listener) {
         listeners.set(type, listener);
       },
@@ -71,10 +78,18 @@ function executeComponentPrefix({ modalOpen = false } = {}) {
     ...context.result,
     cleanups,
     contentWindow,
+    fetchCalls,
     listeners,
     stateChanges,
   };
 }
+
+test('the preview bundle request carries a deployment revision', () => {
+  const preview = executeComponentPrefix({ useCachedBundle: false });
+
+  assert.match(preview.fetchCalls[0], /pharen-ui-preview\.json\?v=[a-z0-9-]+$/);
+  preview.cleanups.forEach((cleanup) => cleanup());
+});
 
 test('a modal-state message expands the matching preview iframe', () => {
   const preview = executeComponentPrefix();
