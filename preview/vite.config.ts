@@ -8,12 +8,24 @@ const uiSource = pharenRoot
   ? path.resolve(pharenRoot, 'src/packages/ui/src')
   : undefined;
 const tanstackVueTable = process.env.PHAREN_TANSTACK_VUE_TABLE;
+const modelAssetsModule = path.resolve(import.meta.dirname, 'src/model-assets.ts');
+const previewModelAssets = {
+  name: 'pharen-preview-model-assets',
+  enforce: 'pre' as const,
+  resolveId(source: string, importer?: string) {
+    if (!uiSource || !importer?.startsWith(uiSource)) return null;
+    if (source === './constants/ai-models' || source === '../../constants/ai-models') {
+      return modelAssetsModule;
+    }
+    return null;
+  },
+};
 
 export default defineConfig({
   define: {
     'process.env.NODE_ENV': JSON.stringify('production'),
   },
-  plugins: [vue(), tailwindcss()],
+  plugins: [previewModelAssets, vue(), tailwindcss()],
   resolve: {
     alias: uiSource
       ? [
@@ -30,9 +42,11 @@ export default defineConfig({
     outDir: 'dist',
     emptyOutDir: true,
     cssCodeSplit: false,
+    minify: 'esbuild',
     lib: {
       entry: path.resolve(import.meta.dirname, 'src/index.ts'),
-      formats: ['es'],
+      name: 'PharenUiPreviewBundle',
+      formats: ['iife'],
       fileName: () => 'pharen-ui-preview.js',
     },
     rollupOptions: {

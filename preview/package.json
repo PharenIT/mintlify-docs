@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "test": "node --test test/*.test.mjs"
   },
   "dependencies": {
     "@pharen/ui": "^0.0.18",

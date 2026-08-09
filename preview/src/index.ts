@@ -1,4 +1,4 @@
-import { createApp, defineComponent, h, nextTick, type App } from 'vue';
+import { createApp, defineComponent, h, type App } from 'vue';
 import './preview.css';
 
 const exampleModules = import.meta.glob('./examples/*.vue', {
@@ -17,10 +17,14 @@ declare global {
   interface Window {
     __pharenUiPreview?: {
       mount: (element: HTMLElement, name: string) => App<Element> | null;
+      scan: (root?: ParentNode) => void;
       examples: string[];
     };
   }
 }
+
+const previewSelector = '[data-pharen-ui-preview][data-example]';
+const mountedApps = new WeakMap<HTMLElement, App<Element>>();
 
 function renderError(element: HTMLElement, message: string) {
   element.innerHTML = '';
@@ -49,38 +53,61 @@ function mount(element: HTMLElement, name: string) {
   return app;
 }
 
+function previewElements(root: ParentNode) {
+  const elements: HTMLElement[] = [];
+  if (root instanceof HTMLElement && root.matches(previewSelector)) {
+    elements.push(root);
+  }
+  elements.push(...root.querySelectorAll<HTMLElement>(previewSelector));
+  return elements;
+}
+
+function mountPreview(element: HTMLElement) {
+  const name = element.dataset.example;
+  if (!name || element.dataset.pharenUiMounted === name) return;
+
+  mountedApps.get(element)?.unmount();
+  const app = mount(element, name);
+  if (!app) return;
+
+  mountedApps.set(element, app);
+  element.dataset.pharenUiMounted = name;
+}
+
+function scan(root: ParentNode = document) {
+  previewElements(root).forEach(mountPreview);
+}
+
+function unmountRemoved(root: ParentNode) {
+  previewElements(root).forEach((element) => {
+    mountedApps.get(element)?.unmount();
+    mountedApps.delete(element);
+    delete element.dataset.pharenUiMounted;
+  });
+}
+
 window.__pharenUiPreview = {
   mount,
+  scan,
   examples: Object.keys(examples).sort(),
 };
 
-const script = document.querySelector<HTMLScriptElement>(
-  'script[data-pharen-ui-preview][data-example]'
-);
-const automaticName = script?.dataset.example;
-const previewId = script?.dataset.previewId;
-const root = document.getElementById('pharen-ui-preview-root');
+function start() {
+  scan();
+  new MutationObserver((records) => {
+    for (const record of records) {
+      record.removedNodes.forEach((node) => {
+        if (node instanceof HTMLElement) unmountRemoved(node);
+      });
+      record.addedNodes.forEach((node) => {
+        if (node instanceof HTMLElement) scan(node);
+      });
+    }
+  }).observe(document.documentElement, { childList: true, subtree: true });
+}
 
-if (root && automaticName) {
-  const syncTheme = () => {
-    document.documentElement.classList.toggle(
-      'dark',
-      window.parent !== window && window.parent.document.documentElement.classList.contains('dark')
-    );
-  };
-  syncTheme();
-  if (window.parent !== window) {
-    new MutationObserver(syncTheme).observe(window.parent.document.documentElement, {
-      attributeFilter: ['class'],
-      attributes: true,
-    });
-  }
-  mount(root, automaticName);
-
-  const sendHeight = () => {
-    const height = Math.ceil(document.body.scrollHeight);
-    window.parent.postMessage({ source: 'pharen-ui-preview', id: previewId, height }, '*');
-  };
-  nextTick(sendHeight);
-  new ResizeObserver(sendHeight).observe(document.documentElement);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', start, { once: true });
+} else {
+  start();
 }
