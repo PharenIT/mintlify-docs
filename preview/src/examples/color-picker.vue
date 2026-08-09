@@ -3,5 +3,5 @@ import { ColorPicker } from '@pharen/ui';
 </script>
 
 <template>
-  <ColorPicker />
+  <ColorPicker model-value="#18181B" />
 </template>

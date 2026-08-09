@@ -1,5 +1,23 @@
 @import '@pharen/ui/styles.css';
 
+:root {
+  --primary: #18181b;
+  --primary-darker: #09090b;
+  --primary-foreground: #fafafa;
+  --ring: #a1a1aa;
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+}
+
+.dark {
+  --primary: #fafafa;
+  --primary-darker: #e4e4e7;
+  --primary-foreground: #18181b;
+  --ring: #71717a;
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -16,15 +34,123 @@ body {
 }
 
 .pharen-ui-preview-root {
-  display: grid;
-  min-height: 16rem;
+  display: flex;
+  min-height: 18rem;
   min-width: 0;
-  place-items: center;
-  padding: 2rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(1rem, 4vw, 2rem);
   background: var(--background);
   color: var(--foreground);
+  isolation: isolate;
 }
 
 .pharen-ui-preview-root > * {
   min-width: 0;
+  max-width: 100%;
+}
+
+.pharen-ui-preview-root:is(
+  [data-example='ai-model-select'],
+  [data-example='autocomplete'],
+  [data-example='combobox'],
+  [data-example='color-picker'],
+  [data-example='date-picker'],
+  [data-example='dropfile'],
+  [data-example='field'],
+  [data-example='file-upload'],
+  [data-example='form'],
+  [data-example='input-group'],
+  [data-example='input'],
+  [data-example='multi-select'],
+  [data-example='native-select'],
+  [data-example='number-field'],
+  [data-example='phone-input'],
+  [data-example='radio-group'],
+  [data-example='remote-select'],
+  [data-example='search-input'],
+  [data-example='select'],
+  [data-example='slider'],
+  [data-example='textarea']
+) > * {
+  width: 100%;
+  max-width: 28rem;
+}
+
+.pharen-ui-preview-root:is(
+  [data-example='accordion'],
+  [data-example='ai-plan'],
+  [data-example='alert'],
+  [data-example='aspect-ratio'],
+  [data-example='border-beam'],
+  [data-example='card'],
+  [data-example='chain-of-thought'],
+  [data-example='chart'],
+  [data-example='carousel'],
+  [data-example='checkpoint'],
+  [data-example='code-block'],
+  [data-example='collapsible'],
+  [data-example='command'],
+  [data-example='conversation'],
+  [data-example='empty-state'],
+  [data-example='empty'],
+  [data-example='filters'],
+  [data-example='frame'],
+  [data-example='item'],
+  [data-example='kanban'],
+  [data-example='message'],
+  [data-example='plan'],
+  [data-example='progress'],
+  [data-example='reasoning'],
+  [data-example='resizable'],
+  [data-example='scroll-area'],
+  [data-example='sortable'],
+  [data-example='stat-card'],
+  [data-example='table'],
+  [data-example='tabs'],
+  [data-example='timeline'],
+  [data-example='tool'],
+  [data-example='tree']
+) > * {
+  width: 100%;
+  max-width: 42rem;
+}
+
+.pharen-ui-preview-root:is(
+  [data-example='data-grid'],
+  [data-example='event-calendar'],
+  [data-example='gantt']
+) {
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.pharen-ui-preview-root:is(
+  [data-example='data-grid'],
+  [data-example='event-calendar'],
+  [data-example='gantt']
+) > * {
+  width: 100%;
+}
+
+.pharen-ui-preview-root[data-example='event-calendar'] {
+  min-height: 44rem;
+}
+
+.pharen-ui-preview-root[data-example='gantt'] {
+  min-height: 22rem;
+}
+
+.pharen-ui-preview-root[data-example='sidebar'] {
+  min-height: 24rem;
+  align-items: stretch;
+  padding: 1rem;
+}
+
+.pharen-ui-preview-root[data-example='sidebar'] > * {
+  width: 100%;
 }

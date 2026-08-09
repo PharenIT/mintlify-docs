@@ -1,7 +1,7 @@
 :root {
   --default-border-color: var(--gray-200);
-  --pharen-primary: #158065;
-  --pharen-primary-hover: #106c55;
+  --pharen-primary: #18181b;
+  --pharen-primary-hover: #27272a;
 }
 
 html,
@@ -36,7 +36,7 @@ body {
   border: 1px solid rgb(255 255 255 / 0.14) !important;
   border-radius: 0.75rem !important;
   opacity: 1 !important;
-  box-shadow: 0 8px 22px rgb(21 128 101 / 0.18) !important;
+  box-shadow: 0 8px 22px rgb(24 24 27 / 0.18) !important;
 }
 
 #topbar-cta-button > a:hover > span.absolute {

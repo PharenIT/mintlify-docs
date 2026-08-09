@@ -10,22 +10,29 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
 
   const iframeRef = useRef(null)
   const previewId = `pharen-ui-${name}`
-  const [height, setHeight] = useState(320)
+  const [height, setHeight] = useState(360)
   const [bundle, setBundle] = useState(null)
   const [loadError, setLoadError] = useState(false)
+  const [loadAttempt, setLoadAttempt] = useState(0)
 
   useEffect(() => {
     let active = true
-    const bundlePromise = window.__pharenUiPreviewBundlePromise ??= fetch(
-      '/ui-preview/pharen-ui-preview.json',
-    ).then((response) => {
-      if (!response.ok) throw new Error(`Preview bundle returned ${response.status}`)
-      return response.json()
-    })
+    setLoadError(false)
+    let bundlePromise = window.__pharenUiPreviewBundlePromise
+    if (!bundlePromise) {
+      bundlePromise = fetch('/ui-preview/pharen-ui-preview.json').then((response) => {
+        if (!response.ok) throw new Error(`Preview bundle returned ${response.status}`)
+        return response.json()
+      })
+      window.__pharenUiPreviewBundlePromise = bundlePromise
+    }
 
     bundlePromise.then(
       (value) => active && setBundle(value),
       (error) => {
+        if (window.__pharenUiPreviewBundlePromise === bundlePromise) {
+          window.__pharenUiPreviewBundlePromise = null
+        }
         console.error(error)
         if (active) setLoadError(true)
       },
@@ -34,7 +41,11 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
     return () => {
       active = false
     }
-  }, [])
+  }, [loadAttempt])
+
+  useEffect(() => {
+    setHeight(360)
+  }, [previewId])
 
   useEffect(() => {
     const handleMessage = (event) => {
@@ -42,7 +53,7 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
       if (event.data?.source !== 'pharen-ui-preview') return
       if (event.data?.id !== previewId) return
 
-      const nextHeight = Math.min(900, Math.max(256, Number(event.data.height) || 320))
+      const nextHeight = Math.min(900, Math.max(288, Number(event.data.height) || 360))
       setHeight((currentHeight) =>
         Math.abs(currentHeight - nextHeight) > 2 ? nextHeight : currentHeight,
       )
@@ -106,15 +117,24 @@ export const PharenUiPreview = ({ name, title = 'Pharen UI component preview' })
   return (
     <div className="not-prose my-6 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-white/10 dark:bg-zinc-950">
       {loadError ? (
-        <div className="p-6 text-sm text-red-700 dark:text-red-300" role="alert">
-          This component preview could not be loaded.
+        <div className="flex min-h-72 flex-col items-center justify-center gap-3 p-6 text-center" role="alert">
+          <p className="m-0 text-sm font-medium text-red-700 dark:text-red-300">
+            This component preview could not be loaded.
+          </p>
+          <button
+            type="button"
+            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm font-medium hover:bg-gray-50 dark:border-white/15 dark:hover:bg-white/5"
+            onClick={() => setLoadAttempt((attempt) => attempt + 1)}
+          >
+            Try again
+          </button>
         </div>
       ) : source ? (
         <iframe
+          key={`${previewId}-${loadAttempt}`}
           ref={iframeRef}
           srcDoc={source}
           title={title}
-          loading="lazy"
           allow="clipboard-write"
           className="block w-full border-0 bg-transparent"
           style={{ height: `${height}px` }}

@@ -4,9 +4,9 @@
   "name": "Pharen",
   "description": "Documentation for Pharen Hub — the AI workspace that unifies docs, lists, channels, mail, and agents so your team can automate workflows and move faster.",
   "colors": {
-    "primary": "#158065",
-    "light": "#158065",
-    "dark": "#6ee7b7"
+    "primary": "#18181B",
+    "light": "#18181B",
+    "dark": "#E4E4E7"
   },
   "favicon": "/favicon.ico",
   "icons": {
