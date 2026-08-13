@@ -1,0 +1,13 @@
+---
+title: "Backups und Restore-Vorbereitung"
+sidebarTitle: "Backups"
+description: "Erzeuge konsistente, geprüfte Backups ohne Runtime-Lease-Zustand."
+---
+
+```bash
+./pharen backup /verschluesseltes/backup-ziel
+```
+
+Der Befehl nutzt `umask 077`, pausiert schreibende Services, sichert PostgreSQL, Media und `.env`, erzeugt SHA-256-Prüfsummen, schließt den Lease-Zustand aus und startet Services über einen Trap neu. Prüfe die Checksums und speichere eine verschlüsselte Offsite-Kopie.
+
+Restore bleibt in v1 ein getestetes, bewusst manuelles Runbook. Stelle Daten nur bei gestoppten Schreibern wieder her und niemals das Volume `license_state`.

@@ -1,0 +1,11 @@
+---
+title: "Voraussetzungen für Self-Hosting"
+sidebarTitle: "Voraussetzungen"
+description: "Prüfe Plattform, Netzwerk, Lizenz, Speicher und Betriebsanforderungen vor der Installation von Pharen Hub."
+---
+
+Pharen Hub Self-Hosting v1 unterstützt Linux `amd64`, Docker Engine und Docker Compose ab Version 2.24. Es richtet sich an Startups und KMU mit einer technischen Person für DNS, TLS, Backups, Updates und Incident Response.
+
+Du benötigst einen dedizierten Host, ausgehendes HTTPS zu `ghcr.io` und `billing.pharen.app`, ausreichend Speicher sowie für Produktion einen DNS-Namen und TCP 80/443. Geschäftliches Self-Hosting in Produktion benötigt eine bezahlte Lizenz pro Installation. Eine von Pharen ausgestellte Evaluation läuft 14 Tage und ist nicht für Produktion bestimmt.
+
+Nutze verschlüsselten Backup-Speicher und eine verschlüsselte Offsite-Kopie. Verwende für Tests niemals eine Entwicklungs-`.env`, bestehende Volumes, Kundenzugangsdaten oder Produktivdaten.

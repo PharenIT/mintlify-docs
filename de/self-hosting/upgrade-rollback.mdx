@@ -1,0 +1,11 @@
+---
+title: "Upgrade, Rollback und Transfer"
+sidebarTitle: "Upgrade & Rollback"
+description: "Nutze Digest-gebundene Releases und kontrollierte Runbooks für Upgrade, Rollback und Transfer."
+---
+
+Erzeuge vor Updates ein geprüftes, verschlüsseltes Backup. Prüfe Archiv und GitHub-Provenienz, behalte `.env`, führe `docker compose pull` und danach `./pharen start` aus. Bewahre das vorige Release bis zum erfolgreichen Abnahmetest auf.
+
+Führe keinen Rollback über irreversible Migrationen ohne passendes Backup durch. Stelle Release und Daten wieder her, niemals Lease-State, und prüfe die früheren Image-Digests.
+
+Für einen Transfer: alten Runtime stoppen, Aktivierung im Kaufportal widerrufen und den rotierten Schlüssel mit `./pharen setup` auf dem Ersatzhost nutzen. Ein gestopptes Cold Backup ist erlaubt; Active-Active nicht.

@@ -1,0 +1,21 @@
+---
+title: "Self-Hosting Schnellstart"
+sidebarTitle: "Schnellstart"
+description: "Installiere und initialisiere das Digest-gebundene Pharen Hub Release über das Terminal."
+---
+
+```bash
+sha256sum -c release-assets-SHA256SUMS --ignore-missing
+gh attestation verify elev8-labs-selfhost-vX.Y.Z.tar.gz --repo PharenIT/ELEV8-Labs
+tar -xzf elev8-labs-selfhost-vX.Y.Z.tar.gz
+cd elev8-labs-selfhost-vX.Y.Z
+sha256sum -c SHA256SUMS
+./pharen setup
+./pharen doctor
+./pharen start
+./pharen status
+```
+
+Gib im Setup genau eine `PHAREN_PUBLIC_URL` und den Lizenzschlüssel im verdeckten Prompt ein. Setup leitet Hostname, Frontend-, WebSocket-, CSRF- und TLS-Werte ab und schreibt `.env` atomar mit Modus `0600`. Es gibt keine HTTP-Setup-Seite und keinen Setup-Port.
+
+Öffne anschließend den einmaligen Owner-Bootstrap-Link. Bei Problemen helfen `./pharen logs init` und `./pharen logs license-agent`.

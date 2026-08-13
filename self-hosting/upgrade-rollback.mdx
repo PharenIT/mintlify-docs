@@ -1,0 +1,11 @@
+---
+title: "Upgrade, rollback, and transfer"
+sidebarTitle: "Upgrade & rollback"
+description: "Use digest-pinned releases and deliberate runbooks for upgrades, rollback, and installation transfer."
+---
+
+Before an upgrade, create and verify an encrypted backup. Verify the new archive and GitHub provenance attestation, preserve `.env`, run `docker compose pull`, then `./pharen start`. Keep the previous release directory until application, parser, realtime, login, and backup acceptance pass.
+
+Do not roll back across an irreversible migration without its matching backup. Restore the prior release and data, never lease state, then start and verify the prior digest-pinned images.
+
+For transfer, stop the old runtime, revoke it in the purchase portal, and use the rotated license key with `./pharen setup` on the replacement host. One stopped cold backup is permitted; active-active operation is not.

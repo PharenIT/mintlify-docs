@@ -1,0 +1,13 @@
+---
+title: "Self-Hosting konfigurieren"
+sidebarTitle: "Konfiguration"
+description: "Konfiguriere Registrierung, E-Mail, Integrationen und Secrets aus einer Public URL."
+---
+
+`PHAREN_PUBLIC_URL` ist die einzige Origin-Eingabe. HTTP ist nur für `localhost`, `127.0.0.1` und `::1` erlaubt; alle anderen Origins benötigen HTTPS.
+
+Self-Hosting nutzt standardmäßig `invite_only`. Allgemeine Registrierungslinks sind verborgen. Das Backend erstellt Accounts nur für eine offene, unbenutzte und nicht abgelaufene Team- oder Workspace-Einladung mit identischer E-Mail. Mitgliedschaften entstehen erst nach verifizierter Annahme.
+
+Richte SMTP vor Einladungen ein. Die Prüfung kompromittierter Passwörter schlägt standardmäßig geschlossen fehl. Provider-, OAuth-, Storage-, Gateway- und SMTP-Secrets gehören nur in `.env` oder ein freigegebenes Secret-System. Der Parser erhält keine dieser Variablen.
+
+Setze kein `PHAREN_LICENSE_PUBLIC_KEYS_JSON`. Offizielle Images enthalten aktive und nächste Billing-Prüfschlüssel; Legacy-Payloads dürfen diese nicht überschreiben.

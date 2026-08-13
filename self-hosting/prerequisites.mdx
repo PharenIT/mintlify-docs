@@ -1,0 +1,11 @@
+---
+title: "Self-hosting prerequisites"
+sidebarTitle: "Prerequisites"
+description: "Check the supported platform, network, license, storage, and operator requirements before installing Pharen Hub."
+---
+
+Pharen Hub self-host v1 supports Linux `amd64`, Docker Engine, and Docker Compose 2.24 or newer. It is intended for startup and SME teams with a technical operator who can maintain DNS, TLS, backups, upgrades, and incident response.
+
+You need a dedicated host, outbound HTTPS to `ghcr.io` and `billing.pharen.app`, sufficient storage for images/database/media/backups, and a DNS name with TCP 80/443 for production. Business production self-hosting requires a paid license for each installation. A Pharen-issued evaluation lasts 14 days and is not for production.
+
+Use encrypted backup storage and keep an encrypted off-site copy. Do not reuse a developer `.env`, database, volume, customer credential, or production customer data for testing.

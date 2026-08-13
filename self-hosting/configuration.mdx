@@ -1,0 +1,13 @@
+---
+title: "Configure self-hosting"
+sidebarTitle: "Configuration"
+description: "Configure registration, email, integrations, and secrets from one public origin."
+---
+
+`PHAREN_PUBLIC_URL` is the only origin entered during setup. HTTP is accepted only for `localhost`, `127.0.0.1`, and `::1`; all other origins require HTTPS.
+
+Self-host registration defaults to `invite_only`. General signup links are hidden, and the backend creates an account only for a pending, unused, unexpired team or workspace invitation with the same email. Membership is granted only after verified acceptance.
+
+Configure SMTP before inviting users. Compromised-password checks fail closed by default. Keep provider, OAuth, object-storage, gateway, and SMTP credentials only in `.env` or an approved secret-injection mechanism. Services receive explicit environment allowlists; the credential-free parser receives none of them.
+
+Do not set `PHAREN_LICENSE_PUBLIC_KEYS_JSON`. Official images contain the active and next Billing verification keys; a legacy key payload cannot replace them.

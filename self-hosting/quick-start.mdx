@@ -1,0 +1,25 @@
+---
+title: "Self-host quick start"
+sidebarTitle: "Quick start"
+description: "Install and bootstrap the digest-pinned Pharen Hub release with the terminal setup flow."
+---
+
+Verify and extract the release archive, then work inside its directory:
+
+```bash
+sha256sum -c release-assets-SHA256SUMS --ignore-missing
+gh attestation verify elev8-labs-selfhost-vX.Y.Z.tar.gz --repo PharenIT/ELEV8-Labs
+tar -xzf elev8-labs-selfhost-vX.Y.Z.tar.gz
+cd elev8-labs-selfhost-vX.Y.Z
+sha256sum -c SHA256SUMS
+```
+
+Run `./pharen setup`. Enter one `PHAREN_PUBLIC_URL` and paste the license key at the hidden prompt. Setup derives the hostname, frontend, WebSocket, CSRF, and TLS settings and writes `.env` atomically with mode `0600`. There is no HTTP setup page or setup port.
+
+```bash
+./pharen doctor
+./pharen start
+./pharen status
+```
+
+Open the one-time owner bootstrap URL printed by setup. Keep the bootstrap token private. Use `./pharen logs init` and `./pharen logs license-agent` if startup does not become healthy.

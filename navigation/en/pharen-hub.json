@@ -23,6 +23,19 @@
       ]
     },
     {
+      "tab": "Self-hosting",
+      "pages": [
+        "self-hosting/prerequisites",
+        "self-hosting/quick-start",
+        "self-hosting/tls-proxy",
+        "self-hosting/configuration",
+        "self-hosting/backups",
+        "self-hosting/upgrade-rollback",
+        "self-hosting/licensing-data-flows",
+        "self-hosting/troubleshooting"
+      ]
+    },
+    {
       "tab": "Mobile",
       "pages": [
         "mobile/overview",

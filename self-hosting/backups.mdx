@@ -1,0 +1,13 @@
+---
+title: "Backups and restore preparation"
+sidebarTitle: "Backups"
+description: "Create consistent, checksummed backups without copying runtime lease state."
+---
+
+```bash
+./pharen backup /encrypted/backup-target
+```
+
+The command uses `umask 077`, pauses application writers, dumps PostgreSQL, archives media and `.env`, writes SHA-256 checksums, excludes runtime lease state, and restarts services through a trap. Verify the checksum file and copy the backup to encrypted off-site storage.
+
+Restore is a tested operator runbook, not an automated destructive command in v1. Restore PostgreSQL, media, and `.env` only while writers are stopped. Never restore the `license_state` volume. Keep the failed original runtime offline until recovery is accepted.
