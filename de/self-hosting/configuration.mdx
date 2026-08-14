@@ -4,10 +4,49 @@ sidebarTitle: "Konfiguration"
 description: "Konfiguriere Registrierung, E-Mail, Integrationen und Secrets aus einer Public URL."
 ---
 
-`PHAREN_PUBLIC_URL` ist die einzige Origin-Eingabe. HTTP ist nur für `localhost`, `127.0.0.1` und `::1` erlaubt; alle anderen Origins benötigen HTTPS.
+## Öffentliche Origin und Registrierung
 
-Self-Hosting nutzt standardmäßig `invite_only`. Allgemeine Registrierungslinks sind verborgen. Das Backend erstellt Accounts nur für eine offene, unbenutzte und nicht abgelaufene Team- oder Workspace-Einladung mit identischer E-Mail. Mitgliedschaften entstehen erst nach verifizierter Annahme.
+`PHAREN_PUBLIC_URL` ist die einzige Origin, die du im Setup eingibst. HTTP ist nur für `localhost`, `127.0.0.1` und `::1` erlaubt. Alle anderen Origins benötigen HTTPS.
 
-Richte SMTP vor Einladungen ein. Die Prüfung kompromittierter Passwörter schlägt standardmäßig geschlossen fehl. Provider-, OAuth-, Storage-, Gateway- und SMTP-Secrets gehören nur in `.env` oder ein freigegebenes Secret-System. Der Parser erhält keine dieser Variablen.
+Self-Hosting nutzt standardmäßig `invite_only`. Pharen verbirgt allgemeine Registrierungslinks. Es erstellt einen Account nur bei einer offenen, unbenutzten und nicht abgelaufenen Einladung an dieselbe E-Mail-Adresse. Pharen erteilt die Mitgliedschaft nach Verifizierung und Annahme der Einladung.
+
+## Transaktionale E-Mails
+
+Konfiguriere den E-Mail-Versand, bevor du Benutzer einlädst. Self-Hosting v1 unterstützt SMTP und Mailjet.
+
+Ergänze für SMTP diese Werte in `.env`:
+
+```dotenv
+TRANSACTIONAL_EMAIL_PROVIDER=smtp
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=587
+EMAIL_HOST_USER=replace-with-smtp-user
+EMAIL_HOST_PASSWORD=replace-with-smtp-password
+EMAIL_USE_TLS=true
+EMAIL_USE_SSL=false
+DEFAULT_FROM_EMAIL=no-reply@example.com
+DEFAULT_FROM_NAME=Pharen
+```
+
+Nutze `EMAIL_USE_TLS=true` für STARTTLS, üblicherweise auf Port 587. Nutze `EMAIL_USE_SSL=true` für implizites TLS, üblicherweise auf Port 465. Aktiviere nicht beide Einstellungen.
+
+Konfiguriere für Mailjet:
+
+```dotenv
+TRANSACTIONAL_EMAIL_PROVIDER=mailjet
+MAILJET_API_KEY=replace-with-mailjet-api-key
+MAILJET_SECRET_KEY=replace-with-mailjet-secret-key
+MAILJET_WEBHOOK_TOKEN=replace-with-random-webhook-token
+DEFAULT_FROM_EMAIL=no-reply@example.com
+DEFAULT_FROM_NAME=Pharen
+```
+
+Übernimm die Änderung mit `./pharen start`. Sende eine Einladung an eine eigene Adresse. Prüfe den Empfang, bevor du weitere Benutzer einlädst.
+
+## Secrets
+
+Das paketierte v1-Deployment unterstützt `.env` als Secret-Eingabe. Es stellt keinen Docker-Secrets- oder `_FILE`-Vertrag bereit. Speichere Provider-, OAuth-, Storage-, Gateway- und SMTP-Secrets in `.env`. Setze die Rechte mit `chmod 600 .env`, verschlüssele den Host-Speicher und sichere die Datei nur in verschlüsselten Backups.
+
+Compose übergibt jedem Service eine explizite Allowlist von Umgebungsvariablen. Der Parser erhält keine Anwendungszugänge. Die Prüfung kompromittierter Passwörter schlägt standardmäßig geschlossen fehl.
 
 Setze kein `PHAREN_LICENSE_PUBLIC_KEYS_JSON`. Offizielle Images enthalten aktive und nächste Billing-Prüfschlüssel; Legacy-Payloads dürfen diese nicht überschreiben.

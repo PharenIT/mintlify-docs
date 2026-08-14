@@ -4,10 +4,49 @@ sidebarTitle: "Configuration"
 description: "Configure registration, email, integrations, and secrets from one public origin."
 ---
 
-`PHAREN_PUBLIC_URL` is the only origin entered during setup. HTTP is accepted only for `localhost`, `127.0.0.1`, and `::1`; all other origins require HTTPS.
+## Public origin and registration
 
-Self-host registration defaults to `invite_only`. General signup links are hidden, and the backend creates an account only for a pending, unused, unexpired team or workspace invitation with the same email. Membership is granted only after verified acceptance.
+`PHAREN_PUBLIC_URL` is the only origin you enter during setup. You can use HTTP only for `localhost`, `127.0.0.1`, and `::1`. Every other origin requires HTTPS.
 
-Configure SMTP before inviting users. Compromised-password checks fail closed by default. Keep provider, OAuth, object-storage, gateway, and SMTP credentials only in `.env` or an approved secret-injection mechanism. Services receive explicit environment allowlists; the credential-free parser receives none of them.
+Self-host registration defaults to `invite_only`. Pharen hides general signup links. It creates an account only when a pending invitation is unused, unexpired, and addressed to the same email. Pharen grants membership after the user verifies and accepts the invitation.
+
+## Transactional email
+
+Configure email before you invite users. Self-host v1 supports SMTP and Mailjet.
+
+For SMTP, add these values to `.env`:
+
+```dotenv
+TRANSACTIONAL_EMAIL_PROVIDER=smtp
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=587
+EMAIL_HOST_USER=replace-with-smtp-user
+EMAIL_HOST_PASSWORD=replace-with-smtp-password
+EMAIL_USE_TLS=true
+EMAIL_USE_SSL=false
+DEFAULT_FROM_EMAIL=no-reply@example.com
+DEFAULT_FROM_NAME=Pharen
+```
+
+Use `EMAIL_USE_TLS=true` for STARTTLS, commonly on port 587. Use `EMAIL_USE_SSL=true` for implicit TLS, commonly on port 465. Do not enable both settings.
+
+For Mailjet, configure:
+
+```dotenv
+TRANSACTIONAL_EMAIL_PROVIDER=mailjet
+MAILJET_API_KEY=replace-with-mailjet-api-key
+MAILJET_SECRET_KEY=replace-with-mailjet-secret-key
+MAILJET_WEBHOOK_TOKEN=replace-with-random-webhook-token
+DEFAULT_FROM_EMAIL=no-reply@example.com
+DEFAULT_FROM_NAME=Pharen
+```
+
+Apply the change with `./pharen start`. Send an invitation to an address you control. Confirm that it arrives before you invite other users.
+
+## Secrets
+
+The packaged v1 deployment supports `.env` as its secret input. It does not provide a Docker Secrets or `_FILE` contract. Keep provider, OAuth, object-storage, gateway, and SMTP credentials in `.env`. Set its permissions with `chmod 600 .env`, encrypt the host storage, and include the file only in encrypted backups.
+
+Compose passes explicit environment allowlists to each service. It passes no application credentials to the parser. Compromised-password checks fail closed by default.
 
 Do not set `PHAREN_LICENSE_PUBLIC_KEYS_JSON`. Official images contain the active and next Billing verification keys; a legacy key payload cannot replace them.

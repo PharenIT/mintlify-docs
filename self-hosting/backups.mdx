@@ -4,10 +4,59 @@ sidebarTitle: "Backups"
 description: "Create consistent, checksummed backups without copying runtime lease state."
 ---
 
+## Create and verify a backup
+
+Choose a directory on encrypted storage:
+
 ```bash
 ./pharen backup /encrypted/backup-target
+BACKUP_DIRECTORY=/encrypted/backup-target/pharen-YYYYMMDDTHHMMSSZ
+(cd "$BACKUP_DIRECTORY" && sha256sum -c SHA256SUMS)
+test -s "$BACKUP_DIRECTORY/postgres.sql"
+tar -tzf "$BACKUP_DIRECTORY/media.tar.gz" >/dev/null
 ```
 
-The command uses `umask 077`, pauses application writers, dumps PostgreSQL, archives media and `.env`, writes SHA-256 checksums, excludes runtime lease state, and restarts services through a trap. Verify the checksum file and copy the backup to encrypted off-site storage.
+The command applies `umask 077` and pauses application writers. It dumps PostgreSQL and archives media and `.env`. It excludes runtime lease state. A trap restarts services if the backup succeeds or fails.
 
-Restore is a tested operator runbook, not an automated destructive command in v1. Restore PostgreSQL, media, and `.env` only while writers are stopped. Never restore the `license_state` volume. Keep the failed original runtime offline until recovery is accepted.
+Copy the verified directory to encrypted off-site storage. Test this procedure on a schedule that matches your recovery requirements.
+
+## Restore a backup
+
+Restore with the same release version that created the backup. Upgrade only after that release starts successfully. Keep the failed original runtime offline until recovery is accepted.
+
+<Warning>
+  The following commands replace the selected installation's database and media. Confirm the release directory and `BACKUP_DIRECTORY` before you continue.
+</Warning>
+
+```bash
+cd /opt/pharen/elev8-labs-selfhost-vX.Y.Z
+BACKUP_DIRECTORY=/encrypted/backup-target/pharen-YYYYMMDDTHHMMSSZ
+(cd "$BACKUP_DIRECTORY" && sha256sum -c SHA256SUMS)
+
+./pharen stop
+install -m 600 "$BACKUP_DIRECTORY/environment.env" .env
+
+docker compose --env-file .env -f docker-compose.yml up -d postgres
+until docker compose --env-file .env -f docker-compose.yml exec -T postgres \
+  sh -ec 'pg_isready -U "$POSTGRES_USER" -d postgres'; do sleep 2; done
+docker compose --env-file .env -f docker-compose.yml exec -T postgres \
+  sh -ec 'dropdb --if-exists -U "$POSTGRES_USER" "$POSTGRES_DB"; createdb -U "$POSTGRES_USER" "$POSTGRES_DB"'
+docker compose --env-file .env -f docker-compose.yml exec -T postgres \
+  sh -ec 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" "$POSTGRES_DB"' \
+  < "$BACKUP_DIRECTORY/postgres.sql"
+
+docker compose --env-file .env -f docker-compose.yml run --rm --no-deps -T \
+  -v "$BACKUP_DIRECTORY:/backup:ro" --entrypoint sh init \
+  -ec 'find /app/media -mindepth 1 -delete; tar -C /app -xzf /backup/media.tar.gz'
+docker compose --env-file .env -f docker-compose.yml run --rm --no-deps -T \
+  --entrypoint sh redis -ec 'find /data -mindepth 1 -delete'
+docker compose --env-file .env -f docker-compose.yml run --rm --no-deps -T \
+  --entrypoint sh init -ec 'find /var/lib/pharen-license -mindepth 1 -delete'
+
+./pharen start
+./pharen status
+./pharen logs init
+./pharen logs license-agent
+```
+
+Confirm login, an authenticated file download, a parser upload, realtime collaboration, and invitation delivery. Create and verify a new backup before you declare recovery complete. Never restore or copy the `license_state` volume.

@@ -4,8 +4,25 @@ sidebarTitle: "Prerequisites"
 description: "Check the supported platform, network, license, storage, and operator requirements before installing Pharen Hub."
 ---
 
-Pharen Hub self-host v1 supports Linux `amd64`, Docker Engine, and Docker Compose 2.24 or newer. It is intended for startup and SME teams with a technical operator who can maintain DNS, TLS, backups, upgrades, and incident response.
+## Supported platform
 
-You need a dedicated host, outbound HTTPS to `ghcr.io` and `billing.pharen.app`, sufficient storage for images/database/media/backups, and a DNS name with TCP 80/443 for production. Business production self-hosting requires a paid license for each installation. A Pharen-issued evaluation lasts 14 days and is not for production.
+Pharen Hub self-host v1 supports Linux `amd64`. Install Docker Engine and Docker Compose 2.24 or newer. Install the [GitHub CLI](https://cli.github.com/) to download and verify release provenance.
 
-Use encrypted backup storage and keep an encrypted off-site copy. Do not reuse a developer `.env`, database, volume, customer credential, or production customer data for testing.
+Use a dedicated host. The following sizes are starting points for a small team:
+
+| Environment | CPU | Memory | Local SSD |
+| --- | ---: | ---: | ---: |
+| Evaluation or light use | 4 vCPU | 8 GiB | 50 GiB |
+| Recommended production baseline | 8 vCPU | 16 GiB | 100 GiB |
+
+Database records, uploaded media, container images, and local backups consume additional storage. Monitor disk usage and increase capacity before it reaches 80%. Keep backup capacity outside the application host.
+
+## Access and network
+
+Pharen provides the release archive, checksum manifest, registry access, and `PHAREN_LICENSE_KEY` after purchase or approval of an evaluation. Contact [Pharen](https://pharen.de/en/contact) if any item is missing. Business production self-hosting requires one paid license per installation. An evaluation lasts 14 days and is not for production.
+
+Allow outbound HTTPS to `github.com`, `api.github.com`, `ghcr.io`, and `billing.pharen.app`. Production also needs a DNS name and inbound TCP 80/443. If you use an external proxy, you must be able to restrict the application host to that proxy's CIDRs.
+
+## Operator responsibilities
+
+Your technical operator must maintain DNS, TLS, email delivery, encrypted backups, upgrades, monitoring, and incident response. Use encrypted backup storage and keep an encrypted off-site copy. Do not reuse a development `.env`, database, volume, customer credential, or production customer data for testing.

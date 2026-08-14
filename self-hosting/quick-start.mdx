@@ -4,22 +4,40 @@ sidebarTitle: "Quick start"
 description: "Install and bootstrap the digest-pinned Pharen Hub release with the terminal setup flow."
 ---
 
-Verify and extract the release archive, then work inside its directory:
+## Download the release
+
+Pharen gives your GitHub account access to the release and container images after purchase or approval of an evaluation. Sign in with the approved account. Replace `vX.Y.Z` with the version supplied by Pharen.
 
 ```bash
+gh auth login
+VERSION=vX.Y.Z
+gh release download "$VERSION" \
+  --repo PharenIT/ELEV8-Labs \
+  --pattern "elev8-labs-selfhost-$VERSION.tar.gz" \
+  --pattern "release-assets-SHA256SUMS"
 sha256sum -c release-assets-SHA256SUMS --ignore-missing
-gh attestation verify elev8-labs-selfhost-vX.Y.Z.tar.gz --repo PharenIT/ELEV8-Labs
-tar -xzf elev8-labs-selfhost-vX.Y.Z.tar.gz
-cd elev8-labs-selfhost-vX.Y.Z
+gh attestation verify "elev8-labs-selfhost-$VERSION.tar.gz" \
+  --repo PharenIT/ELEV8-Labs
+tar -xzf "elev8-labs-selfhost-$VERSION.tar.gz"
+cd "elev8-labs-selfhost-$VERSION"
 sha256sum -c SHA256SUMS
 ```
 
-Run `./pharen setup`. Enter one `PHAREN_PUBLIC_URL` and paste the license key at the hidden prompt. Setup derives the hostname, frontend, WebSocket, CSRF, and TLS settings and writes `.env` atomically with mode `0600`. There is no HTTP setup page or setup port.
+Stop if a checksum or provenance check fails. Contact [Pharen](https://pharen.de/en/contact) instead of using an unverified archive.
+
+## Configure and start
+
+Run `./pharen setup`. Enter one `PHAREN_PUBLIC_URL`. Paste the `PHAREN_LICENSE_KEY` at the hidden prompt.
+
+Setup derives the hostname, frontend, WebSocket, CSRF, and TLS settings. It writes `.env` atomically with mode `0600`. There is no HTTP setup page or setup port.
 
 ```bash
+./pharen setup
 ./pharen doctor
 ./pharen start
 ./pharen status
 ```
 
-Open the one-time owner bootstrap URL printed by setup. Keep the bootstrap token private. Use `./pharen logs init` and `./pharen logs license-agent` if startup does not become healthy.
+Open the one-time owner bootstrap URL printed by setup. Keep the bootstrap token private. Configure email before inviting other users.
+
+Use `./pharen logs init` and `./pharen logs license-agent` if startup does not become healthy.

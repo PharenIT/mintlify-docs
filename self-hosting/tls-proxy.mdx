@@ -12,6 +12,8 @@ Set `LETSENCRYPT_EMAIL`, point DNS to the host, allow TCP 80/443, then run:
 ./pharen tls
 ```
 
-The bundled proxy returns 404 for `/admin/` and for raw protected `/media/` paths. It exposes only avatars, team icons/backgrounds, workspace logos, and agent avatars directly; protected files are downloaded through authenticated APIs.
+The bundled proxy returns 404 for `/admin/` and raw protected `/media/` paths. It exposes only avatars, team icons and backgrounds, workspace logos, and agent avatars directly. Users download protected files through authenticated APIs.
 
-For an external proxy, firewall the Pharen host so only the proxy can reach it, set `PHAREN_EXTERNAL_PROXY_MODE=true`, and set `PHAREN_EXTERNAL_PROXY_CIDRS` to only that proxy's container or host CIDRs. The bundled proxy validates this list, trusts `X-Forwarded-For` and `X-Forwarded-Proto` only from those sources, and replaces all forwarding headers before Django. The mode permits firewall-restricted HTTP between the proxies; the public proxy must provide HTTPS. Preserve WebSocket upgrades for `/ws/`, `/webrtc/`, and `/kb-ws/`.
+For an external proxy, firewall the Pharen host so only that proxy can reach it. Set `PHAREN_EXTERNAL_PROXY_MODE=true`. Set `PHAREN_EXTERNAL_PROXY_CIDRS` to only that proxy's container or host CIDRs.
+
+The bundled proxy validates the CIDR list. It trusts `X-Forwarded-For` and `X-Forwarded-Proto` only from those sources. It replaces forwarding headers before Django. This mode permits firewall-restricted HTTP between the proxies. Your public proxy must provide HTTPS and preserve WebSocket upgrades for `/ws/`, `/webrtc/`, and `/kb-ws/`.

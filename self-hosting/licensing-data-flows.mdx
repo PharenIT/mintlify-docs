@@ -8,10 +8,10 @@ description: "Understand the runtime lease, offline grace, Billing metadata, par
   This page, the Billing/FAQ copy, and the source license notice require Pharen legal approval before publication.
 </Warning>
 
-A paid license covers one installation with one active runtime and one non-running cold backup. The runtime lease lasts ten minutes and renews every five minutes. Concurrent runtimes conflict, causing one runtime to stop. Evaluation installations last 14 days and are not licensed for production.
+A paid license covers one installation with one active runtime and one non-running cold backup. The runtime lease lasts ten minutes and renews every five minutes. Concurrent runtimes conflict. The runtime without the active lease stops. Evaluation installations last 14 days and are not licensed for production.
 
-Only connection failures, timeouts, HTTP 408/425/429, and 5xx responses may use the last valid signed offline grace, for at most 72 hours. HTTP 401/403/409, inactive or expired licenses, invalid signatures, and malformed responses invalidate workload status immediately.
+Only connection failures, timeouts, HTTP 408/425/429, and 5xx responses may use the last valid signed offline grace. Grace lasts at most 72 hours. HTTP 401/403/409, inactive or expired licenses, invalid signatures, and malformed responses invalidate workload status immediately.
 
 Billing receives installation/runtime IDs, lease generation, app version, build ID, official-build flag, conflict counters, and license status. It does not receive prompts, uploaded files, workspace records, provider keys, SMTP credentials, or environment contents.
 
-Uploaded documents are streamed to a credential-free parser on an internal-only network. It has a 50 MiB input limit, bounded output, 120-second timeout, read-only root, temporary filesystem, dropped capabilities, and no database, Redis, media, Docker socket, license, provider, gateway, or SMTP access.
+Pharen streams uploaded documents to a credential-free parser on an internal-only network. The parser limits input to 50 MiB and bounds its output. It stops child processes after 120 seconds. It uses a read-only root, temporary filesystem, and dropped capabilities. It cannot access the database, Redis, media, Docker socket, license, provider, gateway, or SMTP credentials.
