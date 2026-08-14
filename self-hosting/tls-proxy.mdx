@@ -1,0 +1,19 @@
+---
+title: "TLS and reverse proxies"
+sidebarTitle: "TLS & proxy"
+description: "Expose Pharen safely with bundled TLS or an explicitly trusted external proxy."
+---
+
+Remote installations require HTTPS. Before a certificate exists, public HTTP serves only `/healthz` and ACME challenges. Application HTTP is enabled only when `PHAREN_PUBLIC_URL` is loopback.
+
+Set `LETSENCRYPT_EMAIL`, point DNS to the host, allow TCP 80/443, then run:
+
+```bash
+./pharen tls
+```
+
+The bundled proxy returns 404 for `/admin/` and raw protected `/media/` paths. It exposes only avatars, team icons and backgrounds, workspace logos, and agent avatars directly. Users download protected files through authenticated APIs.
+
+For an external proxy, firewall the Pharen host so only that proxy can reach it. Set `PHAREN_EXTERNAL_PROXY_MODE=true`. Set `PHAREN_EXTERNAL_PROXY_CIDRS` to only that proxy's container or host CIDRs.
+
+The bundled proxy validates the CIDR list. It trusts `X-Forwarded-For` and `X-Forwarded-Proto` only from those sources. It replaces forwarding headers before Django. This mode permits firewall-restricted HTTP between the proxies. Your public proxy must provide HTTPS and preserve WebSocket upgrades for `/ws/`, `/webrtc/`, and `/kb-ws/`.

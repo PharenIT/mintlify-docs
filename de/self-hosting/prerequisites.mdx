@@ -1,0 +1,28 @@
+---
+title: "Voraussetzungen für Self-Hosting"
+sidebarTitle: "Voraussetzungen"
+description: "Prüfe Plattform, Netzwerk, Lizenz, Speicher und Betriebsanforderungen vor der Installation von Pharen Hub."
+---
+
+## Unterstützte Plattform
+
+Pharen Hub Self-Hosting v1 unterstützt Linux `amd64`. Installiere Docker Engine und Docker Compose ab Version 2.24. Installiere außerdem die [GitHub CLI](https://cli.github.com/), um Releases herunterzuladen und ihre Provenienz zu prüfen.
+
+Nutze einen dedizierten Host. Die folgenden Größen sind Startwerte für ein kleines Team:
+
+| Umgebung | CPU | Arbeitsspeicher | Lokale SSD |
+| --- | ---: | ---: | ---: |
+| Evaluation oder geringe Last | 4 vCPU | 8 GiB | 50 GiB |
+| Empfohlene Produktionsbasis | 8 vCPU | 16 GiB | 100 GiB |
+
+Datenbankeinträge, Uploads, Container-Images und lokale Backups benötigen zusätzlichen Speicher. Überwache die Belegung und erweitere den Speicher vor 80 Prozent Auslastung. Halte Backup-Kapazität außerhalb des Applikationshosts vor.
+
+## Zugriff und Netzwerk
+
+Pharen stellt nach Kauf oder Freigabe einer Evaluation das Release-Archiv, die Checksum-Datei, Registry-Zugriff und den `PHAREN_LICENSE_KEY` bereit. Kontaktiere [Pharen](https://pharen.de/en/contact), wenn etwas davon fehlt. Geschäftliches Self-Hosting in Produktion benötigt eine bezahlte Lizenz pro Installation. Eine Evaluation läuft 14 Tage und ist nicht für Produktion bestimmt.
+
+Erlaube ausgehendes HTTPS zu `github.com`, `api.github.com`, `ghcr.io` und `billing.pharen.app`. Für Produktion benötigst du außerdem einen DNS-Namen und eingehendes TCP 80/443. Bei einem externen Proxy musst du den Applikationshost auf dessen CIDRs beschränken können.
+
+## Verantwortung des Betreibers
+
+Deine technische Ansprechperson muss DNS, TLS, E-Mail-Versand, verschlüsselte Backups, Updates, Monitoring und Incident Response betreuen. Nutze verschlüsselten Backup-Speicher und eine verschlüsselte Offsite-Kopie. Verwende für Tests keine Entwicklungs-`.env`, bestehende Datenbank, vorhandene Volumes, Kundenzugangsdaten oder Produktionsdaten.

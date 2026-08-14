@@ -1,0 +1,43 @@
+---
+title: "Self-Hosting Schnellstart"
+sidebarTitle: "Schnellstart"
+description: "Installiere und initialisiere das Digest-gebundene Pharen Hub Release über das Terminal."
+---
+
+## Release herunterladen
+
+Pharen schaltet dein GitHub-Konto nach Kauf oder Freigabe einer Evaluation für Release und Container-Images frei. Melde dich mit diesem Konto an. Ersetze `vX.Y.Z` durch die von Pharen angegebene Version.
+
+```bash
+gh auth login
+VERSION=vX.Y.Z
+gh release download "$VERSION" \
+  --repo PharenIT/ELEV8-Labs \
+  --pattern "elev8-labs-selfhost-$VERSION.tar.gz" \
+  --pattern "release-assets-SHA256SUMS"
+sha256sum -c release-assets-SHA256SUMS --ignore-missing
+gh attestation verify "elev8-labs-selfhost-$VERSION.tar.gz" \
+  --repo PharenIT/ELEV8-Labs
+tar -xzf "elev8-labs-selfhost-$VERSION.tar.gz"
+cd "elev8-labs-selfhost-$VERSION"
+sha256sum -c SHA256SUMS
+```
+
+Brich ab, wenn eine Checksum- oder Provenienzprüfung fehlschlägt. Kontaktiere [Pharen](https://pharen.de/en/contact), statt ein ungeprüftes Archiv zu verwenden.
+
+## Konfigurieren und starten
+
+Starte `./pharen setup`. Gib genau eine `PHAREN_PUBLIC_URL` ein. Füge den `PHAREN_LICENSE_KEY` im verdeckten Prompt ein.
+
+Setup leitet Hostname, Frontend-, WebSocket-, CSRF- und TLS-Werte ab. Es schreibt `.env` atomar mit Modus `0600`. Es gibt keine HTTP-Setup-Seite und keinen Setup-Port.
+
+```bash
+./pharen setup
+./pharen doctor
+./pharen start
+./pharen status
+```
+
+Öffne anschließend den einmaligen Owner-Bootstrap-Link. Halte das Bootstrap-Token geheim. Konfiguriere den E-Mail-Versand, bevor du weitere Benutzer einlädst.
+
+Bei Problemen helfen `./pharen logs init` und `./pharen logs license-agent`.

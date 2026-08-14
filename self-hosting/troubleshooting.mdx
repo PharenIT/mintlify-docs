@@ -1,0 +1,23 @@
+---
+title: "Troubleshoot self-hosting"
+sidebarTitle: "Troubleshooting"
+description: "Diagnose setup, lease, parser, proxy, registration, and service failures without exposing secrets."
+---
+
+Start with:
+
+```bash
+./pharen doctor
+./pharen status
+./pharen logs init
+./pharen logs license-agent
+```
+
+- `installation_runtime_conflict`: another runtime holds the active lease. Stop the clone or complete a portal transfer; do not copy lease state.
+- Billing unavailable: check DNS/TLS egress. A previously signed cache may run only until its grace deadline.
+- 401/403 or invalid signature: workloads stop immediately. Verify the key/identity and contact Pharen; do not add a custom trust key.
+- Parser errors: check `./pharen logs parser` and `content-worker`. Oversized, malformed, timed-out, or dependency-failing files return safe errors without content logs.
+- Signup denied: self-hosting is invite-only; use the exact invitation link and matching email.
+- HTTP returns 404: remote application HTTP is intentionally closed until TLS exists.
+
+Never share `.env`, a `pharen_` key, instance secret, bootstrap token, complete Compose output, database contents, or uploaded file content with support.

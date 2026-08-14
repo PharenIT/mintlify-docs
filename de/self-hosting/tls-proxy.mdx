@@ -1,0 +1,15 @@
+---
+title: "TLS und Reverse Proxy"
+sidebarTitle: "TLS & Proxy"
+description: "Veröffentliche Pharen sicher mit enthaltenem TLS oder einem explizit vertrauenswürdigen externen Proxy."
+---
+
+Entfernte Installationen benötigen HTTPS. Vor dem Zertifikat liefert öffentliches HTTP nur `/healthz` und ACME-Challenges. Die Anwendung ist per HTTP nur mit einer Loopback-`PHAREN_PUBLIC_URL` erreichbar.
+
+Setze `LETSENCRYPT_EMAIL`, richte DNS und TCP 80/443 ein und starte `./pharen tls`.
+
+Der enthaltene Proxy liefert für `/admin/` und geschützte rohe `/media/`-Pfade 404. Direkt erreichbar bleiben nur Avatare, Team-Icons und -Hintergründe, Workspace-Logos und Agent-Avatare. Benutzer laden geschützte Dateien über authentifizierte APIs herunter.
+
+Bei einem externen Proxy darf die Firewall nur dessen Adressen zulassen. Setze `PHAREN_EXTERNAL_PROXY_MODE=true`. Setze `PHAREN_EXTERNAL_PROXY_CIDRS` ausschließlich auf die Container- oder Host-CIDRs dieses Proxys.
+
+Der enthaltene Proxy validiert die CIDR-Liste. Er vertraut `X-Forwarded-For` und `X-Forwarded-Proto` nur aus diesen Netzen. Er ersetzt Forwarding-Header vor Django. Dieser Modus erlaubt firewall-geschütztes HTTP zwischen den Proxys. Dein öffentlicher Proxy muss HTTPS bereitstellen und WebSocket-Upgrades für `/ws/`, `/webrtc/` und `/kb-ws/` erhalten.
