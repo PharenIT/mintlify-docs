@@ -1,0 +1,62 @@
+---
+title: "Backups und Restore-Vorbereitung"
+sidebarTitle: "Backups"
+description: "Erzeuge konsistente, geprüfte Backups ohne Runtime-Lease-Zustand."
+---
+
+## Backup erstellen und prüfen
+
+Wähle ein Verzeichnis auf verschlüsseltem Speicher:
+
+```bash
+./pharen backup /verschluesseltes/backup-ziel
+BACKUP_DIRECTORY=/verschluesseltes/backup-ziel/pharen-YYYYMMDDTHHMMSSZ
+(cd "$BACKUP_DIRECTORY" && sha256sum -c SHA256SUMS)
+test -s "$BACKUP_DIRECTORY/postgres.sql"
+tar -tzf "$BACKUP_DIRECTORY/media.tar.gz" >/dev/null
+```
+
+Der Befehl setzt `umask 077` und pausiert schreibende Services. Er sichert PostgreSQL, Media und `.env`. Er schließt den Runtime-Lease-Zustand aus. Ein Trap startet die Services nach Erfolg oder Fehler neu.
+
+Kopiere das geprüfte Verzeichnis auf verschlüsselten Offsite-Speicher. Teste dieses Verfahren regelmäßig entsprechend deinen Wiederherstellungszielen.
+
+## Backup wiederherstellen
+
+Stelle ein Backup zuerst mit derselben Release-Version wieder her, mit der es erzeugt wurde. Führe ein Upgrade erst nach erfolgreichem Start dieser Version aus. Halte die ausgefallene ursprüngliche Runtime offline, bis du die Wiederherstellung abgenommen hast.
+
+<Warning>
+  Die folgenden Befehle ersetzen Datenbank und Media der gewählten Installation. Prüfe Release-Verzeichnis und `BACKUP_DIRECTORY`, bevor du fortfährst.
+</Warning>
+
+```bash
+cd /opt/pharen/elev8-labs-selfhost-vX.Y.Z
+BACKUP_DIRECTORY=/verschluesseltes/backup-ziel/pharen-YYYYMMDDTHHMMSSZ
+(cd "$BACKUP_DIRECTORY" && sha256sum -c SHA256SUMS)
+
+./pharen stop
+install -m 600 "$BACKUP_DIRECTORY/environment.env" .env
+
+docker compose --env-file .env -f docker-compose.yml up -d postgres
+until docker compose --env-file .env -f docker-compose.yml exec -T postgres \
+  sh -ec 'pg_isready -U "$POSTGRES_USER" -d postgres'; do sleep 2; done
+docker compose --env-file .env -f docker-compose.yml exec -T postgres \
+  sh -ec 'dropdb --if-exists -U "$POSTGRES_USER" "$POSTGRES_DB"; createdb -U "$POSTGRES_USER" "$POSTGRES_DB"'
+docker compose --env-file .env -f docker-compose.yml exec -T postgres \
+  sh -ec 'psql -v ON_ERROR_STOP=1 -U "$POSTGRES_USER" "$POSTGRES_DB"' \
+  < "$BACKUP_DIRECTORY/postgres.sql"
+
+docker compose --env-file .env -f docker-compose.yml run --rm --no-deps -T \
+  -v "$BACKUP_DIRECTORY:/backup:ro" --entrypoint sh init \
+  -ec 'find /app/media -mindepth 1 -delete; tar -C /app -xzf /backup/media.tar.gz'
+docker compose --env-file .env -f docker-compose.yml run --rm --no-deps -T \
+  --entrypoint sh redis -ec 'find /data -mindepth 1 -delete'
+docker compose --env-file .env -f docker-compose.yml run --rm --no-deps -T \
+  --entrypoint sh init -ec 'find /var/lib/pharen-license -mindepth 1 -delete'
+
+./pharen start
+./pharen status
+./pharen logs init
+./pharen logs license-agent
+```
+
+Prüfe Login, einen authentifizierten Datei-Download, einen Parser-Upload, Realtime-Zusammenarbeit und den Versand einer Einladung. Erstelle und prüfe ein neues Backup, bevor du die Wiederherstellung abschließt. Stelle das Volume `license_state` niemals wieder her und kopiere es nicht.

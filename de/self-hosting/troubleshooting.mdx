@@ -1,0 +1,21 @@
+---
+title: "Self-Hosting Fehlerbehebung"
+sidebarTitle: "Fehlerbehebung"
+description: "Diagnostiziere Setup-, Lease-, Parser-, Proxy-, Registrierungs- und Servicefehler ohne Secrets offenzulegen."
+---
+
+```bash
+./pharen doctor
+./pharen status
+./pharen logs init
+./pharen logs license-agent
+```
+
+- `installation_runtime_conflict`: Eine andere Runtime hält die Lease. Stoppe den Klon oder führe den Portal-Transfer aus. Kopiere keinen Lease-Zustand.
+- Billing nicht erreichbar: Prüfe DNS/TLS-Egress. Ein signierter Cache gilt nur bis zur Grace-Deadline.
+- 401/403 oder ungültige Signatur: Workloads stoppen sofort. Prüfe Schlüssel und Installationsidentität. Kontaktiere Pharen und ergänze keinen eigenen Trust Key.
+- Parserfehler: Prüfe `./pharen logs parser` und `content-worker`. Größenlimit, fehlerhafte Eingaben, Timeout und Abhängigkeitsfehler liefern sichere Meldungen ohne Inhaltslogs.
+- Registrierung abgelehnt: Self-Hosting ist invite-only; nutze den exakten Einladungslink und dieselbe E-Mail.
+- HTTP liefert 404: Remote-HTTP bleibt absichtlich geschlossen, bis TLS existiert.
+
+Teile niemals `.env`, `pharen_`-Key, Instance Secret, Bootstrap-Token, vollständige Compose-Ausgabe, Datenbankinhalte oder Upload-Inhalte mit dem Support.

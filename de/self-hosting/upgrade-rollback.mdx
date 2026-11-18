@@ -1,0 +1,67 @@
+---
+title: "Upgrade, Rollback und Transfer"
+sidebarTitle: "Upgrade & Rollback"
+description: "Nutze Digest-gebundene Releases und kontrollierte Runbooks für Upgrade, Rollback und Transfer."
+---
+
+## Upgrade
+
+Lies vor Beginn die Release Notes. Beachte jede Datenbankmigration und Konfigurationsänderung. Erstelle und prüfe mit dem aktuellen Release ein verschlüsseltes Backup.
+
+Lade das neue Archiv wie im [Schnellstart](/de/self-hosting/quick-start) beschrieben herunter und prüfe es. Halte altes und neues Release-Verzeichnis getrennt.
+
+Das neue Archiv enthält eine Release-spezifische `.env`. Übertrage deine Deployment-Werte und Secrets aus der alten `.env` in diese neue Datei. Bewahre `PHAREN_INSTANCE_ID`, `PHAREN_INSTANCE_SECRET`, `PHAREN_LICENSE_KEY`, Datenbankzugänge, Anwendungs-Secrets, Public URL, E-Mail-, Proxy- und Integrationswerte.
+
+Überschreibe diese Release-eigenen Werte in der neuen Datei nicht:
+
+- `SELFHOST_REGISTRY`
+- `SELFHOST_IMAGE_TAG`
+- `PHAREN_APP_VERSION`
+- `PHAREN_BUILD_ID`
+- `PHAREN_OFFICIAL_BUILD`
+
+Vergleiche die Dateien vor dem Start:
+
+```bash
+OLD_RELEASE=/opt/pharen/elev8-labs-selfhost-vALT
+NEW_RELEASE=/opt/pharen/elev8-labs-selfhost-vNEU
+diff -u "$NEW_RELEASE/.env" "$OLD_RELEASE/.env"
+chmod 600 "$NEW_RELEASE/.env"
+cd "$NEW_RELEASE"
+./pharen doctor
+docker compose --env-file .env -f docker-compose.yml pull
+./pharen start
+./pharen status
+./pharen logs init
+./pharen logs license-agent
+docker compose --env-file .env -f docker-compose.yml images
+```
+
+Prüfe Login, einen authentifizierten Datei-Download, einen Parser-Upload, Realtime-Zusammenarbeit, Einladungsversand und ein neues verifiziertes Backup. Bewahre das vorige Release und das Pre-Upgrade-Backup auf, bis alle Prüfungen erfolgreich sind.
+
+## Rollback
+
+Starte alte Images nicht gegen eine Datenbank, die ein neueres Release verändert hat. Wenn das Upgrade eine Migration ausgeführt hat, stelle das Pre-Upgrade-Backup mit dem passenden vorherigen Release über [Backup wiederherstellen](/de/self-hosting/backups#backup-wiederherstellen) wieder her. Stelle niemals Runtime-Lease-Zustand wieder her.
+
+Wenn die Release Notes bestätigen, dass keine Datenbankmigration lief, stoppe das neue Release und starte das vorherige Verzeichnis:
+
+```bash
+cd /opt/pharen/elev8-labs-selfhost-vNEU
+./pharen stop
+cd /opt/pharen/elev8-labs-selfhost-vALT
+./pharen start
+./pharen status
+./pharen logs init
+./pharen logs license-agent
+docker compose --env-file .env -f docker-compose.yml images
+```
+
+Wiederhole dieselben Abnahmeprüfungen wie beim Upgrade.
+
+## Transfer auf einen anderen Host
+
+Erstelle und prüfe auf dem alten Host ein Backup. Stoppe die alte Runtime und halte sie offline. Widerrufe ihre Aktivierung im Kaufportal, damit die Installationszugänge rotieren.
+
+Installiere dieselbe Release-Version auf dem Ersatzhost. Führe `./pharen setup` mit dem rotierten `PHAREN_LICENSE_KEY` aus. Folge den Datenbank- und Media-Schritten unter [Backup wiederherstellen](/de/self-hosting/backups#backup-wiederherstellen). Ersetze die neue `.env` dabei nicht durch `environment.env`. Kopiere niemals Runtime-Lease-Zustand.
+
+Starte und prüfe den Ersatzhost, bevor du die alten Datenträger aufbewahrst oder löschst. Ein gestopptes Cold Backup ist erlaubt. Active-Active-Betrieb ist nicht erlaubt.

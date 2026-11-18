@@ -1,0 +1,17 @@
+---
+title: "Lizenzierung und Datenflüsse"
+sidebarTitle: "Lizenz & Daten"
+description: "Verstehe Runtime-Lease, Offline Grace, Billing-Metadaten, Parser-Isolation und die Freigabegrenze."
+---
+
+<Warning>
+  Diese Seite, Billing/FAQ-Texte und der Lizenzhinweis im Quellpaket benötigen vor Veröffentlichung die rechtliche Freigabe von Pharen.
+</Warning>
+
+Eine bezahlte Lizenz gilt für eine Installation mit einer aktiven Runtime und einem nicht laufenden Cold Backup. Die Lease läuft zehn Minuten und wird alle fünf Minuten erneuert. Parallele Runtimes erzeugen einen Konflikt. Die Runtime ohne aktive Lease stoppt. Evaluationen laufen 14 Tage und sind nicht für Produktion.
+
+Nur Verbindungsfehler, Timeouts, HTTP 408/425/429 und 5xx dürfen die letzte signierte Offline Grace nutzen. Die Grace gilt höchstens 72 Stunden. HTTP 401/403/409, inaktive oder abgelaufene Lizenzen, ungültige Signaturen und fehlerhafte Antworten stoppen Workloads sofort.
+
+Billing erhält Installations-/Runtime-ID, Lease-Generation, App-Version, Build-ID, Official-Build-Flag, Konfliktzähler und Lizenzstatus. Prompts, Uploads, Workspace-Daten, Provider Keys, SMTP-Secrets und Environment-Inhalte werden nicht übertragen.
+
+Pharen streamt hochgeladene Dokumente an einen credential-freien Parser in einem internen Netzwerk. Der Parser begrenzt Eingaben auf 50 MiB und beschränkt seine Ausgabe. Er beendet Child-Prozesse nach 120 Sekunden. Er nutzt ein schreibgeschütztes Root-Dateisystem, ein temporäres Dateisystem und verworfene Capabilities. Er hat keinen Zugriff auf Datenbank, Redis, Media, Docker Socket, Lizenz-, Provider-, Gateway- oder SMTP-Zugänge.
