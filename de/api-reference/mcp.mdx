@@ -1,0 +1,42 @@
+---
+title: "Pharen per MCP mit Codex verbinden"
+sidebarTitle: "Pharen MCP"
+description: "Verbinde Codex und andere MCP-Clients über einen Workspace-API-Schlüssel mit Pharen."
+---
+
+Über den Pharen-MCP-Server können Codex und andere KI-Tools Aktionen in Pharen ausführen. Codex kann ein Dokument lesen und daraus Listeneinträge erstellen, wenn der Schlüssel beide Berechtigungen hat.
+
+## Workspace-API-Schlüssel erstellen
+
+1. Öffne in Pharen [Einstellungen → Persönlich → API](https://pharen.app/settings/api) und wähle **Neuer Schlüssel**. Deine Workspace-Rolle muss API-Schlüssel erstellen dürfen.
+2. Wähle als Zielbereich **Ganzer Workspace**. MCP setzt einen Workspace-Schlüssel voraus. Schlüssel für **Ausgewählte Teams** werden abgelehnt.
+3. Wähle die Berechtigungen, die das KI-Tool braucht. Für das Beispiel unten genügt **Lesen** für **Listen** (`lists:read`).
+4. Kopiere den `phk_`-Schlüssel, sobald Pharen ihn anzeigt. MCP nutzt dieselben [Pharen-API-Schlüssel](/de/api-reference/api-keys) wie die REST-API. Das Tool kann Aktionen ausführen, für die sowohl der Schlüssel als auch die Person, die ihn erstellt hat, berechtigt sind.
+
+## Codex einrichten
+
+Verwende die Codex-CLI in Bash oder Zsh. Führe die folgenden Befehle aus und füge deinen Schlüssel ein, wenn das Terminal danach fragt. Die Eingabe bleibt dabei verdeckt.
+
+```bash
+printf 'Pharen-API-Schlüssel: '
+IFS= read -rs PHAREN_MCP_TOKEN
+printf '\n'
+export PHAREN_MCP_TOKEN
+
+codex mcp add pharen --url https://pharen.app/api/mcp \
+  --bearer-token-env-var PHAREN_MCP_TOKEN
+
+codex
+```
+
+Starte Codex aus dem Terminal, in dem `PHAREN_MCP_TOKEN` gesetzt ist. Für eine andere Pharen-Instanz findest du die Serveradresse in deren API-Einstellungen.
+
+Prüfe die Verbindung mit diesem Leseauftrag.
+
+> Zeig mir bis zu fünf Pharen-Listen, die ich mit diesem Schlüssel lesen kann.
+
+Über `search` findet der Agent verfügbare Aktionen. Über `execute` ruft er sie auf und kann mehrere Aktionen in einem Aufruf verbinden.
+
+## Andere MCP-Clients verbinden
+
+Füge einen MCP-Server mit dem Transport **Streamable HTTP** hinzu. Nutze `https://pharen.app/api/mcp` als Serveradresse und gib den Workspace-API-Schlüssel als Bearer-Token im Header `Authorization` an.

@@ -103,7 +103,8 @@
           "pages": [
             "api-reference/introduction",
             "api-reference/authentication",
-            "api-reference/api-keys"
+            "api-reference/api-keys",
+            "api-reference/mcp"
           ]
         },
         {

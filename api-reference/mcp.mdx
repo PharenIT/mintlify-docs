@@ -1,0 +1,42 @@
+---
+title: "Connect Pharen to Codex via MCP"
+sidebarTitle: "Pharen MCP"
+description: "Connect Codex and other MCP clients to Pharen with a workspace API key."
+---
+
+The Pharen MCP server lets Codex and other AI tools use Pharen actions. For example, Codex can read a document and create list entries when the key grants both permissions.
+
+## Create a workspace API key
+
+1. In Pharen, open [Settings → Personal → API](https://pharen.app/settings/api) and select **New API Key**. Your workspace role needs permission to create API keys.
+2. Set the access target to **Entire workspace**. MCP requires a workspace key. Keys limited to **Selected teams** are rejected.
+3. Grant the permissions the AI tool needs. For the example below, choose **Read** for **Lists** (`lists:read`).
+4. Copy the `phk_` key when Pharen displays it. MCP uses the same [Pharen API keys](/api-reference/api-keys) as the REST API. The tool can use actions permitted by both the key and the person who created it.
+
+## Set up Codex
+
+Use the Codex CLI in Bash or Zsh. Run the commands below and paste your key when prompted. The terminal hides the key as you enter it.
+
+```bash
+printf 'Pharen API key: '
+IFS= read -rs PHAREN_MCP_TOKEN
+printf '\n'
+export PHAREN_MCP_TOKEN
+
+codex mcp add pharen --url https://pharen.app/api/mcp \
+  --bearer-token-env-var PHAREN_MCP_TOKEN
+
+codex
+```
+
+Start Codex from the terminal where `PHAREN_MCP_TOKEN` is set. For a different Pharen instance, use the server address shown in its API settings.
+
+Use this read-only prompt to check the connection.
+
+> Show up to five Pharen lists that this key can read.
+
+Pharen exposes `search` to find available actions and `execute` to call them. An agent can chain several actions in a single `execute` call.
+
+## Connect another MCP client
+
+Add an MCP server with **Streamable HTTP** transport. Use `https://pharen.app/api/mcp` as the server address and provide the workspace API key as a Bearer token in the `Authorization` header.
